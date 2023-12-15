@@ -41,6 +41,7 @@
 
 
     <!-- Topbar Start -->
+    <nav class="sticky-top p-0">
     <div class="container-fluid bg-dark text-light p-0">
         <div class="row gx-0 d-none d-lg-flex">
             <div class="col-lg-7 px-5 text-start">
@@ -58,54 +59,59 @@
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+0507-1401-8061</small>
                 </div>
-                <div class="h-100 d-inline-flex align-items-center mx-n2">
-                    <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" 
-                    href="/member/loginForm">LOGIN</a>
-                    
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/member/loginForm">LOGIN</a>  
+                </div>
+                &nbsp; &nbsp; &nbsp;
+                 <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/member/signupForm">SIGN-UP</a>  
                 </div>
             </div>
         </div>
     </div>
-    <!-- Topbar End -->
-
-
-    <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <nav class="navbar navbar-expand-lg bg-white navbar-light">
         
-        <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+        <a href="" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
             <h2 class="m-0"><i class=></i>그냥 데려가개</h2>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                	<div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">보호소</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="#" class="dropdown-item">보호소 소개</a>
-                        <a href="#" class="dropdown-item">입양 신청</a>
+                        <a href="/center/centerinfo" class="dropdown-item">보호소 소개</a>
+                        <a href="/center/centerForm" class="dropdown-item">입양 신청</a>
                     </div>
                 </div>
-                <a href="about.html" class="nav-item nav-link">봉사활동</a>
-                <a href="courses.html" class="nav-item nav-link">교육강의</a>
+                <a href="/service/serviceList" class="nav-item nav-link">봉사활동</a>
+                <a href="/education/educationList" class="nav-item nav-link">교육강의</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">반려이야기</a>
                     <div class="dropdown-menu bg-light m-0">
-                        <a href="#" class="dropdown-item">목격/제보</a>
-                        <a href="#" class="dropdown-item">입양 후기</a>
+                        <a href="/help/helpList" class="dropdown-item">목격/제보</a>
+                        <a href="/adopt/adoptReview" class="dropdown-item">입양 후기</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+                   <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
-                       <a href="#" class="dropdown-item">찜 목록</a>
-                       <a href="#" class="dropdown-item">내 강의실</a>
-                       <a href="#" class="dropdown-item">봉사신청내역</a>
-                       <a href="#" class="dropdown-item">회원정보</a>
+                       <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
+                       <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
+                       <a href="/mypage/myClass" class="dropdown-item">내 강의실</a>
+                       <a href="/mypage/myService" class="dropdown-item">봉사신청내역</a>
+                       <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
                    </div>
         </div>
     </nav>
+    
+    </nav>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    
+     
     <!-- Navbar End -->
 
 
@@ -132,9 +138,7 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
-                                    <h1 class="display-2 text-light mb-5 animated slideInDown">반려견, 사지 말고 입양하세요</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-5">보호소 소개</a>
-                                    <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">입양 신청</a>
+                                    <h1 class="display-2 text-light mb-5 animated slideInDown">반려견, 사지 말고 입양하세요</h1>                                
                                 </div>
                             </div>
                         </div>
@@ -146,9 +150,7 @@
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
-                                    <h1 class="display-2 text-light mb-5 animated slideInDown">선한 마음, 사랑으로 나눠주세요</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-5">봉사활동 모집</a>
-                                    <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">봉사활동 신청</a>
+                                    <h1 class="display-2 text-light mb-5 animated slideInDown">선한 마음, 사랑으로 나눠주세요</h1>                                  
                                 </div>
                             </div>
                         </div>
@@ -161,8 +163,6 @@
                             <div class="row justify-content-center">
                                 <div class="col-lg-7">
                                     <h1 class="display-2 text-light mb-5 animated slideInDown">책임감, 알아야 행복할 수 있습니다</h1>
-                                    <a href="" class="btn btn-primary py-sm-3 px-sm-5">교육강의 목록</a>
-                                    <a href="" class="btn btn-light py-sm-3 px-sm-5 ms-3">교육강의 신청</a>
                                 </div>
                             </div>
                         </div>
@@ -217,9 +217,7 @@
                         <div class="position-relative">
                             <img class="img-fluid" src="img/dalgu1.jpg" alt="">
                             <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
@@ -233,9 +231,7 @@
                         <div class="position-relative">
                             <img class="img-fluid" src="img/coco1.jpg" alt="">
                             <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
@@ -249,9 +245,7 @@
                         <div class="position-relative">
                             <img class="img-fluid" src="img/dalgu2.jpg" alt="">
                             <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
@@ -265,9 +259,7 @@
                         <div class="position-relative">
                             <img class="img-fluid" src="img/coco2.jpg" alt="">
                             <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
                             </div>
                         </div>
                         <div class="bg-light text-center p-4">
