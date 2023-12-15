@@ -60,7 +60,7 @@
                 </div>
                 <div class="h-100 d-inline-flex align-items-center mx-n2">
                     <a class="btn btn-square btn-link rounded-0 border-0 border-end border-secondary" 
-                    a href="/member/loginForm">LOGIN</a>
+                    href="/member/loginForm">LOGIN</a>
                     
                 </div>
             </div>
@@ -347,5 +347,15 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    
+    <scss>
+    <script src="js/login.js"></script>
+    
+    
+    
+    
+    
+    
 </body>
 </html>
