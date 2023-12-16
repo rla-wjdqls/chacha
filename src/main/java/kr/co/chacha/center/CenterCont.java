@@ -14,9 +14,16 @@ public class CenterCont {
 	}//CenterCont() end
 	
 	@GetMapping("/centerinfo")
-	public ModelAndView info() {
+	public ModelAndView centerInfo() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/centerinfo");
+		return mav;
+	}
+	
+	@GetMapping("/centerForm")
+	public ModelAndView centerForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("center/centerForm");
 		return mav;
 	}
 }
