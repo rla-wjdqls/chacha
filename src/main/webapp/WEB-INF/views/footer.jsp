@@ -39,10 +39,7 @@
     <!-- Template Javascript -->
     <script src="/js/main.js"></script>
     <script src="/js/login.js"></script>
-    
-    <scss>
-    <script src="/js/login.js"></script>
-    
+        
     
     
     

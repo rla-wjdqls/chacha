@@ -15,8 +15,8 @@
 <body>
 
  
-  <div class="login">
-    <div class="login__content">
+  <div class="signup">
+    <div class="signup__content">
       <div class="login__img">
         <img src="https://image.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg" alt="user login">
       </div>
@@ -56,17 +56,36 @@
           <h1 class="login__title">Create Account</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
-            <input type="text" placeholder="Username" class="login__input">
+            <input type="text" placeholder="이" class="login__input">
           </div>
           
           <div class="login__box">
             <i class='bx bx-at login__icon'></i>
-            <input type="text" placeholder="Email" class="login__input">
+            <input type="text" placeholder="이메" class="login__input">
           </div>
           
           <div class="login__box">
             <i class='bx bx-lock login__icon'></i>
-            <input type="text" placeholder="Password" class="login__input">
+            <input type="text" placeholder="비밀번호" class="login__input">
+          </div>
+          <div class="login__box">
+            <i class='bx bx-lock login__icon'></i>
+            <input type="text" placeholder="비밀번호 확인" class="login__input">
+          </div>
+          <div class="login__box">
+            <input type="text" placeholder="우편번호" class="login__input">
+          </div>
+          <div class="login__box">
+            <input type="text" placeholder="주소1" class="login__input">
+          </div>
+          <div class="login__box">
+            <input type="text" placeholder="주소2" class="login__input">
+          </div>
+          <div class="login__box">
+            <input type="text" placeholder="전화번호" class="login__input">
+          </div>
+          <div class="login__box">
+            <input type="text" placeholder="생일" class="login__input">
           </div>
           
           <a href="#" class="login__button">Sign Up</a>

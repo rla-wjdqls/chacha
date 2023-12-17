@@ -26,7 +26,12 @@ public class MypageCont {
 		return mav;
 	}//jjimlist() end
 	
-	
+	@GetMapping("/myList")
+	public ModelAndView mypage() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myList");
+		return mav;
+	}//jjimlist() end
 	
 	
 }//end

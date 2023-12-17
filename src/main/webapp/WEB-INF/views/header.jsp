@@ -31,8 +31,6 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     
-    <!-- scss  -->
-    <link href="/scss/bootstrap/scss/login.scss" type="text/css" rel="stylesheet">
     
 </head>
 
