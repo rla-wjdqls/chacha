@@ -4,7 +4,12 @@
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
-여기에 본문 내용 작성합니다
+<hr>
+&nbsp;&nbsp;<h3>보호소 소개</h3>
+
+<div class="container-md">
+
+</div>
 <!-- 본문 끝 -->
 
 
