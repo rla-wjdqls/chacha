@@ -30,6 +30,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
+
 </head>
 
 <body>
@@ -94,7 +96,7 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                   <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
                        <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
                        <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
@@ -339,15 +341,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
-    
-    <scss>
-    <script src="js/login.js"></script>
-    
-    
-    
-    
-    
+   
     
 </body>
 </html>

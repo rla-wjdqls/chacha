@@ -28,6 +28,13 @@ public class MemberCont {
 	}//login() end
 	
 	
+	@GetMapping("/signupForm")
+	public ModelAndView signupForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/signupForm");
+		return mav;
+	}//login() end
+	
 	
 	
 }//end
