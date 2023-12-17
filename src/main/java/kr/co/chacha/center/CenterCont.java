@@ -1,5 +1,9 @@
 package kr.co.chacha.center;
 
+import java.net.URI;
+
+import javax.net.ssl.HttpsURLConnection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,9 @@ public class CenterCont {
 		mav.setViewName("center/centerinfo");
 		return mav;
 	}
+	
+
+	
 	
 	@GetMapping("/centerForm")
 	public ModelAndView centerForm() {
