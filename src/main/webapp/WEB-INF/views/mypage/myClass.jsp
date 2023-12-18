@@ -12,10 +12,9 @@
 	<!-- Page content-->
 
 
-
 	<div class="container">
-		<h4>찜목록</h4>
-		<p>콕! 찜해 놓은 아이들을 볼 수 있는 공간입니다</p>
+		<h4>내 강의실</h4>
+		<p>내가 신청한 강의 수강 현황을 확인할 수 있습니다</p>
 		<br>
 		<table class="table table-condensed">
 			<thead>

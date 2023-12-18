@@ -14,9 +14,9 @@
 
 
 	<div class="container">
-		<h4>찜목록</h4>
-		<p>콕! 찜해 놓은 아이들을 볼 수 있는 공간입니다</p>
-		<br>
+		<h4>회원정보 수정</h4><br>
+		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
+		<br><hr><br>
 		<table class="table table-condensed">
 			<thead>
 				<tr>
@@ -45,6 +45,7 @@
 		</table>
 		</div>
 	</div>
+
 
 
 <!-- 본문 끝 -->
