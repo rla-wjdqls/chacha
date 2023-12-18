@@ -3,9 +3,12 @@
     
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 template.jsp -->
-여기에 본문 내용 작성합니다
-<!-- 본문 끝 -->
 
+<h3>입양 전 필수 교육 강의</h3>
+
+<video width="640" height="360" controls>
+    <source src="${request.contextPath}/img/panda.mp4" type="video/mp4">
+   
+</video>
 
 <%@ include file="../footer.jsp" %>      
