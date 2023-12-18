@@ -14,6 +14,7 @@ table, th, td {
 }
 </style>
 <h3> 봉사활동 모집글 </h3>
+<p><a href="serviceForm.jsp">[글쓰기]</a></p>
  <table>
  	<tr>
 	 <td>글번호</td>
