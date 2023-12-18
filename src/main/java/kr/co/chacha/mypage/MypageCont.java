@@ -33,6 +33,27 @@ public class MypageCont {
 		return mav;
 	}//jjimlist() end
 	
+	@GetMapping("/myClass")
+	public ModelAndView myclass() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myClass");
+		return mav;
+	}//jjimlist() end
+	
+	@GetMapping("/myService")
+	public ModelAndView myservice() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myService");
+		return mav;
+	}//jjimlist() end
+	
+	@GetMapping("/myInfo")
+	public ModelAndView myinfo() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myInfo");
+		return mav;
+	}//jjimlist() end
+	
 	
 }//end
 
