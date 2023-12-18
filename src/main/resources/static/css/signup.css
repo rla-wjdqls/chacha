@@ -1,11 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
+
+.login__box {
+    position: relative;
+}
+	
+.login__input {
+	width: calc(100% - 110px); /* 우편번호 입력란 너비 조정 */
+}
+	
+.js {
+    position: absolute;
+	right: 10px;
+	top: 20px;
+ }
+
+
+.login__logo {
+	text-align: center;
+}
+
+
+
 :root {
-  --color: #4AD395;
+  --color: #f3bd00;
   --color-dark: #23004d;
   --color-light: #a49eac;
   --color-lighten: #f2f2f2;
-  --color-hover: #65bf97;
+  --color-hover: #ffc107;
   --font: "Open Sans", sans-serif;
   --big-font-size: 1.5rem;
   --normal-font-size: 0.938rem;
@@ -77,9 +99,14 @@ img {
 .login__create {
   position: absolute;
   bottom: 1rem;
-  width: 100%;
+  width: 700px;
+  height: 1050px;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%); /* ê°€ë¡œ ë°©í–¥ìœ¼ë¡œ -50%ë§Œí¼ ì´ë™í•´ì„œ ê°€ìš´ë° ì •ë ¬ */
+  box-sizing: border-box;
   background-color: var(--color-lighten);
-  padding: 2rem 1rem;
+  padding: 30px;
   border-radius: 1rem;
   text-align: center;
   box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
@@ -100,6 +127,8 @@ img {
   background-color: #fff;
   margin-top: 1rem;
   border-radius: 0.5rem;
+  width: 550px;
+  height: 60px;
 }
 
 .login__icon {

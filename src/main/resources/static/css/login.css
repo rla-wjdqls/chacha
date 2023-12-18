@@ -1,11 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
+
+.login__logo{
+	text-align: center;
+}
+
+
+.error_msg {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.5px;
+    color: #ff003e;
+    vertical-align: middle;
+}
+
+.save_id_box {
+    margin-top: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -moz-box-orient: horizontal;
+    -moz-box-direction: normal;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+
+.sns_login_box {
+    text-align: center;
+    margin: 40px 0 0;
+}
+
+
+.naver_login{
+	width: 50px;
+	height: 50px;
+	left: 100px;
+}
+
+.kakao_login{
+	width: 50px;
+	height: 50px;
+}
+
+
+.sns_login_item {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+
 :root {
-  --color: #4AD395;
+  --color: #f3bd00;
   --color-dark: #23004d;
   --color-light: #a49eac;
   --color-lighten: #f2f2f2;
-  --color-hover: #65bf97;
+  --color-hover: #ffc107;
   --font: "Open Sans", sans-serif;
   --big-font-size: 1.5rem;
   --normal-font-size: 0.938rem;
@@ -76,16 +140,21 @@ img {
 .login__register,
 .login__create {
   position: absolute;
-  bottom: 1rem;
-  width: 100%;
+  bottom: -5rem;
+  width: 460px;
+  left: 50%;
+  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
+  box-sizing: border-box;
   background-color: var(--color-lighten);
-  padding: 2rem 1rem;
+  padding: 30px;
   border-radius: 1rem;
   text-align: center;
   box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
   animation-duration: 0.4s;
   animation-name: animateLogin;
 }
+
+
 
 .login__title {
   font-size: var(--big-font-size);
@@ -142,6 +211,11 @@ img {
   text-align: center;
   border-radius: 0.5rem;
   transition: 0.3s;
+  width: 400px;
+  height: 54px;
+  font-size: 16px;
+  border: none;
+  
 
   &:hover {
     background-color: var(--color-hover);
@@ -183,6 +257,7 @@ img {
   display: none;
 }
 
+
 @keyframes animateLogin {
   0% {
     transform: scale(1, 1);
@@ -205,3 +280,6 @@ img {
 }
 
 @media screen and (min-width: 1024
+
+
+
