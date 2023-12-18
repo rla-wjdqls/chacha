@@ -4,13 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>그냥 데려가개</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>mypage template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <!-- <meta name="author" content="" />  -->
+    
+        <!-- Customized Bootstrap Stylesheet -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Favicon -->
     <link href="/resources/img/favicon.ico" rel="icon">
+    <!-- <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" /> -->
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,17 +30,45 @@
     <link href="/lib/animate/animate.min.css" rel="stylesheet">
     <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/mypage.css" rel="stylesheet">
+    <link href="/css/myInfo.css" rel="stylesheet">
     
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+	<script>
+/*     // HTML 문서가 로드된 후 실행
+    document.addEventListener('DOMContentLoaded', function () {
+        // 모든 list-group-item 요소 가져오기
+        var items = document.querySelectorAll('.list-group-item');
+
+        // 각 요소에 클릭 이벤트 리스너 추가
+        items.forEach(function (item) {
+            item.addEventListener('click', function () {
+                // 모든 요소에서 active 클래스 제거
+                items.forEach(function (otherItem) {
+                    otherItem.classList.remove('active');
+                });
+
+                // 클릭한 요소에 active 클래스 추가
+                item.classList.add('active');
+            });
+        });
+    }); */
     
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="/css/mypage.css">
+    function makeActive(element) {
+    	  // 모든 항목에서 'active' 클래스를 제거
+    	  var items = document.querySelectorAll('.list-group-item');
+    	  items.forEach(function(item) {
+    	    item.classList.remove('active');
+    	  });
+
+    	  // 클릭한 항목에 'active' 클래스 추가
+    	  element.classList.add('active');
+    	}
+	</script>
+
+	
+
     
 </head>
 
@@ -111,12 +144,36 @@
                    </div>
         </div>
     </nav>
-    
     </nav>
     <!-- Topbar End -->
+    
+	<nav>
+	<hr>
+		<h3>마이페이지</h3>
+	<br>
+	안녕하세요! itwill 님
+	
+	<br><br>
+	</nav>
 
 
     <!-- Navbar Start -->
-    
+    <nav>
+    <div class="d-flex" id="wrapper">
+            <!-- Sidebar-->
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">찜목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">내 글목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">내 강의실</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">봉사신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo">회원정보</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원정보 수정</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원탈퇴</a>
+                </div>
+            </div>
+
+            
+            
      
-    <!-- Navbar End -->
+  
