@@ -21,26 +21,38 @@
 		</ul>
 	</nav>
 
-<div class="container" style="text-align: center">
-	<h3>입양대기 동물</h3>
+<div class="ontainer-fluid">
+	<h3 style="text-align: center">입양대기 동물</h3>
+		<nav class="navbar navbar-light">
+		  <div class="container-fluid" style="display: center">
+		      <form class="d-flex">
+		        <input class="form-control me-2" type="search" placeholder="Search" style="display: center">
+		        <button class="btn btn-outline-success" type="submit">Search</button>
+		        <button class="btn btn-outline-warning" type="submit">Search</button>
+		      </form>
+		  </div>
+		</nav>
+
+	   
+	
+	
 	<div class="row">
-		<div class="card" style="width: 18rem;">
-		  <img src="../img/dalgu1.jpg" class="card-img-top img-fixed" alt="달구">
-		  <div class="card-body">
-		    <h5 class="card-title">달구/3살</h5>
-		    <p class="card-text">간단한 소개?</p>
-		    <a href="#" class="btn btn-primary">보러가기</a>
-		  </div>
-		</div>
-		
-		<div class="card" style="width: 18rem;">
-		  <img src="../img/coco1.jpg" class="card-img-top img-fixed" alt="코코">
-		  <div class="card-body">
-		    <h5 class="card-title">코코/3살</h5>
-		    <p class="card-text">간단한 소개?</p>
-		    <a href="#" class="btn btn-primary">보러가기</a>
-		  </div>
-		</div>
+		   <div class="card" style="width: 18rem;">
+			  <img src="../img/dalgu1.jpg" class="card-img-top img-fixed img-fluid" alt="달구">
+			  <div class="card-body">
+			    <h5 class="card-title">달구/3살</h5>
+			    <p class="card-text">간단한 소개?</p>
+			    <a href="#" class="btn btn-primary">보러가기</a>
+			  </div>
+		   </div>
+		   <div class="card" style="width: 18rem;">
+			  <img src="../img/coco1.jpg" class="card-img-top img-fixed img-fluid" alt="코코">
+			  <div class="card-body">
+			    <h5 class="card-title">코코/3살</h5>
+			    <p class="card-text">간단한 소개?</p>
+			    <a href="#" class="btn btn-primary">보러가기</a>
+			  </div>
+			</div>
 	</div>
 </div>
 <!-- 본문 끝 -->
