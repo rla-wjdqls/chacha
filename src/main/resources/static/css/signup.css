@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 
+
+
 .login__box {
     position: relative;
 }
@@ -9,11 +11,22 @@
 	width: calc(100% - 110px); /* 우편번호 입력란 너비 조정 */
 }
 	
-.js {
+	
+.login__register .btn_js {
     position: absolute;
 	right: 10px;
 	top: 20px;
- }
+    display: inline-block; 
+    margin-top: 470px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 70px;
+    height: 30px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #23004d;  
+}
 
 
 .login__logo {
@@ -97,13 +110,13 @@ img {
 
 .login__register,
 .login__create {
-  position: absolute;
+  position: relative;
   bottom: 1rem;
-  width: 700px;
+  width: 670px;
   height: 1050px;
   left: 50%;
   top: 50px;
-  transform: translateX(-50%); /* ê°€ë¡œ ë°©í–¥ìœ¼ë¡œ -50%ë§Œí¼ ì´ë™í•´ì„œ ê°€ìš´ë° ì •ë ¬ */
+  transform: translateX(-50%); /* ÃªÂ°â‚¬Ã«Â¡Å“ Ã«Â°Â©Ã­â€“Â¥Ã¬Å“Â¼Ã«Â¡Å“ -50%Ã«Â§Å’Ã­ÂÂ¼ Ã¬ÂÂ´Ã«Ââ„¢Ã­â€¢Â´Ã¬â€žÅ“ ÃªÂ°â‚¬Ã¬Å¡Â´Ã«ÂÂ° Ã¬Â â€¢Ã«Â Â¬ */
   box-sizing: border-box;
   background-color: var(--color-lighten);
   padding: 30px;

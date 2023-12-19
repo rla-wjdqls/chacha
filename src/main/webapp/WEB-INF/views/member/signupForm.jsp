@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="/css/signup.css">
+
     
 <title>signupForm.jsp</title>
 
@@ -18,7 +19,7 @@
   <div class="signup">
     <div class="signup__content">
       <div class="login__logo"><!--추후 로고 추가-->
-		<h1>그냥 데려오개</h1>	
+		<h1>그냥 데려가개</h1>	
       </div>
     
       <div class="login__forms">
@@ -50,27 +51,32 @@
             <input type="password" placeholder="비밀번호 확인" class="login__input" name="repasswd" id="repasswd">
           </div>
           <div class="login__box">
-            <i class='bx bx-lock login__icon'></i>
+            <i class='bx bx-map login__icon'></i>
             <input type="text" placeholder="우편번호" class="login__input" name="zipcode" id="zipcode" readonly>
-            <input type="button" value="주소찾기" class="js" onclick="DaumPostcode()">
           </div>
           <div class="login__box">
-            <i class='bx bx-lock login__icon'></i>
+          <i class='bx bx-home login__icon'></i>
             <input type="text" placeholder="기본주소" class="login__input" name="addr1" id="addr1" readonly>
           </div>
           <div class="login__box">
-            <i class='bx bx-lock login__icon'></i>
+          <i class='bx bx-home login__icon'></i>
             <input type="text" placeholder="나머지 주소(선택 입력 가능)" class="login__input" name="addr2" id="addr2">
           </div>
           <div class="login__box">
-            <i class='bx bx-lock login__icon'></i>
-            <input type="text" placeholder="전화번호" class="login__input" name="tel" id="tel">
+            <i class='bx bx-phone-call login__icon'></i>
+             <!-- 01012345678 입력하면 010-1234-5678 로 출력됨(참고:네이버) -->
+            <input type="text" placeholder="전화번호" class="login__input" name="tel" id="tel" oninput="oninputPhone(this)" maxlength=13>
           </div>
           <div class="login__box">
-            <i class='bx bx-lock login__icon'></i>
+            <i class='bx bx-cake login__icon'></i>
             <!-- YYYYMMDD 입력하면 YYYY-MM-DD 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="생년월일 8자리" class="login__input" name="mdate" id="mdate">
+            <input type="text" placeholder="생년월일 8자리" class="login__input" name="mdate" id="mdate" oninput="oninputDate(this)" maxlength=8>
           </div>
+          
+          <!--추후 클릭 시 버튼 변경 추   -->
+          <input type="button" value="주소찾기" class="btn_js" onclick="DaumPostcode()">
+          
+          
           
           <a href="#" class="login__button">회원가입</a>
           
@@ -136,17 +142,17 @@
                           extraAddr = ' (' + extraAddr + ')';
                       }
                       // 조합된 참고항목을 해당 필드에 넣는다.
-                      document.getElementById("address2").value = extraAddr;
+                      document.getElementById("addr2").value = extraAddr;
                   
                   } else {
-                      document.getElementById("address2").value = '';
+                      document.getElementById("addr2").value = '';
                   }
 
                   // 우편번호와 주소 정보를 해당 필드에 넣는다.
                   document.getElementById('zipcode').value = data.zonecode;
-                  document.getElementById("address1").value = addr;
+                  document.getElementById("addr1").value = addr;
                   // 커서를 상세주소 필드로 이동한다.
-                  document.getElementById("address2").focus();
+                  document.getElementById("addr2").focus();
 
                   // iframe을 넣은 element를 안보이게 한다.
                   // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
@@ -168,7 +174,11 @@
       }
   </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
-   <!-- <script src="/js/signup.js"></script>-->
+
+
+
+
+<script src="/js/signup.js"></script>
    
 </body>
 </html>

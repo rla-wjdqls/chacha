@@ -35,39 +35,23 @@
     <link href="/css/mypage.css" rel="stylesheet">
     <link href="/css/myInfo.css" rel="stylesheet">
     
-	<script>
-/*     // HTML 문서가 로드된 후 실행
-    document.addEventListener('DOMContentLoaded', function () {
-        // 모든 list-group-item 요소 가져오기
-        var items = document.querySelectorAll('.list-group-item');
-
-        // 각 요소에 클릭 이벤트 리스너 추가
-        items.forEach(function (item) {
-            item.addEventListener('click', function () {
-                // 모든 요소에서 active 클래스 제거
-                items.forEach(function (otherItem) {
-                    otherItem.classList.remove('active');
-                });
-
-                // 클릭한 요소에 active 클래스 추가
-                item.classList.add('active');
-            });
-        });
-    }); */
     
-    function makeActive(element) {
-    	  // 모든 항목에서 'active' 클래스를 제거
-    	  var items = document.querySelectorAll('.list-group-item');
-    	  items.forEach(function(item) {
-    	    item.classList.remove('active');
-    	  });
-
-    	  // 클릭한 항목에 'active' 클래스 추가
-    	  element.classList.add('active');
-    	}
-	</script>
-
+    <style>
+    
+    
+   .small.fa-map-marker-alt.text-primary.me-2  {
+   		color: #F3BD00;
+	}
 	
+	a {
+    	color: #F3BD00;
+    	text-decoration: none;
+	}
+    
+    
+    </style>
+    
+    
 
     
 </head>
