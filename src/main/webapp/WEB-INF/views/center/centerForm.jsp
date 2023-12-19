@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp" %>
+
 <!-- 본문 시작 template.jsp -->
 <hr>
 &nbsp;&nbsp;<h3>유기동물 목록</h3>
