@@ -296,15 +296,15 @@
                    </div>
                </div>
            </div>
-           
-        <div style="float: left">
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/we9qyoE3mcY?si=mCliilmj0KJPsulC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            
-        </div>
-         &nbsp; &nbsp; &nbsp; 
-        <div>
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/TTnO9PPKMPo?si=UPWVMhDa_0NCIjxZ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </div>
-     
+        <div style="display: flex">
+	        <div style="float: left">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/we9qyoE3mcY?si=mCliilmj0KJPsulC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            
+	        </div>
+	        &nbsp; &nbsp; &nbsp;
+	        <div style="float: right">
+	             <iframe width="560" height="315" src="https://www.youtube.com/embed/TTnO9PPKMPo?si=UPWVMhDa_0NCIjxZ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	        </div>
+     	</div>
        </div>
     </div>
     
@@ -317,7 +317,7 @@
 
 
     <!-- Copyright Start -->
-    <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid copyright bg-dark text-light py-4 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
