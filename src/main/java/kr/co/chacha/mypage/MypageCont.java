@@ -16,7 +16,7 @@ public class MypageCont {
 	}//end
 	
 	@Autowired
-	MypageDAO MypageDAO;
+	MypageDAO mypageDao;
 	
 	
 	@GetMapping("/jjimList")
@@ -53,6 +53,22 @@ public class MypageCont {
 		mav.setViewName("mypage/myInfo");
 		return mav;
 	}//jjimlist() end
+	
+/*
+    @GetMapping("/myClass")
+    public ModelAndView myClassList() {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myClass");
+    	mav.addObject("myClassList", mypageDao.myClassList());
+    	
+        return mav; 
+    }//myClassList() end
+*/    
+    
+    
+    	
+	
+	
 	
 	
 }//end
