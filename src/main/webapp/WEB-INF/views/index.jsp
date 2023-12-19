@@ -275,7 +275,6 @@
     </div>
     <!-- Team End -->
 
-
     <!-- Testimonial Start -->
     <div class="container-xxl py-6">
         <div class="container">
@@ -291,16 +290,23 @@
                                 <img class="img-fluid mx-auto" src="img/통계.png" alt="">
                                <!-- <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
-                                </div>-->
-                            </div>
-                            
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
+                               		 </div>-->
+                        	</div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+        <div style="float: left">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/we9qyoE3mcY?si=mCliilmj0KJPsulC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            
         </div>
+        <div ><!-- style="float: right" -->
+             <iframe width="560" height="315" src="https://www.youtube.com/embed/TTnO9PPKMPo?si=UPWVMhDa_0NCIjxZ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+     
+       </div>
     </div>
+    
     <!-- Testimonial End -->
 
 

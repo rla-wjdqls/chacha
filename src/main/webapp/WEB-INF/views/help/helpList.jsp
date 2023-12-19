@@ -4,7 +4,11 @@
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
-여기에 본문 내용 작성합니다
+<h3> 목격/제보 게시판 </h3>
+<p>
+	<a href="helpForm.jsp">[글쓰기]</a>
+</p>
+
 <!-- 본문 끝 -->
 
 
