@@ -17,31 +17,31 @@
 		<p>내가 신청한 강의 수강 현황을 확인할 수 있습니다</p>
 		<br>
 		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>mary@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-				</tr>
-			</tbody>
-		</table>
+        <thead>
+            <tr>
+                <th>강의번호</th>
+                <th>교육신청번호</th>
+                <th>내용</th>
+                <th>신청날짜</th>
+                <th>수료상태</th>
+                <th>수료날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="education" items="${myClassList}">
+                <tr>
+                    <td>${myClassList.myno}</td>
+                    <td>${education.eduno}</td>
+                    <td>${education.mycon}</td>
+                    <td>${education.mydate}</td>
+                    <td>${education.mystate}</td>
+                    <td>${education.mycomple}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+		
+
 		</div>
 	</div>
 

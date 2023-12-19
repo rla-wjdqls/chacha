@@ -17,32 +17,17 @@
 		<h4>봉사신청내역</h4>
 		<p>나의 봉사 신청 내역을 확인 할 수 있습니다</p>
 		<br>
-		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>mary@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-				</tr>
-			</tbody>
-		</table>
+	<table class="table table-condensed">
+        <thead>
+            <tr>
+                <th>봉사신청번호</th>
+                <th>신청날짜</th>
+                <th>신청시간</th>
+                <th>신청상태</th>
+            </tr>
+        </thead>
+
+    </table>
 		</div>
 	</div>
 

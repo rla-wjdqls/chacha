@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,7 @@
     <meta content="" name="description">
     <!-- <meta name="author" content="" />  -->
     
-        <!-- Customized Bootstrap Stylesheet -->
+    <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Favicon -->
@@ -33,23 +36,69 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/mypage.css" rel="stylesheet">
-    <link href="/css/myInfo.css" rel="stylesheet">
     
     
-    <style>
     
     
-   .small.fa-map-marker-alt.text-primary.me-2  {
-   		color: #F3BD00;
-	}
+<!--     
+	<style>
+    
+	   .small.fa-map-marker-alt.text-primary.me-2  {
+	   		color: #F3BD00;
+		}
+		
+		a {
+	    	color: #F3BD00;
+	    	text-decoration: none;
+		}
+    
+    </style> 
+-->
+    
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+	  var sidebarWrapper = document.getElementById('sidebar-wrapper');
+	  var listGroupItems = sidebarWrapper.querySelectorAll('.list-group-item');
 	
-	a {
-    	color: #F3BD00;
-    	text-decoration: none;
-	}
-    
-    
-    </style>
+	  // 현재 페이지의 URL
+	  var currentUrl = window.location.href;
+	
+	  // 각 list-group-item에 대한 URL
+	  var itemUrls = {
+	    '/mypage/jjimList': '찜목록',
+	    '/mypage/myList': '내 글목록',
+	    '/mypage/myClass': '내 강의실',
+	    '/mypage/myService': '봉사신청내역',
+	    '/mypage/myInfo': '회원정보',
+	    // 추가적으로 필요한 페이지에 대한 URL 및 텍스트를 추가할 수 있습니다.
+	  };
+	
+	  // 클릭 이벤트를 처리하는 함수
+	  function handleClick(event) {
+	    // 모든 list-group-item에서 active 클래스 제거
+	    listGroupItems.forEach(function (item) {
+	      item.classList.remove('active');
+	    });
+	
+	    // 현재 클릭된 요소에 active 클래스 추가
+	    event.currentTarget.classList.add('active');
+	  }
+	
+	  // 현재 페이지의 URL과 매칭되는 list-group-item을 찾아 active 클래스를 추가
+	  listGroupItems.forEach(function (item) {
+	    var itemUrl = item.getAttribute('href');
+	    if (currentUrl.indexOf(itemUrl) !== -1) {
+	      item.classList.add('active');
+	    }
+	
+	    // 각 list-group-item에 클릭 이벤트 추가
+	    item.addEventListener('click', handleClick);
+	  });
+	});
+</script>
+
+
     
     
 
