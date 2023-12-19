@@ -321,7 +321,21 @@
     white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
     transform: rotate(0deg); /* 가로로 텍스트를 나타내기 위해 각도를 0으로 설정 */
   }
+.container-fixed{
+	display: flex;
+    justify-content: center;
+    margin: 0; /* body의 기본 margin 제거 */
+}
 
+.i-nav {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.input-container {
+    display: flex;
+    gap: 10px; /* 간격을 조절할 수 있음 */
+}
 /*** Footer ***/
 .footer .btn.btn-link {
     display: block;
