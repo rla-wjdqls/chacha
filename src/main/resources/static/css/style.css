@@ -311,6 +311,13 @@
 }
 
 
+.card-img-top {
+  width: 260px; /* 원하는 크기로 조절 */
+  height: 300px; /* 원하는 크기로 조절 */
+  object-fit: cover; /* 이미지의 비율을 유지하면서 조절 */
+}
+
+
 /*** Footer ***/
 .footer .btn.btn-link {
     display: block;
