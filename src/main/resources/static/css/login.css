@@ -40,6 +40,26 @@
 }
 
 
+
+.login__register,
+.login__create {
+  position: absolute;
+  bottom: -5rem;
+  width: 460px;
+  left: 50%;
+  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
+  box-sizing: border-box;
+  background-color: var(--color-lighten);
+  padding: 30px;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+  animation-duration: 0.4s;
+  animation-name: animateLogin;
+}
+
+
+
 .sns_login_box {
     text-align: center;
     margin: 40px 0 0;
@@ -135,23 +155,6 @@ img {
 .login__forms {
   position: relative;
   height: 368px;
-}
-
-.login__register,
-.login__create {
-  position: absolute;
-  bottom: -5rem;
-  width: 460px;
-  left: 50%;
-  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
-  box-sizing: border-box;
-  background-color: var(--color-lighten);
-  padding: 30px;
-  border-radius: 1rem;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
-  animation-duration: 0.4s;
-  animation-name: animateLogin;
 }
 
 
@@ -258,7 +261,8 @@ img {
 }
 
 
-@keyframes animateLogin {
+
+/*@keyframes animateLogin {
   0% {
     transform: scale(1, 1);
   }
@@ -269,6 +273,11 @@ img {
     transform: scale(1, 1);
   }
 }
+*/
+
+
+
+
 
 @media screen and (min-width: 576px) {
   .login {

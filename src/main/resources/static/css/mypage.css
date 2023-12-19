@@ -10,6 +10,81 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
+ 
+ .container-line {
+    padding: 50px 0;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.box_btm.box_whtie .regi_complete {
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.regi_complete {
+    padding: 50px 0;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.h2_tit {
+    margin: 0;
+    color: #222;
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.box_gray.box_btm {
+    margin-top: 60px;
+}
+
+.box_gray {
+    min-height: 1%;
+    padding: 30px;
+    background-color: #f8f8f8;
+    overflow: hidden;
+}
+
+.mypage_sec .box_btm.min_margin {
+    margin-top: 40px;
+}
+
+.p_tx {
+    padding: 50px 0 20px 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.btn {
+    display: inline-block;
+    min-width: 128px;
+    height: 38px;
+    margin: 0 3px;
+    margin: 0 5px;
+    padding: 0 15px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    line-height: 38px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: border .5s, background .5s, color .5s;
+}
+
+
+.btn_center {
+    padding-top: 30px;
+    text-align: center;
+}
+
+
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
