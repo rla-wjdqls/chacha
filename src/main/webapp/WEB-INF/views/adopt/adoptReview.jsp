@@ -5,7 +5,7 @@
 
 <h3>입양 후기</h3>
 <p>
-	<a href="helpForm.jsp">[글쓰기]</a>
+	<a href="adoptForm.jsp">[글쓰기]</a>
 </p>
 
 <!-- ====== Cards Section Start -->
@@ -18,7 +18,7 @@
                <img src="/img/coco1.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
-                     <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                     <a href="javascript:void(0)" class="">
                         우리 뽀삐가 이렇게 컸어요~
                      </a>
                   </h3>
@@ -37,7 +37,7 @@
                <img src="/img/maincatdog2.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
-                     <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                     <a href="javascript:void(0)" class="">
                         너무 예쁜 내 강쥐
                      </a>
                   </h3>
@@ -56,7 +56,7 @@
                <img src="/img/maincatdog6.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
-                     <a href="javascript:void(0)" class="text-dark dark:text-white hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]">
+                     <a href="javascript:void(0)" class="">
                         소중한 가족이 되었어요~
                      </a>
                   </h3>

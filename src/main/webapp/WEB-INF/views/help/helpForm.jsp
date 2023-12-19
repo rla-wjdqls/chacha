@@ -3,55 +3,41 @@
     
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 template.jsp -->
-<div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title">Basic form elements</h4>
-            <p class="card-description"> Basic form elements </p>
-            <form class="forms-sample" method="post" action="your-action-url.jsp">
-                <div class="form-group">
-                    <label for="exampleInputName1">Name</label>
-                    <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Name" />
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail3">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail3" name="email" placeholder="Email" />
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword4">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword4" name="password" placeholder="Password" />
-                </div>
-                <div class="form-group">
-                    <label for="exampleSelectGender">Gender</label>
-                    <select class="form-control" id="exampleSelectGender" name="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>File upload</label>
-                    <div class="custom-file">
-                        <input type="file" class="form-control visibility-hidden" id="customFileLang" name="fileUpload" lang="es" />
-                        <label class="custom-file-label" for="customFileLang">Upload image</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputCity1">City</label>
-                    <input type="text" class="form-control" id="exampleInputCity1" name="city" placeholder="Location" />
-                </div>
-                <div class="form-group">
-                    <label for="exampleTextarea1">Textarea</label>
-                    <textarea class="form-control" id="exampleTextarea1" name="textarea" rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                <button class="btn btn-light">Cancel</button>
-            </form>
-        </div>
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<body>
+
+<div class="container mt-2">
+  <h2>목격/제보 게시판 글쓰기</h2>
+  <p>목격하신 유기 동물들을 제보해주세요!</p>
+  <form action="/action_page.php">
+  <div class="mb-2 mt-2">
+      <label for="title"></label>
+      <textarea class="form-control" rows="1" id="title" name="text" placeholder="제목"></textarea>
     </div>
- </div>
-    
-<!-- 본문 끝 -->
+    <div class="mb-3 mt-3">
+      <label for="comment"></label>
+      <textarea class="form-control" rows="3" id="comment" name="text" placeholder="내용"></textarea>
+     </div>
+      
+      
+      	첨부파일
+		<td style="text-align: left">
+			<input type="file" name="filename" id="filename" size="20"> <hr>
+		</td>	
+
+	<div class="mb-3 mt-3">
+    <button type="submit" class="btn btn-primary">완료</button>
+    </div>
+  </form>
+  <hr>
+</div>
+
+</body>
+</html>
+
 
 
 <%@ include file="../footer.jsp" %>      
