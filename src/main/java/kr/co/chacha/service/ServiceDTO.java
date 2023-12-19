@@ -1,5 +1,6 @@
 package kr.co.chacha.service;
 
-public class ServiceDTO {
+import java.sql.Date;
 
-}
+
+
