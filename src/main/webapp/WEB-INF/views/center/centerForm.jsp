@@ -27,9 +27,9 @@
   			<div class="input-container" style="display: inline-block;">
 		      <form class="d-flex">
 		        <input class="form-control me-2" type="text" placeholder="Search" style="width: 300px" >
-		        <button class="btn btn-outline-success rotate-text" type="submit">검색</button>
-		        <button class="btn btn-outline-warning rotate-text" type="submit">동물 추가</button>
-		        <button class="btn btn-outline-danger rotate-text" type="submit">동물 삭제</button>
+		        <button class="btn btn-success rotate-text" type="submit">검색</button>
+		        <button class="btn btn-warning rotate-text" type="submit">동물 추가</button>
+		        <button class="btn btn-danger rotate-text" type="submit">동물 삭제</button>
 		      </form>
 		    </div>
 		</nav>
