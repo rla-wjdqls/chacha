@@ -19,7 +19,7 @@
   <div class="signup">
     <div class="signup__content">
       <div class="login__logo"><!--추후 로고 추가-->
-		<h1>그냥 데려오개</h1>	
+		<h1>그냥 데려가개</h1>	
       </div>
     
       <div class="login__forms">
@@ -65,7 +65,7 @@
           <div class="login__box">
             <i class='bx bx-phone-call login__icon'></i>
              <!-- 01012345678 입력하면 010-1234-5678 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="전화번호" class="login__input" name="tel" id="tel" oninput="oninputPhone(this)" maxlength=14>
+            <input type="text" placeholder="전화번호" class="login__input" name="tel" id="tel" oninput="oninputPhone(this)" maxlength=13>
           </div>
           <div class="login__box">
             <i class='bx bx-cake login__icon'></i>
@@ -175,24 +175,10 @@
   </script>
 <!-- ----- DAUM 우편번호 API 종료----- -->
 
-<script>
-
-function oninputPhone(target) {
-    target.value = target.value
-    .replace(/[^0-9]/g, '')
-    .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
-}
-
-function oninputDate(target) {
-    target.value = target.value
-        .replace(/[^0-9]/g, '') // 숫자 이외의 문자 제거
-        .replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"); // YYYYMMDD를 YYYY-MM-DD 형식으로 변환
-}
-
-</script>
 
 
-<!--  <script src="/js/signup.js"></script> -->
+
+<script src="/js/signup.js"></script>
    
 </body>
 </html>

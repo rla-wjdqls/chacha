@@ -20,7 +20,7 @@
   <div class="login">
     <div class="login__content">
       <div class="login__logo"><!--추후 로고 추가-->
-		<h1>그냥 데려오개</h1>	
+		<h1>그냥 데려가개</h1>	
       </div>
       <div class="login__forms">
 		
@@ -53,17 +53,17 @@
 			<input type="submit" value="로그인" class="login__button"/>
 
 
-					<!-- sns 로그인 -->
-					<!-- 					<div class="sns_login_box">
-						<ul class="sns_login_list">
-							<li class="sns_login_item">
-								<img src="/img/naver_login.png" alt="naver_login" class="naver_login" > 
-							</li>
-							<li class="sns_login_item">
-								<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_login"> 
-							</li>
-						</ul>
-					</div> -->
+			<!-- sns 로그인 -->
+			<!-- 					<div class="sns_login_box">
+				<ul class="sns_login_list">		
+					<li class="sns_login_item">
+						<img src="/img/naver_login.png" alt="naver_login" class="naver_login" > 
+					</li>
+					<li class="sns_login_item">
+						<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_login"> 
+					</li>
+				</ul>
+			</div> -->
 
 			<div class="sns_login_box">
 				<div class="sns_login_item">
