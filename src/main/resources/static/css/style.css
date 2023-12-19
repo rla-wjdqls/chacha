@@ -317,6 +317,10 @@
   object-fit: cover; /* 이미지의 비율을 유지하면서 조절 */
 }
 
+.rotate-text {
+    white-space: nowrap; /* 텍스트 줄 바꿈 방지 */
+    transform: rotate(0deg); /* 가로로 텍스트를 나타내기 위해 각도를 0으로 설정 */
+  }
 
 /*** Footer ***/
 .footer .btn.btn-link {
@@ -405,7 +409,7 @@
     text-align: center;
     font-size: 16px;
 }
-
+/* 
 .btn {
     display: inline-block;
     min-width: 128px;
@@ -423,7 +427,7 @@
     cursor: pointer;
     transition: border .5s, background .5s, color .5s;
 }
-
+ */
 
 .btn_center {
     padding-top: 30px;
