@@ -30,6 +30,8 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    
+
 </head>
 
 <body>
@@ -94,7 +96,7 @@
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                   <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+                   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
                        <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
                        <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
@@ -273,7 +275,6 @@
     </div>
     <!-- Team End -->
 
-
     <!-- Testimonial Start -->
     <div class="container-xxl py-6">
         <div class="container">
@@ -289,16 +290,24 @@
                                 <img class="img-fluid mx-auto" src="img/통계.png" alt="">
                                <!-- <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
                                     <i class="fa fa-quote-left fa-2x text-primary"></i>
-                                </div>-->
-                            </div>
-                            
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
+                               		 </div>-->
+                        	</div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        <div style="display: flex">
+	        <div style="float: left">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/we9qyoE3mcY?si=mCliilmj0KJPsulC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            
+	        </div>
+	        &nbsp; &nbsp; &nbsp;
+	        <div style="float: right">
+	             <iframe width="560" height="315" src="https://www.youtube.com/embed/TTnO9PPKMPo?si=UPWVMhDa_0NCIjxZ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	        </div>
+     	</div>
+       </div>
     </div>
+    
     <!-- Testimonial End -->
 
 
@@ -308,7 +317,7 @@
 
 
     <!-- Copyright Start -->
-    <div class="container-fluid copyright text-light py-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container-fluid copyright bg-dark text-light py-4 wow fadeIn" data-wow-delay="0.1s">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -339,15 +348,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/login.js"></script>
-    
-    <scss>
-    <script src="js/login.js"></script>
-    
-    
-    
-    
-    
+   
     
 </body>
 </html>

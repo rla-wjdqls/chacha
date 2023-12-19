@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+
+
+
+.login__box {
+    position: relative;
+}
+	
+.login__input {
+	width: calc(100% - 110px); /* 우편번호 입력란 너비 조정 */
+}
+	
+	
+.login__register .btn_js {
+    position: absolute;
+	right: 10px;
+	top: 20px;
+    display: inline-block; 
+    margin-top: 470px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 70px;
+    height: 35px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #23004d;  
+}
+
+
+
+.login__logo {
+	text-align: center;
+}
+
+
+
+:root {
+  --color: #f3bd00;
+  --color-dark: #23004d;
+  --color-light: #a49eac;
+  --color-lighten: #f2f2f2;
+  --color-hover: #ffc107;
+  --font: "Open Sans", sans-serif;
+  --big-font-size: 1.5rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  font-size: var(--normal-font-size);
+  color: var(--color-dark);
+}
+
+h1 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.login {
+  display: grid;
+  grid-template-columns: 100%;
+  height: 100vh;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.login__content {
+  display: grid;
+}
+
+.login__img {
+  justify-self: center;
+}
+
+.login__img img {
+  width: 310px;
+  margin-top: 1.5rem;
+}
+
+.login__forms {
+  position: relative;
+  height: 368px;
+}
+
+.login__register,
+.login__create {
+  position: relative;
+  bottom: 1rem;
+  width: 670px;
+  height: 1050px;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%); /* ÃªÂ°â‚¬Ã«Â¡Å“ Ã«Â°Â©Ã­â€“Â¥Ã¬Å“Â¼Ã«Â¡Å“ -50%Ã«Â§Å’Ã­ÂÂ¼ Ã¬ÂÂ´Ã«Ââ„¢Ã­â€¢Â´Ã¬â€žÅ“ ÃªÂ°â‚¬Ã¬Å¡Â´Ã«ÂÂ° Ã¬Â â€¢Ã«Â Â¬ */
+  box-sizing: border-box;
+  background-color: var(--color-lighten);
+  padding: 30px;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+  animation-duration: 0.4s;
+  animation-name: animateLogin;
+}
+
+.login__title {
+  font-size: var(--big-font-size);
+  margin-bottom: 2rem;
+}
+
+.login__box {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.5rem;
+  padding: 1.125rem 1rem;
+  background-color: #fff;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  width: 550px;
+  height: 60px;
+}
+
+.login__icon {
+  font-size: 1.5rem;
+  color: var(--color);
+}
+
+.login__input {
+  border: none;
+  outline: none;
+  font-size: var(--normal-font-size);
+  font-weight: 700;
+  color: var(--color-dark);
+  width: 100%;
+
+  &::placeholder {
+    font-size: var(--normal-font-size);
+    font-family: var(--font);
+    color: var(--color-light);
+  }
+}
+
+.login__forgot {
+  display: block;
+  width: max-content;
+  margin-left: auto;
+  margin-top: 0.5rem;
+  font-size: var(--small-font-size);
+  font-weight: 600;
+  color: var(--color-light);
+}
+
+.login__button {
+  display: block;
+  padding: 1rem;
+  margin: 2rem 0;
+  background-color: var(--color);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 0.5rem;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+}
+
+.login__account,
+.login__signin,
+.login__signup {
+  font-weight: 600;
+  font-size: var(--small-font-size);
+
+  &--account {
+    color: var(--color-dark);
+  }
+
+  &--signin,
+  &--signup {
+    color: var(--color);
+    cursor: pointer;
+  }
+}
+
+.login__social {
+  margin-top: 2rem;
+
+  &--icon {
+    font-size: 1.5rem;
+    color: var(--color-dark);
+    margin: 0 1rem;
+  }
+}
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+/*@keyframes animateLogin {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+*/
+
+
+@media screen and (min-width: 576px) {
+  .login {
+    &__forms {
+      width: 348px;
+      justify-self: center;
+    }
+  }
+}
+
+@media screen and (min-width: 1024
