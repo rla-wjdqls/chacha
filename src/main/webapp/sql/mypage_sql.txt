@@ -1,0 +1,31 @@
+-- mypage_sql.txt
+
+--내강의실 테이블
+CREATE TABLE `myeducation` (
+    `myno` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `uid` VARCHAR(20) NOT NULL,
+    `eduno` VARCHAR(20) NOT NULL,
+    `mycon` TEXT NOT NULL,
+    `mydate` DATETIME NOT NULL,
+    `mystate` CHAR(1) NOT NULL DEFAULT 'N',
+    `mycomple` DATETIME NULL
+);
+
+--내강의실 보여주기
+SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
+FROM mydeucation
+WHERE id = 'kim9595'
+ORDER BY myno
+
+
+--봉사신청내역 테이블 
+CREATE TABLE `servicea` (
+    `sano` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `uid` VARCHAR(20) NOT NULL,
+    `sno` INT(5) NOT NULL,
+    `sadate` DATETIME NOT NULL,
+    `stime` VARCHAR(20) NOT NULL,
+    `astate` CHAR(1) NOT NULL DEFAULT 'O'
+);
+
+
