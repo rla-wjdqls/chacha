@@ -1,14 +1,14 @@
-package kr.co.chacha.service;
+package kr.co.chacha.servicea;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ServiceDAO {
+public class ServiceaDAO {
 
-	public ServiceDAO() {
-		System.out.println("----ServiceDAO()객체 생성");
+	public ServiceaDAO() {
+		System.out.println("----ServiceaDAO()객체 생성");
 	}//end
 	
 	@Autowired

@@ -16,8 +16,8 @@ public class ServiceCont {
 		System.out.println("----ServiceCont()객체 생성됨");
 	}//end
 	
-	//@Autowired
-	//MemberDAO memberDAO;
+	@Autowired
+	ServiceDAO serviceDAO;
 	
 	
 	@GetMapping("/serviceList")
