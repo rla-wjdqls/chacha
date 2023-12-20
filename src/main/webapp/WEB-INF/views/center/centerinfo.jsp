@@ -6,17 +6,17 @@
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
-		 <ul class="list-inline" style="align-items: center;">
+		 <ul class="list-inline ml-auto" style="align-items: center;">
 			<li class="list-inline-item">
-				<a href="/"><i class="bi bi-house fs-7" style="font-size: 23px" alt="홈으로"></i></a>
-				<i class="bi bi-arrow-right-short" style="font-size: 23px"></i>
+				<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px" alt="홈으로"></i></a>
+				<i class="bi bi-arrow-right-short" style="font-size: 20px color: #666"></i>
 			</li>
 			<li class="list-inline-item">
-				<a><span style="color: #F3BD00">보호소</span></a>
-				<i class="bi bi-arrow-right-short" style="font-size: 23px"></i>
+				<a><span style="color: #757575">보호소</span></a>
+				<i class="bi bi-arrow-right-short" style="font-size: 20px color: #666"></i>
 			</li>
 			<li class="list-inline-item">
-				<a><span style="color: #F3BD00">보호소 소개</span></a>
+				<a><span style="color: #757575">보호소 소개</span></a>
 			</li>
 		</ul>
 	</nav>
