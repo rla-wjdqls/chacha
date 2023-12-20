@@ -13,20 +13,22 @@ public class CenterCont {
 		System.out.println("----CenterCont() 객체 생성");
 	}//CenterCont() end
 	
-	@GetMapping("/centerinfo")
+	@GetMapping("/centerinfo") //보호소 소개
 	public ModelAndView centerInfo() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/centerinfo");
 		return mav;
 	}
 	
-
-	
-	
-	@GetMapping("/centerForm")
+	@GetMapping("/centerForm") //입양가능 동물 목록
 	public ModelAndView centerForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/centerForm");
 		return mav;
+	}
+	
+	@GetMapping("/centerWrite") //동물 추가 페이지
+	public String write() {
+		return "center/centerWrite";
 	}
 }
