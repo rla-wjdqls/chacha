@@ -5,8 +5,17 @@
  
  <mapper namespace="center">
  	<insert id="insert" parameterType="java.util.Map">
- 	
+	 	INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos)
+		VALUES (#{anino}, 'kim9595', #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{vac}, #{intro}, #{anipic}, #{adopt}, #{adopt_pos})
  	</insert>
+ 	
+ 	
+ 	
+ 	<select id="form" resultType="java.util.Map">
+ 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		FROM animal
+ 	
+ 	</select>
  </mapper>
  
  

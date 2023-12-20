@@ -38,14 +38,32 @@
 	
 	
 	<div class="container-fixed row" style="">
-		   <div class="card" style="width: 18rem;">
-			  <img src="../img/dalgu1.jpg" class="card-img-top img-fixed img-fluid" alt="달구">
-			  <div class="card-body">
-			    <h5 class="card-title">이름</h5>
-			    <p class="card-text">나이</p>
-			    <a href="detail" class="btn btn-primary">보러가기</a>
-			  </div>
-		   </div>
+			<c:forEach items="${form}" var="row" varStatus="vs">
+			
+				<div class="card" style="width: 18rem;">
+					<c:choose>
+						<c:when test="${row.anipic != '-'}">
+			  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid" alt="달구">
+			  			</c:when>
+			  			
+			  			<c:otherwise>
+			  			등록된 사진 없음 <br>
+			  			</c:otherwise>
+			  		</c:choose>
+		
+			  	<div class="card-body">
+			    	<h5 class="card-title">${row.aname}</h5>
+			    	<p class="card-text">${row.age}</p>
+			    	<a href="detail/${row.anino}" class="btn btn-primary">보러가기</a>
+			  	</div>
+		   		</div>
+			
+			
+			</c:forEach>
+		   
+		   
+		   
+		   
 		   <div class="card" style="width: 18rem;">
 			  <img src="../img/coco1.jpg" class="card-img-top img-fixed img-fluid" alt="코코">
 			  <div class="card-body">

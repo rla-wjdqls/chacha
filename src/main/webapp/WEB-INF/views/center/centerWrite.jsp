@@ -42,6 +42,10 @@
 							<td><input type="text" name="aname" class="form-control"> </td>
 						</tr>
 						<tr>
+							<td>나이</td>
+							<td><input placeholder="숫자만 입력해 주세요" name="age" class="form-control"> </td>
+						</tr>
+						<tr>
 							<td>성별</td>
 							<td>
 							<label>
@@ -82,14 +86,14 @@
 							<td>사진</td>
 							<td>
 							<label>
-								<input class="form-control" type="file" name="anipic" multiple>
+								<input class="form-control" type="file" name="img" multiple>
 							</label>
 							</td>
 						</tr>
 						<tr>
 							<td>입양상태</td>
 							<td>
-								<select class="form-select">
+								<select class="form-select" name="adopt">
 								  <option selected>선택</option>
 								  <option value="B">보호중</option>
 								  <option value="S">심사중</option>
@@ -102,8 +106,8 @@
 							<td>입양가능 여부</td>
 							<td>
 							<label>
-								예<input class="form-check-input" type="radio" value="Y" name="vac">
-								아니오<input class="form-check-input" type="radio" value="N" name="vac">
+								예<input class="form-check-input" type="radio" value="Y" name="adopt_pos">
+								아니오<input class="form-check-input" type="radio" value="N" name="adopt_pos">
 							</label>
 							</td>
 						</tr>

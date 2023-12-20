@@ -1,5 +1,6 @@
 package kr.co.chacha.center;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +21,11 @@ public class CenterDAO {
 	public void insert(Map<String, Object> map) {
 		sqlSession.insert("center.insert", map);
 	}//insert() end
+	
+	
+	public List<Map<String, Object>> form(){
+		return sqlSession.selectList("center.form");
+	}
 	
 	
 	

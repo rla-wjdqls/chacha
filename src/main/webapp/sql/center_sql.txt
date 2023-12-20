@@ -32,4 +32,9 @@ CREATE TABLE `member` (
     `mlevel` CHAR(1) NOT NULL DEFAULT 'c'
 );
 
-SELECT 
+INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos)
+VALUES (#{anino}, #{aname})
+
+
+
+

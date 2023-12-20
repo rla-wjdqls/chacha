@@ -39,6 +39,7 @@ public class CenterCont {
 	public ModelAndView centerForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/centerForm");
+		mav.addObject("form", centerDao.form());
 		return mav;
 	}
 	
@@ -58,22 +59,22 @@ public class CenterCont {
 	public String insert(@RequestParam Map<String, Object> map,
 						 @RequestParam MultipartFile img,
 						 HttpServletRequest req) {
-		String filename="-";
+		String anipic="-";
 		if(img != null && img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
-			filename=img.getOriginalFilename();
+			anipic=img.getOriginalFilename();
 			try {
 				ServletContext application = req.getSession().getServletContext();
 				String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
-				img.transferTo(new File(path + "\\" + filename)); //파일저
+				img.transferTo(new File(path + File.separator + anipic)); //파일저장
 			}catch(Exception e) {
 				System.out.println(e);
 			}//try end
 		}//if end
 		
-		map.put("filename", filename);
+		map.put("anipic", anipic);
 		
 		centerDao.insert(map);
-		return "redirect:/center/centerForm";
+		return "redirect:/center/centeList";
 	}
 			
 }
