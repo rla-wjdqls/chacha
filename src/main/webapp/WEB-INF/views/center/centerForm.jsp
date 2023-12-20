@@ -43,7 +43,7 @@
 			  <div class="card-body">
 			    <h5 class="card-title">이름</h5>
 			    <p class="card-text">나이</p>
-			    <a href="#" class="btn btn-primary">보러가기</a>
+			    <a href="detail" class="btn btn-primary">보러가기</a>
 			  </div>
 		   </div>
 		   <div class="card" style="width: 18rem;">
