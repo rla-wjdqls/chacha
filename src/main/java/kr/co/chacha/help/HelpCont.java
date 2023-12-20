@@ -14,14 +14,16 @@ public class HelpCont {
 	}//HelpCont() end
 	
 	@GetMapping("/helpList")
-	public ModelAndView centerInfo() {
+	public ModelAndView helpList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("help/helpList");
 		return mav;
 	}
 	
+	
+	
 	@GetMapping("/helpForm")
-	public ModelAndView centerForm() {
+	public ModelAndView helpForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("help/helpForm");
 		return mav;

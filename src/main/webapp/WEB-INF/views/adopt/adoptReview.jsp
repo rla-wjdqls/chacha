@@ -13,8 +13,6 @@
    <div class="container mx-auto">
       <div class="flex flex-wrap -mx-4">
          <!-- Card 1 -->
-         <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-            <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
                <img src="/img/coco1.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
@@ -32,9 +30,7 @@
             </div>
          </div>
          <!-- Card 2 -->
-         <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-            <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
-               <img src="/img/maincatdog2.jpg" alt="image" class="w-full">
+         <img src="/img/maincatdog2.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
                      <a href="javascript:void(0)" class="">
@@ -51,9 +47,7 @@
             </div>
          </div>
          <!-- Card 3 -->
-         <div class="w-full px-4 md:w-1/2 xl:w-1/3">
-            <div class="mb-10 overflow-hidden duration-300 bg-white rounded-lg dark:bg-dark-2 shadow-1 hover:shadow-3 dark:shadow-card dark:hover:shadow-3">
-               <img src="/img/maincatdog6.jpg" alt="image" class="w-full">
+         <img src="/img/maincatdog6.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
                      <a href="javascript:void(0)" class="">

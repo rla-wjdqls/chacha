@@ -14,7 +14,7 @@ public class EduCont {
 	}
 	
 	@GetMapping("/educationList")
-	public ModelAndView centerInfo() {
+	public ModelAndView educationList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("education/educationList");
 		return mav;

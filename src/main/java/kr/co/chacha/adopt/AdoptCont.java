@@ -14,14 +14,14 @@ public class AdoptCont {
 	}//CenterCont() end
 	
 	@GetMapping("/adoptReview")
-	public ModelAndView centerInfo() {
+	public ModelAndView adoptReview() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adopt/adoptReview");
 		return mav;
 	}
 	
 	@GetMapping("/adoptForm")
-	public ModelAndView centerForm() {
+	public ModelAndView adoptForm() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("adopt/adoptForm");
 		return mav;
