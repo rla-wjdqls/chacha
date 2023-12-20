@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,12 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- adopt,education,help Stylesheet -->
+    <link href="/css/aeh.css" rel="stylesheet">
+    
+
+    
 </head>
 
 <body>

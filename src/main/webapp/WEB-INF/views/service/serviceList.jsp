@@ -19,6 +19,7 @@
 			</li>
 		</ul>
 	</nav>
+	
 <div class="container text-center">
 	<div class="row">
  		<div class="col-sm-12"> 
@@ -27,7 +28,7 @@
 	</div>
 </div>
 <div style="text-align: right; height: 50px;">
-	<a href="/service/serviceForm.jsp"><input type="button" value="글쓰기"></a>
+	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="글쓰기"></a></p>
 </div>
 <div class="container text-center">
 	<div class="row">
