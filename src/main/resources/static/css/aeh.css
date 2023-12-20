@@ -1,86 +1,8 @@
 @charset "UTF-8";
 
-/* 카드 스타일 */
-
-.card {
-  border: 0;
-}
-
-.card-body {
-  padding: card-padding-y card-padding-x;
-}
-
-@media (max-width: 767px) {
-  .card-body {
-    padding: 2rem 2rem;
-  }
-}
-
-.card-body + .card-body {
-  padding-top: 10rem;
-}
-
-.card-title {
-  color: card-title-color;
-  margin-bottom: .75rem;
-  text-transform: capitalize;
-  font-weight: font-weight-medium;
-  font-size: 1.125rem;
-}
-
-.card-subtitle {
-  @extend .text-gray;
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
-}
-
-.card-description {
-  margin-bottom: 1.5rem;
-  color: card-description-color;
-}
-
-.card.card-outline-success {
-  border: 1px solid theme-color("success");
-}
-
-.card.card-outline-primary {
-  border: 1px solid theme-color("primary");
-}
-
-.card.card-outline-warning {
-  border: 1px solid theme-color("warning");
-}
-
-.card.card-outline-danger {
-  border: 1px solid theme-color("danger");
-}
-
-.card.card-rounded {
-  @include border-radius(5px);
-}
-
-.card.card-faded {
-  background: #b5b0b2;
-  border-color: #b5b0b2;
-}
-
-.card.card-circle-progress {
-  color: white;
-  text-align: center;
-}
-
-.card.card-img-holder {
-  position: relative;
-}
-
-.card-img-absolute {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-}
 
 
-.container2 {
-	max-width: 800px;
+.container {
+	width: 800px;
+	justify-content: center;
 }

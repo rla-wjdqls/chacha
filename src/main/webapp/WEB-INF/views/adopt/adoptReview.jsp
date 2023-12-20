@@ -2,18 +2,29 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp" %>
-
+<nav class="navbar navbar-light bg-light" style="height: 42px">
+			 <ul class="list-inline ml-auto" style="align-items: center;">
+				<li class="list-inline-item">
+					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+				</li>
+				<li class="list-inline-item">
+					<a><span style="color: #757575">반려이야기</span></a>
+					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+				</li>
+				<li class="list-inline-item">
+					<a><span style="color: #757575">입양 후기</span></a>
+				</li>
+			</ul>
+		</nav>
 <h3>입양 후기</h3>
 <p>
-	<a href="adoptForm.jsp">[글쓰기]</a>
+	<a href="/adopt/adoptForm">[글쓰기]</a>
 </p>
 
 <!-- ====== Cards Section Start -->
-<section class="bg-gray-2 dark:bg-dark pt-20 pb-10 lg:pt-[120px] lg:pb-20">
-   <div class="container mx-auto">
-      <div class="flex flex-wrap -mx-4">
-         <!-- Card 1 -->
-               <img src="/img/coco1.jpg" alt="image" class="w-full">
+		<div class="adoptDe">
+              <img src="/img/coco1.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">
                   <h3>
                      <a href="javascript:void(0)" class="">
@@ -28,7 +39,7 @@
                   </a>
                </div>
             </div>
-         </div>
+     
          <!-- Card 2 -->
          <img src="/img/maincatdog2.jpg" alt="image" class="w-full">
                <div class="p-8 sm:p-9 md:p-7 xl:p-9">

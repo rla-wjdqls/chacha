@@ -4,7 +4,7 @@
 <%@ include file="../header.jsp"%>
 
 
-	<div class="container2 mt-2">
+	<div class="container mt-2">
 		<h2>목격/제보 게시판 글쓰기</h2>
 		<p>목격하신 유기 동물들을 제보해주세요!</p>
 
@@ -20,15 +20,16 @@
 
 
 			첨부파일
-			<td style="text-align: left"><input type="file" name="filename"
-				id="filename" size="20">
-				<hr></td>
+			<td style="text-align: left">
+			<input type="file" name="filename" id="filename" size="20">
+			</td>
 
 			<div class="mb-3 mt-3">
 				<button type="submit" class="btn btn-primary">완료</button>
+				<button type="reset" class="btn btn-light">취소</button>
 			</div>
 	
-		<hr>
+		
 	</div>
 
 </body>
