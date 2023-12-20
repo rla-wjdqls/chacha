@@ -21,9 +21,9 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
-                <th>봉사신청번호</th>
+                <th>입양신청번호</th>
+                <th>신청글</th>
                 <th>신청날짜</th>
-                <th>신청시간</th>
                 <th>신청상태</th>
             </tr>
         </thead>
