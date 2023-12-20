@@ -164,10 +164,8 @@
                 <div class="nav-item dropdown">
                    <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
-                       <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
-                       <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
-                       <a href="/mypage/myClass" class="dropdown-item">내 강의실</a>
-                       <a href="/mypage/myService" class="dropdown-item">봉사신청내역</a>
+                       <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+                       <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
                        <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
                    </div>
         </div>
@@ -212,11 +210,15 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">찜목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">내 글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">내 강의실</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">봉사신청내역</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo">회원정보</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">-글목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo" style="font-weight:bold">회원정보</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원정보 수정</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원탈퇴</a>
                 </div>

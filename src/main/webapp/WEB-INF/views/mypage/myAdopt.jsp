@@ -15,8 +15,8 @@
 
 	<div class="container">
 	<br><br>
-		<h4>봉사신청내역</h4>
-		<p>나의 봉사 신청 내역을 확인 할 수 있습니다</p>
+		<h4>입양신청내역</h4>
+		<p>나의 입양 신청 내역을 확인 할 수 있습니다</p>
 		<br>
 	<table class="table table-condensed">
         <thead>

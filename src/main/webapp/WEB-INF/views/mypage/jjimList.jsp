@@ -14,6 +14,7 @@
 
 
 	<div class="container">
+	<br><br>
 		<h4>찜목록</h4>
 		<p>콕! 찜해 놓은 아이들을 볼 수 있는 공간입니다</p>
 		<br>

@@ -29,13 +29,28 @@ public class MypageCont {
 	}//jjimlist() end
 
 	
+	@GetMapping("/myAdopt")
+	public ModelAndView myAdopt() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myAdopt");
+		return mav;
+	}//myAdopt() end
+	
+	
+	@GetMapping("/myComment")
+	public ModelAndView myComment() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myComment");
+		return mav;
+	}//myComment() end
+	
+	
 	@GetMapping("/myInfo")
 	public ModelAndView myinfo() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myInfo");
 		return mav;
 	}//jjimlist() end
-	
 
 	
     @RequestMapping("/myClass")

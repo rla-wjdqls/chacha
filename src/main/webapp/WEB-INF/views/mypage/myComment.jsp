@@ -15,8 +15,8 @@
 
 	<div class="container">
 	<br><br>
-		<h4>글목록</h4>
-		<p>내가 쓴글 글목록을 확인 할 수 있습니다</p>
+		<h4>댓글목록</h4>
+		<p>내가 쓴글 댓글 목록을 확인 할 수 있습니다</p>
 		<br>
 		<table class="table table-condensed">
 			<thead>
