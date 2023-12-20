@@ -1,0 +1,34 @@
+-- service_sql.txt
+
+--봉사글 테이블
+CREATE TABLE `service` (
+    `sno` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, --봉사글번호
+    `uid` VARCHAR(20) NOT NULL,						  --아이디					
+    `stitle` VARCHAR(50) NOT NULL,					  --제목							
+    `sinfo` TEXT NOT NULL,							  --내용
+    `ssdate` DATETIME NOT NULL,						  --봉사모집시작날짜					
+    `sedate` DATETIME NOT NULL,						  --봉사모집종료날짜
+    `time` VARCHAR(10) NOT NULL,					  --봉사시간(ex 2시간)
+    `sp` INT(2) NOT NULL,							  --모집인원					
+    `splace` VARCHAR(50) NOT NULL,					  --장소
+    `sstate` CHAR(1) NOT NULL DEFAULT 'I',			  --상태
+	`cnt` INT(5) NOT NULL DEFAULT 0					  --조회수
+);
+
+--봉사신청테이블
+CREATE TABLE `servicea` (
+    `sano` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, --봉사신청번호
+    `uid` VARCHAR(20) NOT NULL,						   --아이디
+    `sno` INT(5) NOT NULL,							   --봉사글번호
+    `sadate` DATETIME NOT NULL,						   --신청날짜
+    `stime` VARCHAR(20) NOT NULL,					   --신청시간
+    `astate` CHAR(1) NOT NULL DEFAULT 'O'			   --신청상태
+);
+
+--시퀀스 생성
+create sequence service_seq;
+
+--시퀀스 삭제
+drop sequence service_seq;
+
+

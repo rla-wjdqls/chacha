@@ -25,8 +25,16 @@ public class ServiceCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("service/serviceList");
 		return mav;
+		
 	}//serviceList() end
 	
+	@GetMapping("/serviceForm")
+	public ModelAndView serviceForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("service/serviceForm");
+		return mav;
+		
+	}//serviceList() end
 	
 	
 	
