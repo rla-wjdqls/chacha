@@ -20,7 +20,22 @@ public class MypageDTO {
     private String stime;
     private String astate;
     
+    //찜목록
+    private String jjim_icon;
     
+    //입양동물
+    private String anino;
+    private String aname;
+    private int age;
+    private String gender;
+    private String weight;
+    private String genop;
+    private String vac;
+    private String intro;
+    private String anipic;
+    private String adopt;
+    private String cnt;
+    private String adopt_pos;
     
     
     //생성자 함수
@@ -146,6 +161,139 @@ public class MypageDTO {
 	public void setAstate(String astate) {
 		this.astate = astate;
 	}
+
+
+	public String getJjim_icon() {
+		return jjim_icon;
+	}
+
+
+	public void setJjim_icon(String jjim_icon) {
+		this.jjim_icon = jjim_icon;
+	}
+
+
+	public String getAnino() {
+		return anino;
+	}
+
+
+	public void setAnino(String anino) {
+		this.anino = anino;
+	}
+
+
+	public String getAname() {
+		return aname;
+	}
+
+
+	public void setAname(String aname) {
+		this.aname = aname;
+	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+
+	public String getWeight() {
+		return weight;
+	}
+
+
+	public void setWeight(String weight) {
+		this.weight = weight;
+	}
+
+
+	public String getGenop() {
+		return genop;
+	}
+
+
+	public void setGenop(String genop) {
+		this.genop = genop;
+	}
+
+
+	public String getVac() {
+		return vac;
+	}
+
+
+	public void setVac(String vac) {
+		this.vac = vac;
+	}
+
+
+	public String getIntro() {
+		return intro;
+	}
+
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
+
+
+	public String getAnipic() {
+		return anipic;
+	}
+
+
+	public void setAnipic(String anipic) {
+		this.anipic = anipic;
+	}
+
+
+	public String getAdopt() {
+		return adopt;
+	}
+
+
+	public void setAdopt(String adopt) {
+		this.adopt = adopt;
+	}
+
+
+	public String getCnt() {
+		return cnt;
+	}
+
+
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
+
+
+	public String getAdopt_pos() {
+		return adopt_pos;
+	}
+
+
+	public void setAdopt_pos(String adopt_pos) {
+		this.adopt_pos = adopt_pos;
+	}
+	
+	
+	
 
 
 	//toString

@@ -20,34 +20,14 @@ public class MypageCont {
 	@Autowired
 	MypageDAO mypageDao;
 	
-	
-	@GetMapping("/jjimList")
-	public ModelAndView jjimlist() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/jjimList");
-		return mav;
-	}//jjimlist() end
-	
+		
 	@GetMapping("/myList")
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList");
 		return mav;
 	}//jjimlist() end
-	
-	@GetMapping("/myClass")
-	public ModelAndView myclassPage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myClass");
-		return mav;
-	}//jjimlist() end
-	
-	@GetMapping("/myService")
-	public ModelAndView myservice() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myService");
-		return mav;
-	}//jjimlist() end
+
 	
 	@GetMapping("/myInfo")
 	public ModelAndView myinfo() {
@@ -57,31 +37,60 @@ public class MypageCont {
 	}//jjimlist() end
 	
 
+	
     @RequestMapping("/myClass")
     public ModelAndView myClassList(HttpSession session) {
     	String s_id = "h99999";
-    	
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myClass");
     	mav.addObject("myClassList", mypageDao.myeduList(s_id));
-    	
         return mav; 
     }//myClassList() end
  
     
+    
     @RequestMapping("/myService")
-    public ModelAndView myServiceList() {
+    public ModelAndView myServiceList(HttpSession session) {
+    	String s_id = "h99999";
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myService");
-    	mav.addObject("myServiceList", mypageDao.mysvList());
-    	
+    	mav.addObject("myServiceList", mypageDao.mysvList(s_id));
         return mav; 
     }//myClassList() end
     	
-	
+	@RequestMapping("/jjimList")
+	public ModelAndView jjimlist() {
+		//String s_id = "kim9595";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/jjimList");
+    	mav.addObject("myjjimList", mypageDao.jjimList());
+        return mav; 
+	}//jjimlist() end
+
 	
 	
 	
 }//end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

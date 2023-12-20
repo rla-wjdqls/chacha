@@ -20,6 +20,7 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
+            	<th>	</th>
                 <th>사진</th>
                 <th>이름</th>
                 <th>성별</th>
@@ -29,7 +30,20 @@
                 <th>접종여부</th>
             </tr>
         </thead>
-
+		<tbody>
+            <c:forEach items="${myjjimList}" var="jjim" >
+                <tr>
+                    <td>${jjim.jjim_icon}</td>
+                    <td>${jjim.anipic}</td>
+                    <td>${jjim.aname}</td>
+                    <td>${jjim.gender}</td>
+                    <td>${jjim.age}</td>
+                    <td>${jjim.weight}</td>
+                    <td>${jjim.genop}</td>
+                    <td>${jjim.vac}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 		</div>
 	</div>
@@ -39,3 +53,20 @@
 
 
 <%@ include file="./mypageFooter.jsp" %>      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

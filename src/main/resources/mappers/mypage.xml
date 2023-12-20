@@ -17,8 +17,19 @@
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
  	SELECT sano, sadate, stime, astate 
 	FROM servicea
+	WHERE uid = #{uid}
 	ORDER BY sano		
  </select>
+ 
+ 
+ <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
+	FROM jjim jj join animal ani
+	ON jj.anino = ani.anino
+	WHERE ani.uid = 'kim9595'
+ </select>
+ 
+ 
  	
  </mapper>
  

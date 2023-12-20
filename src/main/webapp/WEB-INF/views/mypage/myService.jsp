@@ -27,12 +27,12 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myClassList}" var="myservice" >
+            <c:forEach items="${myServiceList}" var="myservice" >
                 <tr>
-                    <td>${myservice.myno}</td>
-                    <td>${myservice.eduno}</td>
-                    <td>${myservice.mycon}</td>
-                    <td>${myservice.mydate}</td>
+                    <td>${myservice.sano}</td>
+                    <td>${myservice.sadate}</td>
+                    <td>${myservice.stime}</td>
+                    <td>${myservice.astate}</td>
                 </tr>
             </c:forEach>
         </tbody>

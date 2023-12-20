@@ -29,3 +29,54 @@ CREATE TABLE `servicea` (
 );
 
 
+--찜테이블
+CREATE TABLE `jjim` (
+    `jjim_icon` VARCHAR(10) NOT NULL DEFAULT '♥', 
+    `anino` VARCHAR(10) NOT NULL,
+    `uid` VARCHAR(20) NOT NULL
+);
+
+
+--입양동물 테이블
+CREATE TABLE `animal` (
+    `anino` VARCHAR(10) NOT NULL PRIMARY KEY,
+    `uid` VARCHAR(20) NOT NULL,
+    `aname` VARCHAR(20) NOT NULL,
+    `age` INT(2) NOT NULL,
+    `gender` CHAR(1) NOT NULL,
+    `weight` VARCHAR(10) NOT NULL,
+    `genop` CHAR(1) NOT NULL,
+    `vac` CHAR(1) NOT NULL,
+    `intro` TEXT NOT NULL,
+    `anipic` VARCHAR(20) NOT NULL,
+    `adopt` CHAR(1) NOT NULL DEFAULT 'B',
+    `cnt` INT(5) NOT NULL DEFAULT 0,
+    `adopt_pos` CHAR(1) NOT NULL DEFAULT 'N'
+);
+
+
+--찜+입양동물 테이블 조인(anino)
+--하트,사진,이름,성별,나이,무게,중성화,접종
+
+
+
+SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
+FROM jjim jj join animal ani
+ON jj.anino = ani.anino
+WHERE uid = 'kim9595'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
