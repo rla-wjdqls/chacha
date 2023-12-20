@@ -21,19 +21,25 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
-                <th>입양신청번호</th>
-                <th>신청글</th>
-                <th>신청날짜</th>
-                <th>신청상태</th>
+            	<!--신청글 제목없음 -->
+                <th>신청번호</th>
+                <th>신청글 사진</th>
+                <th>신청내용</th>
+                <th>신청일</th>
+                <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
+                <th>첨부파일</th>
+                
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myServiceList}" var="myservice" >
+            <c:forEach items="${myAdoptList}" var="myAdopt" >
                 <tr>
-                    <td>${myservice.sano}</td>
-                    <td>${myservice.sadate}</td>
-                    <td>${myservice.stime}</td>
-                    <td>${myservice.astate}</td>
+                    <td>${myAdopt.apno}</td>
+                    <td>${myAdopt.anipic}</td>
+                    <td>${myAdopt.sub_cont}</td>
+                    <td>${myAdopt.sub_date}</td>
+                    <td>${myAdopt.sub_state}</td>
+                    <td>${myAdopt.subpic}</td>
                 </tr>
             </c:forEach>
         </tbody>

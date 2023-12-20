@@ -31,17 +31,20 @@ public class MypageCont {
 	
 	@GetMapping("/myAdopt")
 	public ModelAndView myAdopt() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myAdopt");
-		return mav;
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myAdopt");
+    	mav.addObject("myAdoptList", mypageDao.myAdopt());
+        return mav; 
 	}//myAdopt() end
 	
 	
 	@GetMapping("/myComment")
 	public ModelAndView myComment() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myComment");
-		return mav;
+		//String s_id = "kim9595";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myComment");
+    	mav.addObject("myCommentList", mypageDao.myComment());
+        return mav; 
 	}//myComment() end
 	
 	

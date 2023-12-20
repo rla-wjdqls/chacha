@@ -30,6 +30,21 @@
  </select>
  
  
+ <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
+	FROM adopcm ac join adoprv ar
+	ON ac.arno = ar.arno
+	WHERE ac.uid = 'kim9595'
+ </select>
+ 
+ 
+  <select id="myAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_date, ap.sub_state, ap.subpic
+	FROM adopt ap join animal an
+	ON ap.uid = an.uid
+	WHERE ap.uid = 'kim9595'
+ </select>
+ 
  	
  </mapper>
  
@@ -37,7 +52,7 @@
  
  
  
- 
+
  
  
  

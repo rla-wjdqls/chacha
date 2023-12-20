@@ -17,33 +17,32 @@
 	<br><br>
 		<h4>댓글목록</h4>
 		<p>내가 쓴글 댓글 목록을 확인 할 수 있습니다</p>
-		<br>
-		<table class="table table-condensed">
-			<thead>
-				<tr>
-					<th>Firstname</th>
-					<th>Lastname</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>John</td>
-					<td>Doe</td>
-					<td>john@example.com</td>
-				</tr>
-				<tr>
-					<td>Mary</td>
-					<td>Moe</td>
-					<td>mary@example.com</td>
-				</tr>
-				<tr>
-					<td>July</td>
-					<td>Dooley</td>
-					<td>july@example.com</td>
-				</tr>
-			</tbody>
-		</table>
+	<br>
+	<input type="button" value="전체선택">
+	<input type="button" value="삭제">
+	<br>
+	<table class="table table-condensed">
+        <thead>
+            <tr>
+                <th></th>
+                <th>글번호</th>
+                <th>내용</th>
+                <th>원문제목</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+  		<tbody>
+            <c:forEach items="${myCommentList}" var="mycomment" >
+                <tr>
+                    <td><input type="checkbox"></td> <!--삭제기능 넣을 것-->
+                    <td>${mycomment.comno}</td>
+                    <td>${mycomment.adcm}</td>
+                    <td>${mycomment.artitle}</td>
+                    <td>${mycomment.acdate}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 		</div>
 	</div>
 
