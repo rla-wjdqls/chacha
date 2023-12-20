@@ -1,5 +1,7 @@
 package kr.co.chacha.mypage;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,14 +17,15 @@ public class MypageDAO {
 @Autowired
 SqlSession sqlSession;
 	
-/*	
-	public MypageDTO myClassList() {
-		return sqlSession.selectOne("mypage.myClassList");
+
+	public List<MypageDTO> myeduList(String s_id) {		
+		return sqlSession.selectList("mypage.myeduList", s_id);
 	}//myClassList() end
-*/	
+
 	
-	
-	
+	public List<MypageDTO> mysvList() {		
+		return sqlSession.selectList("mypage.mysvList");
+	}//myClassList() end
 	
 	
 	

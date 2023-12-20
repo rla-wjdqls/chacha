@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/mypage")
@@ -34,7 +36,7 @@ public class MypageCont {
 	}//jjimlist() end
 	
 	@GetMapping("/myClass")
-	public ModelAndView myclass() {
+	public ModelAndView myclassPage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myClass");
 		return mav;
@@ -54,18 +56,27 @@ public class MypageCont {
 		return mav;
 	}//jjimlist() end
 	
-/*
-    @GetMapping("/myClass")
-    public ModelAndView myClassList() {
+
+    @RequestMapping("/myClass")
+    public ModelAndView myClassList(HttpSession session) {
+    	String s_id = "h99999";
+    	
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myClass");
-    	mav.addObject("myClassList", mypageDao.myClassList());
+    	mav.addObject("myClassList", mypageDao.myeduList(s_id));
     	
         return mav; 
     }//myClassList() end
-*/    
+ 
     
-    
+    @RequestMapping("/myService")
+    public ModelAndView myServiceList() {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myService");
+    	mav.addObject("myServiceList", mypageDao.mysvList());
+    	
+        return mav; 
+    }//myClassList() end
     	
 	
 	

@@ -26,7 +26,16 @@
                 <th>신청상태</th>
             </tr>
         </thead>
-
+  		<tbody>
+            <c:forEach items="${myClassList}" var="myservice" >
+                <tr>
+                    <td>${myservice.myno}</td>
+                    <td>${myservice.eduno}</td>
+                    <td>${myservice.mycon}</td>
+                    <td>${myservice.mydate}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 		</div>
 	</div>
