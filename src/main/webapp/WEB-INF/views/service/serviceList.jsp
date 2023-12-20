@@ -3,22 +3,21 @@
     
     
 <%@ include file="../header.jsp" %>
-<hr style="margin-bottom: 0">
-	<nav class="navbar navbar-light bg-light" style="height: 42px">
-		 <ul class="list-inline" style="align-items: center;">
-			<li class="list-inline-item">
-				<a href="/"><i class="bi bi-house fs-7" style="font-size: 23px" alt="홈으로"></i></a>
-				<i class="bi bi-arrow-right-short" style="font-size: 23px"></i>
-			</li>
-			<li class="list-inline-item">
-				<a><span style="color: #F3BD00">봉사활동</span></a>
-				<i class="bi bi-arrow-right-short" style="font-size: 23px"></i>
-			</li>
-			<li class="list-inline-item">
-				<a><span style="color: #F3BD00">봉사활동모집글</span></a>
-			</li>
-		</ul>
-	</nav>
+<nav class="navbar navbar-light bg-light" style="height: 42px">
+          <ul class="list-inline ml-auto" style="align-items: center;">
+            <li class="list-inline-item">
+               <a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+               <i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+            </li>
+            <li class="list-inline-item">
+               <a><span style="color: #757575">봉사활동</span></a>
+               <i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+            </li>
+            <li class="list-inline-item">
+               <a><span style="color: #757575">봉사활동 모집글</span></a>
+            </li>
+         </ul>
+      </nav>
 	
 <div class="container text-center">
 	<div class="row">
@@ -33,12 +32,17 @@
 <div class="container text-center">
 	<div class="row">
  		<div class="col-sm-12"> 
- 			<table style="text-align: center; background-color: #0C2B4B; border: 1px solid white; width: 500px; height: 50px;"> 
+ 			<table style="text-align: center; background-color: #0C2B4B; border: 1px solid white; width: 1500px; height: 50px;"> 
  				<tr>
-					 <td>글번호</td>
-					 <td>제목</td>
+					 <td>봉사글번호</td>
 					 <td>아이디</td>
+					 <td>제목</td>
+					 <td>내용</td>
+					 <td>모집시작날짜</td>
+					 <td>모집종료날짜</td>
+					 <td>봉사시간</td>
 					 <td>모집인원</td>
+					 <td>장소</td>
 					 <td>상태</td>
 					 <td>조회수</td>
  				</tr>
@@ -47,7 +51,7 @@
 	</div>
 </div>
 <div style="text-align: center;">
- <table>
+ <table class="table">
  	<tr>
 		<td colspan="4" style="text-align: center; height: 50px;">
 			<form action="serviceList.jsp" onsubmit="return searchCheak()"><!-- myscript.jsp함수 작성함 -->
