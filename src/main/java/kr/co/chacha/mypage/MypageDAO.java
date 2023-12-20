@@ -36,6 +36,14 @@ SqlSession sqlSession;
 	}//jjimList() end
 	
 	
+	public List<MypageDTO> myComment() {		
+		return sqlSession.selectList("mypage.myComment");
+	}//mvsList() end
+	
+	public List<MypageDTO> myAdopt() {		
+		return sqlSession.selectList("mypage.myAdopt");
+	}//mvsList() end
+	
 }//end
 
 
