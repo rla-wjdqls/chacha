@@ -154,11 +154,6 @@
   --bs-highlight-bg: #fff3cd;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 @media (prefers-reduced-motion: no-preference) {
   :root {
@@ -294,9 +289,6 @@ strong {
   font-weight: bolder;
 }
 
-small, .small {
-  font-size: 0.875em;
-}
 
 mark, .mark {
   padding: 0.1875em;
@@ -317,14 +309,6 @@ sub {
 
 sup {
   top: -0.5em;
-}
-
-a {
-  color: var(--bs-link-color);
-  text-decoration: underline;
-}
-a:hover {
-  color: var(--bs-link-hover-color);
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -750,14 +734,6 @@ progress {
   margin-right: calc(-0.5 * var(--bs-gutter-x));
   margin-left: calc(-0.5 * var(--bs-gutter-x));
 }
-.row > * {
-  flex-shrink: 0;
-  width: 100%;
-  max-width: 100%;
-  padding-right: calc(var(--bs-gutter-x) * 0.5);
-  padding-left: calc(var(--bs-gutter-x) * 0.5);
-  margin-top: var(--bs-gutter-y);
-}
 
 .col {
   flex: 1 0 0%;
@@ -907,10 +883,6 @@ progress {
   margin-left: 91.66666667%;
 }
 
-.g-0,
-.gx-0 {
-  --bs-gutter-x: 0;
-}
 
 .g-0,
 .gy-0 {
@@ -8057,9 +8029,6 @@ textarea.form-control-lg {
   line-height: 2 !important;
 }
 
-.text-start {
-  text-align: left !important;
-}
 
 .text-end {
   text-align: right !important;
