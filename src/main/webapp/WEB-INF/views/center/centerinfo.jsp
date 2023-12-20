@@ -36,6 +36,46 @@
 			<p>앞으로 유기동물 입양이 우리 사회의 보편적인 반려동물 문화가 될 수 있도록 <br>
 			   시민 여러분의 많은 관심과 성원 부탁드립니다.</p>
 		</div>
+	<hr>
+	<h3>오시는 길</h3>
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"> </th>
+      <th scope="col">마포센터</th>
+      <th scope="col">구로센터</th>
+      <th scope="col">동대문센터</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">주소</th>
+      <td>마포구 매봉산로 31 시너지움 지하 1층 <br>
+		  (상암동,에스플렉스센터) </td>
+      <td>구로구 경인로 472(구로동), <br>
+		  (전 서울반려동물교육센터)</td>
+      <td>동대문구 무학로 201, 1층</td>
+    </tr>
+    <tr>
+      <th scope="row">길찾기</th>
+      <td>
+      	 <a href="https://map.kakao.com/link/to/마포센터,37.5759133,126.8899231">
+      		<button type="button" class="btn btn-warning" style=" border-radius: 15px;">길찾기</button>
+      	 </a>
+      </td>
+      <td>
+      	 <a href="https://map.kakao.com/link/to/구로센터,37.49857,126.87122">
+      		<button type="button" class="btn btn-warning" style=" border-radius: 15px;">길찾기</button>
+      	 </a>
+      </td>
+      <td>
+      	 <a href="https://map.kakao.com/link/to/동대문센터,37.58215,127.02935">
+      		<button type="button" class="btn btn-warning" style=" border-radius: 15px;">길찾기</button>
+      	 </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 </div>
 <!-- 본문 끝 -->
 
