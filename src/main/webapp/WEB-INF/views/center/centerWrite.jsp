@@ -45,8 +45,8 @@
 							<td>성별</td>
 							<td>
 							<label>
-								남자<input class="form-check-input" type="radio" value="M" name="gender">
-								여자<input class="form-check-input" type="radio" value="W" name="gender">
+								수컷<input class="form-check-input" type="radio" value="M" name="gender">
+								암컷<input class="form-check-input" type="radio" value="F" name="gender">
 							</label>
 							</td>
 						</tr>
@@ -73,14 +73,45 @@
 							</td>
 						</tr>
 						<tr>
-							<td>간단한 소개</td>
+							<td>소개</td>
 							<td>
-  								<textarea placeholder="강아지에 대한 간단한 소개를 작성해 주세요" class="form-control" name="intro"></textarea>
+  								<textarea placeholder="간단한 소개를 작성해 주세요" class="form-control" name="intro"></textarea>
 							</td>
 						</tr>
 						<tr>
-							<td>동물 사진</td>
-							
+							<td>사진</td>
+							<td>
+							<label>
+								<input class="form-control" type="file" name="anipic" multiple>
+							</label>
+							</td>
+						</tr>
+						<tr>
+							<td>입양상태</td>
+							<td>
+								<select class="form-select">
+								  <option selected>선택</option>
+								  <option value="B">보호중</option>
+								  <option value="S">심사중</option>
+								  <option value="O">입양완료</option>
+								  <option value="G">귀가</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>입양가능 여부</td>
+							<td>
+							<label>
+								예<input class="form-check-input" type="radio" value="Y" name="vac">
+								아니오<input class="form-check-input" type="radio" value="N" name="vac">
+							</label>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="right">
+								<input type="button" value=" 취소 " class="btn btn-danger rotate-text" onclick="location.href='centerForm'">
+								<input type="submit" value=" 추가 " class="btn btn-warning rotate-text">
+							</td>
 						</tr>
 						</tbody>
 					</table>
