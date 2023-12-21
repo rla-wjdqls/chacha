@@ -16,7 +16,7 @@ public class MypageCont {
 	public MypageCont() {
 		System.out.println("----MypageCont()객체 생성됨");
 	}//end
-	
+	 
 	@Autowired
 	MypageDAO mypageDao;
 	

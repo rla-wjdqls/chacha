@@ -11,20 +11,20 @@ import net.utility.DBOpen;
 
 public class HelpDAO {
 
-	private DBOpen dbopen=null;
+	//private DBOpen dbopen=null;
 	private Connection con=null;
 	private PreparedStatement pstmt=null;
 	private ResultSet rs=null;
 	private StringBuilder sql=null;
 
-	public HelpDAO() {
-		dbopen = new DBOpen();
-	}//end
+//	public HelpDAO() {
+//		dbopen = new DBOpen();
+//	}//end
 	
 	public int create(HelpDTO dto) {
 		int cnt=0;
 		try {
-				con=dbopen.getConnection(); //DB연결
+				//con=dbopen.getConnection(); //DB연결
 			
 				sql=new StringBuilder();
 				sql.append(" INSERT INTO help(textno, uid, texttitle, text, uploaddate, helppic, love, cnt) ");
@@ -42,7 +42,7 @@ public class HelpDAO {
 		}catch (Exception e) {
 			System.out.println("추가실패: " + e);
 		}finally {
-			DBClose.close(con, pstmt);
+			//DBClose.close(con, pstmt);
 		}//end
 		return cnt;
 	}//create() end
