@@ -52,7 +52,7 @@
 			  	<div class="card-body">
 			    	<h5 class="card-title">${row.aname}</h5>
 			    	<p class="card-text">${row.age}</p>
-			    	<a href="detail/${row.anino}" class="btn btn-primary">보러가기</a>
+			    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
 			  	</div>
 		   		</div>
 			

@@ -49,12 +49,12 @@ public class CenterCont {
 		return "center/centerWrite";
 	}
 	
-	@GetMapping("/detail")
-	public ModelAndView detail() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("center/detail");
-		return mav;
-	}
+//	@GetMapping("/detail")
+//	public ModelAndView detail() {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("center/detail");
+//		return mav;
+//	}
 	
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
@@ -81,8 +81,8 @@ public class CenterCont {
 		return "redirect:/center/centerForm";
 	}
 	
-	@GetMapping("/detail/{anino}")
-	public ModelAndView detail(@PathVariable String anino) {
+	@GetMapping("/detail")
+	public ModelAndView detail(String anino) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/detail");
 		mav.addObject("center", centerDao.detail(anino));
