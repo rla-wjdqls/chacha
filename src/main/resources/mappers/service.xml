@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴-->
+ 
+ <!--mypage.xml-->
+ <mapper namespace="service">
+ 	
+ <select id="serviceList2" resultType="kr.co.chacha.service.ServiceDTO">
+ 	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
+	FROM service
+	WHERE uid = 'kim9595'
+	ORDER BY sno		
+ </select>
+ 
+ <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
+		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate)
+		VALUES('kim9595', #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{time}, #{sp}, #{splace}, #{sstate})
+</insert>
+
+
+
+
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

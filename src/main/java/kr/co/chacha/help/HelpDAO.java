@@ -1,15 +1,15 @@
 package kr.co.chacha.help;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-import net.utility.DBClose;
-import net.utility.DBOpen;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public class HelpDAO {
+<<<<<<< HEAD
 
 	//private DBOpen dbopen=null;
 	private Connection con=null;
@@ -47,3 +47,36 @@ public class HelpDAO {
 		return cnt;
 	}//create() end
 }
+=======
+	
+	public HelpDAO() {
+		System.out.println("-----HelpDAO() 객체 생성됨");
+	}//end
+	
+	@Autowired
+	SqlSession sqlSession;
+	
+	public List<HelpDTO> helpList(int textno) {
+		return sqlSession.selectList("help.list", textno);
+	}//list() end
+	
+	public int helpUpdate(HelpDTO help) {
+		return sqlSession.update("help.update", help);
+	}//update() end
+	
+	public int helpDelete(int textno) throws Exception {
+		return sqlSession.delete("help.delete", textno);
+	}//Delete() end
+	
+
+	public void insert(Map<String, Object> map) {
+		sqlSession.insert("help.insert", map);
+	}//insert() end
+	
+	public List<Map<String, Object>> form(){
+		return sqlSession.selectList("help.list");
+	}
+	
+
+}//end
+>>>>>>> 936b7adbba1acf8b0346d6a4c75dce15b84d54f6

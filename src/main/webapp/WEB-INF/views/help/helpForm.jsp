@@ -8,26 +8,38 @@
 	<h2>목격/제보 게시판 글쓰기</h2>
 	<p>목격하신 유기 동물들을 제보해주세요!</p>
 
-		<div class="mb-2 mt-2">
-			<textarea class="form-control" rows="1" id="texttitle" name="texttitle" placeholder="제목"></textarea>
-		</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<form name="helpfrm" id="helpfrm" method="post" action="insert" enctype="multipart/form-data">
+				<table class="table table-hover">
+					<tr>
+						<td>제목</td>
+						<td><input type="text" name="texttitle" class="form-control"></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td><textarea rows="3" cols="60" name="text"
+								class="form-control"></textarea></td>
+					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td><input type="file" name="img" class="form-control"></td>
+					</tr>
 
-		<div class="mb-3 mt-3">
-			<textarea class="form-control" rows="3" id="text" name="text" placeholder="내용"></textarea>
-		</div>
+					<tr>
+						<td colspan="2" align="center">
+						<input type="submit" value="완료" class="btn btn-success"></td>
+					</tr>
 
-
-		<div class="form-group">
-          <div class="custom-file">
-            <input type="file" class="form-control visibility-hidden" id="helppic" name="helppic">
-          </div>
-        </div>
-		
-
-		<div class="mb-3 mt-3">
-			<button type="submit" class="btn btn-primary">완료</button>
-			<button type="reset" class="btn btn-light">취소</button>
-		</div>
+					
+					</tbody>
+			</table>
+		</form>
+	</div>
+	<!-- col end -->
 </div>
+</div>
+
+<!-- row end -->
 
 <%@ include file="../footer.jsp"%>

@@ -60,9 +60,9 @@ public class CenterCont {
 						 @RequestParam(name="img") MultipartFile img,
 						 HttpServletRequest req) {
 		String anipic="-";
-		System.out.println(img);
+		//System.out.println(img);
 		//System.out.println(anipic);
-		System.out.println(img.getOriginalFilename());
+		//System.out.println(img.getOriginalFilename());
 		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			anipic=img.getOriginalFilename();
 			try {
