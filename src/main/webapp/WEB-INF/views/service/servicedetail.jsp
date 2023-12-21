@@ -3,9 +3,7 @@
     
 <%@ include file="../header.jsp" %>
 
-<!-- 본문 시작 template.jsp -->
-여기에 본문 내용 작성합니다
-<!-- 본문 끝 -->
+
 
 
 <%@ include file="../footer.jsp" %>      
