@@ -14,8 +14,15 @@
  	<select id="form" resultType="java.util.Map">
  		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
  		FROM animal
- 	
  	</select>
+ 	
+ 	<select id="detail" resultType="java.util.Map">
+ 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		FROM animal
+ 		WHERE anino = #{anino}
+ 	</select>
+ 	
+ 	
  </mapper>
  
  
