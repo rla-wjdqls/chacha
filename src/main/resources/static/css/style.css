@@ -336,6 +336,7 @@
     display: flex;
     gap: 10px; /* 간격을 조절할 수 있음 */
 }
+
 /*** Footer ***/
 .footer .btn.btn-link {
     display: block;

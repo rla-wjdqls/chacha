@@ -27,6 +27,9 @@ public class CenterDAO {
 		return sqlSession.selectList("center.form");
 	}
 	
+	public Map<String, Object> detail (String anino){
+		return sqlSession.selectOne("center.detail", anino);
+	}
 	
 	
 	

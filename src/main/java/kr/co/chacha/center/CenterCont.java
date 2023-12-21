@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -48,12 +49,12 @@ public class CenterCont {
 		return "center/centerWrite";
 	}
 	
-	@GetMapping("/detail")
-	public ModelAndView detail() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("center/detail");
-		return mav;
-	}
+//	@GetMapping("/detail")
+//	public ModelAndView detail() {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("center/detail");
+//		return mav;
+//	}
 	
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
@@ -77,7 +78,16 @@ public class CenterCont {
 		map.put("anipic", anipic);
 		
 		centerDao.insert(map);
-		return "redirect:/center/centeList";
+		return "redirect:/center/centerForm";
+	}
+	
+	@GetMapping("/detail")
+	public ModelAndView detail(String anino) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("center/detail");
+		mav.addObject("center", centerDao.detail(anino));
+		return mav;
+		
 	}
 			
 }
