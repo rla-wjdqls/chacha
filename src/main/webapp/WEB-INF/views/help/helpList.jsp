@@ -19,7 +19,7 @@
 			</ul>
 		</nav>
 <!-- 본문 시작 template.jsp -->
-<h3> 목격/제보 게시판 </h3>
+<div class="container text-center"> <h3> 목격/제보 게시판 </h3>
 
 <p><a href="/help/helpForm">[글쓰기]</a></p>
 
@@ -48,16 +48,8 @@
     				</td>
     			</tr>
     		</c:forEach>
- 
-
-
-
-
-
-
-
-
-
+ </tbody>
+ 	</table>
 
 <!-- 검색 시작 -->
 		
@@ -76,14 +68,13 @@
 			</td>
 		</tr>
 		
-	</tbody>
- 	</table>
+	
 		 
 
 
 <!-- 본문 끝 -->
 		
 </form>
-
+</div>
 
 <%@ include file="../footer.jsp" %>      

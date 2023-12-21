@@ -15,6 +15,10 @@
 			<table class="table table-hover">
 				<tbody style="text-align: left;">
 					<tr>
+						<td>글 번호</td>
+						<td><input type="text" name="textno" class="form-control" value="${help.TEXTNO}"></td>
+					</tr>
+					<tr>
 						<td>제목</td>
 						<td><input type="text" name="texttitle" class="form-control" value="${help.TEXTTITLE}"></td>
 					</tr>
@@ -34,6 +38,18 @@
 							</c:if>
 							<br><br>
 						<input type="file" name="img" class="form-control"></td>
+					</tr>
+					<tr>
+						<td>등록날짜</td>
+						<td><input type="text" name="uploaddate" class="form-control" value="${help.UPLOADDATE}"></td>
+					</tr>
+					<tr>
+						<td>좋아요</td>
+						<td><input type="number" name="love" class="form-control" value="${help.LOVE}"></td>
+					</tr>
+					<tr>
+						<td>조회수</td>
+						<td><input type="number" name="cnt" class="form-control" value="${help.CNT}"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center">

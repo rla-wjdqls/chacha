@@ -1,6 +1,7 @@
 package kr.co.chacha.help;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,6 @@ public class HelpDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public int helpIns(HelpDTO help) {
-		return sqlSession.insert("help.insert", help);
-	}//insert() end
-	
 	public List<HelpDTO> helpList(int textno) {
 		return sqlSession.selectList("help.list", textno);
 	}//list() end
@@ -31,6 +28,15 @@ public class HelpDAO {
 	public int helpDelete(int textno) throws Exception {
 		return sqlSession.delete("help.delete", textno);
 	}//Delete() end
+	
+
+	public void insert(Map<String, Object> map) {
+		sqlSession.insert("help.insert", map);
+	}//insert() end
+	
+	public List<Map<String, Object>> form(){
+		return sqlSession.selectList("help.list");
+	}
 	
 
 }//end

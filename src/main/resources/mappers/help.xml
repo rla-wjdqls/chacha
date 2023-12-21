@@ -3,19 +3,18 @@
 
 <mapper namespace="help">
 
-	<insert id="helpIns" parameterType="kr.co.chacha.help.HelpDTO">
-		INSERT INTO help(textno, uid, texttitle, text, uploaddate, helppic, love, cnt)
-		VALUES (help_seq.nextval, #{uid}, #{texttitle}, #{text}, #{uploaddate}, #{helppic}, #{love}, #{cnt})
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO help(uid, texttitle, text, uploaddate, helppic)
+		VALUES ( 'kim9595', #{texttitle}, #{text}, NOW(), #{helppic})
 	</insert>
 	 	
-	 	
-	 <select id="selectAll">
-	 	SELECT textno, uid, texttitle, text, uploaddate, helppic, love, cnt
-	 	FROM help
-	 	ORDER BY textno DESC
-	 </select>
+	 		 
 	 
-	 
-	
+	<select id="list" resultType="kr.co.chacha.help.HelpDTO">
+		SELECT textno, texttitle, cnt, uid, uploaddate
+		FROM help
+		WHERE uid = 'kim9595'
+		ORDER BY textno
+	</select>
  	
  </mapper> 
