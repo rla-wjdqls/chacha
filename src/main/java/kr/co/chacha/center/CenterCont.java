@@ -57,10 +57,13 @@ public class CenterCont {
 	
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
-						 @RequestParam MultipartFile img,
+						 @RequestParam(name="img") MultipartFile img,
 						 HttpServletRequest req) {
 		String anipic="-";
-		if(img != null && img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
+		System.out.println(img);
+		//System.out.println(anipic);
+		System.out.println(img.getOriginalFilename());
+		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			anipic=img.getOriginalFilename();
 			try {
 				ServletContext application = req.getSession().getServletContext();

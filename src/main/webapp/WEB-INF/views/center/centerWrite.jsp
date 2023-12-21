@@ -85,7 +85,7 @@
 						<tr>
 							<td>사진</td>
 							<td>
-								<input class="form-control" type="file" name="img" multiple="multiple">
+								<input type="file" name="img" multiple="multiple">
 							</td>
 						</tr>
 						<tr>
