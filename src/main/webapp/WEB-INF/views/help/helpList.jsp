@@ -44,7 +44,7 @@
     				<td>${row.uid}</td>
     				<td>${row.uploaddate}</td>
     				<td>
-    					<input type="button" value="삭제" onclick="cartDelete(${row.cartno})">	
+    					<input type="button" value="삭제" onclick="helpDelete(${row.textno})">	
     				</td>
     			</tr>
     		</c:forEach>

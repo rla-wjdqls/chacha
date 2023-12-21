@@ -5,10 +5,16 @@
 
 	<insert id="helpIns" parameterType="kr.co.chacha.help.HelpDTO">
 		INSERT INTO help(textno, uid, texttitle, text, uploaddate, helppic, love, cnt)
-		VALUES (help_seq.nextval, #{uid), #{texttitle}, #{text}, #{uploaddate}, #{helppic}, #{love}, #{cnt})
+		VALUES (help_seq.nextval, #{uid}, #{texttitle}, #{text}, #{uploaddate}, #{helppic}, #{love}, #{cnt})
 	</insert>
 	 	
 	 	
+	 <select id="selectAll">
+	 	SELECT textno, uid, texttitle, text, uploaddate, helppic, love, cnt
+	 	FROM help
+	 	ORDER BY textno DESC
+	 </select>
+	 
 	 
 	
  	
