@@ -1,5 +1,9 @@
 package kr.co.chacha.mypage;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,18 +19,41 @@ public class MypageDAO {
 @Autowired
 SqlSession sqlSession;
 	
-/*	
-	public MypageDTO myClassList() {
-		return sqlSession.selectOne("mypage.myClassList");
-	}//myClassList() end
-*/	
+
+	public List<MypageDTO> myeduList(String s_id) {		
+		return sqlSession.selectList("mypage.myeduList", s_id);
+		
+	}//myeduList() end
+
+	
+	public List<MypageDTO> mysvList(String s_id) {		
+		return sqlSession.selectList("mypage.mysvList", s_id);
+	}//mvsList() end
 	
 	
+	public List<MypageDTO> jjimList() {		
+		return sqlSession.selectList("mypage.jjimList");
+	}//jjimList() end
 	
 	
+	public List<MypageDTO> myComment() {		
+		return sqlSession.selectList("mypage.myComment");
+	}//mvsList() end
 	
+	public List<MypageDTO> myAdopt() {		
+		return sqlSession.selectList("mypage.myAdopt");
+	}//mvsList() end
 	
 }//end
+
+
+
+
+
+
+
+
+
 
 
 

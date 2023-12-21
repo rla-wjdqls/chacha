@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/mypage")
@@ -18,34 +20,33 @@ public class MypageCont {
 	@Autowired
 	MypageDAO mypageDao;
 	
-	
-	@GetMapping("/jjimList")
-	public ModelAndView jjimlist() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/jjimList");
-		return mav;
-	}//jjimlist() end
-	
+		
 	@GetMapping("/myList")
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList");
 		return mav;
 	}//jjimlist() end
+
 	
-	@GetMapping("/myClass")
-	public ModelAndView myclass() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myClass");
-		return mav;
-	}//jjimlist() end
+	@GetMapping("/myAdopt")
+	public ModelAndView myAdopt() {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myAdopt");
+    	mav.addObject("myAdoptList", mypageDao.myAdopt());
+        return mav; 
+	}//myAdopt() end
 	
-	@GetMapping("/myService")
-	public ModelAndView myservice() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myService");
-		return mav;
-	}//jjimlist() end
+	
+	@GetMapping("/myComment")
+	public ModelAndView myComment() {
+		//String s_id = "kim9595";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myComment");
+    	mav.addObject("myCommentList", mypageDao.myComment());
+        return mav; 
+	}//myComment() end
+	
 	
 	@GetMapping("/myInfo")
 	public ModelAndView myinfo() {
@@ -53,24 +54,61 @@ public class MypageCont {
 		mav.setViewName("mypage/myInfo");
 		return mav;
 	}//jjimlist() end
+
 	
-/*
-    @GetMapping("/myClass")
-    public ModelAndView myClassList() {
+    @RequestMapping("/myClass")
+    public ModelAndView myClassList(HttpSession session) {
+    	String s_id = "h99999";
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myClass");
-    	mav.addObject("myClassList", mypageDao.myClassList());
-    	
+    	mav.addObject("myClassList", mypageDao.myeduList(s_id));
         return mav; 
     }//myClassList() end
-*/    
+ 
     
     
+    @RequestMapping("/myService")
+    public ModelAndView myServiceList(HttpSession session) {
+    	String s_id = "h99999";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/myService");
+    	mav.addObject("myServiceList", mypageDao.mysvList(s_id));
+        return mav; 
+    }//myClassList() end
     	
-	
+	@RequestMapping("/jjimList")
+	public ModelAndView jjimlist() {
+		//String s_id = "kim9595";
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/jjimList");
+    	mav.addObject("myjjimList", mypageDao.jjimList());
+        return mav; 
+	}//jjimlist() end
+
 	
 	
 	
 }//end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

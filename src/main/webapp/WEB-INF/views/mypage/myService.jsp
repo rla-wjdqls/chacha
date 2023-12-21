@@ -14,6 +14,7 @@
 
 
 	<div class="container">
+	<br><br>
 		<h4>봉사신청내역</h4>
 		<p>나의 봉사 신청 내역을 확인 할 수 있습니다</p>
 		<br>
@@ -26,7 +27,16 @@
                 <th>신청상태</th>
             </tr>
         </thead>
-
+  		<tbody>
+            <c:forEach items="${myServiceList}" var="myservice" >
+                <tr>
+                    <td>${myservice.sano}</td>
+                    <td>${myservice.sadate}</td>
+                    <td>${myservice.stime}</td>
+                    <td>${myservice.astate}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
     </table>
 		</div>
 	</div>

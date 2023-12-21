@@ -28,6 +28,7 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
     <!-- Libraries Stylesheet -->
     <link href="/lib/animate/animate.min.css" rel="stylesheet">
@@ -38,22 +39,16 @@
     <link href="/css/mypage.css" rel="stylesheet">
     
     
+<style>
+
+
+
+
+
+</style>
+
     
     
-<!--     
-	<style>
-    
-	   .small.fa-map-marker-alt.text-primary.me-2  {
-	   		color: #F3BD00;
-		}
-		
-		a {
-	    	color: #F3BD00;
-	    	text-decoration: none;
-		}
-    
-    </style> 
--->
     
 
 <script>
@@ -124,7 +119,7 @@
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
                     <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 07.00 PM</small>
+                    <small>월 - 금 : 09.00 AM - 06.00 PM</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
@@ -133,11 +128,11 @@
                     <small>+0507-1401-8061</small>
                 </div>
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/loginForm">LOGIN</a>  
+                    <a href="/member/loginForm">로그인</a>  
                 </div>
-                &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp;
                  <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/signupForm">SIGN-UP</a>  
+                    <a href="/member/signupForm">회원가입</a>  
                 </div>
             </div>
         </div>
@@ -169,10 +164,8 @@
                 <div class="nav-item dropdown">
                    <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
-                       <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
-                       <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
-                       <a href="/mypage/myClass" class="dropdown-item">내 강의실</a>
-                       <a href="/mypage/myService" class="dropdown-item">봉사신청내역</a>
+                       <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+                       <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
                        <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
                    </div>
         </div>
@@ -181,7 +174,28 @@
     <!-- Topbar End -->
     
 	<nav>
-	<hr>
+
+	<!-- 홈 아이콘 및 경로 nav -->
+	<hr style="margin-bottom: 0">
+		<nav class="navbar navbar-light bg-light" style="height: 42px">
+			 <ul class="list-inline ml-auto" style="align-items: center;">
+				<li class="list-inline-item">
+					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+				</li>
+				<li class="list-inline-item">
+					<a><span style="color: #757575">마이페이지</span></a>
+					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+				</li>
+				<li class="list-inline-item">
+					<a><span style="color: #757575">보호소 소개</span></a>
+				</li>
+			</ul>
+		</nav>
+
+
+
+	<br>
 		<h3>마이페이지</h3>
 	<br>
 	안녕하세요! itwill 님
@@ -196,11 +210,15 @@
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">찜목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">내 글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">내 강의실</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">봉사신청내역</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo">회원정보</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">-글목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo" style="font-weight:bold">회원정보</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원정보 수정</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!">-회원탈퇴</a>
                 </div>

@@ -1,0 +1,74 @@
+--입양후기
+CREATE TABLE `adoprv` (
+    `arno` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY, --일련번호 후기글번호
+    `anino` VARCHAR(10) NOT NULL,		--동물번호
+    `uid` VARCHAR(20) NOT NULL,			--아이디
+    `artitle` VARCHAR(50) NOT NULL,		--제목	
+    `arinfo` TEXT NOT NULL,				--내용
+    `ardate` DATETIME NOT NULL,			--등록날짜
+    `arimg` VARCHAR(50) NULL,			--파일명
+	`love` INT(5) NULL DEFAULT 0,		--좋아요
+	`cnt` INT(5) NOT NULL DEFAULT 0		--조회수
+);
+
+--시퀀스 생성
+create sequence adoprv;
+
+--입양후기 댓글
+CREATE TABLE `adopcm` (
+	`comno`	INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,  --일련번호 후기댓글번호
+	`uid`	VARCHAR(20) NOT NULL,		--아이디
+	`arno`	INT(5) NOT NULL,			--후기글번호
+	`adcm`	TEXT NOT NULL,				--댓글내용
+	`acdate`	DATETIME NOT NULL		--등록날짜
+);
+
+--목격/제보
+CREATE TABLE `help` (
+	`textno`	INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,		--일련번호 목격글번호
+	`uid`	VARCHAR(20) NOT NULL,			--아이디
+	`texttitle`	VARCHAR(50) NOT NULL,		--제목
+	`text`	TEXT NOT NULL,					--내용
+	`uploaddate` DATETIME NOT NULL,			--등록날짜
+	`helppic`	VARCHAR(50) NULL,			--파일명
+	`love` INT(5) NULL DEFAULT 0,			--좋아요
+	`cnt` INT(5) NOT NULL DEFAULT 0			--조회수
+);
+
+
+--책임금 결제
+CREATE TABLE `payment` (
+    `payno` VARCHAR(20) NOT NULL PRIMARY KEY,		--결제번호
+    `uid` VARCHAR(20) NOT NULL,						--아이디
+    `apno` VARCHAR(20) NOT NULL,					--신청번호
+    `payop` CHAR(1) NOT NULL DEFAULT 'N',			--결제여부
+    `pdate` DATETIME NOT NULL,						--결제날짜
+    `paymet` CHAR(2) NOT NULL,						--결제수단
+    `patamt` VARCHAR(6) NOT NULL DEFAULT '50,000'	--결제금액
+);
+
+
+--교육신청
+CREATE TABLE `education` (
+	`eduno`	VARCHAR(20)	NOT NULL PRIMARY KEY,	--교육신청번호
+	`uid`	VARCHAR(20)	NOT NULL,				--아이디
+	`eduop`	CHAR(1)	NOT NULL,					--강의구분
+	`edu_date` DATETIME NOT NULL				--교육신청날짜
+);
+
+--퀴즈
+CREATE TABLE `quiz` (
+    `quizno` INT(2) NOT NULL AUTO_INCREMENT PRIMARY KEY,	--퀴즈번호
+    `quiz_cont` TEXT NOT NULL,								--퀴즈내용
+    `ox` CHAR(1) NOT NULL									--정답
+);
+
+--퀴즈제출
+CREATE TABLE `quiz_sub` (
+	`subno`	INT(5)	NOT NULL AUTO_INCREMENT PRIMARY KEY,	--제출번호
+	`uid`	VARCHAR(20)	NOT NULL,							--아이디
+	`quizno`	INT(2)	NOT NULL,							--퀴즈번호
+	`answer`	CHAR(1)	NOT NULL,							--답변
+	`score`	INT(3)	NOT NULL,								--점수
+	`quiz_date` DATETIME NOT NULL							--제출날짜
+);

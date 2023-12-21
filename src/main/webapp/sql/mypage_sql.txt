@@ -29,3 +29,80 @@ CREATE TABLE `servicea` (
 );
 
 
+--찜테이블
+CREATE TABLE `jjim` (
+    `jjim_icon` VARCHAR(10) NOT NULL DEFAULT '♥', 
+    `anino` VARCHAR(10) NOT NULL,
+    `uid` VARCHAR(20) NOT NULL
+);
+
+
+--입양동물 테이블
+CREATE TABLE `animal` (
+    `anino` VARCHAR(10) NOT NULL PRIMARY KEY,
+    `uid` VARCHAR(20) NOT NULL,
+    `aname` VARCHAR(20) NOT NULL,
+    `age` INT(2) NOT NULL,
+    `gender` CHAR(1) NOT NULL,
+    `weight` VARCHAR(10) NOT NULL,
+    `genop` CHAR(1) NOT NULL,
+    `vac` CHAR(1) NOT NULL,
+    `intro` TEXT NOT NULL,
+    `anipic` VARCHAR(20) NOT NULL,
+    `adopt` CHAR(1) NOT NULL DEFAULT 'B',
+    `cnt` INT(5) NOT NULL DEFAULT 0,
+    `adopt_pos` CHAR(1) NOT NULL DEFAULT 'N'
+);
+
+
+--찜+입양동물 테이블 조인(anino)
+--하트사진,이름,성별,나이,무게,중성화,접종
+SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
+FROM jjim jj join animal ani
+ON jj.anino = ani.anino
+WHERE uid = 'kim9595'
+
+
+--입양후기 + 입양후기댓글 조인(arno)
+--후기글번호, 댓글내용, 날짜, 원문제목
+SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
+FROM adopcm ac join adoprv ar
+ON ac.arno = ar.arno
+WHERE ac.uid = 'kim9595'
+
+
+--입양신청
+--입양신청번호 신청글사진 신청내용 신청일 신청상태 첨부파일
+SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic
+FROM adopt ap join animal an
+ON ap.uid = an.uid
+WHERE ap.uid = 'kim9595'
+
+
+
+
+
+--파트너 글목록(입양동물+봉사글)
+--글번호 제목 작성일 조회수
+
+
+
+--사용자 글목록(입양후기+목격제보)
+--글번호 제목 작성일 조회수
+SELECT 
+FROM help hp join adoprv ar
+ON hp.uid = ar.uid
+WHERE hp.uid = 'kim9595'
+
+
+
+
+
+
+
+
+
+
+
+
+

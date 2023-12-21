@@ -1,28 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴-->
-<!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <!--mypage.xml-->
- <!--  
  <mapper namespace="mypage">
  	
  	
- <select id="myClassList" resultType="kr.co.chacha.mypage.MypageDTO">
+ <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
  	SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
-	FROM mydeucation
+	FROM myeducation
+	WHERE uid = #{uid}
 	ORDER BY myno		
  </select>
   
  	
+  <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
+ 	SELECT sano, sadate, stime, astate 
+	FROM servicea
+	WHERE uid = #{uid}
+	ORDER BY sano		
+ </select>
+ 
+ 
+ <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
+	FROM jjim jj join animal ani
+	ON jj.anino = ani.anino
+	WHERE ani.uid = 'kim9595'
+ </select>
+ 
+ 
+ <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
+	FROM adopcm ac join adoprv ar
+	ON ac.arno = ar.arno
+	WHERE ac.uid = 'kim9595'
+ </select>
+ 
+ 
+  <select id="myAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_date, ap.sub_state, ap.subpic
+	FROM adopt ap join animal an
+	ON ap.uid = an.uid
+	WHERE ap.uid = 'kim9595'
+ </select>
+ 
  	
  </mapper>
- -->
  
  
  
  
  
+
  
  
  

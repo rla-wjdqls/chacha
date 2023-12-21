@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,6 +31,12 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- adopt,education,help Stylesheet -->
+    <link href="/css/aeh.css" rel="stylesheet">
+    
+
+    
 </head>
 
 <body>
@@ -96,10 +103,8 @@
                 <div class="nav-item dropdown">
                    <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
-                       <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
-                       <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
-                       <a href="/mypage/myClass" class="dropdown-item">내 강의실</a>
-                       <a href="/mypage/myService" class="dropdown-item">봉사신청내역</a>
+                       <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+                       <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
                        <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
                    </div>
         </div>

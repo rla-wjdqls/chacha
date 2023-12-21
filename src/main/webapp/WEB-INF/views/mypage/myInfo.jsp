@@ -14,6 +14,7 @@
 		
 	<!--비밀번호 맞으면 수정페이지(myInfoModify)로 넘어감 -->
 	<div class="container">
+	<br><br>
 		<h4>회원정보</h4><br>
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
 		<br><hr><br>

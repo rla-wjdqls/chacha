@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="help">
+
+	<insert id="insert" parameterType="java.util.Map">
+		INSERT INTO help(uid, texttitle, text, uploaddate, helppic)
+		VALUES ( 'kim9595', #{texttitle}, #{text}, NOW(), #{helppic})
+	</insert>
+	 	
+	 		 
+	 
+	<select id="list" resultType="kr.co.chacha.help.HelpDTO">
+		SELECT textno, texttitle, cnt, uid, uploaddate
+		FROM help
+		WHERE uid = 'kim9595'
+		ORDER BY textno
+	</select>
+ 	
+ </mapper> 
