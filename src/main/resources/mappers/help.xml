@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="help">
+
+	<insert id="helpIns" parameterType="kr.co.chacha.help.HelpDTO">
+		INSERT INTO help(textno, uid, texttitle, text, uploaddate, helppic, love, cnt)
+		VALUES (help_seq.nextval, #{uid}, #{texttitle}, #{text}, #{uploaddate}, #{helppic}, #{love}, #{cnt})
+	</insert>
+	 	
+	 	
+	 <select id="selectAll">
+	 	SELECT textno, uid, texttitle, text, uploaddate, helppic, love, cnt
+	 	FROM help
+	 	ORDER BY textno DESC
+	 </select>
+	 
+	 
+	
+ 	
+ </mapper> 
