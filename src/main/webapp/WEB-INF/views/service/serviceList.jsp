@@ -4,7 +4,7 @@
 
 <style>
 table {
-	width: 100%
+	width: 80%; text-align: center;
 }
 table thead {
 	text-align: center; background-color: #0C2B4B; border: 1px solid black;
@@ -41,34 +41,30 @@ tbody td {
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="글쓰기"></a></p>
 </div>
-	<table>
+	<table style="margin-left: auto; margin-right: auto;">
 		<thead> 
 			<tr>
 			 	 <td>봉사글번호</td>
 				 <td>아이디</td>
 				 <td>제목</td>
-				 <td>내용</td>
 				 <td>모집시작날짜</td>
 				 <td>모집종료날짜</td>
 				 <td>봉사시간</td>
 				 <td>모집인원</td>
-				 <td>장소</td>
 				 <td>상태</td>
 				 <td>조회수</td>
 			</tr>
 		</thead>
 		<tbody>
 		 	<c:forEach items="${serviceList2}" var="myservice" >
-                <tr>              	
-                    <td>${myservice.sno}</td>
+                <tr>  	
+                    <td><a href="servicedetail?sno=${myservice.sno}">${myservice.sno}</td>
                     <td>${myservice.uid}</td>
-                    <td>${myservice.stitle}</td>
-                    <td maxlength="30">${myservice.sinfo}</td>
+                    <td><a href="servicedetail?sno=${myservice.sno}">${myservice.stitle}</td>
                     <td>${myservice.ssdate}</td>
                     <td>${myservice.sedate}</td>
                     <td>${myservice.time}</td>
                     <td>${myservice.sp}</td>
-                    <td>${myservice.splace}</td>
                     <td>${myservice.sstate}</td>
                     <td>${myservice.cnt}</td>
                 </tr>
