@@ -89,5 +89,38 @@ public class CenterCont {
 		return mav;
 		
 	}
+	
+	@GetMapping("/centerUpdate")
+	public ModelAndView updateForm(String anino) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("center/centerUpdate");
+		mav.addObject("center", centerDao.detail(anino));
+		return mav;
+	}
+	
+	@PostMapping("update")
+	public String update(@RequestParam Map<String, Object> map,
+						 @RequestParam(name="img") MultipartFile img,
+					     HttpServletRequest req) {
+		String anipic="-";
+		//System.out.println(img);
+		//System.out.println(anipic);
+		//System.out.println(img.getOriginalFilename());
+		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
+		anipic=img.getOriginalFilename();
+		try {
+			ServletContext application = req.getSession().getServletContext();
+			String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
+			img.transferTo(new File(path + File.separator + anipic)); //파일저장
+		}catch(Exception e) {
+			System.out.println(e);
+		}//try end
+		}//if end
+		
+		map.put("anipic", anipic);
+		
+		centerDao.update(map);
+		return "redirect:/center/centerForm";
+		}
 			
 }
