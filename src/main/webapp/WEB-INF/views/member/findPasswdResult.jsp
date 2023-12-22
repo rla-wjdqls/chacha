@@ -9,7 +9,7 @@
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="/css/login.css">
     
-<title>findPasswd.jsp</title>
+<title>findPasswdResult.jsp</title>
 
 </head>
 
@@ -25,7 +25,7 @@
       <div class="login__forms">
 		<!--login form -->
 		<form class="login__register" id="login-in" action="loginProc" method="post" onsubmit="return findPasswd()" >
-			<h1 class="login__title">비밀번호 찾기</h1>
+			<h1 class="login__title">비밀번호 확인</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="아이디" class="login__input" name="uid" id="uid">
@@ -48,7 +48,7 @@
 			<!-- 아이디 혹은 비밀번호가 일치하지 않습니다. <br>입력한 내용을 다시 확인해 주세요.로그인 실패 시 메세지 -->
 			</div>
 			<div class="save_id_box">
-				<a href="/member/findID" class="login__forgot4">아이디찾기</a>
+				<a href="/member/findID" class="login__forgot1">아이디찾기</a>
 			</div>
 			<input type="submit" value="비밀번호 찾기" class="login__button"/>
 			
@@ -71,7 +71,6 @@ function findPasswd() {
 
 
 	<script src="/js/login.js"></script>
-	<script src="/js/signup.js"></script>
 	
 	</body>
 

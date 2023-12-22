@@ -21,8 +21,9 @@
 		<div class="container-line">
 			<h5>회원정보를 수정하시려면 비밀번호를 입력하셔야 합니다.<h5>
 			<br>
-			<input type="password" placeholder="비밀번호를 입력해주세요" name="passwd" id="passwd">
-			<input type="button" value="확인" name="ok" id="ok">
+			<form class="modifycheck" id="modifycheck" action="myInfoModify" method="post" onsubmit="return checkModify()" >
+				<input type="password" placeholder="비밀번호를 입력해주세요" name="passwd" id="passwd">
+				<input type="submit" value="확인" class="login__button">
 		</div>
 		</div>
 	</div>
@@ -31,6 +32,25 @@
 
 
 <!-- 본문 끝 -->
+
+
+<script>
+
+ function checkModify() {
+	
+    let passwd = document.getElementById("passwd").value;
+	passwd=passwd.trim();
+	 
+	 if(passwd=='dhfdg852@'){ //세션 아이디 값과 일치하면 true 
+		 return true;
+	 }//if end
+	 
+ }//checkModify() end
+
+</script>
+
+
+
 
 
 <%@ include file="./mypageFooter.jsp" %>      
