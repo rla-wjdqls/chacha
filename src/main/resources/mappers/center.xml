@@ -22,7 +22,13 @@
  		WHERE anino = #{anino}
  	</select>
  	
+ 	<update id="update">
+ 		UPDATE animal 
+ 		SET anino = #{anino}, uid = 'kim9595', aname = #{aname}, age = #{age}, gender = #{gender}, weight = #{weight}, genop = #{genop}, vac = #{vac}, intro = #{intro}, anipic = #{anipic}, adopt = #{adopt}, adopt_pos = #{adopt_pos}
+ 		WHERE anino = #{anino}		
+ 	</update>
  	
+
  </mapper>
  
  
