@@ -26,7 +26,7 @@ public class MypageCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList");
 		return mav;
-	}//jjimlist() end
+	}//mypage() end
 
 	
 	@GetMapping("/myAdopt")
@@ -48,12 +48,20 @@ public class MypageCont {
 	}//myComment() end
 	
 	
-	@GetMapping("/myInfo")
-	public ModelAndView myinfo() {
+	@GetMapping("/myInfo1")
+	public ModelAndView myinfo1() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myInfo");
+		mav.setViewName("mypage/myInfo1");
 		return mav;
-	}//jjimlist() end
+	}//myInfo1() end
+	
+	
+	@GetMapping("/myInfo2")
+	public ModelAndView myinfo2() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myInfo2");
+		return mav;
+	}//myInfo2() end
 
 	
     @RequestMapping("/myClass")

@@ -1,12 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 
+
+
 .login__logo{
 	text-align: center;
 }
 
 
 .error_msg {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.5px;
+    color: #ff003e;
+    vertical-align: middle;
+}
+
+.panel2 {
     display: inline-block;
     font-size: 14px;
     line-height: 16px;
@@ -194,7 +205,20 @@ img {
   }
 }
 
-.login__forgot {
+
+
+.login__forgot1, .login__forgot3, .login__forgot4 {
+  display: block;
+  width: max-content;
+  margin-left: 180px;
+  margin-top: 0.5rem;
+  font-size: var(--small-font-size);
+  font-weight: 600;
+  color: var(--color-light);
+}
+
+
+.login__forgot2 {
   display: block;
   width: max-content;
   margin-left: auto;
@@ -203,6 +227,8 @@ img {
   font-weight: 600;
   color: var(--color-light);
 }
+
+
 
 .login__button {
   display: block;
