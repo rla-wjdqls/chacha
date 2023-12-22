@@ -51,7 +51,14 @@ public class ServiceCont {
 		return mav;
 	}//serviceList() end
 	
-	
-	
-	
+
+	// 게시물 상세 페이지로 이동
+    @RequestMapping("/servicedetail")
+    public ModelAndView serviced(int sno) {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("service/servicedetail");
+    	mav.addObject("serviced", serviceDAO.detail(sno));
+    	return mav;
+    }
+
 }//end
