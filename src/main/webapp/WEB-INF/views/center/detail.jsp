@@ -16,7 +16,7 @@
 				<i class="bi bi-arrow-right-short" style="font-size: 20px color: #666"></i>
 			</li>
 			<li class="list-inline-item">
-				<a><span style="color: #757575">입양대기 동물소개 / 테스트</span></a>
+				<a><span style="color: #757575">입양대기 동물소개</span></a>
 			</li>
 		</ul>
 	</nav>
