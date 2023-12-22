@@ -23,62 +23,68 @@
       </div>
     
       <div class="login__forms">
-<!--         login form -->
-        <form action="" class="login__register" id="login-in">
+      
+		<!-- signupform -->
+        <form class="login__register" id="login-in" method="post" action="insert" onsubmit="return checkSignup()">
           <h1 class="login__title">회원가입</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="이름" class="login__input" name="uname" id="uname">
           </div>
+		  <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="아이디" class="login__input" name="uid" id="uid">
-    		<br>
-			<span id="panel1"></span><!-- 아이디 중복 관련 메세지 -->
+			<!-- <span id="panel1"></span>아이디 중복 관련 메세지 -->
           </div>
+ 	      <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-at login__icon'></i>
             <input type="text" placeholder="이메일" class="login__input" name="email" id="email">
-    		<br>
-			<span id="panel2"></span><!-- 이메일 중복 관련 메세지 -->
           </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-lock login__icon'></i>
             <input type="password" placeholder="비밀번호" class="login__input" name="passwd" id="passwd">
           </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-lock login__icon'></i>
             <input type="password" placeholder="비밀번호 확인" class="login__input" name="repasswd" id="repasswd">
           </div>
-          <div class="login__box">
-            <i class='bx bx-map login__icon'></i>
-            <input type="text" placeholder="우편번호" class="login__input" name="zipcode" id="zipcode" readonly>
-          </div>
-          <div class="login__box">
-          <i class='bx bx-home login__icon'></i>
-            <input type="text" placeholder="기본주소" class="login__input" name="addr1" id="addr1" readonly>
-          </div>
-          <div class="login__box">
-          <i class='bx bx-home login__icon'></i>
-            <input type="text" placeholder="나머지 주소(선택 입력 가능)" class="login__input" name="addr2" id="addr2">
-          </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-phone-call login__icon'></i>
              <!-- 01012345678 입력하면 010-1234-5678 로 출력됨(참고:네이버) -->
             <input type="text" placeholder="전화번호" class="login__input" name="tel" id="tel" oninput="oninputPhone(this)" maxlength=13>
           </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-cake login__icon'></i>
             <!-- YYYYMMDD 입력하면 YYYY-MM-DD 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="생년월일 8자리" class="login__input" name="mdate" id="mdate" oninput="oninputDate(this)" maxlength=8>
+            <input type="text" placeholder="생년월일 8자리" class="login__input" name="birth" id="birth" oninput="oninputDate(this)" maxlength=8>
+          </div>
+		  <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
+          <div class="login__box">
+            <i class='bx bx-map login__icon'></i>
+            <input type="text" placeholder="우편번호" class="login__input" name="zipcode" id="zipcode" readonly>
+          </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
+          <div class="login__box">
+          	<i class='bx bx-home login__icon'></i>
+            <input type="text" placeholder="기본주소" class="login__input" name="addr1" id="addr1" readonly>
+          </div>
+          <span id="panel2" class="panel2"><!-- 아이디 혹은 비밀번호가 일치하지 않습니다. --></span><!-- 이메일 중복 관련 메세지 -->
+          <div class="login__box">
+          	<i class='bx bx-home login__icon'></i>
+            <input type="text" placeholder="나머지 주소(선택 입력 가능)" class="login__input" name="addr2" id="addr2">
           </div>
           
           <!--추후 클릭 시 버튼 변경 추   -->
           <input type="button" value="주소찾기" class="btn_js" onclick="DaumPostcode()">
           
           
-          
-          <a href="#" class="login__button">회원가입</a>
+     	  <input type="submit" value="회원가입" class="login__button">
           
           <div>
             <span class="login__account login__account--account">이미 계정이 있으신가요?</span>
