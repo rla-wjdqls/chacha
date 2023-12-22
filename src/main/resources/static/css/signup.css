@@ -1,7 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 
+.error_msg {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.5px;
+    color: #ff003e;
+    vertical-align: middle;
+}
 
+
+.panel2 {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.5px;
+    color: #ff003e;
+    vertical-align: middle;
+}
 
 .login__box {
     position: relative;
@@ -14,18 +31,18 @@
 	
 .login__register .btn_js {
     position: absolute;
-	right: 10px;
+	right: 20px;
 	top: 20px;
     display: inline-block; 
-    margin-top: 470px;
+    margin-top: 764px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    width: 70px;
-    height: 35px;
-    font-size: 13px;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
     font-weight: 500;
-    color: #23004d;  
+    color: #23004d; 
 }
 
 
@@ -113,8 +130,8 @@ img {
 .login__create {
   position: relative;
   bottom: 1rem;
-  width: 670px;
-  height: 1050px;
+  width: 690px;
+  height: 1150px;
   left: 50%;
   top: 50px;
   transform: translateX(-50%); /* ÃªÂ°â‚¬Ã«Â¡Å“ Ã«Â°Â©Ã­â€“Â¥Ã¬Å“Â¼Ã«Â¡Å“ -50%Ã«Â§Å’Ã­ÂÂ¼ Ã¬ÂÂ´Ã«Ââ„¢Ã­â€¢Â´Ã¬â€žÅ“ ÃªÂ°â‚¬Ã¬Å¡Â´Ã«ÂÂ° Ã¬Â â€¢Ã«Â Â¬ */
@@ -182,14 +199,17 @@ img {
   background-color: var(--color);
   color: #fff;
   font-weight: 600;
+  font-size: 17px;
   text-align: center;
   border-radius: 0.5rem;
   transition: 0.3s;
+  width: 250px;
 
   &:hover {
     background-color: var(--color-hover);
   }
 }
+
 
 .login__account,
 .login__signin,
