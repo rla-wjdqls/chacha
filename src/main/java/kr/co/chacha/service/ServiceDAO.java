@@ -1,10 +1,13 @@
 package kr.co.chacha.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
 
 @Repository
 public class ServiceDAO {
@@ -22,5 +25,12 @@ public class ServiceDAO {
 	
 	public List<ServiceDTO> serviceList2() {
 		return sqlSession.selectList("service.serviceList2");
-		    }//insert() end
+		    }
+	
+	
+	public ServiceDTO detail(int sno){
+		return sqlSession.selectOne("service.detail", sno);
+	}
+	
+
 }//end
