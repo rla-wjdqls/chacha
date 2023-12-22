@@ -20,7 +20,18 @@
  </insert>
  
  
+   <select id="findID" parameterType="String" resultType="String">
+ 	SELECT uid	
+	FROM member
+	WHERE  uname = #{uname} AND email = #{email} AND birth = #{birth}
+  </select>
  
+ 
+<!--   <select id="findID" parameterType="String" resultType="String">
+ 	SELECT passwd	
+	FROM member
+	WHERE  uid = #{uid} AND email = #{email} AND birth = #{birth}
+  </select> -->
  	
  	
  	

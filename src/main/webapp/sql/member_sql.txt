@@ -36,8 +36,16 @@ VALUES(#{uid}, #{passwd}, #{wname}, #{tel}, #{email}, #{zipcode}, #{address1}, #
 
 
 
+--아이디 찾기
+SELECT uid
+FROM member
+WHERE  uname = #{uname} AND email = #{email} AND birth = #{birth}
 
 
+--비밀번호 찾기
+SELECT passwd
+FROM member
+WHERE  uid = #{uid} AND email = #{email} AND birth = #{birth}
 
 
 
