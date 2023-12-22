@@ -22,7 +22,7 @@
 </nav>
 
 <div class="container text-center">
-	<p><h3>[봉사모집글쓰기안녕]</h3></p>
+	<p><h3>[봉사모집글쓰기0]</h3></p>
 </div>
 
 <div style="text-align: right; height: 50px;">
