@@ -16,11 +16,19 @@ function checkLogin() {
     let passwd=document.getElementById("passwd").value;
 	passwd = passwd.trim();
 	
+	 if(!(passwd.length>=4)){
+		 alert("비밀번호 4글자 이상 입력해주세요!");
+		 document.getElementById("passwd").focus();
+		 return false;
+	 }//if end
+	
+	/* 
 	if(isNaN(passwd) || passwd.length<4){
 		alert("비밀번호 4글자 이상 입력해주세요!");
 		document.getElementById("passwd").focus();
 		return false;
 	}//if end
+	*/
 	
 	return true;
 	

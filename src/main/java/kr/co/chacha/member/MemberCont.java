@@ -32,6 +32,7 @@ public class MemberCont {
 	}//login() end
 	
 	
+	
 	//로그인 폼 전송
 	 @PostMapping("/loginProc")
 	 public String loginProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberdto, HttpSession session) {
@@ -92,6 +93,24 @@ public class MemberCont {
 	 }//loginProc() end 
 
 	 
+	//아이디 찾기 페이지 이동
+	@GetMapping("/findID")
+	public ModelAndView findID() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findID");
+		return mav;
+	}//findID() end
+	 
+	 
+	//비밀번호 찾기 페이지 이동
+	@GetMapping("/findPasswd")
+	public ModelAndView findPasswd() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("member/findPasswd");
+		return mav;
+	}//findPasswd() end
+	 
+	 
 	
 	//회원가입 페이지 이동
 	@GetMapping("/signupForm")
@@ -106,9 +125,9 @@ public class MemberCont {
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest req) {
 		MemberDTO memberdto = new MemberDTO();
-		System.out.println(req.getParameter("uid"));
-		System.out.println(req.getParameter("tel"));
-		System.out.println(req.getParameter("birth"));
+		//System.out.println(req.getParameter("uid"));
+		//System.out.println(req.getParameter("tel"));
+		//System.out.println(req.getParameter("birth"));
 		
 		memberdto.setUid(req.getParameter("uid"));
 		memberdto.setEmail(req.getParameter("email"));
@@ -127,10 +146,89 @@ public class MemberCont {
 	
 	
 	
+	//비밀번호 일치하면 회원탈퇴 페이지로 이동
+	@PostMapping("/myInfoWithdraw")
+	public ModelAndView myInfoWithdraw() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myInfoWithdraw");
+		
+		return mav;
+	}//myInfoWithdraw() end
+	
+	
+	//비밀번호 일치하면 회원정보 수정 페이지로 이동
+	@PostMapping("/myInfoModify")
+	public ModelAndView myInfoModify() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myInfoModify");
+		
+		return mav;
+	}//myInfoModify() end
+	
+	
+	//아이디 찾기
+	//이름, 이메일, 생일 가져와서 db데이터에서 해당하는 아이디 가져옴
+	@PostMapping("/findID")
+	public ModelAndView findID(HttpServletRequest req) {
+		
+		MemberDTO memberdto = new MemberDTO();
+		//System.out.println(req.getParameter("uname"));
+		//System.out.println(req.getParameter("email"));
+		//System.out.println(req.getParameter("birth"));
+		
+		memberdto.setEmail(req.getParameter("email"));
+		memberdto.setUname(req.getParameter("uname"));
+		memberdto.setBirth(req.getParameter("birth"));
+		
+		
+		String uid = memberDao.findID(memberdto); //kim9595
+		
+		System.out.println(uid); //null
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("mypage/findIDResult");
+		
+		return mav;
+		
+	}//findID() end
 	
 	
 	
+	//비밀번호 찾기
+	//아이디, 이메일, 생일 가져와서 db데이터에서 해당하는 비밀번호 가져옴
+	@PostMapping("/findPasswd")
+	public ModelAndView findPasswd(HttpServletRequest req) {
+		
+		MemberDTO memberdto = new MemberDTO();
+		//System.out.println(req.getParameter("uname"));
+		//System.out.println(req.getParameter("email"));
+		//System.out.println(req.getParameter("birth"));
+		
+		memberdto.setEmail(req.getParameter("email"));
+		memberdto.setUname(req.getParameter("uid"));
+		memberdto.setBirth(req.getParameter("birth"));
+		
+		
+		String passwd = memberDao.findID(memberdto); //kim9595
+		
+		//System.out.println(passwd);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("mypage/findPasswdResult");
+		
+		return mav;
+		
+	}//findPasswd() end
 	
 	
 	
 }//end
+
+
+
+
+
+
+

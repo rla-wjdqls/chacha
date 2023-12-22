@@ -17,6 +17,15 @@
     vertical-align: middle;
 }
 
+.panel2 {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.5px;
+    color: #ff003e;
+    vertical-align: middle;
+}
+
 .save_id_box {
     margin-top: 10px;
     display: -webkit-box;
@@ -198,10 +207,10 @@ img {
 
 
 
-.login__forgot1 {
+.login__forgot1, .login__forgot3, .login__forgot4 {
   display: block;
   width: max-content;
-  margin-left: 180px;;
+  margin-left: 180px;
   margin-top: 0.5rem;
   font-size: var(--small-font-size);
   font-weight: 600;
@@ -218,7 +227,6 @@ img {
   font-weight: 600;
   color: var(--color-light);
 }
-
 
 
 
