@@ -61,7 +61,7 @@
 				</label>
 			</span> 
 				<a href="/member/findID" class="login__forgot1">아이디찾기</a>
-				<a href="/member/findPassed" class="login__forgot2">비밀번호 찾기</a>
+				<a href="/member/findPasswd" class="login__forgot2">비밀번호 찾기</a>
 			</div>
 			<!-- // 아이디 저장 -->
 					
@@ -71,12 +71,10 @@
 			<!-- sns 로그인 -->
 			<div class="sns_login_box">
 				<div class="sns_login_item">
-					<img src="/img/naver_login.png" alt="naver_login"
-						class="naver_login">
+					<img src="/img/naver_login.png" alt="naver_login" class="naver_login">
 				</div>
 				<div class="sns_login_item">
-					<img src="/img/kakao_login.png" alt="kakao_login"
-						class="kakao_login">
+					<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_login">
 				</div>
 			</div>
 
