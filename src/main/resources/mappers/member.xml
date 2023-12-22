@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴-->
+ 
+ <!--mypage.xml-->
+ <mapper namespace="member">
+ 	
+ 
+  <select id="check" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
+  	SELECT mlevel
+  	FROM member
+  	WHERE uid = #{uid} AND passwd = #{passwd}
+  	AND mlevel IN ('A','B','C')
+  </select>
+  
+  
+ <insert id="insert" parameterType="kr.co.chacha.member.MemberDTO">
+   INSERT INTO member(uid, passwd, uname, tel, email, zipcode, addr1, addr2, birth, mdate)
+   VALUES(#{uid}, #{passwd}, #{uname}, #{tel}, #{email}, #{zipcode}, #{addr1}, #{addr2}, #{birth}, NOW())
+ </insert>
+ 
+ 
+ 
+ 	
+ 	
+ 	
+
+ 	
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
