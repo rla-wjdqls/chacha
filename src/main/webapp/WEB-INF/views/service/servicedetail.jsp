@@ -15,6 +15,16 @@ td {
 }
 </style>
 
+<script>
+function sdelete() {
+	if(confirm("삭제하겠습니까?")) {//자바스크립트 내장함수
+		$("#serviceDelete").submit();
+	} else {
+		
+	}
+}
+</script>
+
 <nav class="navbar navbar-light bg-light" style="height: 42px">
     <ul class="list-inline ml-auto" style="align-items: center;">
       <li class="list-inline-item">
@@ -102,10 +112,15 @@ td {
 	  </tr>
 	</table>
 </div>
-              
+<form id="serviceDelete" name="serviceDelete" method="post" action="/service/serviceDelete">
+	<input type="hidden" name="sno" id="sno" value="${serviced.sno}"/>
+</form>              
 
-<div style="text-align:center; height: 50px;">
-	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="수정"> &nbsp;<input type="button" value="삭제"> &nbsp;<input type="button" value="신청"></a></p>
+<div style="text-align:center; height: 50px; padding-top: 15px;">
+	<p><a href="/service/serviceUpdate?sno=${serviced.sno}">
+	<input type="button" value="수정" style="background-color: azure;"></a> &nbsp;
+	<input type="button" onclick="sdelete();" value="삭제"> &nbsp;
+	<input type="button" value="신청"></p>
 </div>
 
 <%@ include file="../footer.jsp" %>      

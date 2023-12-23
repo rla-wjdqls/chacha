@@ -32,5 +32,11 @@ public class ServiceDAO {
 		return sqlSession.selectOne("service.detail", sno);
 	}
 	
-
+	public ServiceDTO update(int sno){
+		return sqlSession.selectOne("service.update", sno);
+	}
+	
+	public ServiceDTO delete(int sno){
+		return sqlSession.selectOne("service.delete", sno);
+	}
 }//end
