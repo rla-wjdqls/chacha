@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -90,7 +91,7 @@ public class CenterCont {
 		
 	}
 	
-	@GetMapping("/centerUpdate")
+	@PostMapping("/centerUpdate")
 	public ModelAndView updateForm(String anino) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/centerUpdate");
@@ -103,24 +104,45 @@ public class CenterCont {
 						 @RequestParam(name="img") MultipartFile img,
 					     HttpServletRequest req) {
 		String anipic="-";
-		//System.out.println(img);
-		//System.out.println(anipic);
-		//System.out.println(img.getOriginalFilename());
 		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
-		anipic=img.getOriginalFilename();
-		try {
-			ServletContext application = req.getSession().getServletContext();
-			String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
-			img.transferTo(new File(path + File.separator + anipic)); //파일저장
-		}catch(Exception e) {
-			System.out.println(e);
-		}//try end
+			anipic=img.getOriginalFilename();
+			try {
+				ServletContext application = req.getSession().getServletContext();
+				String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
+				img.transferTo(new File(path + File.separator + anipic)); //파일저장
+			}catch(Exception e) {
+				System.out.println(e);
+			}//try end
 		}//if end
 		
 		map.put("anipic", anipic);
-		
 		centerDao.update(map);
+		
 		return "redirect:/center/centerForm";
 		}
+	
+//}else {
+//	String anino = map.get("anino").toString();
+//	//System.out.println(anino);
+//	anipic=centerDao.anipic(anino);
+	
+	@PostMapping("delete")
+	public String delete(HttpServletRequest req) {
+		String anino=req.getParameter("anino");
+		
+		String anipic=centerDao.anipic(anino);
+		
+		if(anipic != null && anipic.equals("-")) {
+			ServletContext application = req.getSession().getServletContext();
+			String path = application.getRealPath("/storage");
+			File file = new File(path + File.separator + anipic);
+			if(file.exists()) {
+				file.delete();
+			}//if end
+		}//if end
+		centerDao.delete(anino);
+		
+		return "redirect:/center/centerForm";
+	}
 			
 }

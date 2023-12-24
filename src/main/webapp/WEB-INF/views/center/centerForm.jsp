@@ -29,34 +29,33 @@
 		        <input class="form-control me-2" type="text" placeholder="Search" style="width: 300px" >
 		        <button class="btn btn-success rotate-text" type="submit">검색</button>
 		        <button class="btn btn-warning rotate-text" type="button" onclick="location.href='centerWrite'">동물 추가</button>
-		        <button class="btn btn-danger rotate-text" type="submit">동물 삭제</button>
 		      </form>
 		    </div>
 		</nav>
 
 	   
-	<div class="container-fixed row" style="">
+	<div class="container-fixed row">
 			<c:forEach items="${form}" var="row" varStatus="vs">
+				<c:if test="${row.adopt_pos != 'N'}">
+					<div class="card" style="width: 18rem;">
+						<c:choose>
+							<c:when test="${row.anipic != '-'}">
+				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid" alt="달구">
+				  			</c:when>
+				  			
+				  			<c:otherwise>
+				  			등록된 사진 없음 <br>
+				  			</c:otherwise>
+				  		</c:choose>
 			
-				<div class="card" style="width: 18rem;">
-					<c:choose>
-						<c:when test="${row.anipic != '-'}">
-			  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid" alt="달구">
-			  			</c:when>
-			  			
-			  			<c:otherwise>
-			  			등록된 사진 없음 <br>
-			  			</c:otherwise>
-			  		</c:choose>
-		
-			  	<div class="card-body">
-			    	<h5 class="card-title">${row.aname}</h5>
-			    	<p class="card-text">${row.age}</p>
-			    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
-			  	</div>
-		   		</div>
+				  	<div class="card-body">
+				    	<h5 class="card-title">${row.aname}</h5>
+				    	<p class="card-text">${row.age}</p>
+				    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
+				  	</div>
+			   		</div>
 			
-			
+				</c:if>
 			</c:forEach>
 		   
 	</div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../header.jsp" %>
+<%@ include file="./centerheader.jsp" %>
 
 	<div class="container text-center">
 <!-- 본문 시작 template.jsp -->
@@ -33,6 +33,8 @@
 							<td>
 							<label>
 								수컷<input class="form-check-input" type="radio" value="M" name="gender">
+							</label>
+							<label>
 								암컷<input class="form-check-input" type="radio" value="F" name="gender">
 							</label>
 							</td>
@@ -86,7 +88,7 @@
 						<tr>
 							<td>입양가능 여부</td>
 							<td>
-							<label value="${center.adopt_pos}">
+							<label>
 								예<input class="form-check-input" type="radio" value="Y" name="adopt_pos">
 								아니오<input class="form-check-input" type="radio" value="N" name="adopt_pos">
 							</label>
@@ -95,7 +97,7 @@
 						<tr>
 							<td colspan="2" align="right">
 								<input type="button" value=" 취소 " class="btn btn-danger rotate-text" onclick="location.href='centerForm'">
-								<input type="submit" value=" 수정 " class="btn btn-warning rotate-text" onclick="submit">
+								<input type="submit" value=" 수정 " class="btn btn-warning rotate-text" onclick="center_update()">
 							</td>
 						</tr>
 						</tbody>
