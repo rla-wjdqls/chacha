@@ -35,5 +35,12 @@ public class CenterDAO {
 		return sqlSession.update("center.update", map);
 	}
 	
+	public String anipic(String anino) {
+		return sqlSession.selectOne("center.anipic", anino);
+	}
+	
+	public void delete(String anino) {
+		sqlSession.delete("center.delete", anino);
+	}
 	
 }

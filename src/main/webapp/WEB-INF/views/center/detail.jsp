@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../header.jsp" %>
+<%@ include file="./centerheader.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
@@ -23,15 +23,16 @@
 
 <div class="container-fluid">
 	<h3 style="text-align: center">${center.aname}</h3>
+		<form name="centerfrm" id="centerftm" method="post" enctype="multipart/form-data">
+			<input type="hidden" value="${center.anino}" name="anino">
 		<nav class="navbar navbar-light i-nav">
   			<div class="input-container" style="display: inline-block;">
-  				<input type="hidden" name="anino" value="${center.anino}">
-				   <button class="btn btn-warning rotate-text" onclick="location.href='/center/centerUpdate?anino=${center.anino}'">수정</button>
-				   <button class="btn btn-danger rotate-text" type="submit">삭제</button>
+				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
+				   <input type="button" value="삭제" class="btn btn-danger rotate-text" onclick="center_delete()">
 		    </div>
+		 
 		</nav>
-		
-<input type="hidden" name="anino" value="${animal.anino}">
+	
 
 		<div class="container">
 			<div class="container"   >
@@ -70,8 +71,10 @@
 					<dd class="anidd">${center.adopt_pos}</dd>
 				</dl>
 			</div>
+			
 			<hr>
 		</div>	
+		</form>
 	</div>	
 
 		
