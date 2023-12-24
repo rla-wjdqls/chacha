@@ -17,7 +17,7 @@
     vertical-align: middle;
 }
 
-.panel2 {
+.panel1, .panel2, .panel3 {
     display: inline-block;
     font-size: 14px;
     line-height: 16px;
@@ -207,7 +207,7 @@ img {
 
 
 
-.login__forgot1, .login__forgot3, .login__forgot4 {
+.login__forgot1, .login__forgot3 {
   display: block;
   width: max-content;
   margin-left: 180px;
@@ -218,7 +218,7 @@ img {
 }
 
 
-.login__forgot2 {
+.login__forgot2, .login__forgot4 {
   display: block;
   width: max-content;
   margin-left: auto;
