@@ -38,18 +38,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/mypage.css" rel="stylesheet">
     
-    
-<style>
 
-
-
-
-
-</style>
-
-    
-    
-    
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
@@ -91,11 +80,15 @@
 	    item.addEventListener('click', handleClick);
 	  });
 	});
+	
+	
+	function logout(){
+		alert("로그아웃 되었습니다");
+	}//logout() end
+
 </script>
 
 
-    
-    
 
     
 </head>
@@ -127,9 +120,21 @@
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+0507-1401-8061</small>
                 </div>
+
+            <!-- Check if the user is logged in (assuming "s_Id" is the session attribute) -->
+            <c:if test="${not empty sessionScope.s_id}">
+                <!-- If logged in, show logout link -->
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="logout2" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
+                </div>
+            </c:if>
+            
+            <!-- If not logged in, show login and sign-up links -->
+            <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">로그인</a>  
                 </div>
+            </c:if>
                 &nbsp; &nbsp; &nbsp;
                  <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/signupForm">회원가입</a>  
@@ -166,7 +171,7 @@
                    <div class="dropdown-menu bg-light m-0">
                        <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
                        <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-                       <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
+                       <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
                    </div>
         </div>
     </nav>
@@ -198,7 +203,7 @@
 	<br>
 		<h3>마이페이지</h3>
 	<br>
-	안녕하세요! itwill 님
+	안녕하세요! <strong>${s_id}</strong> 님
 	
 	<br><br>
 	</nav>
