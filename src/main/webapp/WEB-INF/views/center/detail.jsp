@@ -25,28 +25,52 @@
 	<h3 style="text-align: center">${center.aname}</h3>
 		<nav class="navbar navbar-light i-nav">
   			<div class="input-container" style="display: inline-block;">
-		      <form class="d-flex">
-		        <button class="btn btn-warning rotate-text" type="button" onclick="location.href='centerWrite'">수정</button>
-		        <button class="btn btn-danger rotate-text" type="submit">삭제</button>
-		      </form>
+  				<input type="hidden" name="anino" value="${center.anino}">
+				   <button class="btn btn-warning rotate-text" onclick="location.href='/center/centerUpdate?anino=${center.anino}'">수정</button>
+				   <button class="btn btn-danger rotate-text" type="submit">삭제</button>
 		    </div>
 		</nav>
 		
 <input type="hidden" name="anino" value="${animal.anino}">
 
 		<div class="container">
-			<c:if test="${center.anipic != '-'}">
-				<img src="/storage/${center.anipic}" style="display: inline-block" width="250px">
-			</c:if>
-			<tr>
-					<th>나이</th>
-					<td>${center.age}</td>
-				</tr>
+			<div class="container"   >
+				<c:if test="${center.anipic != '-'}">
+					<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" >
+				</c:if>
+			</div>
+			
+			<div class="container-1 rotate-text"> 
+				<dl class="anidl" style="float: left">
+					<dt class="anidt">나이</dt>
+					<dd class="anidd">${center.age}살</dd>
+				</dl>
+				<dl class="anidl">
+					<dt class="anidt">성별</dt>
+					<dd class="anidd">${center.gender}</dd>
+				</dl>
+				<dl class="anidl">
+					<dt class="anidt">몸무게</dt>
+					<dd class="anidd">${center.weight}</dd>
+				</dl>
+				<dl class="anidl" >
+					<dt class="anidt" >중성화여부</dt>
+					<dd class="anidd" >${center.genop}</dd>
+				</dl>
+				<dl class="anidl">
+					<dt class="anidt">예방접종여부</dt>
+					<dd class="anidd">${center.vac}</dd>
+				</dl>
+				<dl class="anidl" >
+					<dt class="anidt">입양가능여부</dt>
+					<dd class="anidd">${center.adopt_pos}</dd>
+				</dl>
+			</div>
 			
 			<table class="table" style="text-align: right; margin-left: 30px">
 				<tr>
 					<th>나이</th>
-					<td>${center.age}</td>
+					<td>${center.age}살</td>
 				</tr>
 				<tr>
 					<th>성별</th>
@@ -70,10 +94,10 @@
 				</tr>
 			</table>
 		</div>	
+	</div>	
+
 		
-	<div>
-		
-	</div>
+
 
 <!-- 본문 끝 -->
 

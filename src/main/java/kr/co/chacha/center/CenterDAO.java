@@ -31,6 +31,9 @@ public class CenterDAO {
 		return sqlSession.selectOne("center.detail", anino);
 	}
 	
+	public int update (Map<String, Object> map){
+		return sqlSession.update("center.update", map);
+	}
 	
 	
 }

@@ -3,6 +3,7 @@
 
 
 <%@ include file="../header.jsp"%>
+<script type="text/javascript" src="/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style>* {font-size: 16px; font-family: Consolas, sans-serif;}</style>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -81,7 +82,7 @@
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit"value="새글쓰기" class="btn btn-success">
-				<input type="reset" value="취소" class="btn btn-danger">
+				<input type="button" value="취소" onclick="location.href='/service/serviceList'" class="btn btn-danger">
 			</td>	
 	</table>
 </div>
