@@ -35,16 +35,16 @@
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="이름" class="login__input" name="uname" id="uname">
           </div>
-		  <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
+		  <span id="panel2" class="panel2"></span><!-- 이메일 중복 관련 메세지 -->
 		  <div class="login__box">
             <i class='bx bx-at login__icon'></i>
             <input type="text" placeholder="이메일" class="login__input" name="email" id="email">
           </div>
-          <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
+          <span id="panel2" class="panel2"></span><!-- 이메일 중복 관련 메세지 -->
 		  <div class="login__box">
             <i class='bx bx-cake login__icon'></i>
             <!-- YYYYMMDD 입력하면 YYYY-MM-DD 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="생년월일 8자리" class="login__input" name="birth" id="birth" oninput="oninputDate(this)" maxlength=8>
+            <input type="text" placeholder="생년월일 8자리" class="login__input" name="birth" id="birth" oninput="oninputDate(this)"  maxlength=8>
           </div>
 		  <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
 			<br>
@@ -63,43 +63,11 @@
 		</form>
 
 
-<script>
-
-function findIDCheck() {
-	//1) 아이디 5~10글자 이내인지 검사
- 	let uid = document.getElementById("uid").value;
- 	uid = uid.trim();
- 	
- 	if(!(uid.length>=5 && uid.length<=10)){
-		 alert("아이디 5~10글자 이내로 입력해 주세요!");
-		 document.getElementById("uid").focus();
-		 return false;
-	 }//if end
-
-	
-	//2) 비밀번호 4글자이상이면서, 숫자형 기호만 입력
-	let passwd=document.getElementById("passwd").value;
-	passwd = passwd.trim(); 
-	
-	if(isNaN(passwd) || passwd.length<4){
-		alert("비밀번호 4글자 이상 입력해주세요!");
-		document.getElementById("passwd").focus();
-		return false;
-	}//if end
-
-	return true;
-	
-	
-}
-
-</script>
-
 
 
 
 
 	<script src="/js/login.js"></script>
-	<script src="/js/signup.js"></script>
 	
 	</body>
 	
