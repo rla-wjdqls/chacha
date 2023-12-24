@@ -44,7 +44,7 @@
 						<tr>
 							<td>중성화 여부</td>
 							<td>
-							<label>
+							<label value="${center.genop}">
 								예<input class="form-check-input" type="radio" value="Y" name="genop">
 								아니오<input class="form-check-input" type="radio" value="N" name="genop">
 							</label>
