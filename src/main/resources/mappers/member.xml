@@ -20,11 +20,18 @@
  </insert>
  
  
-   <select id="findID" parameterType="String" resultType="String">
+ <select id="checkPasswd" parameterType="String" resultType="Int">
+ 	SELECT COUNT(*)
+	FROM member
+	WHERE passwd = #{passwd}
+ </select>
+ 
+ 
+<!--    <select id="findID" parameterType="String" resultType="String">
  	SELECT uid	
 	FROM member
 	WHERE  uname = #{uname} AND email = #{email} AND birth = #{birth}
-  </select>
+  </select> -->
  
  
 <!--   <select id="findID" parameterType="String" resultType="String">
