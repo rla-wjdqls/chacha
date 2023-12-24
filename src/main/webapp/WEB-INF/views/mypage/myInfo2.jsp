@@ -21,7 +21,7 @@
 		<div class="container-line">
 			<h5>회원 탈퇴 하시려면 비밀번호를 입력하셔야 합니다.<h5>
 			<br>
-			<form class="withcheck" id="withwcheck" action="myInfoWithdraw" method="post" onsubmit="return checkWithdraw()" >
+			<form class="withcheck" id="withwcheck" action="myInfoWithdraw" method="POST" onsubmit="return checkWithdraw()" >
 				<input type="password" placeholder="비밀번호를 입력해주세요" name="passwd" id="passwd">
 				<input type="submit" value="확인" class="login__button">
 			</form>
@@ -39,8 +39,9 @@
     let passwd = document.getElementById("passwd").value;
 	passwd=passwd.trim();
 	 
-	 if(passwd=='dhfdg852@'){ //세션 아이디 값과 일치하면 true 
-		 return true;
+	 if(passwd.length<5 || passwd.length>10){
+		 alert("비밀번호 5~10글자로 입력해주세요");
+		 return false;
 	 }//if end
 	 
  }//checkWithdraw() end
