@@ -77,17 +77,32 @@
 		<!-- //유의 사항 -->
 
 		<p class="p_tx">유의 및 안내 사항을 모두 확인하였으며, 탈퇴 시 위 사항에 동의한 것으로 간주합니다.</p>
+		
 	
-		<div class="btn_center">
-						<button type="button" class="btn" id="btn_cancel">취소</button>
-						<button type="button" class="btn btn_em" id="btn_ok">탈퇴</button>
-		</div>
+		
+		<form action="memberWithdraw" method="post">
+			<div class="btn_center">
+				<button type="button" class="btn" id="btn_cancel">취소</button>
+				<button type="submit" class="btn btn_em" id="btn_tt">탈퇴</button>
+				<!-- <input type="submit" class="btn btn_em" id="btn_tt" id="btn_tt" onclick="javascript:dbcheck()">탈퇴 -->
+			</div>	
+		</form>
 	</div>
 
 	<br>
 
 
 <!-- 본문 끝 -->
+
+<script>
+
+function dbcheck() {
+	alert("정말 탈퇴하시겠습니까?");
+}//dbcheck() end
+
+
+</script>
+
 
 
 <%@ include file="./mypageFooter.jsp" %>      
