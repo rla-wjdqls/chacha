@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="../header.jsp" %>
+<%@ include file="./centerheader.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
@@ -23,15 +23,16 @@
 
 <div class="container-fluid">
 	<h3 style="text-align: center">${center.aname}</h3>
+		<form name="centerfrm" id="centerftm" method="post" enctype="multipart/form-data">
+			<input type="hidden" value="${center.anino}" name="anino">
 		<nav class="navbar navbar-light i-nav">
   			<div class="input-container" style="display: inline-block;">
-  				<input type="hidden" name="anino" value="${center.anino}">
-				   <button class="btn btn-warning rotate-text" onclick="location.href='/center/centerUpdate?anino=${center.anino}'">수정</button>
-				   <button class="btn btn-danger rotate-text" type="submit">삭제</button>
+				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
+				   <input type="button" value="삭제" class="btn btn-danger rotate-text" onclick="center_delete()">
 		    </div>
+		 
 		</nav>
-		
-<input type="hidden" name="anino" value="${animal.anino}">
+	
 
 		<div class="container">
 			<div class="container"   >
@@ -40,10 +41,14 @@
 				</c:if>
 			</div>
 			
+			<div>
+				<i class="bi bi-heart"></i>
+			</div>
+			
 			<div class="container-1 rotate-text"> 
 				<dl class="anidl" style="float: left">
 					<dt class="anidt">나이</dt>
-					<dd class="anidd">${center.age}살</dd>
+					<dd class="anidd" id="anidd">${center.age}살</dd>
 				</dl>
 				<dl class="anidl">
 					<dt class="anidt">성별</dt>
@@ -67,33 +72,9 @@
 				</dl>
 			</div>
 			
-			<table class="table" style="text-align: right; margin-left: 30px">
-				<tr>
-					<th>나이</th>
-					<td>${center.age}살</td>
-				</tr>
-				<tr>
-					<th>성별</th>
-					<td>${center.age}</td>
-				</tr>
-				<tr>
-					<th>무게</th>
-					<td>${center.weight}</td>
-				</tr>
-				<tr>
-					<th>중성화여부</th>
-					<td>${center.genop}</td>
-				</tr>
-				<tr>
-					<th>접종여부</th>
-					<td>${center.vac}</td>
-				</tr>
-				<tr>
-					<th>입양가능여부</th>
-					<td>${center.adopt_pos}</td>
-				</tr>
-			</table>
+			<hr>
 		</div>	
+		</form>
 	</div>	
 
 		

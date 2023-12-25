@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
- PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
- "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="center">
  	<insert id="insert" parameterType="java.util.Map">
@@ -22,13 +20,23 @@
  		WHERE anino = #{anino}
  	</select>
  	
+	<select id="anipic" resultType="String" parameterType="String">
+ 		SELECT anipic
+ 		FROM animal
+ 		WHERE anino = #{anino}
+ 	</select> 
+ 	
  	<update id="update">
  		UPDATE animal 
  		SET anino = #{anino}, uid = 'kim9595', aname = #{aname}, age = #{age}, gender = #{gender}, weight = #{weight}, genop = #{genop}, vac = #{vac}, intro = #{intro}, anipic = #{anipic}, adopt = #{adopt}, adopt_pos = #{adopt_pos}
  		WHERE anino = #{anino}		
  	</update>
  	
-
+ 	<delete id="delete" parameterType="String">
+ 		DELETE FROM animal
+ 		WHERE anino = #{anino}
+ 	</delete>
+ 	
  </mapper>
  
  
