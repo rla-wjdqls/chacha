@@ -5,7 +5,7 @@
 
 	<insert id="insert" parameterType="java.util.Map">
 		INSERT INTO help(uid, texttitle, text, uploaddate, helppic)
-		VALUES ( 'kim9595', #{texttitle}, #{text}, NOW(), #{helppic})
+		VALUES('kim9595',#{texttitle},#{text},NOW(),#{helppic})
 	</insert>
 	 	
 	 		 
