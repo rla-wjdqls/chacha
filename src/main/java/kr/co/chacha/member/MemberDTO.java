@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class MemberDTO {
 
-	//멤버 변수
+	//멤버 
     private String uid; 
     private int myno;
     private int sano;
@@ -18,6 +18,13 @@ public class MemberDTO {
     private String birth;
     private Date mdate;
     private String mlevel;
+    
+    
+    //소셜로그인 
+    private String sid;
+    private String ptype;
+    private String token;
+    private String semail;
     
     
     //생성자 함수
@@ -155,13 +162,61 @@ public class MemberDTO {
 	}
 
 
+	public String getSid() {
+		return sid;
+	}
+
+
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+
+
+	public String getPtype() {
+		return ptype;
+	}
+
+
+	public void setPtype(String ptype) {
+		this.ptype = ptype;
+	}
+
+
+	public String getToken() {
+		return token;
+	}
+
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
+
+	public String getSemail() {
+		return semail;
+	}
+
+
+	public void setSemail(String semail) {
+		this.semail = semail;
+	}
+
+
+	
+	
 	//toString
+
 	@Override
 	public String toString() {
 		return "MemberDTO [uid=" + uid + ", myno=" + myno + ", sano=" + sano + ", uname=" + uname + ", email=" + email
 				+ ", passwd=" + passwd + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel="
-				+ tel + ", birth=" + birth + ", mdate=" + mdate + ", mlevel=" + mlevel + "]";
+				+ tel + ", birth=" + birth + ", mdate=" + mdate + ", mlevel=" + mlevel + ", sid=" + sid + ", ptype="
+				+ ptype + ", token=" + token + ", semail=" + semail + "]";
 	}
+	
+	
+	
+
 	
 	
   

@@ -40,11 +40,6 @@ public class MemberDAO {
 	}//findID() end
 	
 	
-	//비밀번호 확인
-	public int checkPasswd(String passwd) {
-		return sqlSession.selectOne("member.checkPasswd", passwd);
-	}//findID() end
-	
 	
 	
 }//end

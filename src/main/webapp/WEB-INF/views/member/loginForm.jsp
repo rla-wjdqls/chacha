@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
+    
    
 <!DOCTYPE html>
 <html>
@@ -14,6 +18,7 @@
 
 <script>
 
+/*
 function doNaverLogin() {
     const clientId = 'hT38Ty_ojTPdrxKZegTp';
     const redirectUri = encodeURIComponent('http://localhost:9095/member/navercallback');
@@ -25,6 +30,9 @@ function doNaverLogin() {
     window.location.href = url;
 }
 
+onclick="javascript:doNaverLogin()"
+
+*/
 
 function doKakaoLogin() {
     const clientId = '86b472b7f7dba25b96f6589488ffca31';
@@ -37,20 +45,14 @@ function doKakaoLogin() {
     window.location.href = url;
 }
 
-
 </script>
 
-
-
-
-
-
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 </head>
 
 <body>
-
-  <div class="login"> 
   
 <%
 			Cookie[] cookies = request.getCookies();//사용자 PC에 저장된 모든 쿠키값 가져오기
@@ -63,8 +65,20 @@ function doKakaoLogin() {
 				   }//if end
 				}//for end
 			}//if end
+			
+			
+		    String clientId = "hT38Ty_ojTPdrxKZegTp";//애플리케이션 클라이언트 아이디값";
+		    String redirectURI = URLEncoder.encode("http://localhost:9095/member/navercallback", "UTF-8");
+		    SecureRandom random = new SecureRandom();
+		    String state = new BigInteger(130, random).toString();
+		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"
+		         + "&client_id=" + clientId
+		         + "&redirect_uri=" + redirectURI
+		         + "&state=" + state;
+		    session.setAttribute("state", state);
 %> 
   
+  <div class="login"> 
   
     <div class="login__content">
       <div class="login__logo"><!--추후 로고 추가-->
@@ -104,7 +118,7 @@ function doKakaoLogin() {
 			<!-- sns 로그인 -->
 			<div class="sns_login_box">
 				<div class="sns_login_item">
-					<img src="/img/naver_login.png" alt="naver_login" class="naver_login" onclick="javascript:doNaverLogin()"> 
+					 <a href="<%=apiURL%>"><img src="/img/naver_login.png" alt="naver_login" class="naver_login"></a>
 				</div>
 				<div class="sns_login_item">
 					<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_login" onclick="javascript:doKakaoLogin()">
@@ -123,15 +137,19 @@ function doKakaoLogin() {
 	<!-- 카카오톡 소셜 로그인 -->
 	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 	
-<!-- 	<script type="text/javascript">
-	  	var naver_id_login = new naver_id_login("hT38Ty_ojTPdrxKZegTp", "http://localhost:9095/member/navercallback");
-	      var state = naver_id_login.getUniqState();
-	      naver_id_login.setButton("white", 2,40);
-	      naver_id_login.setDomain("http://localhost:9095");
-	      naver_id_login.setState(state);
-	      naver_id_login.init_naver_id_login();
-  	</script>
-	 -->
+
+	 
+  <!-- 네이버아디디로로그인 초기화 Script 
+<script type="text/javascript">
+	var naver_id_login = new naver_id_login("hT38Ty_ojTPdrxKZegTp", "http://localhost:9095/member/navercallback");
+	var state = naver_id_login.getUniqState();
+	naver_id_login.setButton("white", 2,40);
+	naver_id_login.setDomain("http://localhost:9095/member/loginForm.jsp");
+	naver_id_login.setState(state);
+	naver_id_login.setPopup();
+	naver_id_login.init_naver_id_login();
+</script>-->
+<!-- //네이버아디디로로그인 초기화 Script -->
 	
 	
 	</body>

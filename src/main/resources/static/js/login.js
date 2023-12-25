@@ -49,14 +49,13 @@ function checkLogin() {
 }//checkLogin() end
 
 
-
 function findIDCheck() {
 	//1) 이름 2글자 이상인지?
  	let uname = document.getElementById("uname").value;
  	uname = uname.trim();
  	
  	if(!(uname.length>1)){
-		 document.getElementById("panel2").innerHTML = "이름 2글자 이상 입력해 주세요!";
+		 document.getElementById("panel1").innerHTML = "이름 2글자 이상 입력해 주세요!";
 		 document.getElementById("uname").focus();
 		 return false;
 	 }//if end
@@ -72,10 +71,20 @@ function findIDCheck() {
 	     return false;
 	 }//if end
 
+
+	 //3)생일 8글자 인지?
+	 let birth = document.getElementById("birth").value;
+	 birth=birth.trim();
+	 
+	 if(!(birth.length==8)){
+		 document.getElementById("panel3").innerHTML = "생일 8글자 입력해주세요";
+		 document.getElementById("email").focus();
+	     return false;
+	 }//if end
+
 	return true;
 	
 }//findIDCheck() end
-
 
 
 function findPasswdCheck() {
