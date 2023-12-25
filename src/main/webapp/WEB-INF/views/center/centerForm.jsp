@@ -40,12 +40,12 @@
 					<div class="card" style="width: 18rem;">
 						<c:choose>
 							<c:when test="${row.anipic != '-'}">
-				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid" alt="달구">
+				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid" alt="이미지">
 				  			</c:when>
-				  			
 				  			<c:otherwise>
-				  			등록된 사진 없음 <br>
+				  				<img src="/img/noimg.png" class="card-img-top img-fixed img-fluid" alt="기본 이미지">
 				  			</c:otherwise>
+				  			
 				  		</c:choose>
 			
 				  	<div class="card-body">

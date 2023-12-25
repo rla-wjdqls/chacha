@@ -36,9 +36,14 @@
 
 		<div class="container">
 			<div class="container"   >
-				<c:if test="${center.anipic != '-'}">
+			<c:choose>
+				<c:if test="${center.anipic != '-' || center.anipic != 'NULL'}">
 					<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" >
 				</c:if>
+				<!-- <c:else>
+				  	<img src="/img/noimg.png"  style="float: left; margin-right: 20px;" width="270px">
+				</c:else> -->
+			</c:choose>
 			</div>
 			
 			
