@@ -72,7 +72,9 @@
 			<div class="icon-heart">
 				<i class="bi bi-heart" onclick="center_jjim()"></i>
 			</div>
-			
+			<div class="icon-heart">
+				<i class="bi bi-chat-left-dots-fill"></i>
+			</div>
 			<div class="d-grid gap-2 d-md-block" >
 			  <button class="btn btn-primary" type="button">신청하기</button>
 			</div>

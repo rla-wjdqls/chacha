@@ -147,13 +147,15 @@ public class CenterCont {
 		return "redirect:/center/centerForm";
 	}
 	
-	@PostMapping("jjim")
-	public String jjim(@ModelAttribute CenterDTO centerDto, HttpSession session) {
-		
-		centerDto.setUid((String)session.getAttribute("s_id"));
-		System.out.print(centerDto.getAnino());
-		centerDao.jjim(centerDto);
-		return "redirect:/center/detail";
-	}
+//	@PostMapping("jjim")
+//	public String jjim(@RequestParam String anino, HttpSession session) {
+//		
+//		
+//		
+//		centerDto.setUid((String)session.getAttribute("s_id"));
+//		System.out.print(centerDto.getAnino());
+//		centerDao.jjim(centerDto);
+//		return "redirect:/center/detail";
+//	}
 			
 }

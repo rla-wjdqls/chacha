@@ -76,7 +76,7 @@
 		}
 		
 		function center_jjim(){
-			document.centerfrm.action="/center/jjim";
+			document.centerfrm.action="/jjim/insert";
 			document.centerfrm.submit();
 		}
 

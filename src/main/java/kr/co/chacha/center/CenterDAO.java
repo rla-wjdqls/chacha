@@ -43,7 +43,4 @@ public class CenterDAO {
 		sqlSession.delete("center.delete", anino);
 	}
 	
-	public void jjim(CenterDTO dto) {
-		sqlSession.insert("jjim.insert", dto);
-	}
 }
