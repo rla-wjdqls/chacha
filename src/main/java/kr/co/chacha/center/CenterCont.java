@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -143,6 +145,15 @@ public class CenterCont {
 		centerDao.delete(anino);
 		
 		return "redirect:/center/centerForm";
+	}
+	
+	@PostMapping("jjim")
+	public String jjim(@ModelAttribute CenterDTO centerDto, HttpSession session) {
+		
+		centerDto.setUid((String)session.getAttribute("s_id"));
+		System.out.print(centerDto.getAnino());
+		centerDao.jjim(centerDto);
+		return "redirect:/center/detail";
 	}
 			
 }

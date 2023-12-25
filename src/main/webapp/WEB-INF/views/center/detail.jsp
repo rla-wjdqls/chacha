@@ -41,9 +41,6 @@
 				</c:if>
 			</div>
 			
-			<div>
-				<i class="bi bi-heart"></i>
-			</div>
 			
 			<div class="container-1 rotate-text"> 
 				<dl class="anidl" style="float: left">
@@ -72,7 +69,19 @@
 				</dl>
 			</div>
 			
+			<div class="icon-heart">
+				<i class="bi bi-heart" onclick="center_jjim()"></i>
+			</div>
+			
+			<div class="d-grid gap-2 d-md-block" >
+			  <button class="btn btn-primary" type="button">신청하기</button>
+			</div>
 			<hr>
+			<div>
+				<p style="text-align: center">
+				${center.intro}
+				</p>
+			</div>
 		</div>	
 		</form>
 	</div>	
