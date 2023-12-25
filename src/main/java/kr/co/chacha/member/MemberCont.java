@@ -1,15 +1,25 @@
 package kr.co.chacha.member;
 
+import java.io.Console;
+import java.net.http.HttpHeaders;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -100,18 +110,90 @@ public class MemberCont {
 	@GetMapping("/findID")
 	public ModelAndView findID() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/findIDResult");
+		mav.setViewName("member/findID");
 		return mav;
 	}// findID() end
+	
+	
+	// 아이디 확인 페이지 이동 
+	@PostMapping("/findIDResult")
+	public ModelAndView findIDResult(HttpServletRequest req) {
+		
+	    String uname = req.getParameter("uname").trim();
+	    String email = req.getParameter("email").trim();
+	    String birth = req.getParameter("birth").trim();
+		
+		MemberDTO memberdto = new MemberDTO();
+		
+		//memberdto에 입력 값 담기 
+		memberdto.setUname(uname);
+		memberdto.setEmail(email);
+		memberdto.setBirth(birth);
+		
+		//System.out.println(memberdto.getUname()); 
+		//System.out.println(memberdto.getEmail());
+		//System.out.println(memberdto.getBirth());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//db 데이터와 입력값이 일치하면 해당하는 아이디 찾아오기
+		String uid = memberDao.findID(memberdto);
+		//System.out.println(uid); //kim9595
+		
+		// uid를 ModelAndView에 추가
+	    mav.addObject("uid", uid);
+		
+		mav.setViewName("member/findIDResult");
+		return mav;
+	}// findIDResult() end
+	
+	
 
 	// 비밀번호 찾기 페이지 이동
 	@GetMapping("/findPasswd")
 	public ModelAndView findPasswd() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/findPasswdResult");
+		mav.setViewName("member/findPasswd");
 		return mav;
 	}// findPasswd() end
 
+	
+	// 비밀번호 확인 페이지 이동
+	@PostMapping("/findPasswdResult")
+	public ModelAndView findPasswdResult(HttpServletRequest req) {
+		
+	    String uid = req.getParameter("uid").trim();
+	    String email = req.getParameter("email").trim();
+	    String birth = req.getParameter("birth").trim();
+		
+		MemberDTO memberdto = new MemberDTO();
+		
+		//memberdto에 입력 값 담기 
+		memberdto.setUid(uid);
+		memberdto.setEmail(email);
+		memberdto.setBirth(birth);
+		
+		//System.out.println(memberdto.getUid()); 
+		//System.out.println(memberdto.getEmail());
+		//System.out.println(memberdto.getBirth());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		//db 데이터와 입력값이 일치하면 해당하는 아이디 찾아오기
+		String passwd = memberDao.findPasswd(memberdto);
+		System.out.println(passwd); //kim9595
+		
+		// uid를 ModelAndView에 추가
+	    mav.addObject("passwd", passwd);
+		
+		mav.setViewName("member/findPasswdResult");
+		return mav;
+	}// findPasswdResult() end
+	
+	
+	
+	
+	
 	// 회원가입 페이지 이동
 	@GetMapping("/signupForm")
 	public ModelAndView signupForm() {
@@ -144,67 +226,24 @@ public class MemberCont {
 	}// insert() end
 
 	
-	// 비밀번호 일치하면 회원정보 수정 페이지로 이동
-		@PostMapping("/myInfoModify")
-		public ModelAndView myinfoModify(HttpServletRequest req) {
-			
-			
-			
-			String passwd =	req.getParameter("passwd");
-			System.out.println(passwd);
-			
-			int cnt = memberDao.checkPasswd(passwd); //1
-			
-			//System.out.println(cnt);
-			//System.out.println("1111");
-			
-			ModelAndView mav = new ModelAndView();
-			
-			
-			if(cnt==1) {
-				mav.setViewName("mypage/myInfoModify");
-			}//if end
-
-			return mav;
-		}// myinfoModify() end
 		
-		
-	
-	// 비밀번호 일치하면 회원탈퇴 페이지로 이동
-	@PostMapping("/myInfoWithdraw")
-	public ModelAndView myinfoWithdraw(HttpServletRequest req) {
-		String passwd =	req.getParameter("passwd");
-		int cnt = memberDao.checkPasswd(passwd);
-		System.out.println(cnt);
-		
-		ModelAndView mav = new ModelAndView();
-		
-		if(cnt==1) {
-			mav.setViewName("mypage/myInfoWithdraw");
-		}//if end
-
-		return mav;
-	}// myinfoWithdraw() end
-
-	
-	
-	//로그아웃 클릭시 세션 만료
-	@RequestMapping("/logout2")
-	public String logout2(HttpSession session) {
-		
-		session.removeAttribute("s_id");
-		session.removeAttribute("s_passwd");
-		session.removeAttribute("s_mlevel");
-		
-		return "redirect:/";
-	}//logout2()
-	
-	
-	
     @GetMapping("/navercallback")
-    public String naverLogin() {
+    public String naverCallbackGet() {
         return "member/navercallback";
-    }//naverLogin() end
+    }//naverCallbackGet() end
+    
+    
+    
+    //@PostMapping("/navercallback")
+    //public String naverCallbackPost(HttpSession session, HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDto) {
+    	
+    //}//naverCallbackPost() end
+    
+    
+    
+    
+    
+    
 	
 	
     @GetMapping("/kakaocallback")
@@ -214,6 +253,7 @@ public class MemberCont {
 
 	
 	
+    
 	
 	
 	

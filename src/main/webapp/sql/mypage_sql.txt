@@ -86,13 +86,32 @@ WHERE ap.uid = 'kim9595'
 --글번호 제목 작성일 조회수
 
 
-
 --사용자 글목록(입양후기+목격제보)
 --글번호 제목 작성일 조회수
 SELECT 
 FROM help hp join adoprv ar
 ON hp.uid = ar.uid
 WHERE hp.uid = 'kim9595'
+
+
+--비밀번호 확인 -> 페이지이동
+SELECT COUNT(*)
+FROM member
+WHERE passwd = '3454e55~'
+
+
+--회원탈퇴
+--회원등급 d로 updqte
+UPDATE member
+SET mlevel = 'D';
+WHERE id = 'dddddd' 
+
+
+--회원정보 수정
+--정보 불러오기
+SELECT * 
+FROM member 
+WHERE uid = {#uid}
 
 
 
