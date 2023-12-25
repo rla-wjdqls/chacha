@@ -44,6 +44,21 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myAdopt");
 	}//mvsList() end
 	
+	//비밀번호 확인
+	public int checkPasswd(String passwd) {
+		return sqlSession.selectOne("mypage.checkPasswd", passwd);
+	}//findID() end
+	
+	
+	//비밀번호 확인
+	public void memberWithdraw(String s_id) {
+		sqlSession.selectOne("mypage.memberWithdraw", s_id);
+	}//findID() end
+	
+	
+	
+	
+	
 }//end
 
 
