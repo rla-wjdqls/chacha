@@ -96,3 +96,8 @@ build/
 .metadata/.plugins/org.eclipse.wst.validation/dep.index
 .metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml
 .metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml
+.metadata/.plugins/org.eclipse.core.resources/.root/3.tree
+.metadata/.plugins/org.eclipse.jdt.core/2803117263.index
+.metadata/.plugins/org.eclipse.jdt.core/3929923209.index
+.metadata/.plugins/org.eclipse.jdt.core/4102620626.index
+.metadata/.plugins/org.eclipse.jst.j2ee/earLibrariesCache.index
