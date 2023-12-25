@@ -22,7 +22,10 @@ public class JjimCont {
 	
 	@PostMapping("insert")
 	public String jjim(@ModelAttribute JjimDTO jjimDto, HttpSession session) {
-		jjimDto.setUid("s_id");
+		//jjimDto.setUid((String)session.getAttribute("s_id"));
+		String uid= (String)session.getAttribute("s_id");
+		jjimDto.setUid(uid);
+		//System.out.println(uid);
 		jjimDao.jjimInsert(jjimDto);
 		return "redirect:/center/detail";
 	}

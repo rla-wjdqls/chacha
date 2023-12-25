@@ -62,7 +62,8 @@ public class CenterCont {
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
 						 @RequestParam(name="img") MultipartFile img,
-						 HttpServletRequest req) {
+						 HttpServletRequest req,
+						 HttpSession session) {
 		String anipic="-";
 		//System.out.println(img);
 		//System.out.println(anipic);
@@ -79,6 +80,8 @@ public class CenterCont {
 		}//if end
 		
 		map.put("anipic", anipic);
+		String uid=(String)session.getAttribute("s_id");
+		map.put("uid", uid);
 		
 		centerDao.insert(map);
 		return "redirect:/center/centerForm";
@@ -146,16 +149,6 @@ public class CenterCont {
 		
 		return "redirect:/center/centerForm";
 	}
-	
-//	@PostMapping("jjim")
-//	public String jjim(@RequestParam String anino, HttpSession session) {
-//		
-//		
-//		
-//		centerDto.setUid((String)session.getAttribute("s_id"));
-//		System.out.print(centerDto.getAnino());
-//		centerDao.jjim(centerDto);
-//		return "redirect:/center/detail";
-//	}
+
 			
 }
