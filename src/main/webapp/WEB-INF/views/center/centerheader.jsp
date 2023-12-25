@@ -74,6 +74,11 @@
 				document.centerfrm.submit();
 			}
 		}
+		
+		function center_jjim(){
+			document.centerfrm.action="/center/jjim";
+			document.centerfrm.submit();
+		}
 
 </script>
 </head>

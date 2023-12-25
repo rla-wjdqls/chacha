@@ -134,4 +134,6 @@ public class CenterDTO {
 				+ ", adopt=" + adopt + ", cnt=" + cnt + ", adopt_pos=" + adopt_pos + "]";
 	}
 	  
+	
+
 }

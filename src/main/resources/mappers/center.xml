@@ -3,15 +3,16 @@
  
  <mapper namespace="center">
  	<insert id="insert" parameterType="java.util.Map">
-	 	INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos)
-		VALUES (#{anino}, 'kim9595', #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{vac}, #{intro}, #{anipic}, #{adopt}, #{adopt_pos})
+	 	INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos, animal_date)
+		VALUES (#{anino}, 'kim9595', #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{vac}, #{intro}, #{anipic}, #{adopt}, #{adopt_pos}, NOW())
  	</insert>
  	
  	
  	
  	<select id="form" resultType="java.util.Map">
- 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
  		FROM animal
+ 		ORDER BY animal_date desc
  	</select>
  	
  	<select id="detail" resultType="java.util.Map">
@@ -39,6 +40,7 @@
  	
  </mapper>
  
+
  
 	
 	
