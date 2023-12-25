@@ -105,6 +105,14 @@
 			<optional>true</optional> <!-- Restart를 원하지 않을 경우 false -->
 		</dependency>
 
+	<!-- naver -->		
+	<dependency>			
+		<groupId>com.github.scribejava</groupId>			
+		<artifactId>scribejava-core</artifactId>			
+		<version>2.8.1</version>		
+	</dependency>
+
+
 	</dependencies>
 
 	<build>

@@ -35,6 +35,7 @@ public class ChachaApplication {
 		
 		return bean.getObject();
 	}//sqlSessionFactory() end
+
 	
 	@Bean
 	public SqlSessionTemplate sqlSession(SqlSessionFactory factory) {
