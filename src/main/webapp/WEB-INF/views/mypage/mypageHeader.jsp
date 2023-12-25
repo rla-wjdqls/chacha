@@ -36,8 +36,7 @@
 
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/mypage.css" rel="stylesheet">
-    
+    <link href="/css/mypage.css" rel="stylesheet">    
 
 
 <script>
@@ -88,6 +87,36 @@
 
 </script>
 
+<style>
+.login__box_1 {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.5rem;
+  padding: 1.125rem 1rem;
+  background-color: #fff;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  width: 550px;
+  height: 60px;
+}
+
+.login__register .btn_js_1 {
+    position: absolute;
+	right: 20px;
+	top: 20px;
+    display: inline-block; 
+    margin-top: 764px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #23004d; 
+}
+
+</style>
 
 
     
