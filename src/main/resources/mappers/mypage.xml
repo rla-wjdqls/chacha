@@ -45,6 +45,22 @@
 	WHERE ap.uid = 'kim9595'
  </select>
  
+ 
+  <select id="checkPasswd" parameterType="String" resultType="Int">
+ 	SELECT COUNT(*)
+	FROM member
+	WHERE passwd = #{passwd}
+ </select>
+
+ 
+ <update id="memberWithdraw" parameterType="String">
+	UPDATE member
+	SET mlevel = 'D'
+	WHERE uid = #{uid}
+ </update>
+ 
+ 
+
  	
  </mapper>
  
@@ -53,6 +69,20 @@
  
  
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

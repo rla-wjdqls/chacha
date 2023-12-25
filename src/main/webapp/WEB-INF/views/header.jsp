@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,13 +70,33 @@
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+0507-1401-8061</small>
                 </div>
+            <!-- Check if the user is logged in (assuming "s_Id" is the session attribute) -->
+            <c:if test="${not empty sessionScope.s_id}">
+                <!-- If logged in, show logout link -->
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/">LOGOUT</a> <!-- Adjust the logout URL accordingly -->
+                </div>
+            </c:if>
+            
+            <!-- If not logged in, show login and sign-up links -->
+            <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">LOGIN</a>  
                 </div>
                 &nbsp; &nbsp;
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/member/signupForm">SIGN-UP</a>  
+                </div>
+            </c:if>
+ <!--                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/member/loginForm">LOGIN</a>  
+                </div> 
+                &nbsp; &nbsp;
                  <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/signupForm">SIGN-UP</a>  
                 </div>
+ -->
+                
             </div>
         </div>
     </div>

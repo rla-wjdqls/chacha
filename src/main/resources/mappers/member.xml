@@ -20,18 +20,18 @@
  </insert>
  
  
-   <select id="findID" parameterType="String" resultType="String">
+  <select id="findID" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
  	SELECT uid	
 	FROM member
 	WHERE  uname = #{uname} AND email = #{email} AND birth = #{birth}
-  </select>
+  </select> 
  
  
-<!--   <select id="findID" parameterType="String" resultType="String">
+  <select id="findPasswd" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
  	SELECT passwd	
 	FROM member
 	WHERE  uid = #{uid} AND email = #{email} AND birth = #{birth}
-  </select> -->
+  </select> 
  	
  	
  	

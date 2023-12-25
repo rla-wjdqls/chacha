@@ -60,10 +60,3 @@ WHERE  uid = #{uid} AND email = #{email} AND birth = #{birth}
 
 
 
-
-
-
-
-
-
-

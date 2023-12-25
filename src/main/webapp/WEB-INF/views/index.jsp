@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +36,12 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     
+    <script>
+		function logout(){
+			alert("로그아웃 되었습니다");
+		}//logout() end
+    
+    </script>
 
 </head>
 
@@ -61,11 +72,22 @@
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+0507-1401-8061</small>
                 </div>
+            <!-- Check if the user is logged in (assuming "s_Id" is the session attribute) -->
+            <c:if test="${not empty sessionScope.s_id}">
+                <!-- If logged in, show logout link -->
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="logout" onclick="logout()">LOGOUT</a> <!-- Adjust the logout URL accordingly -->
+                </div>
+            </c:if>
+            
+            <!-- If not logged in, show login and sign-up links -->
+            <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">LOGIN</a>  
                 </div>
-                &nbsp; &nbsp; &nbsp;
-                 <div class="h-100 d-inline-flex mx-n2">
+            </c:if>
+             &nbsp; &nbsp;
+                <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/signupForm">SIGN-UP</a>  
                 </div>
             </div>
@@ -100,7 +122,7 @@
                    <div class="dropdown-menu bg-light m-0">
                        <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
                        <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-                       <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
+                       <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
                    </div>
         </div>
     </nav>

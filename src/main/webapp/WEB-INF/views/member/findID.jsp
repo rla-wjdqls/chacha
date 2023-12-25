@@ -29,77 +29,40 @@
       
       <div class="login__forms">
 		<!--login form -->
-		<form class="login__register" id="login-in" action="findID" method="post" onsubmit="return findIDCheck()" >
+		<form class="login__register" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
 			<h1 class="login__title">아이디 찾기</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
-            <input type="text" placeholder="이름" class="login__input" name="uname" id="uname">
+            <input type="text" placeholder="이름" class="login__input" name="uname" id="uname" required>
           </div>
-		  <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
+		  <span id="panel1" class="panel1"></span><!-- 이메일 중복 관련 메세지 -->
 		  <div class="login__box">
             <i class='bx bx-at login__icon'></i>
-            <input type="text" placeholder="이메일" class="login__input" name="email" id="email">
+            <input type="text" placeholder="이메일" class="login__input" name="email" id="email" required>
           </div>
-          <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
+          <span id="panel2" class="panel2"></span><!-- 이메일 중복 관련 메세지 -->
 		  <div class="login__box">
             <i class='bx bx-cake login__icon'></i>
             <!-- YYYYMMDD 입력하면 YYYY-MM-DD 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="생년월일 8자리" class="login__input" name="birth" id="birth" oninput="oninputDate(this)" maxlength=8>
+            <input type="text" placeholder="생년월일 8자리" class="login__input" name="birth" id="birth" oninput="oninputDate(this)"  maxlength=8 required>
           </div>
-		  <span id="panel2" class="panel2">아이디 혹은 비밀번호가 일치하지 않습니다.</span><!-- 이메일 중복 관련 메세지 -->
+		  <span id="panel3" class="panel3"></span><!-- 이메일 중복 관련 메세지 -->
 			<br>
-			<div class="error_msg">
-			<!-- 아이디 혹은 비밀번호가 일치하지 않습니다. <br>입력한 내용을 다시 확인해 주세요.로그인 실패 시 메세지 -->
-			</div>
 			<div class="save_id_box">
 				<a href="/member/findPasswd" class="login__forgot2">비밀번호 찾기</a>
 			</div>
 			<input type="submit" value="아이디 찾기" class="login__button"/>
-			
 			<div>
 				<span class="login__account login__account--account">계정이 없으신가요?</span> 
 				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/signupForm">회원가입</a></span>
 			</div>
 		</form>
-
-
-<script>
-
-function findIDCheck() {
-	//1) 아이디 5~10글자 이내인지 검사
- 	let uid = document.getElementById("uid").value;
- 	uid = uid.trim();
- 	
- 	if(!(uid.length>=5 && uid.length<=10)){
-		 alert("아이디 5~10글자 이내로 입력해 주세요!");
-		 document.getElementById("uid").focus();
-		 return false;
-	 }//if end
-
-	
-	//2) 비밀번호 4글자이상이면서, 숫자형 기호만 입력
-	let passwd=document.getElementById("passwd").value;
-	passwd = passwd.trim(); 
-	
-	if(isNaN(passwd) || passwd.length<4){
-		alert("비밀번호 4글자 이상 입력해주세요!");
-		document.getElementById("passwd").focus();
-		return false;
-	}//if end
-
-	return true;
-	
-	
-}
-
-</script>
+	</div>
 
 
 
 
-
-	<script src="/js/login.js"></script>
-	<script src="/js/signup.js"></script>
+<script src="/js/login.js"></script> 
 	
 	</body>
 	
