@@ -20,9 +20,12 @@
 
 <h3>입양 전 필수 교육 강의</h3>
 
-<video width="640" height="360" controls>
-    <source src="${request.contextPath}/img/panda.mp4" type="video/mp4">
-   
-</video>
+<div class="content">
+	
+	<p><a href="/css/dog.html">[강아지]</a></p>
+	<p><a href="/css/cat.html">[고양이]</a></p>
+</div>
+
+ 
 
 <%@ include file="../footer.jsp" %>      

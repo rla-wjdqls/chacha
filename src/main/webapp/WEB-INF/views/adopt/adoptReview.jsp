@@ -17,67 +17,66 @@
 				</li>
 			</ul>
 		</nav>
-<h3>입양 후기</h3>
+<div class="container text-center"> <h3>입양 후기 게시판</h3>
 <p>
 	<a href="/adopt/adoptForm">[글쓰기]</a>
 </p>
 
-<!-- ====== Cards Section Start -->
-		<div class="adoptDe">
-              <img src="/img/coco1.jpg" alt="image" class="w-full">
-               <div class="p-8 sm:p-9 md:p-7 xl:p-9">
-                  <h3>
-                     <a href="javascript:void(0)" class="">
-                        우리 뽀삐가 이렇게 컸어요~
-                     </a>
-                  </h3>
-                  <p class="text-base leading-relaxed text-body-color dark:text-dark-6 mb-7">
-                     뽀삐 자랑글
-                  </p>
-                  <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                     자세히 보기
-                  </a>
-               </div>
-            </div>
-     
-         <!-- Card 2 -->
-         <img src="/img/maincatdog2.jpg" alt="image" class="w-full">
-               <div class="p-8 sm:p-9 md:p-7 xl:p-9">
-                  <h3>
-                     <a href="javascript:void(0)" class="">
-                        너무 예쁜 내 강쥐
-                     </a>
-                  </h3>
-                  <p class="text-base leading-relaxed text-body-color mb-7">
-                     내용
-                  </p>
-                  <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                     자세히 보기
-                  </a>
-               </div>
-            </div>
-         </div>
-         <!-- Card 3 -->
-         <img src="/img/maincatdog6.jpg" alt="image" class="w-full">
-               <div class="p-8 sm:p-9 md:p-7 xl:p-9">
-                  <h3>
-                     <a href="javascript:void(0)" class="">
-                        소중한 가족이 되었어요~
-                     </a>
-                  </h3>
-                  <p class="text-base leading-relaxed text-body-color mb-7">
-                     내용
-                  </p>
-                  <a href="javascript:void(0)" class="inline-block py-2 text-base font-medium transition border rounded-full text-body-color hover:border-primary hover:bg-primary border-gray-3 px-7 hover:text-white dark:border-dark-3 dark:text-dark-6">
-                     자세히 보기
-                  </a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-<!-- Cards Section End -->
+<form name="adoptfrm" id="adoptfrm" method="post" action="adopt">
+
+	<table class="table table-hover container">
+	<thead>
+		<tr class="success">
+			<th>후기글번호</th>
+			<th>입양동물</th>
+			<th>제목</th>		
+			<th>작성자</th>
+			<th>작성일</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+    		<c:forEach items="${list}" var="row">
+    			<tr>
+    				<td>${row.arno}</td>
+    				<td>${row.anino}</td>
+    				<td>${row.artitle}</td>
+    				<td>${row.uid}</td>
+    				<td>${row.ardate}</td>
+    				<td>${row.cnt}</td>
+    				<td>
+    					<input type="button" value="삭제" onclick="adoprvDelete(${row.arno})">	
+    				</td>
+    			</tr>
+    		</c:forEach>
+ </tbody>
+ 	</table>
+ 	
+ 	<!-- 검색 시작 -->
+		
+		<tr>
+			<td colspan="4" style="text-align:center; height:50px;">
+				<form action="helpList.jsp" onsubmit="return helpCheck()"><!-- help.js함수 작성 안 함 -->
+					<select name="col">
+						<option value="texttitle_text">제목+내용
+						<option value="texttitle">제목
+						<option value="text">내용
+						<option value="uid">작성자
+					</select>
+					<input type="text" name="word" id="word">
+					<input type="submit" value="검색" class="btn btn-primary">
+				</form>			
+			</td>
+		</tr>
+		
+	
+		 
+
+
+<!-- 본문 끝 -->
+		
+</form>
+</div>
 
 
 <%@ include file="../footer.jsp" %>      
