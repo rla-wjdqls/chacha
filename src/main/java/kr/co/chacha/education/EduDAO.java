@@ -1,5 +1,27 @@
 package kr.co.chacha.education;
 
-public class EduDAO {
+import java.util.List;
+import java.util.Map;
 
-}
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class EduDAO {
+	
+	public EduDAO() {
+		System.out.println("-----EduDAO() 객체 생성됨");
+	}//end
+	
+	@Autowired
+	SqlSession sqlSession;
+	
+	public List<Map<String, Object>> form(){
+		return sqlSession.selectList("education.list");
+	}
+	
+	
+	
+	
+}//end
