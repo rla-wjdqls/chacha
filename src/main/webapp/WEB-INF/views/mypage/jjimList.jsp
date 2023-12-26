@@ -30,18 +30,27 @@
                 <th>중성화여부</th>
                 <th>접종여부</th>
             </tr>
-        </thead>
+        </thead>     
 		<tbody>
             <c:forEach items="${myjjimList}" var="jjim" >
                 <tr>
-                    <td>${jjim.jjim_icon}</td>
-                    <td>${jjim.anipic}</td>
-                    <td>${jjim.aname}</td>
-                    <td>${jjim.gender}</td>
-                    <td>${jjim.age}</td>
-                    <td>${jjim.weight}</td>
-                    <td>${jjim.genop}</td>
-                    <td>${jjim.vac}</td>
+                   <td>
+		            <c:choose>
+		                <c:when test="${jjim.jjim_icon eq 1}">♥</c:when>
+		            </c:choose>
+		           </td>
+                   <td><a href="/center/detail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a></td>
+                   <td>${jjim.aname}</td>
+                   <td>
+		            <c:choose>
+		                <c:when test="${jjim.gender eq 'M'}">남자</c:when>
+		                <c:when test="${jjim.gender eq 'F'}">여자</c:when>
+		            </c:choose>
+		       	   </td>
+                   <td>${jjim.age}</td>
+                   <td>${jjim.weight}</td>
+                   <td>${jjim.genop}</td>
+                   <td>${jjim.vac}</td>
                 </tr>
             </c:forEach>
         </tbody>

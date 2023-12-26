@@ -4,7 +4,7 @@
 <%@ include file="./mypageHeader.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
-
+<% String s_id = (String)session.getAttribute("s_id"); %>
 
 	<!-- Page content wrapper-->
 	<div id="page-content-wrapper">
@@ -18,8 +18,8 @@
 		<h4>글목록</h4>
 		<p>내가 쓴 글목록을 확인 할 수 있습니다</p>
 	<br>
-	<input type="button" value="전체선택">
-	<input type="button" value="삭제">
+	<input type="button" value="전체선택" class="btn btn default">
+	<input type="button" value="삭제" class="btn btn default">
 	<br>
 	<table class="table table-condensed">
         <thead>
@@ -32,15 +32,30 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myCommentList}" var="mycomment" >
-                <tr>
-                	<td><input type="checkbox"></td> <!--삭제기능 넣을 것-->
-                    <td>${mycomment.comno}</td>
-                    <td>${mycomment.adcm}</td>
-                    <td>${mycomment.artitle}</td>
-                    <td>${mycomment.acdate}</td>
-                </tr>
-            </c:forEach>
+		<c:forEach items="${myHelpList}" var="myhelp">
+	    <c:if test="${s_id eq myhelp.uid}"> <!-- help 테이블의 작성자 아이디와 s_id 가 일치하면 원하는 값 가져옴 -->
+	        <!-- 조건이 참일 때 실행할 내용 -->
+	        <tr>
+	            <td><input type="checkbox"></td> <!-- 삭제기능 넣을 것 -->
+	            <td>${myhelp.textno}</td>
+	            <td>${myhelp.texttitle}</td>
+	            <td>${myhelp.cnt_help}</td>
+	            <td><fmt:formatDate value="${myhelp.uploaddate}" pattern="yyyy-MM-dd" /></td>
+	        </tr>
+	    </c:if>
+		</c:forEach>
+		<c:forEach items="${myAdoprvList}" var="myadoprv">
+	    <c:if test="${s_id eq myadoprv.uid}"> <!-- help 테이블의 작성자 아이디와 s_id 가 일치하면 원하는 값 가져옴 -->
+	        <!-- 조건이 참일 때 실행할 내용 -->
+	        <tr>
+	            <td><input type="checkbox"></td> <!-- 삭제기능 넣을 것 -->
+	            <td>${myadoprv.arno}</td>
+	            <td>${myadoprv.artitle}</td>
+	            <td>${myadoprv.cnt_adoprv}</td>
+	            <td><fmt:formatDate value="${myadoprv.ardate}" pattern="yyyy-MM-dd" /></td>
+	        </tr>
+	    </c:if>
+		</c:forEach>
         </tbody>
     </table>
 		</div>

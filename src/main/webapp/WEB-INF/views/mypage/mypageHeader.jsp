@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
     
 <!DOCTYPE html>
 <html>
@@ -116,6 +118,24 @@
     color: #23004d; 
 }
 
+.anipic {
+    width: 100px; /* 이미지의 최대 너비를 부모 요소에 맞게 조절합니다. */
+    height: 100px; /* 이미지의 높이를 자동으로 조절하여 비율을 유지합니다. */
+    display: block; /* 이미지를 블록 요소로 표시하여 여백을 조절합니다. */
+    margin: 0 auto; /* 가운데 정렬을 위해 좌우 여백을 자동으로 조절합니다. */
+}
+
+
+ table {
+     width: 100%;
+     text-align: center;
+ }
+
+ th, td {
+     padding: 10px;
+     border: 1px solid #ddd;
+ }
+
 </style>
 
 
@@ -219,11 +239,11 @@
 				</li>
 				<li class="list-inline-item">
 					<a><span style="color: #757575">마이페이지</span></a>
-					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
+					<!-- <i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i> -->
 				</li>
-				<li class="list-inline-item">
+<!-- 				<li class="list-inline-item">
 					<a><span style="color: #757575">보호소 소개</span></a>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 

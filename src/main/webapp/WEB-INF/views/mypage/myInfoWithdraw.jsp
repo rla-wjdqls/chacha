@@ -21,8 +21,8 @@
 		<div class="regi_complete">
 			<p class="h2_tit">회원탈퇴 전 꼭 읽어주세요!</p><br>
 			<p class="h_desc">
-				<span class="multi_line">CJ ONE 회원 탈퇴를 하시면 CJ ONE  회원 약관 및 개인정보 제공, 활용에 관한 약관 동의가 모두 철회되며</span><br>
-				<span class="multi_line">모든 CJ ONE 제휴 브랜드의 회원 서비스 및 웹사이트로부터 탈퇴됩니다.</span>
+				<span class="multi_line">그냥 데려가개 회원 탈퇴를 하시면 그냥 데려가개 회원 약관 및 개인정보 제공, 활용에 관한 약관 동의가 모두 철회되며</span><br>
+				<span class="multi_line">모든 회원 서비스 및 웹사이트로부터 탈퇴됩니다.</span>
 			</p>
 		</div>
 		</div>		
@@ -33,8 +33,7 @@
 				<dt class="first">회원 탈퇴 시 유의사항</dt>
 				<dd>
 					<ul class="bul_list">
-						<li class="dot_arr">CJ ONE 회원 탈퇴 시 모든 CJ ONE 제휴 브랜드로부터 함께
-							탈퇴되며 30일 이내 재가입이 불가능합니다.</li>
+						<li class="dot_arr">그냥 데려가개 회원 탈퇴 시 30일 이내 재가입이 불가능합니다.</li>
 
 
 						<li class="dot_arr">탈퇴하시면 현재 보유하고 계신 쿠폰과 CJ ONE 적립 포인트는 즉시 자동
@@ -80,7 +79,7 @@
 		
 	
 		
-		<form action="memberWithdraw" method="post">
+		<form action="memberWithdraw" method="get">
 			<div class="btn_center">
 				<button type="button" class="btn" id="btn_cancel">취소</button>
 				<button type="submit" class="btn btn_em" id="btn_tt">탈퇴</button>

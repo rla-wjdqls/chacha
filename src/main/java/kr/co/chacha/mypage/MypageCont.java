@@ -1,5 +1,7 @@
 package kr.co.chacha.mypage;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.member.MemberDTO;
 
 
 @Controller
-@RequestMapping("/mypage")
+//@RequestMapping("/mypage")
 public class MypageCont {
 
 	public MypageCont() {
@@ -24,34 +27,38 @@ public class MypageCont {
 	MypageDAO mypageDao;
 	
 		
-	@GetMapping("/myList")
-	public ModelAndView mypage() {
+	@GetMapping("/mypage/myList")
+	public ModelAndView mypage(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList");
+		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
+		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
 		return mav;
 	}//mypage() end
 
 	
-	@GetMapping("/myAdopt")
-	public ModelAndView myAdopt() {
+	@GetMapping("/mypage/myAdopt")
+	public ModelAndView myAdopt(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
-    	mav.addObject("myAdoptList", mypageDao.myAdopt());
+    	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
         return mav; 
 	}//myAdopt() end
 	
 	
-	@GetMapping("/myComment")
-	public ModelAndView myComment() {
-		//String s_id = "kim9595";
+	@GetMapping("/mypage/myComment")
+	public ModelAndView myComment(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myComment");
-    	mav.addObject("myCommentList", mypageDao.myComment());
+    	mav.addObject("myCommentList", mypageDao.myComment(s_id));
         return mav; 
 	}//myComment() end
 	
 	
-	@GetMapping("/myInfo1")
+	@GetMapping("/mypage/myInfo1")
 	public ModelAndView myinfo1() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myInfo1");
@@ -59,7 +66,7 @@ public class MypageCont {
 	}//myInfo1() end
 	
 	
-	@GetMapping("/myInfo2")
+	@GetMapping("/mypage/myInfo2")
 	public ModelAndView myinfo2() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myInfo2");
@@ -67,9 +74,11 @@ public class MypageCont {
 	}//myInfo2() end
 
 	
-    @RequestMapping("/myClass")
+	//내강의실
+    @RequestMapping("/mypage/myClass")
     public ModelAndView myClassList(HttpSession session) {
-    	String s_id = "h99999";
+    	String s_id = (String)session.getAttribute("s_id");
+    	
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myClass");
     	mav.addObject("myClassList", mypageDao.myeduList(s_id));
@@ -78,71 +87,79 @@ public class MypageCont {
  
     
     
-    @RequestMapping("/myService")
+    @RequestMapping("/mypage/myService")
     public ModelAndView myServiceList(HttpSession session) {
-    	String s_id = "h99999";
+    	String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myService");
     	mav.addObject("myServiceList", mypageDao.mysvList(s_id));
         return mav; 
     }//myClassList() end
     	
-	@RequestMapping("/jjimList")
-	public ModelAndView jjimlist() {
+    
+	@RequestMapping("/mypage/jjimList")
+	public ModelAndView jjimlist(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/jjimList");
-    	mav.addObject("myjjimList", mypageDao.jjimList());
+    	mav.addObject("myjjimList", mypageDao.jjimList(s_id));
         return mav; 
 	}//jjimlist() end
 
 	
-	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동
-	@PostMapping("/myInfoModify")
-	public ModelAndView myInfoModify(HttpServletRequest req) {
+	@PostMapping("/mypage/myInfoModify")
+	public ModelAndView myInfoModify(HttpServletRequest req, HttpSession session) {
+
+		String s_id = (String)session.getAttribute("s_id"); 
+		String s_passwd = (String)session.getAttribute("s_passwd"); 
+		//System.out.println(s_passwd); // kim9595 비밀번호
 		
 		String passwd =	req.getParameter("passwd");
-		//System.out.println(passwd);
-		
-		int cnt = mypageDao.checkPasswd(passwd); //1
-		
-		System.out.println(cnt);
+		//System.out.println(passwd); //3454e55~ 세션아이디 비번과 다름
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if(cnt==1) {
-			mav.setViewName("mypage/myInfoModify");
+		if(s_passwd.equals(passwd)) {
+			mav.setViewName("mypage/myInfoModify"); //비밀번호 일치 시 수정 페이지로 이동
+			//mav.addObject("myInfo", mypageDao.myInfoCheck(s_id));
+		} else {
+			mav.setViewName("redirect:/mypage/myInfo1"); //비밀번호 불일치 시 다시 돌아옴
 		}//if end
-
+		
 		return mav;
 	}// myInfoModify() end
 	
-		
+	
+
+	
 	
 	// 비밀번호 일치하면 회원탈퇴 페이지로 이동
-	@PostMapping("/myInfoWithdraw")
-	public ModelAndView myinfoWithdraw(HttpServletRequest req) {
+	@PostMapping("/mypage/myInfoWithdraw")
+	public ModelAndView myinfoWithdraw(HttpSession session,HttpServletRequest req) {
+		String s_passwd = (String)session.getAttribute("s_passwd"); 
+		//System.out.println(s_passwd); // kim9595 비밀번호
+		
 		String passwd =	req.getParameter("passwd");
-		int cnt = mypageDao.checkPasswd(passwd);
-		//System.out.println(cnt);
+		//System.out.println(passwd); //3454e55~ 세션아이디 비번과 다름
 		
 		ModelAndView mav = new ModelAndView();
 		
-		if(cnt==1) {
-			mav.setViewName("mypage/myInfoWithdraw");
+		if(s_passwd.equals(passwd)) {
+			mav.setViewName("mypage/myInfoWithdraw"); //비밀번호 일치 시 수정 페이지로 이동
+		} else {
+			mav.setViewName("redirect:/mypage/myInfo2"); //비밀번호 불일치 시 다시 돌아옴
 		}//if end
-
+		
 		return mav;
 	}// myinfoWithdraw() end
 	
 	
-	
-	@PostMapping("/memberWithdraw")
+	//회원 탈퇴
+	@GetMapping("/mypage/memberWithdraw")
 	public ModelAndView memberWithdraw(HttpSession session) {
 		
-		// 여기에 실제 회원 탈퇴 로직 추가
 	    String s_id = (String) session.getAttribute("s_id");
-	    //System.out.println(s_id); //h99999
 	    mypageDao.memberWithdraw(s_id); // 실제 회원 탈퇴 메서드 호출 등
 
 	    // 세션 초기화
@@ -157,54 +174,9 @@ public class MypageCont {
 	}//memberWithdraw() end
 	
 	
-	
-	@PostMapping("/memberModify")
-	public ModelAndView memberModify(HttpSession session, HttpServletRequest req) {
-		
-	    String s_id =  (String)session.getAttribute("s_id");
-	    System.out.println(s_id);
-	    
-	    
-	    MemberDTO memberDTO = new MemberDTO();
-		
-	    String uname = req.getParameter("uname").trim();
-	    String email = req.getParameter("email").trim();
-	    String tel = req.getParameter("tel").trim();
-	    
-	    System.out.println(uname);
-	    System.out.println(email);
-	    System.out.println(tel);
-	    		
-	    memberDTO.setUname(req.getParameter("uname").trim());
-	    memberDTO.setUid(req.getParameter("uid").trim());
-	    memberDTO.setEmail(req.getParameter("email").trim());
-	    memberDTO.setPasswd(req.getParameter("upassword").trim());
-	    memberDTO.setTel(req.getParameter("tel").trim());
-	    memberDTO.setBirth(req.getParameter("birth").trim());
-	    memberDTO.setZipcode(req.getParameter("zipcode").trim());
-	    memberDTO.setAddr1(req.getParameter("addr1").trim());
-	    memberDTO.setAddr2(req.getParameter("addr2").trim());
-	    
-	 
-	    
-	    
-	    
-	    
-	   // mypageDao.memberModify(memberDTO); // 실제 회원 탈퇴 메서드 호출 등
-
-		
-    	ModelAndView mav = new ModelAndView();
-    	
-    	mav.setViewName("redirect:/");
-    	
-        return mav; 
-		
-	}//memberWithdraw() end
-	
-	
 		
 	//로그아웃 클릭시 세션 만료
-	@RequestMapping("/logout2")
+	@RequestMapping("/mypage/logout2")
 	public String logout2(HttpSession session) {
 		
 		session.removeAttribute("s_id");

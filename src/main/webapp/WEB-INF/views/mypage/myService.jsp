@@ -22,6 +22,7 @@
         <thead>
             <tr>
                 <th>봉사신청번호</th>
+                <th>신청글제목</th>
                 <th>신청날짜</th>
                 <th>신청시간</th>
                 <th>신청상태</th>
@@ -31,9 +32,15 @@
             <c:forEach items="${myServiceList}" var="myservice" >
                 <tr>
                     <td>${myservice.sano}</td>
-                    <td>${myservice.sadate}</td>
+                    <td><a href="/service/servicedetail?sno=${myservice.sno}">${myservice.stitle}</a></td>
+                    <td><fmt:formatDate value="${myservice.sadate}" pattern="yyyy-MM-dd" /></td>
                     <td>${myservice.stime}</td>
-                    <td>${myservice.astate}</td>
+                    <td>
+		            <c:choose>
+		                <c:when test="${myservice.astate eq 'o'}">신청완료</c:when>
+		                <c:when test="${myservice.astate eq 'x'}">신청취소</c:when>
+		            </c:choose>
+		        	</td>
                 </tr>
             </c:forEach>
         </tbody>

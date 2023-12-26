@@ -13,6 +13,20 @@ public class MypageDTO {
     private String mystate;
     private Date mycomple;
     
+    
+    //봉사글
+    private String stitle;
+    private String sinfo;
+    private Date ssdate;
+    private Date sedate;
+    private String time;
+    private int sp;
+    private String splace;
+    private String sstate;
+    private int cnt_service;
+    
+    
+    
     //봉사신청내역
     private int sano;
     private int sno;
@@ -45,11 +59,22 @@ public class MypageDTO {
     private Date ardate;
     private String arimg;
     private int love;
+    private int cnt_adoprv;
+    
     
     //후기댓글 
     private int comno;
     private String adcm;
     private Date acdate;
+    
+    
+    //목격제보
+	private int textno;	
+	private String texttitle;
+	private String text;
+	private Date uploaddate;
+	private String helppic;
+	private int cnt_help;
     
     
     //입양신청
@@ -58,6 +83,28 @@ public class MypageDTO {
     private String sub_state;
     private Date sub_date;
     private String subpic;
+    
+    
+    //결제
+    private String payno;
+    private String payop;
+    private Date pdate;
+    private String paymet;
+    private String patamt;
+    
+    
+    
+	//멤버 
+    private String uname;
+    private String email;
+    private String passwd;
+    private String zipcode;
+    private String addr1;
+    private String addr2;
+    private String tel;
+    private String birth;
+    private Date mdate;
+    private String mlevel;
     
     
     
@@ -456,6 +503,318 @@ public class MypageDTO {
 	public void setSubpic(String subpic) {
 		this.subpic = subpic;
 	}
+
+
+	public String getUname() {
+		return uname;
+	}
+
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+
+	public String getZipcode() {
+		return zipcode;
+	}
+
+
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+
+
+	public String getAddr2() {
+		return addr2;
+	}
+
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
+
+
+	public String getTel() {
+		return tel;
+	}
+
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+
+	public String getBirth() {
+		return birth;
+	}
+
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
+
+	public Date getMdate() {
+		return mdate;
+	}
+
+
+	public void setMdate(Date mdate) {
+		this.mdate = mdate;
+	}
+
+
+	public String getMlevel() {
+		return mlevel;
+	}
+
+
+	public void setMlevel(String mlevel) {
+		this.mlevel = mlevel;
+	}
+
+
+	public int getCnt_adoprv() {
+		return cnt_adoprv;
+	}
+
+
+	public void setCnt_adoprv(int cnt_adoprv) {
+		this.cnt_adoprv = cnt_adoprv;
+	}
+
+
+	public int getTextno() {
+		return textno;
+	}
+
+
+	public void setTextno(int textno) {
+		this.textno = textno;
+	}
+
+
+	public String getTexttitle() {
+		return texttitle;
+	}
+
+
+	public void setTexttitle(String texttitle) {
+		this.texttitle = texttitle;
+	}
+
+
+	public String getText() {
+		return text;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public Date getUploaddate() {
+		return uploaddate;
+	}
+
+
+	public void setUploaddate(Date uploaddate) {
+		this.uploaddate = uploaddate;
+	}
+
+
+	public String getHelppic() {
+		return helppic;
+	}
+
+
+	public void setHelppic(String helppic) {
+		this.helppic = helppic;
+	}
+
+
+	public int getCnt_help() {
+		return cnt_help;
+	}
+
+
+	public void setCnt_help(int cnt_help) {
+		this.cnt_help = cnt_help;
+	}
+
+
+	public String getStitle() {
+		return stitle;
+	}
+
+
+	public void setStitle(String stitle) {
+		this.stitle = stitle;
+	}
+
+
+	public String getSinfo() {
+		return sinfo;
+	}
+
+
+	public void setSinfo(String sinfo) {
+		this.sinfo = sinfo;
+	}
+
+
+	public Date getSsdate() {
+		return ssdate;
+	}
+
+
+	public void setSsdate(Date ssdate) {
+		this.ssdate = ssdate;
+	}
+
+
+	public Date getSedate() {
+		return sedate;
+	}
+
+
+	public void setSedate(Date sedate) {
+		this.sedate = sedate;
+	}
+
+
+	public String getTime() {
+		return time;
+	}
+
+
+	public void setTime(String time) {
+		this.time = time;
+	}
+
+
+	public int getSp() {
+		return sp;
+	}
+
+
+	public void setSp(int sp) {
+		this.sp = sp;
+	}
+
+
+	public String getSplace() {
+		return splace;
+	}
+
+
+	public void setSplace(String splace) {
+		this.splace = splace;
+	}
+
+
+	public String getSstate() {
+		return sstate;
+	}
+
+
+	public void setSstate(String sstate) {
+		this.sstate = sstate;
+	}
+
+
+	public int getCnt_service() {
+		return cnt_service;
+	}
+
+
+	public void setCnt_service(int cnt_service) {
+		this.cnt_service = cnt_service;
+	}
+
+
+	public String getPayno() {
+		return payno;
+	}
+
+
+	public void setPayno(String payno) {
+		this.payno = payno;
+	}
+
+
+	public String getPayop() {
+		return payop;
+	}
+
+
+	public void setPayop(String payop) {
+		this.payop = payop;
+	}
+
+
+	public Date getPdate() {
+		return pdate;
+	}
+
+
+	public void setPdate(Date pdate) {
+		this.pdate = pdate;
+	}
+
+
+	public String getPaymet() {
+		return paymet;
+	}
+
+
+	public void setPaymet(String paymet) {
+		this.paymet = paymet;
+	}
+
+
+	public String getPatamt() {
+		return patamt;
+	}
+
+
+	public void setPatamt(String patamt) {
+		this.patamt = patamt;
+	}
+	
+	
 	
 	
 	

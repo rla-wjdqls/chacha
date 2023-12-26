@@ -22,8 +22,8 @@
 	                <th>강의번호</th>
 	                <th>교육신청번호</th>
 	                <th>내용</th>
-	                <th>신청날짜</th>
 	                <th>수료상태</th>
+	                <th>신청날짜</th>
 	                <th>수료날짜</th>
 	            </tr>
 	        </thead>
@@ -33,9 +33,14 @@
 	                    <td>${myedu.myno}</td>
 	                    <td>${myedu.eduno}</td>
 	                    <td>${myedu.mycon}</td>
-	                    <td>${myedu.mydate}</td>
-	                    <td>${myedu.mystate}</td>
-	                    <td>${myedu.mycomple}</td>
+	                    <td>
+			            <c:choose>
+			                <c:when test="${myedu.mystate eq 'y'}">수료완료</c:when>
+			                <c:when test="${myedu.mystate eq 'n'}">수료미완료</c:when>
+			            </c:choose>
+		       	   		</td>
+	                    <td><fmt:formatDate value="${myedu.mydate}" pattern="yyyy-MM-dd" /></td>
+	                    <td><fmt:formatDate value="${myedu.mycomple}" pattern="yyyy-MM-dd" /></td>
 	                </tr>
 	            </c:forEach>
 	        </tbody>

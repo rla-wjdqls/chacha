@@ -18,8 +18,8 @@
 		<h4>댓글목록</h4>
 		<p>내가 쓴글 댓글 목록을 확인 할 수 있습니다</p>
 	<br>
-	<input type="button" value="전체선택">
-	<input type="button" value="삭제">
+	<input type="button" value="전체선택" class="btn btn default">
+	<input type="button" value="삭제" class="btn btn default">
 	<br>
 	<table class="table table-condensed">
         <thead>
@@ -38,7 +38,7 @@
                     <td>${mycomment.comno}</td>
                     <td>${mycomment.adcm}</td>
                     <td>${mycomment.artitle}</td>
-                    <td>${mycomment.acdate}</td>
+                    <td><fmt:formatDate value="${mycomment.acdate}" pattern="yyyy-MM-dd" /></td>
                 </tr>
             </c:forEach>
         </tbody>
