@@ -24,7 +24,7 @@
 <div class="container-fluid">
 	<h3 style="text-align: center">${center.aname}</h3>
 		<form name="centerfrm" id="centerftm" method="post" enctype="multipart/form-data">
-			<input type="hidden" value="${center.anino}" name="anino">
+			<input type="hidden" value="${center.anino}" name="anino" class="anino">
 		<nav class="navbar navbar-light i-nav">
   			<div class="input-container" style="display: inline-block;">
 				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
@@ -74,9 +74,33 @@
 				</dl>
 			</div>
 			
-			<div class="icon-heart">
-				<i class="bi bi-heart" onclick="center_jjim()"></i>
-			</div>
+			<c:choose>
+				<%--로그인 상태에 찜 클릭 --%>
+				<c:when test="${not empty sessionScope.s_id}">
+					<c:choose>
+						<c:when test="${empty jjim.jjimno}">
+							<div class="icon-heart">
+								<i class="bi bi-heart" id="jjimButton" onclick="jjim_in()"></i>
+							</div>	
+						</c:when>
+						
+						<c:otherwise>
+							<%--이미 하트를 눌렀을 때 --%>
+							<div class="icon-heart">
+									<i class="bi bi-heart-fill" id="" onclick="jjim_de()"></i>
+							</div>	
+						</c:otherwise>
+					</c:choose>	
+				</c:when>
+				<c:otherwise>
+					<div class="icon-heart">
+						<i class="bi bi-heart" id="jjimButton" onclick="jjim_nolog()"></i>
+					</div>	
+				</c:otherwise>		
+			</c:choose>	
+			
+			
+			
 			<div class="icon-heart">
 				<i class="bi bi-chat-left-dots-fill"></i>
 			</div>
