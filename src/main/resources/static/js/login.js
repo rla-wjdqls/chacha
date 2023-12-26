@@ -72,15 +72,15 @@ function findIDCheck() {
 	 }//if end
 
 
-	 //3)생일 8글자 인지?
-	 let birth = document.getElementById("birth").value;
+	 //3)생년월일 8자리 입력했는지 확인
+     let birth = document.getElementById("birth").value;
 	 birth=birth.trim();
 	 
-	 if(!(birth.length==8)){
-		 document.getElementById("panel3").innerHTML = "생일 8글자 입력해주세요";
-		 document.getElementById("email").focus();
-	     return false;
-	 }//if end
+	 if(birth.length!==10){
+		 document.getElementById("panel7").innerHTML = "생년월일 8자리 입력해주세요";
+		 document.getElementById("birth").focus();
+		 return false;
+	 }//if end false;
 
 	return true;
 	
@@ -107,6 +107,17 @@ function findPasswdCheck() {
 		 document.getElementById("panel2").innerHTML = "이메일 5글자 이상 형식에 맞게 입력해주세요";
 		 document.getElementById("email").focus();
 	     return false;
+	 }//if end
+	 
+	 
+	 //3)생년월일 8자리 입력했는지 확인
+     let birth = document.getElementById("birth").value;
+	 birth=birth.trim();
+	 
+	 if(birth.length!==10){
+		 document.getElementById("panel7").innerHTML = "생년월일 8자리 입력해주세요";
+		 document.getElementById("birth").focus();
+		 return false;
 	 }//if end
 
 	return true;

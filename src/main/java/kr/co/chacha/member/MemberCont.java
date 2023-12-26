@@ -3,6 +3,7 @@ package kr.co.chacha.member;
 import java.io.Console;
 import java.net.http.HttpHeaders;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -132,15 +133,10 @@ public class MemberCont {
 		memberdto.setEmail(email);
 		memberdto.setBirth(birth);
 		
-		//System.out.println(memberdto.getUname()); 
-		//System.out.println(memberdto.getEmail());
-		//System.out.println(memberdto.getBirth());
-		
 		ModelAndView mav = new ModelAndView();
 		
 		//db 데이터와 입력값이 일치하면 해당하는 아이디 찾아오기
 		String uid = memberDao.findID(memberdto);
-		//System.out.println(uid); //kim9595
 		
 		// uid를 ModelAndView에 추가
 	    mav.addObject("uid", uid);
@@ -175,15 +171,10 @@ public class MemberCont {
 		memberdto.setEmail(email);
 		memberdto.setBirth(birth);
 		
-		//System.out.println(memberdto.getUid()); 
-		//System.out.println(memberdto.getEmail());
-		//System.out.println(memberdto.getBirth());
-		
 		ModelAndView mav = new ModelAndView();
 		
 		//db 데이터와 입력값이 일치하면 해당하는 아이디 찾아오기
 		String passwd = memberDao.findPasswd(memberdto);
-		System.out.println(passwd); //kim9595
 		
 		// uid를 ModelAndView에 추가
 	    mav.addObject("passwd", passwd);
@@ -200,6 +191,34 @@ public class MemberCont {
 		mav.setViewName("member/signupForm");
 		return mav;
 	}// login() end
+	
+	
+	@GetMapping("idjbcheck")
+	public String idCheckForm() {
+		return "/member/signupForm";
+	}//idCheckForm() end
+	
+	
+	@PostMapping("idjbcheck")
+	@ResponseBody
+	public String idjbCheck(HttpServletRequest req) {
+		String uid = req.getParameter("uid").trim();
+		String cnt ="0";
+		
+		if(uid.equals("kim9595") || uid.equals("h99999")) {
+			cnt="1"; //아이디가 중복 되었음
+		}//if end
+
+		//JSON 응답----------------------------------------------------------
+		//https://mvnrepository.com에서 json-simple검색후, pom.xml에 의존성 추가해야 함
+		JSONObject json = new JSONObject();
+		json.put("count", cnt); //key, value
+		return json.toString();
+		
+	}//idjbCheck() end
+	
+	
+	
 
 	// 입력 아이디,이메일 db 데이터 중복 확인 후 회원가입 폼전송
 	@PostMapping("/insert")

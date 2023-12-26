@@ -39,7 +39,12 @@
     <!-- adopt,education,help Stylesheet -->
     <link href="/css/aeh.css" rel="stylesheet">
     
-
+    <script>
+	function logout(){
+		alert("로그아웃 되었습니다");
+	}//logout() end
+   
+    </script>
     
 </head>
 

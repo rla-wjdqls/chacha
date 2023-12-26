@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
    
 <!DOCTYPE html>
 <html>
@@ -47,10 +50,22 @@
       
       <div class="login__forms">
 		<!--login form -->
-		<form class="login__register__1" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
+		<form class="login__register__1" id="login-in" action="findPasswdResult" method="post" onsubmit="return findPasswdCheck()" >
 			<h1 class="login__title">비밀번호 확인</h1>
           <div class="login__box">
-			<p class="login__input" name="uname" id="uname">회원님의 비밀번호는 "${passwd}" 입니다</p>
+          <!--값 있으면 비밀번호 띄어주고 null 혹은 빈 값이면 실패 메시지 띄어줌 -->
+			<p class="login__input" name="uname" id="uname">
+			<!-- 입력한 정보에 해당하는 아이디값 찾아와서 조건에 따라 결과 확인 -->
+			<c:set var="passwd" value="${passwd}" />
+			<c:choose>
+			    <c:when test="${empty passwd}">
+			        일치하는 비밀번호가 없습니다. 다시 시도해 주세요
+			    </c:when>
+			    <c:otherwise>
+			        회원님의 비밀번호는 "${passwd}" 입니다
+			    </c:otherwise>
+			</c:choose>
+			</p>
           </div>
 			<br>
 			<div class="save_id_box">

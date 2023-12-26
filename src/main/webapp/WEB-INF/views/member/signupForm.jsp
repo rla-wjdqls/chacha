@@ -79,8 +79,8 @@
           <span id="panel8" class="panel8"></span><!-- 공백 맞추기용 -->
           
           <!--추후 클릭 시 버튼 변경 추   -->
-          <input type="button" value="중복확인" class="btn_js_1" onclick="">
-          <input type="button" value="중복확인" class="btn_js_2" onclick="">
+          <input type="button" value="중복확인" class="btn_js_1" id="btn_js_1">
+          <input type="button" value="중복확인" class="btn_js_2" id="btn_js_2">
           <input type="button" value="주소찾기" class="btn_js" onclick="DaumPostcode()">
           
           
@@ -104,6 +104,51 @@
   </div>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/signup.js"></script>
+  <script>
+	
+		//6)해당 페이지가 로딩되었을 떄 아이디 중복확인과 관련된 쿠키변수 삭제
+		$(function(){
+			$.removeCookie("checkID");
+		}); //end
+	
+		//1)id="btn_js_1" 아이디 중복확인 버튼 클릭했을 때
+		$("#btn_js_1").click(function(){
+			
+			//2)입력한 id="btn_js_1" 값을 변수에 대입하기
+			let params = "uid=" + $("#uid").val().trim(); //공백 없도록 주의한다. 
+			alert(params);
+			
+			//3)post 방식으로 서버에 요청해서 응답받기
+			//  형식) $.post("요청명령어", 전달값, callback함수, 응답받는형식);
+			
+			//① text 응답
+			//$.post("idcheckcookieproc.do", params, checkID, "text"); //"text"는 디폴트 값이므로 생략 가능
+			
+			//② JSON 응답
+			$.post("idjbcheck", params, checkID, "json"); 
+			
+		})//click end
+	
+		
+		//4)callback함수
+		function checkID(result){
+		
+			//5)서버에서 응답받은 메세지(result)를 본문의 id=panel에 출력하고, 쿠키변수에 저장
+			//  형식) $.cookie("쿠키변수명", 값)
+			let count = eval(result.count); //형변환
+			if(count==0){
+				$("#panel2").css("color", "blue");
+				$("#panel2").text("사용 가능한 아이디 입니다");
+				$.cookie("checkID", "PASS"); //아이디중복확인을 했다는 증거. "PASS" 변경 가능
+			}else{
+				$("#panel2").css("color", "red");
+				$("#panel2").text("중복된 아이디 입니다");
+				$("#uid").focus(); //커서생성
+			}//if end
+		}//checkID() end
+		
+	</script>
+  
    
 </body>
 </html>
