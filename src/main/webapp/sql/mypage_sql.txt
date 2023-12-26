@@ -11,13 +11,6 @@ CREATE TABLE `myeducation` (
     `mycomple` DATETIME NULL
 );
 
---내강의실 보여주기
-SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
-FROM mydeucation
-WHERE id = 'kim9595'
-ORDER BY myno
-
-
 --봉사신청내역 테이블 
 CREATE TABLE `servicea` (
     `sano` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -55,6 +48,15 @@ CREATE TABLE `animal` (
 );
 
 
+--내강의실 보여주기
+SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
+FROM mydeucation
+WHERE id = 'kim9595'
+ORDER BY myno
+
+
+
+
 --찜+입양동물 테이블 조인(anino)
 --하트사진,이름,성별,나이,무게,중성화,접종
 SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
@@ -76,9 +78,33 @@ WHERE ac.uid = 'kim9595'
 SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic
 FROM adopt ap join animal an
 ON ap.uid = an.uid
-WHERE ap.uid = 'kim9595'
+WHERE ap.uid = #{uid}
+
+--입양신청 + 결제 추가
+
+SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt
+FROM payment py
+JOIN (
+    SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic
+    FROM adopt ap
+    JOIN animal an ON ap.uid = an.uid
+    WHERE ap.uid = #{uid}
+) AA ON py.apno = AA.apno
+WHERE py.uid = #{uid}
 
 
+
+--봉사신청내역
+SELECT sano, sadate, stime, astate 
+FROM servicea
+WHERE uid = #{uid}
+ORDER BY sano	
+
+
+SELECT sa.sano, sa.sadate, sa.stime, sa.astate , sc.stitle
+FROM servicea sa JOIN service sc
+ON sa.sno = sc.sno
+WHERE sa.uid = #{uid}
 
 
 
@@ -86,12 +112,19 @@ WHERE ap.uid = 'kim9595'
 --글번호 제목 작성일 조회수
 
 
+
+
+
 --사용자 글목록(입양후기+목격제보)
 --글번호 제목 작성일 조회수
-SELECT 
-FROM help hp join adoprv ar
-ON hp.uid = ar.uid
-WHERE hp.uid = 'kim9595'
+--세션 아이디와 작성자 아이디가 일치하면 가져
+SELECT arno, artitle, ardate, cnt
+FROM adoprv
+WHERE uid = 'kim9595'
+
+SELECT textno, texttitle, uploaddate, cnt
+FROM help
+WHERE uid = 'kim9595'
 
 
 --비밀번호 확인 -> 페이지이동
@@ -109,7 +142,7 @@ WHERE id = 'dddddd'
 
 --회원정보 수정
 --정보 불러오기
-SELECT * 
+SELECT uname, uid, email, passwd, tel, birth, zipcode, addr1, addr2
 FROM member 
 WHERE uid = {#uid}
 

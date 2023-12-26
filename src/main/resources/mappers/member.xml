@@ -14,6 +14,23 @@
   </select>
   
   
+   <select id="idcheck" parameterType="String" resultType="Int">
+  	SELECT count(*)
+  	FROM member
+  	WHERE uid = #{uid}
+  </select>
+  
+  
+    <select id="emailcheck" parameterType="String" resultType="Int">
+  	SELECT count(*)
+  	FROM member
+  	WHERE email = #{email}
+  </select>
+  
+  
+  
+  
+  
  <insert id="insert" parameterType="kr.co.chacha.member.MemberDTO">
    INSERT INTO member(uid, passwd, uname, tel, email, zipcode, addr1, addr2, birth, mdate)
    VALUES(#{uid}, #{passwd}, #{uname}, #{tel}, #{email}, #{zipcode}, #{addr1}, #{addr2}, #{birth}, NOW())

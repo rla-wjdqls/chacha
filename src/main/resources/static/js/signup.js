@@ -11,9 +11,8 @@ function oninputDate(target) {
         .replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"); // YYYYMMDD를 YYYY-MM-DD 형식으로 변환
 }
 
-
- 	// 우편번호 찾기 찾기 화면을 넣을 element
-      var element_wrap = document.getElementById('wrap');
+// 우편번호 찾기 찾기 화면을 넣을 element
+  var element_wrap = document.getElementById('wrap');
 
 function foldDaumPostcode() {
           // iframe을 넣은 element를 안보이게 한다.
@@ -90,12 +89,12 @@ function checkSignup() {
 	
 	
 	 //1) 이름 두글자 이상 인지?
-     let mname = document.getElementById("mname").value;
+     let mname = document.getElementById("uname").value;
 	 mname=mname.trim();
 	 
 	 if(mname.length<2 || isNaN(mname)==false){
 		 document.getElementById("panel1").innerHTML = "이름 2글자 이상 입력해주세요";
-		 document.getElementById("mname").focus();
+		 document.getElementById("uame").focus();
 		 return false;
 	 }//if end
 	 
@@ -137,16 +136,13 @@ function checkSignup() {
      let repasswd = document.getElementById("repasswd").value;
 	 repasswd=repasswd.trim();
 	 
-	 if(!(passwd==repasswd)){
+	 if(!(passwd.equals(repasswd))){
 		 document.getElementById("panel5").innerHTML = "비밀번호 확인이 일치하지 않습니다";
 		 document.getElementById("repasswd").focus();
 		 return false;
 	 }//if end
     
     
-
-	 
-
     // 유효성 체크 성공 시
 	return true;
 	

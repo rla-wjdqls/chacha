@@ -22,6 +22,16 @@ public class MemberDAO {
 	}//loginProc() end
 	
 	
+	//아이디 중복 확인 
+	public int idCheck(String userid) {
+		return sqlSession.selectOne("member.idcheck", userid);
+	}//idCheck() end
+	
+	//이메일 중복 확인
+	public int emailCheck(String useremail) {
+		return sqlSession.selectOne("member.emailcheck", useremail);
+	}//emailCheck() end
+	
 	//회원가입 폼 전송
 	public int memberInsert(MemberDTO memberdto) {
 		return sqlSession.insert("member.insert", memberdto);

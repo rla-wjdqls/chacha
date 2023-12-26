@@ -115,7 +115,9 @@ public class MemberCont {
 	}// findID() end
 	
 	
-	// 아이디 확인 페이지 이동 
+	// 입력한 정보가 db 데이터와 일치 할 경우, 아이디 확인 페이지 이동 
+	// 입력한 정보가 db 데이터와 불일치 할 경우, 아이디  
+	
 	@PostMapping("/findIDResult")
 	public ModelAndView findIDResult(HttpServletRequest req) {
 		
@@ -191,9 +193,6 @@ public class MemberCont {
 	}// findPasswdResult() end
 	
 	
-	
-	
-	
 	// 회원가입 페이지 이동
 	@GetMapping("/signupForm")
 	public ModelAndView signupForm() {
@@ -202,13 +201,23 @@ public class MemberCont {
 		return mav;
 	}// login() end
 
-	// 회원가입 폼전송
+	// 입력 아이디,이메일 db 데이터 중복 확인 후 회원가입 폼전송
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest req) {
+		String userid = req.getParameter("uid");
+		String useremail = req.getParameter("email");
+		
+		//System.out.println(uid);
+		//System.out.println(email);
+		
+		int cnt_uid = memberDao.idCheck(userid);
+		int cnt_email = memberDao.emailCheck(useremail);
+		
+		System.out.println(cnt_uid);  //1
+		System.out.println(cnt_email); //1
+		
+		
 		MemberDTO memberdto = new MemberDTO();
-		// System.out.println(req.getParameter("uid"));
-		// System.out.println(req.getParameter("tel"));
-		// System.out.println(req.getParameter("birth"));
 
 		memberdto.setUid(req.getParameter("uid"));
 		memberdto.setEmail(req.getParameter("email"));
@@ -221,6 +230,7 @@ public class MemberCont {
 		memberdto.setBirth(req.getParameter("birth"));
 
 		memberDao.memberInsert(memberdto);
+		
 
 		return "redirect:/";
 	}// insert() end

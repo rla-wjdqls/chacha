@@ -12,21 +12,33 @@
 	WHERE uid = #{uid}
 	ORDER BY myno		
  </select>
-  
+ 
+ 
+  <select id="myHelp" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT textno, texttitle, uploaddate, cnt_help, uid
+	FROM help
+	WHERE uid = #{uid}		
+ </select>
+ 
+  <select id="myAdoprv" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT arno, artitle, ardate, cnt_adoprv, uid
+	FROM adoprv
+	WHERE uid = #{uid}
+ </select>
  	
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT sano, sadate, stime, astate 
-	FROM servicea
-	WHERE uid = #{uid}
-	ORDER BY sano		
+	SELECT sa.sano, sa.sadate, sa.stime, sa.astate , sc.stitle, sa.sno
+	FROM servicea sa JOIN service sc
+	ON sa.sno = sc.sno
+	WHERE sa.uid = #{uid}	
  </select>
  
  
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT jj.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac
+	SELECT ani.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino
 	FROM jjim jj join animal ani
 	ON jj.anino = ani.anino
-	WHERE ani.uid = 'kim9595'
+	WHERE jj.uid = #{uid} and ani.jjim_icon = 1
  </select>
  
  
@@ -34,15 +46,20 @@
 	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
 	FROM adopcm ac join adoprv ar
 	ON ac.arno = ar.arno
-	WHERE ac.uid = 'kim9595'
+	WHERE ac.uid = #{uid}
  </select>
  
  
   <select id="myAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_date, ap.sub_state, ap.subpic
-	FROM adopt ap join animal an
-	ON ap.uid = an.uid
-	WHERE ap.uid = 'kim9595'
+  SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date
+	FROM payment py
+	JOIN (
+		    SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date
+		    FROM adopt ap
+		    JOIN animal an ON ap.uid = an.uid
+		    WHERE ap.uid = #{uid}
+	     ) AA ON py.apno = AA.apno
+	WHERE py.uid = #{uid}
  </select>
  
  
@@ -60,6 +77,13 @@
  </update>
  
  
+ <select id="myInfoCheck" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT uname, uid, email, passwd, tel, birth, zipcode, addr1, addr2
+	FROM member 
+	WHERE uid = #{uid}
+ </select>
+
+
 
  	
  </mapper>
