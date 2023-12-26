@@ -14,8 +14,6 @@
 
 </head>
 <body>
-
- 
   <div class="signup">
     <div class="signup__content">
       <div class="login__logo"><!--추후 로고 추가-->
@@ -81,6 +79,8 @@
           <span id="panel8" class="panel8"></span><!-- 공백 맞추기용 -->
           
           <!--추후 클릭 시 버튼 변경 추   -->
+          <input type="button" value="중복확인" class="btn_js_1" onclick="">
+          <input type="button" value="중복확인" class="btn_js_2" onclick="">
           <input type="button" value="주소찾기" class="btn_js" onclick="DaumPostcode()">
           
           

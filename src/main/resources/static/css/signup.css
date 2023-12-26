@@ -46,6 +46,38 @@
 }
 
 
+.login__register .btn_js_1 {
+    position: absolute;
+	right: 20px;
+	top: 20px;
+    display: inline-block; 
+    margin-top: 180px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: red; 
+}
+
+ 
+.login__register .btn_js_2 {
+    position: absolute;
+	right: 20px;
+	top: 20px;
+    display: inline-block; 
+    margin-top: 280px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 75px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #23004d; 
+}
 
 .login__logo {
 	text-align: center;

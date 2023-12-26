@@ -89,10 +89,10 @@ function checkSignup() {
 	
 	
 	 //1) 이름 두글자 이상 인지?
-     let mname = document.getElementById("uname").value;
-	 mname=mname.trim();
+     let uname = document.getElementById("uname").value;
+	 uname=uname.trim();
 	 
-	 if(mname.length<2 || isNaN(mname)==false){
+	 if(uname.length<2 || !isNaN(uname)){
 		 document.getElementById("panel1").innerHTML = "이름 2글자 이상 입력해주세요";
 		 document.getElementById("uame").focus();
 		 return false;
@@ -114,7 +114,7 @@ function checkSignup() {
 	 let email = document.getElementById("email").value;
 	 email=email.trim();
 	 
-	 if(email.length<5 || email.contains("@")){
+	 if(email.length<5 || !email.includes("@")){
 		 document.getElementById("panel3").innerHTML = "이메일 5글자 이상 형식에 맞게 입력해주세요";
 		 document.getElementById("email").focus();
 	     return false;
@@ -136,11 +136,34 @@ function checkSignup() {
      let repasswd = document.getElementById("repasswd").value;
 	 repasswd=repasswd.trim();
 	 
-	 if(!(passwd.equals(repasswd))){
+	 if((passwd !==repasswd)){
 		 document.getElementById("panel5").innerHTML = "비밀번호 확인이 일치하지 않습니다";
 		 document.getElementById("repasswd").focus();
 		 return false;
 	 }//if end
+    
+    
+     //6)전화번호 11자리 입력했는지 확인
+     let tel = document.getElementById("tel").value;
+	 tel=tel.trim();
+	 
+	 if(tel.length!==13){
+		 document.getElementById("panel6").innerHTML = "전화번호 11자리 입력해주세요";
+		 document.getElementById("tel").focus();
+		 return false;
+	 }//if end
+    
+    
+     //7)생년월일 8자리 입력했는지 확인
+     let birth = document.getElementById("birth").value;
+	 birth=birth.trim();
+	 
+	 if(birth.length!==10){
+		 document.getElementById("panel7").innerHTML = "생년월일 8자리 입력해주세요";
+		 document.getElementById("birth").focus();
+		 return false;
+	 }//if end
+    
     
     
     // 유효성 체크 성공 시
@@ -150,6 +173,58 @@ function checkSignup() {
 
 
 
+function checkModify() {
+
+    //1)이메일 5글자 이고 '@' 포함하고 있는지?
+	 let email = document.getElementById("email").value;
+	 email=email.trim();
+	 
+	 if(email.length<5 || !email.includes("@")){
+		 document.getElementById("panel3").innerHTML = "이메일 5글자 이상 형식에 맞게 입력해주세요";
+		 document.getElementById("email").focus();
+	     return false;
+	 }//if end
+	
+	
+    //2)비밀번호 5~10글자 이면 문자,숫자,기호를 포함할 것 얘) dhfdg852@
+     let passwd = document.getElementById("passwd").value;
+	 passwd=passwd.trim();
+	 
+	 if(passwd.length<5 || passwd.length>10){
+		 document.getElementById("panel4").innerHTML = "비밀번호 5~10글자로 입력해주세요";
+		 document.getElementById("passwd").focus();
+		 return false;
+	 }//if end
+	
+	
+    //3)비밀번호와 비밀번호확인이 서로 일치하는지?
+     let repasswd = document.getElementById("repasswd").value;
+	 repasswd=repasswd.trim();
+	 
+	 if((passwd !==repasswd)){
+		 document.getElementById("panel5").innerHTML = "비밀번호 확인이 일치하지 않습니다";
+		 document.getElementById("repasswd").focus();
+		 return false;
+	 }//if end
+    
+    
+     //4)전화번호 11자리 입력했는지 확인
+     let tel = document.getElementById("tel").value;
+	 tel=tel.trim();
+	 
+	 if(tel.length!==13){
+		 document.getElementById("panel6").innerHTML = "전화번호 11자리 입력해주세요";
+		 document.getElementById("tel").focus();
+		 return false;
+	 }//if end
+    
+       
+    
+    
+    // 유효성 체크 성공 시
+	return true;
+	
+}//checkModify() end
 
 
 

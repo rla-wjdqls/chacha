@@ -64,7 +64,7 @@
                 </div>
                 <div class="h-100 d-inline-flex align-items-center">
                     <small class="far fa-clock text-primary me-2"></small>
-                    <small>Mon - Fri : 09.00 AM - 07.00 PM</small>
+                    <small>월 - 금 : 09.00 AM - 07.00 PM</small>
                 </div>
             </div>
             <div class="col-lg-5 px-5 text-end">
@@ -76,19 +76,19 @@
             <c:if test="${not empty sessionScope.s_id}">
                 <!-- If logged in, show logout link -->
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="logout" onclick="logout()">LOGOUT</a> <!-- Adjust the logout URL accordingly -->
+                    <a href="logout" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
                 </div>
             </c:if>
             
             <!-- If not logged in, show login and sign-up links -->
             <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/loginForm">LOGIN</a>  
+                    <a href="/member/loginForm">로그인</a>  
                 </div>
             </c:if>
              &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/signupForm">SIGN-UP</a>  
+                    <a href="/member/signupForm">회원가입</a>  
                 </div>
             </div>
         </div>
@@ -115,6 +115,7 @@
                     <div class="dropdown-menu bg-light m-0">
                         <a href="/help/helpList" class="dropdown-item">목격/제보</a>
                         <a href="/adopt/adoptReview" class="dropdown-item">입양 후기</a>
+                        <a href="/research/researchForm" class="dropdown-item">설문조사</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">

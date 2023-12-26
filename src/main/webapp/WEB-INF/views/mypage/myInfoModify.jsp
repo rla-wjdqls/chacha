@@ -20,7 +20,7 @@
 	<div class="container">
 		<h4>회원정보 수정</h4><br>
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
-		 <form class="login__register" id="login-in" method="post" action="memberModify" onsubmit="return checkSignup()">
+		 <form class="login__register" id="login-in" method="post" action="memberModify" onsubmit="return checkModify()">
           <div class="login__box_1">
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="이름" class="login__input" name="uname" id="uname" value="${myInfo.uname}" readonly>
@@ -55,7 +55,7 @@
           <div class="login__box_1">
             <i class='bx bx-cake login__icon'></i>
             <!-- YYYYMMDD 입력하면 YYYY-MM-DD 로 출력됨(참고:네이버) -->
-            <input type="text" placeholder="생년월일 숫자 8자리" class="login__input" name="birth" id="birth" value="${myInfo.birth}" oninput="oninputDate(this)" maxlength=8 reeadonly>
+            <input type="text" placeholder="생년월일 숫자 8자리" class="login__input" name="birth" id="birth" value="${myInfo.birth}" oninput="oninputDate(this)" maxlength=8 readonly>
           </div>
 		  <span id="panel7" class="panel7"></span><!-- 생일 관련 메세지 -->
           <div class="login__box_1">
@@ -74,12 +74,19 @@
           </div>
           
           <!--추후 클릭 시 버튼 변경 추   -->
-          <!-- <input type="button" value="주소찾기" class="btn_js_1" onclick="DaumPostcode()"> -->
+          <input type="button" value="주소찾기" class="btn btn" onclick="DaumPostcode()">
 		  <button type="submit" class="btn btn_em" id="btn_sj">수정</button>
 		</form>
 	</div>
 	</div>
 
+   <!-- ----- DAUM 우편번호 API 시작 ----- -->
+   
+  <div id="wrap" style="display:none;border:1px solid;width:500px;height:300px;margin:5px 0;position:relative">
+    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
+  </div>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/signup.js"></script>
 
 <script src="/js/signup.js"></script>
 

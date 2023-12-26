@@ -118,6 +118,7 @@
     color: #23004d; 
 }
 
+
 .anipic {
     width: 100px; /* 이미지의 최대 너비를 부모 요소에 맞게 조절합니다. */
     height: 100px; /* 이미지의 높이를 자동으로 조절하여 비율을 유지합니다. */
@@ -213,6 +214,7 @@
                     <div class="dropdown-menu bg-light m-0">
                         <a href="/help/helpList" class="dropdown-item">목격/제보</a>
                         <a href="/adopt/adoptReview" class="dropdown-item">입양 후기</a>
+                        <a href="/research/researchForm" class="dropdown-item">설문조사</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
