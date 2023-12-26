@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.member.MemberDTO;
 
 @Repository
 public class MypageDAO {
@@ -65,10 +66,20 @@ SqlSession sqlSession;
 	}//memberWithdra() end
 	
 	
-	//세션 아이디 회원정보 불러오기
-	public List<MypageDTO> myInfoCheck(String s_id) {
-		return sqlSession.selectList("mypage.myInfoCheck", s_id);
+	//세션 아이디 회원정보 불러오기 (상세보기)
+	public MypageDTO myInfoCheck(String s_id) {
+		//System.out.println(s_id);
+		return sqlSession.selectOne("mypage.myInfoCheck", s_id);
 	}//myInfoCheck() end
+	
+	
+	//회원정보 수정
+	public void memberModify(MypageDTO mypagedto) {
+		//System.out.println(mypagedto.getPasswd());
+		sqlSession.update("mypage.memberModify", mypagedto);
+	}//memberWithdra() end
+	
+	
 	
 	
 	

@@ -77,20 +77,25 @@
  </update>
  
  
- <select id="myInfoCheck" resultType="kr.co.chacha.mypage.MypageDTO">
+ <select id="myInfoCheck" resultType="kr.co.chacha.mypage.MypageDTO" parameterType="String">
 	SELECT uname, uid, email, passwd, tel, birth, zipcode, addr1, addr2
 	FROM member 
 	WHERE uid = #{uid}
  </select>
 
 
+ <update id="memberModify" parameterType="kr.co.chacha.mypage.MypageDTO">
+	UPDATE member
+	SET passwd = #{passwd}, tel = #{tel}, birth = #{birth}, zipcode = #{zipcode}, addr1 = #{addr1}, addr2 = #{addr2} 
+	WHERE uid = #{uid}
+ </update>
 
  	
  </mapper>
  
  
  
- 
+
  
 
  

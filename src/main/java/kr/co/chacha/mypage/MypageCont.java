@@ -122,7 +122,7 @@ public class MypageCont {
 		
 		if(s_passwd.equals(passwd)) {
 			mav.setViewName("mypage/myInfoModify"); //비밀번호 일치 시 수정 페이지로 이동
-			//mav.addObject("myInfo", mypageDao.myInfoCheck(s_id));
+			mav.addObject("myInfo", mypageDao.myInfoCheck(s_id));
 		} else {
 			mav.setViewName("redirect:/mypage/myInfo1"); //비밀번호 불일치 시 다시 돌아옴
 		}//if end
@@ -131,8 +131,39 @@ public class MypageCont {
 	}// myInfoModify() end
 	
 	
-
+	//수정 버튼 눌러서 폼 제출
+	@PostMapping("/mypage/memberModify")
+	public ModelAndView memberModify(HttpSession session, HttpServletRequest req) {
+		
+		String uid = req.getParameter("uid");
+		String passwd = req.getParameter("passwd");
+		String tel = req.getParameter("tel");
+		String birth = req.getParameter("birth");
+		String zipcode = req.getParameter("zipcode");
+		String addr1 = req.getParameter("addr1");
+		String addr2 = req.getParameter("addr2");
+		
+		MypageDTO mypagedto = new MypageDTO(); 
+		
+		mypagedto.setUid(uid);
+		mypagedto.setPasswd(passwd);
+		mypagedto.setTel(tel);
+		mypagedto.setBirth(birth);
+		mypagedto.setZipcode(zipcode);
+		mypagedto.setAddr1(addr1);
+		mypagedto.setAddr2(addr2);
+		
+		mypageDao.memberModify(mypagedto);
+		
+		ModelAndView mav = new ModelAndView();
+    	
+    	mav.setViewName("redirect:/"); //수행 후 마이페이지로 다시 돌아게 수정할 것
+    	
+        return mav; 
+		
+	}//memberModify() end
 	
+
 	
 	// 비밀번호 일치하면 회원탈퇴 페이지로 이동
 	@PostMapping("/mypage/myInfoWithdraw")

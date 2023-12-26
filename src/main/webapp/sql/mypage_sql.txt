@@ -146,8 +146,10 @@ SELECT uname, uid, email, passwd, tel, birth, zipcode, addr1, addr2
 FROM member 
 WHERE uid = {#uid}
 
-
-
+--수정하기
+UPDATE member
+SET 
+WHERE uid = #{uid}
 
 
 
