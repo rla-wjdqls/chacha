@@ -24,12 +24,13 @@ public class HelpCont {
 	}//HelpCont() end
 	
 	@Autowired
-	private HelpDAO helpDao;
+	private HelpDAO helpDAO;
 	
 	@RequestMapping("/helpList")
-	public ModelAndView helpList() {
+	public ModelAndView helpList2() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("help/helpList");
+		mav.addObject("helpList2",helpDAO.helpList2());
 		return mav;
 	}
 	
@@ -45,11 +46,6 @@ public class HelpCont {
 						 @RequestParam(name="img") MultipartFile img,
 						 HttpServletRequest req) {
 		String helppic="-";
-		//System.out.println(map);
-		//System.out.println(map.get("texttitle"));
-		//System.out.println(map.get("text"));
-		//System.out.println(map.get("helppic"));
-		//System.out.println(img.getOriginalFilename());
 		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			helppic=img.getOriginalFilename();
 			try {
@@ -63,9 +59,18 @@ public class HelpCont {
 		
 		map.put("helppic", helppic);
 		
-		helpDao.insert(map);
+		helpDAO.insert(map);
 		return "redirect:/help/helpList";
 	
-		
 	}//insert() end
+	
+	//상세 페이지
+	@GetMapping("/helpdetail")
+    public ModelAndView helpd(int sno) {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("help/helpdetail");
+    	mav.addObject("helpd", helpDAO.detail(sno));
+    	return mav;
+    }
+	
 }
