@@ -66,17 +66,17 @@
 		  <span id="panel7" class="panel7"></span><!-- 이메일 중복 관련 메세지 -->
           <div class="login__box">
             <i class='bx bx-map login__icon'></i>
-            <input type="text" placeholder="우편번호" class="login__input" name="zipcode" id="zipcode" readonly>
+            <input type="text" placeholder="우편번호(선택)" class="login__input" name="zipcode" id="zipcode" readonly>
           </div>
           <span id="panel8" class="panel8"></span><!-- 공백 맞추기용 -->
           <div class="login__box">
           	<i class='bx bx-home login__icon'></i>
-            <input type="text" placeholder="기본주소" class="login__input" name="addr1" id="addr1" readonly>
+            <input type="text" placeholder="기본주소(선택)" class="login__input" name="addr1" id="addr1" readonly>
           </div>
           <span id="panel8" class="panel8"></span><!-- 공백 맞추기용 -->
           <div class="login__box">
           	<i class='bx bx-home login__icon'></i>
-            <input type="text" placeholder="나머지 주소(선택 입력 가능)" class="login__input" name="addr2" id="addr2">
+            <input type="text" placeholder="나머지 주소(선택)" class="login__input" name="addr2" id="addr2">
           </div>
           <span id="panel8" class="panel8"></span><!-- 공백 맞추기용 -->
           
