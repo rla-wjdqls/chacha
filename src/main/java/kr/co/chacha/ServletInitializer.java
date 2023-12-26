@@ -13,14 +13,14 @@ public class ServletInitializer extends SpringBootServletInitializer {
 		return application.sources(ChachaApplication.class);
 	}//main() end
 	
-//	@Bean
-//	public SqlSessionTemplate sqlSession(SqlSessionFactory factory) {
-//
-//	System.out.println("-----sqlSession() 호출됨");
-//
-//	return new SqlSessionTemplate(factory);
-//
-//	}//sqlSession() end
+	@Bean
+	public SqlSessionTemplate sqlSession(SqlSessionFactory factory) {
+
+	System.out.println("-----sqlSession() 호출됨");
+
+	return new SqlSessionTemplate(factory);
+
+	}//sqlSession() end
 
 
 }

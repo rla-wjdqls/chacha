@@ -37,12 +37,12 @@
 		<div class="container">
 			<div class="container"   >
 			<c:choose>
-				<c:if test="${center.anipic != '-' || center.anipic != 'NULL'}">
-					<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" >
-				</c:if>
-				<!-- <c:else>
-				  	<img src="/img/noimg.png"  style="float: left; margin-right: 20px;" width="270px">
-				</c:else> -->
+				<c:when test="${center.anipic == '-' || empty center.anipic}">
+				  	<img src="/img/noimg.png" style="float: left; margin-right: 20px;" width="270px" alt="기본 이미지">
+				</c:when>
+				<c:otherwise>
+				  	<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" alt="이미지">
+				</c:otherwise>
 			</c:choose>
 			</div>
 			
