@@ -12,13 +12,13 @@
  </select>
  
  <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
-		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate)
-		VALUES(#{uid}, #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{time}, #{sp}, #{splace}, #{sstate})
+		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate)
+		VALUES(#{uid}, #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{sstime}, #{etime}, #{time}, #{sp}, #{splace}, #{sstate})
 </insert>
 
  <!--  게시글 상세정보  -->
 <select id="detail" resultType="kr.co.chacha.service.ServiceDTO">
-	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
+	SELECT sno, uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate, cnt
 	FROM service
 	WHERE sno = #{sno}
 </select>
@@ -30,7 +30,7 @@
     
 <update id="update" parameterType="kr.co.chacha.service.ServiceDTO">
 	UPDATE service 
-	SET sno = #{sno}, uid = #{uid}, stitle = #{stitle}, sinfo = #{sinfo}, ssdate = #{ssdate}, sedate = #{sedate}, time = #{time}, sp = #{sp}, splace = #{splace}, sstate = #{sstate}
+	SET sno = #{sno}, uid = #{uid}, stitle = #{stitle}, sinfo = #{sinfo}, ssdate = #{ssdate}, sedate = #{sedate}, sstime = #{sstime}, etime = #{etime}, time = #{time}, sp = #{sp}, splace = #{splace}, sstate = #{sstate}
 	WHERE sno = #{sno}		
 </update>
 

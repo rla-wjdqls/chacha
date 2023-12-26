@@ -94,4 +94,14 @@ public class ServiceCont {
 		return mav;
 		
 	}//serviceList() end
+	
+	// 봉사신청 
+		@GetMapping("/servicea")
+		public ModelAndView servicea(int sno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("service/servicea");
+			mav.addObject("servicea", serviceDAO.detail(sno));
+			return mav;
+			
+		}//화면전환
 }//end
