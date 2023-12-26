@@ -10,13 +10,13 @@
  	
  	
  	<select id="form" resultType="java.util.Map">
- 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
+ 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
  		FROM animal
  		ORDER BY animal_date desc
  	</select>
  	
  	<select id="detail" resultType="java.util.Map">
- 		SELECT anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
  		FROM animal
  		WHERE anino = #{anino}
  	</select>
@@ -29,7 +29,7 @@
  	
  	<update id="update">
  		UPDATE animal 
- 		SET anino = #{anino}, uid = 'kim9595', aname = #{aname}, age = #{age}, gender = #{gender}, weight = #{weight}, genop = #{genop}, vac = #{vac}, intro = #{intro}, anipic = #{anipic}, adopt = #{adopt}, adopt_pos = #{adopt_pos}
+ 		SET anino = #{anino}, aname = #{aname}, age = #{age}, gender = #{gender}, weight = #{weight}, genop = #{genop}, vac = #{vac}, intro = #{intro}, anipic = #{anipic}, adopt = #{adopt}, adopt_pos = #{adopt_pos}
  		WHERE anino = #{anino}		
  	</update>
  	
