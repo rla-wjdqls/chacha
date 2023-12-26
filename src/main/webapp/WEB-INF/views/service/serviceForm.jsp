@@ -22,6 +22,8 @@
    </ul>
 </nav>
 
+
+
 <div class="container text-center">
 	<p><h3>[봉사모집글쓰기]</h3></p>
 </div>
@@ -33,10 +35,7 @@
 <form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceForm">
 <div class="container col-sm-12">
 	<table class="table"> 
-		<tr>
-			<th class="success">아이디</th>
-			<td><input type="text" name="uid" id="uid" class="form-control" maxlength="20" required></td>
-		</tr>
+		
 		<tr>
 			<th class="success">제목</th>
 			<td><input type="text" name="stitle" id="stitle" class="form-control" maxlength="100" required></td>
@@ -86,6 +85,6 @@
 			</td>	
 	</table>
 </div>
-<form>
+</form>
 
 <%@ include file="../footer.jsp"%>

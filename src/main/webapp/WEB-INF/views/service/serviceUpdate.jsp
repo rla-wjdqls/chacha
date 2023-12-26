@@ -29,7 +29,8 @@
 	<p><a href="/service/serviceList" class="nav-item nav-link"><input type="button" value="글목록"></a></p>	
 </div>
 
-<form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceForm">
+<form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceUpdate">
+<input type="hidden" name="sno" id="sno" value="${serviceup.sno}"/>
 <div class="container col-sm-12">
 	<table class="table"> 
 		<tr>
