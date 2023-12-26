@@ -40,7 +40,7 @@
     <link href="/css/aeh.css" rel="stylesheet">
     
     <script>
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		/* var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
 		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 		        level: 3 // 지도의 확대 레벨
@@ -60,7 +60,7 @@
 		marker.setMap(map);
 		
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-		// marker.setMap(null);    
+		// marker.setMap(null);    */ 
 
 		function center_Update() {
 			document.centerfrm.action="/center/centerUpdate";
@@ -80,11 +80,18 @@
 			}
 		}
 		
-		function center_jjim(){
-			document.centerfrm.action="/jjim/insert";
-			document.centerfrm.submit();
+		function jjim_in(){
+			alert("찜");
 		}
-
+		
+		function jjim_de(){
+			alert("찜 해제");
+		}
+		
+		function jjim_nolog(){
+			alert("로그인 필요");
+		}
+		
 </script>
 </head>
 
