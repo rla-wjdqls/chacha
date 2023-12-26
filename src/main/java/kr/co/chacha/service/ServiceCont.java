@@ -31,7 +31,7 @@ public class ServiceCont {
 	 * 
 	 * }//serviceList() end
 	 */	
-	@GetMapping("/serviceList")
+	@RequestMapping("/serviceList")
 	public ModelAndView serviceList2(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		String uid=(String)session.getAttribute("s_id");
@@ -45,7 +45,6 @@ public class ServiceCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("service/serviceForm");
 		return mav;
-		
 	}//
 	
 	//게시물 글쓰기

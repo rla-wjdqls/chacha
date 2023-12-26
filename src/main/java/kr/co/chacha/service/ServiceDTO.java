@@ -19,6 +19,8 @@ public class ServiceDTO {
 	 	private Date sadate;
 	 	private String stime;
 		private String astate;
+		
+		
 		public ServiceDTO () {}
 		public int getSno() {
 			return sno;

@@ -5,7 +5,7 @@
  <!--mypage.xml-->
  <mapper namespace="service">
  	
- <select id="serviceList2" resultType="kr.co.chacha.service.ServiceDTO" parameterType="String">
+ <select id="serviceList2" resultType="kr.co.chacha.service.ServiceDTO">
  	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
 	FROM service
 	WHERE uid = #{uid}
