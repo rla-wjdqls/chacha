@@ -11,7 +11,30 @@
     
 <title>findPasswdResult.jsp</title>
 
+<style>
+
+.login__register__1 {
+  position: absolute;
+  margin-bottom: 150px;
+  bottom: -5rem;
+  width: 460px;
+  left: 50%;
+  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
+  box-sizing: border-box;
+  background-color: var(--color-lighten);
+  padding: 30px;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+  animation-duration: 0.4s;
+  animation-name: animateLogin;
+
+}
+
+</style>
 </head>
+
+<!--추후 임시비밀번호 발급 고려 -->
 
 <body>
 
@@ -22,19 +45,49 @@
 		<h1>그냥 데려가개</h1>	
       </div>
       
-비밀번호 : ${passwd}
+      <div class="login__forms">
+		<!--login form -->
+		<form class="login__register__1" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
+			<h1 class="login__title">비밀번호 확인</h1>
+          <div class="login__box">
+			<p class="login__input" name="uname" id="uname">회원님의 비밀번호는 "${passwd}" 입니다</p>
+          </div>
+			<br>
+			<div class="save_id_box">
+				<a href="/member/findID" class="login__forgot2">아이디 찾기</a>
+			</div>
+			<a href="/member/loginForm"><input type="button" value="로그인" class="login__button"/></a>
+			<div>
+				<span class="login__account login__account--account">계정이 없으신가요?</span> 
+				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/signupForm">회원가입</a></span>
+			</div>
+		</form>
+	</div>
 
 
-
-<!--아이디 찾기 추가-->
-<!--로그인 하러가기 추가-->
-
-
-	<script src="/js/login.js"></script>
+<script src="/js/login.js"></script> 
 	
 	</body>
-
+	
 </html>
+
+
+
+<!--아이 찾기 추가-->
+<!--로그인 하러가기 추가-->
+
+	
+
+
+
+
+
+
+
+
+
+
+
 
 
 
