@@ -1,5 +1,6 @@
 package kr.co.chacha.education;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,21 @@ public class EduCont {
 		System.out.println("-----EduCont() 객체 생성");
 	}
 	
-	@GetMapping("/educationList")
+	@Autowired
+	private EduDAO eduDao;
+	
+	@RequestMapping("/educationList")
 	public ModelAndView educationList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("education/educationList");
 		return mav;
 	}
+	
+	
+	
+	
+	
+	
 	
 
 }

@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -60,7 +62,8 @@ public class CenterCont {
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
 						 @RequestParam(name="img") MultipartFile img,
-						 HttpServletRequest req) {
+						 HttpServletRequest req,
+						 HttpSession session) {
 		String anipic="-";
 		//System.out.println(img);
 		//System.out.println(anipic);
@@ -77,6 +80,8 @@ public class CenterCont {
 		}//if end
 		
 		map.put("anipic", anipic);
+		String uid=(String)session.getAttribute("s_id");
+		map.put("uid", uid);
 		
 		centerDao.insert(map);
 		return "redirect:/center/centerForm";
@@ -144,5 +149,6 @@ public class CenterCont {
 		
 		return "redirect:/center/centerForm";
 	}
+
 			
 }

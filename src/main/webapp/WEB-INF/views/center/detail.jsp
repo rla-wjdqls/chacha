@@ -36,14 +36,16 @@
 
 		<div class="container">
 			<div class="container"   >
-				<c:if test="${center.anipic != '-'}">
+			<c:choose>
+				<c:if test="${center.anipic != '-' || center.anipic != 'NULL'}">
 					<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" >
 				</c:if>
+				<!-- <c:else>
+				  	<img src="/img/noimg.png"  style="float: left; margin-right: 20px;" width="270px">
+				</c:else> -->
+			</c:choose>
 			</div>
 			
-			<div>
-				<i class="bi bi-heart"></i>
-			</div>
 			
 			<div class="container-1 rotate-text"> 
 				<dl class="anidl" style="float: left">
@@ -72,7 +74,21 @@
 				</dl>
 			</div>
 			
+			<div class="icon-heart">
+				<i class="bi bi-heart" onclick="center_jjim()"></i>
+			</div>
+			<div class="icon-heart">
+				<i class="bi bi-chat-left-dots-fill"></i>
+			</div>
+			<div class="d-grid gap-2 d-md-block" >
+			  <button class="btn btn-primary" type="button">신청하기</button>
+			</div>
 			<hr>
+			<div>
+				<p style="text-align: center">
+				${center.intro}
+				</p>
+			</div>
 		</div>	
 		</form>
 	</div>	
