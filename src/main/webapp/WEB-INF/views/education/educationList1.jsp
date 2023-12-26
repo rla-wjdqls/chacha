@@ -47,8 +47,8 @@
         }
     </style>   
 <%@ include file="../header.jsp" %>
-	<nav class="navbar navbar-light bg-light" style="height: 42px">
-			 <ul class="list-inline ml-auto" style="align-items: center;">
+<nav class="navbar navbar-light bg-light" style="height: 42px">
+    <ul class="list-inline ml-auto" style="align-items: center;">
 				<li class="list-inline-item">
 					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
 					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
@@ -83,15 +83,11 @@
 		    	<h5 class="card-title">고양이 교육강의</h5>
 		    	<p class="card-text">고양이</p>
 		    	<a href="/css/cat.html" class="btn btn-primary">신청하기</a>
-		    	<button onclick="openCatQuizModal()" class="btn btn-primary">퀴즈풀기</A>
+		    	<button onclick="openCatQuizModal()" class="btn btn-primary">퀴즈풀기</button>
 			</div>
 	</div>
-</div>
-
- 	<!-- 버튼을 클릭하면 모달 창이 열리도록 함 -->
-    <!-- <button onclick="openCatQuizModal()">Open Cat Quiz</button> -->
-    
-    <!-- Dog Quiz 모달 창 -->
+</div>	
+	<!-- Dog Quiz 모달 창 -->
     <div id="dogQuizModal" class="modal">
         <div class="modal-content2">
             <span class="close" onclick="closeDogQuizModal()">&times;</span>
@@ -101,7 +97,7 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="quizForm">
+        <form id="dogquizForm">
             <div class="question">
                 <label>1. 종합백신(DHPPL) 종류에 광견병이 포함된다. </label>
                 <input type="radio" name="qd1" value="O"> O
@@ -154,18 +150,17 @@
             </div>
            <!-- 추가 문제 추가 가능 -->
 
-            <button type="button" onclick="gradeQuiz()">결과보기</button>
+            <button type="button" onclick="gradeDogQuiz()">결과보기</button>
         </form>
 
         <!-- 채점 결과 -->
         <div id="result" class="result"></div>
     	</div>
             <!-- Quiz 내용 추가 -->
-        </div>
+        
     </div>
-       
-          
-            
+</div>
+        
 
     <!-- Cat Quiz 모달 창 -->
     <div id="catQuizModal" class="modal">
@@ -177,7 +172,7 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="quizForm">
+         <form id="catQuizForm">
             <div class="question">
                 <label>1. 고양이는 높은 곳에서 떨어져서 다치지 않는다. </label>
                 <input type="radio" name="qc1" value="O"> O
@@ -231,14 +226,13 @@
                 <input type="radio" name="qc10" value="X"> X
             </div>
             
+			<!-- 추가 문제 추가 가능 -->
 
-            <!-- 추가 문제 추가 가능 -->
-
-            <button type="button" onclick="gradeQuiz()">결과보기</button>
+            <button type="button" onclick="gradeCatQuiz()">결과보기</button>
         </form>
 
         <!-- 채점 결과 -->
-        <div id="result" class="result"></div>
+        <div id="catQuizResult" class="result"></div>
     	</div>
             <!-- Quiz 내용 추가 -->
         </div>
@@ -246,6 +240,12 @@
 
     <!-- 스크립트 링크 -->
     <script>
+    
+ // 전역 변수로 선언
+    var dogScore = 0;
+    var catScore = 0;
+
+    
  // 모달 열기
     function openCatQuizModal() {
         document.getElementById('catQuizModal').style.display = 'block';
@@ -277,34 +277,67 @@
         }
     }
 
-    function gradeQuiz() {
-        // 문제별 정답 배열
-        var correctAnswers = ["O", "X"];
+    function gradeDogQuiz() {
+        // Dog Quiz 문제별 정답 배열
+        var correctDogAnswers = ["O", "X"]; // 예시, 실제 정답에 따라 수정
 
+        // 사용자가 선택한 Dog Quiz 답 배열
+        var userDogAnswers = getUserAnswers("dogquizForm", correctDogAnswers.length);
+
+        // Dog Quiz 점수 계산
+        dogScore = calculateScore(userDogAnswers, correctDogAnswers);
+
+        // Dog Quiz 결과 표시
+        document.getElementById("result").innerHTML = "총 점수: " + dogScore + "점";
+    }
+
+    function gradeCatQuiz() {
+        // Cat Quiz 문제별 정답 배열
+        var correctCatAnswers = ["O", "X"]; // 예시, 실제 정답에 따라 수정
+
+        // 사용자가 선택한 Cat Quiz 답 배열
+        var userCatAnswers = getUserAnswers("catQuizForm", correctCatAnswers.length);
+
+        // Cat Quiz 점수 계산
+        catScore = calculateScore(userCatAnswers, correctCatAnswers);
+
+        // Cat Quiz 결과 표시
+        document.getElementById("catQuizResult").innerHTML = "총 점수: " + catScore + "점";
+    }
+
+    function displayTotalScore() {
+        // 전체 퀴즈 결과 표시
+        var totalScore = dogScore + catScore;
+        document.getElementById("result").innerHTML = "전체 총 점수: " + totalScore + "점";
+    }
+
+
+    function getUserAnswers(formId, numQuestions) {
         // 사용자가 선택한 답 배열
         var userAnswers = [];
-        for (var i = 1; i <= correctAnswers.length; i++) {
-            var selectedAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+        for (var i = 1; i <= numQuestions; i++) {
+            var selectedAnswer = document.querySelector(`#${formId} input[name="qd${i}"]:checked`);
             if (selectedAnswer) {
                 userAnswers.push(selectedAnswer.value);
             } else {
                 alert("모든 문제에 답을 선택해주세요.");
-                return;
+                return [];
             }
         }
+        return userAnswers;
+    }
 
+    function calculateScore(userAnswers, correctAnswers) {
         // 점수 계산
         var score = 0;
         for (var i = 0; i < correctAnswers.length; i++) {
             if (userAnswers[i] === correctAnswers[i]) {
-                score += 10;
+                score++;
             }
         }
-
-        // 결과 표시
-        document.getElementById("result").innerHTML = "총 점수: " + score + "점";
+        return score;
     }
-    </script>
+        		</script>
  
 
 <%@ include file="../footer.jsp" %>      
