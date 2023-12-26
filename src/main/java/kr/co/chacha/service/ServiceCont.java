@@ -6,8 +6,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,12 +29,11 @@ public class ServiceCont {
 	 * 
 	 * }//serviceList() end
 	 */	
-	@GetMapping("/serviceList")
-	public ModelAndView serviceList2(HttpSession session) {
+	@RequestMapping("/serviceList")
+	public ModelAndView serviceList() {
 		ModelAndView mav = new ModelAndView();
-		String uid=(String)session.getAttribute("s_id");
 		mav.setViewName ("service/serviceList");
-		mav.addObject("serviceList2",serviceDAO.serviceList2(uid));
+		mav.addObject("serviceList",serviceDAO.serviceList());
 		return mav;
 	}//serviceList() end
 	
@@ -46,15 +43,15 @@ public class ServiceCont {
 		mav.setViewName("service/serviceForm");
 		return mav;
 		
-	}//
+	}//serviceList() end
 	
-	//게시물 글쓰기
 	@PostMapping("/serviceForm")
-	public ModelAndView serviceIns(ServiceDTO servicedto,
-			 HttpSession session) {
+	public ModelAndView serviceIns(ServiceDTO servicedto, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		String uid=(String)session.getAttribute("s_id");
-		servicedto.setUid(uid);
+		HttpSession session = request.getSession();
+		String sid = session.getAttribute("s_id").toString();
+		//System.out.println("세션값 확인 : " + sid); 세션값 가져오는 거 확인되고 로그 찌겪혀으니까 확실한거 확인
+		servicedto.setUid(sid);
 		serviceDAO.insert(servicedto);
 		mav.setViewName("redirect:/service/serviceList");		
 		return mav;

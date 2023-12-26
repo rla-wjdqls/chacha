@@ -20,13 +20,12 @@ public class ServiceDAO {
 	SqlSession sqlSession;
 	
 	public void insert(ServiceDTO servicedto) {
-	 sqlSession.insert("service.insert", servicedto);{
-			sqlSession.insert("service.insert", servicedto);}
-	    }//insert() end
+		sqlSession.insert("service.insert", servicedto);
+	}//insert() end
 	
-	public ServiceDTO serviceList2(String uid) {
-		return sqlSession.selectOne("service.serviceList2", uid);
-		    }
+	public List<ServiceDTO> serviceList() {
+		return sqlSession.selectList("service.serviceList");
+	}
 	
 	public ServiceDTO detail(int sno){
 		return sqlSession.selectOne("service.detail", sno);
