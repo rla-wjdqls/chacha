@@ -12,7 +12,7 @@ CREATE TABLE `adoprv` (
 );
 
 --시퀀스 생성
-create sequence adoprv;
+create sequence adoprv_seq;
 
 --입양후기 댓글
 CREATE TABLE `adopcm` (
@@ -34,6 +34,9 @@ CREATE TABLE `help` (
 	`love` INT(5) NULL DEFAULT 0,			--좋아요
 	`cnt` INT(5) NOT NULL DEFAULT 0			--조회수
 );
+
+--시퀀스 생성
+create sequence help_seq;
 
 
 --책임금 결제

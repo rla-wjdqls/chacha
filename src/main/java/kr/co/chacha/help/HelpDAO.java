@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.chacha.service.ServiceDTO;
+
 @Repository
 public class HelpDAO {
 	
@@ -17,9 +19,9 @@ public class HelpDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<HelpDTO> helpList(int textno) {
-		return sqlSession.selectList("help.list", textno);
-	}//list() end
+	//public List<HelpDTO> helpList(int textno) {
+	//	return sqlSession.selectList("help.list", textno);
+	//}//list() end
 	
 	public int helpUpdate(HelpDTO help) {
 		return sqlSession.update("help.update", help);
@@ -36,6 +38,14 @@ public class HelpDAO {
 	
 	public List<Map<String, Object>> form(){
 		return sqlSession.selectList("help.list");
+	}
+	
+	public List<HelpDTO> helpList2() {
+		return sqlSession.selectList("help.helpList2");
+		    }
+	
+	public HelpDTO detail(int textno){
+		return sqlSession.selectOne("help.detail", textno);
 	}
 	
 

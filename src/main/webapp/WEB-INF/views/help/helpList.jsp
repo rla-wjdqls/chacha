@@ -36,23 +36,21 @@
 		</tr>
 	</thead>
 	<tbody>
-    		<c:forEach items="${list}" var="row">
+    		<c:forEach items="${helpList2}" var="row">
     			<tr>
-    				<td>${row.textno}</td>
-    				<td>${row.texttitle}</td>
+    				<td><a href="helpDetail?textno=${row.textno}">${row.textno}</td>
+    				<td><a href="helpDetail?textno=${row.textno}">${row.texttitle}</td>
     				<td>${row.cnt}</td>
     				<td>${row.uid}</td>
     				<td>${row.uploaddate}</td>
-    				<td>
-    					<input type="button" value="삭제" onclick="helpDelete(${row.textno})">	
-    				</td>
+    				
     			</tr>
     		</c:forEach>
  </tbody>
  	</table>
 
 <!-- 검색 시작 -->
-		
+	<table class="table">
 		<tr>
 			<td colspan="4" style="text-align:center; height:50px;">
 				<form action="helpList.jsp" onsubmit="return helpCheck()"><!-- help.js함수 작성 안 함 -->
@@ -67,7 +65,7 @@
 				</form>			
 			</td>
 		</tr>
-		
+	</table>	
 	
 		 
 
