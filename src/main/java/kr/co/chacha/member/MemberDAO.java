@@ -23,8 +23,8 @@ public class MemberDAO {
 	
 	
 	//아이디 중복 확인 
-	public int idCheck(String userid) {
-		return sqlSession.selectOne("member.idcheck", userid);
+	public int idCheck(String uid) {
+		return sqlSession.selectOne("member.idcheck", uid);
 	}//idCheck() end
 	
 	//이메일 중복 확인
