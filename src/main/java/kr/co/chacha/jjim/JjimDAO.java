@@ -17,4 +17,12 @@ public class JjimDAO {
 	public int jjimInsert(JjimDTO dto) {
 		return sqlSession.insert("jjim.insert", dto);
 	}
+	
+	public int jjimSelect(JjimDTO dto) {
+		return sqlSession.selectOne("jjim.select", dto);
+	}
+	
+	public int jjimDelete(JjimDTO dto) {
+		return sqlSession.delete("jjim.delete", dto);
+	}
 }

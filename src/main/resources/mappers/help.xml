@@ -10,7 +10,7 @@
 	 	
 	 		 
 	 
-	<select id="helpList2" resultType="kr.co.chacha.help.HelpDTO">
+	<select id="helpList" resultType="kr.co.chacha.help.HelpDTO">
 		SELECT textno, texttitle, cnt, uid, uploaddate
 		FROM help
 		WHERE uid = 'kim9595'
@@ -19,7 +19,7 @@
 	
 	<!--  게시글 상세정보  -->
 <select id="detail" resultType="kr.co.chacha.help.HelpDTO">
-	SELECT textno, texttitle, cnt, uid, uploaddate
+	SELECT textno, texttitle, cnt, uid, helppic, text, uploaddate
 	FROM help
 	WHERE textno = #{textno}
 </select>

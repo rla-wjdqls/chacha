@@ -3,10 +3,21 @@
 
  <mapper namespace="jjim">
   	
-  	<insert id="insert" parameterType="kr.co.chacha.member.MemberDTO">
+  	<insert id="insert" parameterType="kr.co.chacha.jjim.JjimDTO">
   		INSERT INTO jjim (uid, anino)
-  		VALUES (#{uid}, #{anino})
+  		VALUES ( #{uid}, #{anino} )
   	</insert>
   	
+  	<select id="select" parameterType="kr.co.chacha.jjim.JjimDTO" resultType="int">
+  		SELECT COUNT(*) 
+  		FROM jjim 
+  		WHERE ( uid = #{uid} )
+  	</select>
+  	
+  	<delete id="delete" parameterType="String">
+  	  	DELETE FROM jjim
+		WHERE uid = #{uid};
+  	
+  	</delete>
   </mapper>
  

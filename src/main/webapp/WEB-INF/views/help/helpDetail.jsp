@@ -2,7 +2,19 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp" %>
+<style>
+.right {
+  float: right;
+}
 
+th{
+width: 10%;
+}
+
+td{
+width: 40%;
+}
+</style>
 <script>
 function hdelete() {
 	if(confirm("삭제하겠습니까?")) {//자바스크립트 내장함수
@@ -31,43 +43,54 @@ function hdelete() {
 
 
 <div style="text-align: right; height: 50px;">
-	<p><a href="/help/helpList" class="nav-item nav-link"><input type="button" value="글목록"></a></p>	
+	<!-- <p><a href="/help/helpList" class="nav-item nav-link">
+		<input type="button" value="글목록"></a></p>	 -->
 </div>
 
 <div class="container text-center">
 	<div class="row">
  		<div class="col-sm-12"> 
-			<p><h3> [목격/제보글 상세보기] </h3></p>
+			<h3> 목격/제보글 상세보기 </h3>
+			<p><a href="/help/helpList" class="right">[글목록]</a></p><br><br>
 		</div>
 	</div>
 </div>
 
-<div class="container">
-	<table>
-	  <tr>
-		<th>글번호</th>
-		<td>${helpd.textno}</td>
-	  </tr>
-	 
-	  <tr>
+<div class="container text-center">
+	<table class="table table-hover container">
+	<thead>
+	  <tr class="success">
 	  	<th>제목</th>
-		<td>${helpd.texttitle}</td>
+		<td colspan="3">${helpd.texttitle}</td>
+	  </tr>
+	  
+	  <tr>
+	    <th>글번호</th>
+		<td>${helpd.textno}</td>
+	  
+	  	<th>작성자</th>
+		<td>${helpd.uid}</td>
+		
+	  </tr>
+	  
+	  <tr>
+		  <th>내용</th>
+		  <td colspan="3">${helpd.text}</td>
+	  </tr>
+	  
+	  <tr>
+		  <th>첨부파일</th>
+		  <td colspan="3">${helpd.helppic}</td>
 	  </tr>
 	  
 	  <tr>
 	  	<th>조회수</th>
 		<td>${helpd.cnt}</td>
-	  </tr>
-	  
-	  <tr>
-	  	<th>작성자</th>
-		<td>${helpd.uid}</td>
-	  </tr>
-	  
-	  <tr>
+		
 	  	<th>작성일</th>
 		<td>${helpd.uploaddate}</td>
 	  </tr>
+	  </thead>
 	</table>
 </div>
 <form id="helpDelete" name="helpDelete" method="post" action="/help/helpDelete">
@@ -76,9 +99,9 @@ function hdelete() {
 
 <div style="text-align:center; height: 50px; padding-top: 15px;">
 	<p><a href="/help/helpUpdate?textno=${helpd.textno}">
-	<input type="button" value="수정" style="background-color: azure;"></a> &nbsp;
-	<input type="button" onclick="hdelete();" value="삭제"> &nbsp;
-	<input type="button" value="신청"></p>
+	<input type="button" class="btn btn-success" value="수정"></a> &nbsp;
+	<input type="button" class="btn btn-danger" onclick="hdelete();" value="삭제"> &nbsp;
+	</p>
 </div>
 
 

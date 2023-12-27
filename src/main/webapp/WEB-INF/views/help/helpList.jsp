@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp" %>
-
+<style>
+.right {
+  float: right;
+}
+</style>
 		<nav class="navbar navbar-light bg-light" style="height: 42px">
 			 <ul class="list-inline ml-auto" style="align-items: center;">
 				<li class="list-inline-item">
@@ -21,7 +25,7 @@
 <!-- 본문 시작 template.jsp -->
 <div class="container text-center"> <h3> 목격/제보 게시판 </h3>
 
-<p><a href="/help/helpForm">[글쓰기]</a></p>
+<p><a href="/help/helpForm" class="btn btn-primary right">글쓰기</a></p><br><br>
 
 <form name="helpfrm" id="helpfrm" method="post" action="help">
 
@@ -36,7 +40,7 @@
 		</tr>
 	</thead>
 	<tbody>
-    		<c:forEach items="${helpList2}" var="row">
+    		<c:forEach items="${helpList}" var="row">
     			<tr>
     				<td><a href="helpDetail?textno=${row.textno}">${row.textno}</td>
     				<td><a href="helpDetail?textno=${row.textno}">${row.texttitle}</td>
@@ -46,7 +50,7 @@
     				
     			</tr>
     		</c:forEach>
- </tbody>
+ 	</tbody>
  	</table>
 
 <!-- 검색 시작 -->

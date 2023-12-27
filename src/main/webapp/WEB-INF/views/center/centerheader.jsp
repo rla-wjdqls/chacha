@@ -38,7 +38,8 @@
     
     <!-- adopt,education,help Stylesheet -->
     <link href="/css/aeh.css" rel="stylesheet">
-    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
     <script>
 		/* var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = { 
@@ -80,9 +81,7 @@
 			}
 		}
 		
-		function jjim_in(){
-			alert("찜");
-		}
+		
 		
 		function jjim_de(){
 			alert("찜 해제");

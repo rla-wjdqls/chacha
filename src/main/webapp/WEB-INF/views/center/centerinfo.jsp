@@ -48,12 +48,13 @@
 		    </tr>
 		</thead>
 		<tbody>
+		<button id=""></button>
 		    <tr>
 		      <th scope="row">주소</th>
 		      <td>마포구 매봉산로 31 시너지움 지하 1층 <br>
 				  (상암동,에스플렉스센터) 
 		      	 <a href="https://map.kakao.com/link/to/마포센터,37.5759133,126.8899231">
-		      		<button type="button" class="btn btn-warning" style=" border-radius: 15px;">길찾기</button>
+		      		<button type="button" class="btn btn-warning"  style=" border-radius: 15px;">길찾기</button>
 		      	 </a>
 		      </td>
 		    </tr>
