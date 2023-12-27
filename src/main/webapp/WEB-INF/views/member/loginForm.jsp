@@ -13,6 +13,7 @@
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="/css/login.css">
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     
 <title>loginForm.jsp</title>
 
@@ -31,12 +32,12 @@ function doNaverLogin() {
 }
 
 onclick="javascript:doNaverLogin()"
-
 */
+
 
 function doKakaoLogin() {
     const clientId = '86b472b7f7dba25b96f6589488ffca31';
-    const redirectUri = encodeURIComponent('http://localhost:9095/member/kakaocallback');
+    const redirectUri = encodeURIComponent('http://localhost:9095');
     const response_type = 'code';
     		
     const url = 'https://kauth.kakao.com/oauth/authorize?client_id=' + clientId + 
@@ -45,10 +46,12 @@ function doKakaoLogin() {
     window.location.href = url;
 }
 
+
 </script>
 
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 </head>
 
@@ -67,15 +70,15 @@ function doKakaoLogin() {
 			}//if end
 			
 			
-		    String clientId = "hT38Ty_ojTPdrxKZegTp";//애플리케이션 클라이언트 아이디값";
-		    String redirectURI = URLEncoder.encode("http://localhost:9095/member/navercallback", "UTF-8");
+ 		    String clientId = "hT38Ty_ojTPdrxKZegTp";//애플리케이션 클라이언트 아이디값";
+		    String redirectURI = URLEncoder.encode("http://localhost:9095/", "UTF-8");
 		    SecureRandom random = new SecureRandom();
 		    String state = new BigInteger(130, random).toString();
 		    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code"
 		         + "&client_id=" + clientId
 		         + "&redirect_uri=" + redirectURI
 		         + "&state=" + state;
-		    session.setAttribute("state", state);
+		    session.setAttribute("state", state); 
 %> 
   
   <div class="login"> 
@@ -114,8 +117,14 @@ function doKakaoLogin() {
 					
 			<input type="submit" value="로그인" class="login__button"/>
 
-
 			<!-- sns 로그인 -->
+			 <div id="button_area"> 
+        		 <div id="naver_id_login" style="display:none;"></div>
+      		</div>
+			
+			
+			
+
 			<div class="sns_login_box">
 				<div class="sns_login_item">
 					 <a href="<%=apiURL%>"><img src="/img/naver_login.png" alt="naver_login" class="naver_login"></a>
@@ -124,6 +133,10 @@ function doKakaoLogin() {
 					<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_login" onclick="javascript:doKakaoLogin()">
 				</div>
 			</div>
+		  <!-- 네이버아이디로로그인 버튼 노출 영역 -->
+		  <div id="naver_id_login" style="display:none;"></div>
+		  <a id="kakao-login-btn" style="display:none;"></a>
+		  <!-- //네이버아이디로로그인 버튼 노출 영역 -->
 
 			<!-- // sns 로그인 -->
 			<br>
@@ -135,9 +148,20 @@ function doKakaoLogin() {
 
 	<script src="/js/login.js"></script>
 	<!-- 카카오톡 소셜 로그인 -->
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	
+	<!-- <script src="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
+	<script>
+ 	
 
+	  	
+
+	  	
+ 	
+ 	
+	</script>
+	 
+	 
+	 
+	 
 	 
   <!-- 네이버아디디로로그인 초기화 Script 
 <script type="text/javascript">

@@ -8,10 +8,12 @@
 <meta charset="UTF-8">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="/css/signup.css">
-
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script src="/js/jquery.cookie.js"></script>
     
 <title>signupForm.jsp</title>
 
+	
 </head>
 <body>
   <div class="signup">
@@ -104,31 +106,54 @@
   </div>
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/signup.js"></script>
-  <script>
-	
+	<script>
 		//6)해당 페이지가 로딩되었을 떄 아이디 중복확인과 관련된 쿠키변수 삭제
 		$(function(){
 			$.removeCookie("checkID");
+			$.removeCookie("checkEmail");
 		}); //end
 	
 		//1)id="btn_js_1" 아이디 중복확인 버튼 클릭했을 때
 		$("#btn_js_1").click(function(){
 			
-			//2)입력한 id="btn_js_1" 값을 변수에 대입하기
-			let params = "uid=" + $("#uid").val().trim(); //공백 없도록 주의한다. 
-			alert(params);
+			// 1) 입력한 uid 값을 변수에 대입하기
+		    let uid = $("#uid").val().trim();
+		    
+		    // 2) uid가 비어있는지 확인
+		    if(uid === ""){
+		        $("#panel2").css("color", "red");
+		        $("#panel2").text("아이디를 입력해 주세요");
+		        $("#uid").focus();
+		        return;
+		    }
+
+		    // 3) uid 값을 변수에 대입하기
+		    let params = "uid=" + uid;
 			
 			//3)post 방식으로 서버에 요청해서 응답받기
-			//  형식) $.post("요청명령어", 전달값, callback함수, 응답받는형식);
-			
-			//① text 응답
-			//$.post("idcheckcookieproc.do", params, checkID, "text"); //"text"는 디폴트 값이므로 생략 가능
-			
-			//② JSON 응답
 			$.post("idjbcheck", params, checkID, "json"); 
 			
 		})//click end
 	
+		
+		$("#btn_js_2").click(function(){
+			
+		    let email = $("#email").val().trim();
+		    
+		    if(email === ""){
+		        $("#panel3").css("color", "red");
+		        $("#panel3").text("이메일을 입력해 주세요");
+		        $("#email").focus();
+		        return;
+		    }
+
+		    let params = "email=" + email;
+			
+			//3)post 방식으로 서버에 요청해서 응답받기
+			$.post("emailjbcheck", params, checkEmail, "json"); 
+			
+		})//click end
+		
 		
 		//4)callback함수
 		function checkID(result){
@@ -139,7 +164,7 @@
 			if(count==0){
 				$("#panel2").css("color", "blue");
 				$("#panel2").text("사용 가능한 아이디 입니다");
-				$.cookie("checkID", "PASS"); //아이디중복확인을 했다는 증거. "PASS" 변경 가능
+				$.cookie("checkID", "PASS1"); //아이디중복확인을 했다는 증거. "PASS" 변경 가능
 			}else{
 				$("#panel2").css("color", "red");
 				$("#panel2").text("중복된 아이디 입니다");
@@ -147,11 +172,38 @@
 			}//if end
 		}//checkID() end
 		
+		
+		function checkEmail(result){
+			
+			let count = eval(result.count); //형변환
+			if(count==0){
+				$("#panel3").css("color", "blue");
+				$("#panel3").text("사용 가능한 이메일 입니다");
+				$.cookie("checkEmail", "PASS2");
+			}else{
+				$("#panel3").css("color", "red");
+				$("#panel3").text("중복된 이메일 입니다");
+				$("#email").focus(); //커서생성
+			}//if end
+		}//checkEmail() end
+		
+				
 	</script>
   
    
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
