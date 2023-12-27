@@ -86,6 +86,16 @@ function sdelete() {
 		<td>${serviced.sedate}</td>
 	  </tr>
 	  
+	    <tr>
+		<th>봉사시작시간</th>
+		<td>${serviced.sstime}</td>
+	  </tr>
+	  
+	  <tr>
+		<th>봉사종료시간</th>
+		<td>${serviced.etime}</td>
+	  </tr>
+	  
 	  <tr>
 		<th>봉사시간</th>
 		<td>${serviced.time}</td>
@@ -120,7 +130,7 @@ function sdelete() {
 	<p><a href="/service/serviceUpdate?sno=${serviced.sno}">
 	<input type="button" value="수정" style="background-color: azure;"></a> &nbsp;
 	<input type="button" onclick="sdelete();" value="삭제"> &nbsp;
-	<input type="button" value="신청"></p>
+	<a href="/service/servicea?sno=${serviced.sno}"><input type="button" value="신청"></a></p>
 </div>
 
 <%@ include file="../footer.jsp" %>      

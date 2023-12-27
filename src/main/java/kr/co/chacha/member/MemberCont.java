@@ -205,18 +205,21 @@ public class MemberCont {
 		String uid = req.getParameter("uid").trim();
 		String cnt ="0";
 		
+		//아이디 중복 확인
 		if(uid.equals("kim9595") || uid.equals("h99999")) {
 			cnt="1"; //아이디가 중복 되었음
 		}//if end
-
+		
+		//db 확인 
+		//int -> string 
+		//String cnt =String.valueOf(memberDao.idCheck(uid)); //중복 아이디가 있으면 1->"1" 없으면 0->"0"
+		
 		//JSON 응답----------------------------------------------------------
 		//https://mvnrepository.com에서 json-simple검색후, pom.xml에 의존성 추가해야 함
 		JSONObject json = new JSONObject();
 		json.put("count", cnt); //key, value
 		return json.toString();
-		
 	}//idjbCheck() end
-	
 	
 	
 

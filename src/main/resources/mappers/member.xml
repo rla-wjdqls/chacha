@@ -28,9 +28,6 @@
   </select>
   
   
-  
-  
-  
  <insert id="insert" parameterType="kr.co.chacha.member.MemberDTO">
    INSERT INTO member(uid, passwd, uname, tel, email, zipcode, addr1, addr2, birth, mdate)
    VALUES(#{uid}, #{passwd}, #{uname}, #{tel}, #{email}, #{zipcode}, #{addr1}, #{addr2}, #{birth}, NOW())

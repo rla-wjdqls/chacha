@@ -56,7 +56,7 @@ tbody td {
 			</tr>
 		</thead>
 		<tbody>
-		 	<c:forEach items="${serviceList2}" var="myservice" >
+		 	<c:forEach items="${serviceList}" var="myservice" >
                 <tr>  	
                     <td><a href="servicedetail?sno=${myservice.sno}">${myservice.sno}</td>
                     <td>${myservice.uid}</td>

@@ -107,7 +107,8 @@ public class CenterCont {
 	@PostMapping("update")
 	public String update(@RequestParam Map<String, Object> map,
 						 @RequestParam(name="img") MultipartFile img,
-					     HttpServletRequest req) {
+					     HttpServletRequest req,
+						 HttpSession session) {
 		String anipic="-";
 		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			anipic=img.getOriginalFilename();
@@ -121,6 +122,8 @@ public class CenterCont {
 		}//if end
 		
 		map.put("anipic", anipic);
+		String uid=(String)session.getAttribute("s_id");
+		map.put("uid", uid);
 		centerDao.update(map);
 		
 		return "redirect:/center/centerForm";
@@ -132,12 +135,12 @@ public class CenterCont {
 //	anipic=centerDao.anipic(anino);
 	
 	@PostMapping("delete")
-	public String delete(HttpServletRequest req) {
+	public String delete(HttpServletRequest req, HttpSession session) {
 		String anino=req.getParameter("anino");
 		
 		String anipic=centerDao.anipic(anino);
 		
-		if(anipic != null && anipic.equals("-")) {
+		if(anipic != null && !anipic.equals("-")) {
 			ServletContext application = req.getSession().getServletContext();
 			String path = application.getRealPath("/storage");
 			File file = new File(path + File.separator + anipic);
@@ -145,6 +148,7 @@ public class CenterCont {
 				file.delete();
 			}//if end
 		}//if end
+		
 		centerDao.delete(anino);
 		
 		return "redirect:/center/centerForm";

@@ -14,6 +14,8 @@ public class ServiceDTO {
 		private String splace;
 		private String sstate;
 		private int cnt;
+		private String sstime;
+		private String etime;
 	 
 		private int sano;
 	 	private Date sadate;
@@ -27,6 +29,20 @@ public class ServiceDTO {
 		}
 		public void setSno(int sno) {
 			this.sno = sno;
+		}
+		
+		
+		public String getSstime() {
+			return sstime;
+		}
+		public void setSstime(String sstime) {
+			this.sstime = sstime;
+		}
+		public String getEtime() {
+			return etime;
+		}
+		public void setEtime(String etime) {
+			this.etime = etime;
 		}
 		public String getUid() {
 			return uid;
@@ -116,9 +132,18 @@ public class ServiceDTO {
 		public String toString() {
 			return "ServiceDTO [sno=" + sno + ", uid=" + uid + ", stitle=" + stitle + ", sinfo=" + sinfo + ", ssdate="
 					+ ssdate + ", sedate=" + sedate + ", time=" + time + ", sp=" + sp + ", splace=" + splace
-					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sano=" + sano + ", sadate=" + sadate + ", stime="
-					+ stime + ", astate=" + astate + "]";
+					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", etime=" + etime + ", sano="
+					+ sano + ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", getSno()=" + getSno()
+					+ ", getSstime()=" + getSstime() + ", getEtime()=" + getEtime() + ", getUid()=" + getUid()
+					+ ", getStitle()=" + getStitle() + ", getSinfo()=" + getSinfo() + ", getSsdate()=" + getSsdate()
+					+ ", getSedate()=" + getSedate() + ", getTime()=" + getTime() + ", getSp()=" + getSp()
+					+ ", getSplace()=" + getSplace() + ", getSstate()=" + getSstate() + ", getCnt()=" + getCnt()
+					+ ", getSano()=" + getSano() + ", getSadate()=" + getSadate() + ", getStime()=" + getStime()
+					+ ", getAstate()=" + getAstate() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+					+ ", toString()=" + super.toString() + "]";
 		}
+	
+	
 
 		
 
