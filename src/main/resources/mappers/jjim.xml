@@ -6,17 +6,18 @@
   	<insert id="insert" parameterType="kr.co.chacha.jjim.JjimDTO">
   		INSERT INTO jjim (uid, anino)
   		VALUES ( #{uid}, #{anino} )
+  		
   	</insert>
   	
   	<select id="select" parameterType="kr.co.chacha.jjim.JjimDTO" resultType="int">
-  		SELECT COUNT(*) 
+  		SELECT COUNT(jjimno)
   		FROM jjim 
-  		WHERE ( uid = #{uid} )
+  		WHERE ( uid = #{uid} AND anino = #{anino} )
   	</select>
   	
   	<delete id="delete" parameterType="String">
   	  	DELETE FROM jjim
-		WHERE uid = #{uid};
+		WHERE ( uid = #{uid} AND anino = #{anino} )
   	
   	</delete>
   </mapper>

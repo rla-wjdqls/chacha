@@ -41,7 +41,7 @@ public class JjimCont {
 	public int jjimSelect(String anino, HttpSession session) throws Exception{
 		String uid=(String)session.getAttribute("s_id");
 		JjimDTO jjimDTO = new JjimDTO();
-		//jjimDTO.setAnino(anino);
+		jjimDTO.setAnino(anino);
 		jjimDTO.setUid(uid);
 		
 		int cnt = jjimDao.jjimSelect(jjimDTO);
