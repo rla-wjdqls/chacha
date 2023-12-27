@@ -84,22 +84,15 @@
 			<c:choose>
 				<%--로그인 상태에 찜 클릭 --%>
 				<c:when test="${not empty sessionScope.s_id}">
-					<c:choose>
-						<c:when test="${empty jjim.jjimno}">
-							<div class="icon-heart1" > 
+							<div class="icon-heart" id="jjimInsertContainer"> 
 								<i class="bi bi-heart" id="jjimInsert"></i>
 							</div>	
-						</c:when>
-						<c:otherwise>
-							<%--이미 하트를 눌렀을 때 --%>
-							<div class="icon-heart2">
+							<div class="icon-heart" id="jjimDeleteContainer">
 									<i class="bi bi-heart-fill" id="jjimDelete"></i>
 							</div>	
-						</c:otherwise>
-					</c:choose>	
 				</c:when>
 				<c:otherwise>
-					<div class="icon-heart1">
+					<div class="icon-heart">
 						<i class="bi bi-heart" id="jjimButton" onclick="jjim_nolog()"></i>
 					</div>	
 				</c:otherwise>		
@@ -107,7 +100,7 @@
 			</form>
 			</div>
 			
-			<div class="icon-heart3">
+			<div class="icon-heart">
 				<i class="bi bi-chat-left-dots-fill"></i>
 			</div>
 			<div class="d-grid gap-2 d-md-block" >
@@ -125,12 +118,37 @@
 			//찜 관련 스크립트 
 			let anino = '${center.anino}'; //동물글 번호 
 			
-			$("#jjimInsert").click(function() {
-				//alert(anino);
-				jjimInsert(anino);
-			}); //찜 클릭 
+			$(document).ready(function() {
+				jjimSelect(); 		//페이지 로딩되면 해당 함수 먼저 호출 
+			})
 			
-			function jjimInsert(anino) {
+			function jjimSelect(){
+				$.ajax({
+					url : '/jjim/select'
+				   ,type : 'post'
+				   ,data : { 'anino': anino }
+				   ,error : function(error){ 	//실패 
+					   alert(error);
+				   }//error end
+				   ,success : function(result){
+					   if(result===0){
+						  	 $("#jjimInsertContainer").show();
+			                 $("#jjimDeleteContainer").hide();
+							 $("#jjimInsert").off().on('click', function () {
+								 jjimInsert();
+			                    });
+			        	 } else {
+			        		 $("#jjimInsertContainer").hide();
+			                 $("#jjimDeleteContainer").show();
+			                 $("#jjimDelete").off().on('click', function () {
+			                        jjimDelete();
+			        			 });
+				   		}//if end
+					}//success end
+				}); //ajax() end
+			}//jjimSelect() end
+			
+			function jjimInsert() {
 				//alert(anino);
 				$.ajax({
 					url : '/jjim/insert'  	//요청 명령어
@@ -141,13 +159,33 @@
 				   }//error end
 				   ,success : function(result) {
 					//alert(result);
-					if(result==1){
-						alert("찜하셨습니다");
-						let i='<i class="bi bi-heart-fill" id="jjimDelete"></i>';
-						$(".icon-heart1").html(i);
-					}
-				}//success end
-				})
+					if(result===1){
+						alert("동물을 찜하셨습니다");
+						$("#jjimDeleteContainer").show();
+						$("#jjimInsertContainer").hide();
+						jjimSelect(); 
+					} //if end
+				} //success end
+				});//ajax() end
+			} //jjimInsert end
+			
+			function jjimDelete() {
+				$.ajax({
+					url : '/jjim/delete'
+				   ,type : 'post'
+				   ,data : { 'anino': anino }
+				   ,error : function(error){ 	//실패 
+					   alert(error);
+				   }//error end
+				   ,success : function(result) {
+					if(result==0){
+						alert("찜이 해제되었습니다");
+						$("#jjimInsertContainer").show();
+		                $("#jjimDeleteContainer").hide();
+		                jjimSelect(); 
+					}   
+				   }
+				});//ajax end
 			}
 			
 		</script>

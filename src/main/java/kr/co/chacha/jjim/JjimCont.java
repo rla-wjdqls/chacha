@@ -35,5 +35,32 @@ public class JjimCont {
 		return cnt;
 	}
 	
+	
+	@PostMapping("/select")
+	@ResponseBody
+	public int jjimSelect(String anino, HttpSession session) throws Exception{
+		String uid=(String)session.getAttribute("s_id");
+		JjimDTO jjimDTO = new JjimDTO();
+		//jjimDTO.setAnino(anino);
+		jjimDTO.setUid(uid);
+		
+		int cnt = jjimDao.jjimSelect(jjimDTO);
+		System.out.println(cnt);
+		return cnt;
+	}
+	
+	
+	@PostMapping("/delete")
+	@ResponseBody
+	public int jjimDelete(String anino, HttpSession session) throws Exception{
+		String uid = (String)session.getAttribute("s_id");
+		JjimDTO jjimDTO = new JjimDTO();
+		jjimDTO.setAnino(anino);
+		jjimDTO.setUid(uid);
+		
+		int cnt = jjimDao.jjimDelete(jjimDTO);
+		return cnt;
+	}
+	
 
 }

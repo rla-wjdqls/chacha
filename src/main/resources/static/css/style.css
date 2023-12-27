@@ -387,7 +387,7 @@
    	text-align: center;
 }
 
-.icon-heart1{
+.icon-heart{
 	float: left; 
 	margin-left: 15px; 
 	margin-right: 20px;
@@ -396,23 +396,8 @@
 	color: var(--primary);
 }
 
-.icon-heart2{
-	float: left; 
-	margin-left: 15px; 
-	margin-right: 20px;
-	font-size: 2em;
-	cursor : pointer;
-	color: var(--primary);
-}
 
-.icon-heart3{
-	float: left; 
-	margin-left: 15px; 
-	margin-right: 20px;
-	font-size: 2em;
-	cursor : pointer;
-	color: var(--primary);
-}
+
 
 /*** Footer ***/
 .footer .btn.btn-link {
