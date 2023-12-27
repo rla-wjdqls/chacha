@@ -35,7 +35,7 @@
 	
 
 		<div class="container">
-			<div class="container"   >
+			<div class="container">
 			<c:choose>
 				<c:when test="${center.anipic == '-' || empty center.anipic}">
 				  	<img src="/img/noimg.png" style="float: left; margin-right: 20px;" width="270px" alt="기본 이미지">
@@ -73,35 +73,41 @@
 					<dd class="anidd">${center.adopt_pos}</dd>
 				</dl>
 			</div>
+		</div>
+			</form>
 			
+		<div class="container">
+			<div class="jjimStart">
+			<form name="jjimfrm" id="jjimfrm">
+			<!-- 동물 글 번호 -->
+			<input type="hidden" name="anino" id="anino" value="${center.anino}">
 			<c:choose>
 				<%--로그인 상태에 찜 클릭 --%>
 				<c:when test="${not empty sessionScope.s_id}">
 					<c:choose>
 						<c:when test="${empty jjim.jjimno}">
-							<div class="icon-heart">
-								<i class="bi bi-heart" id="jjimButton" onclick="jjim_in()"></i>
+							<div class="icon-heart1" > 
+								<i class="bi bi-heart" id="jjimInsert"></i>
 							</div>	
 						</c:when>
-						
 						<c:otherwise>
 							<%--이미 하트를 눌렀을 때 --%>
-							<div class="icon-heart">
-									<i class="bi bi-heart-fill" id="" onclick="jjim_de()"></i>
+							<div class="icon-heart2">
+									<i class="bi bi-heart-fill" id="jjimDelete"></i>
 							</div>	
 						</c:otherwise>
 					</c:choose>	
 				</c:when>
 				<c:otherwise>
-					<div class="icon-heart">
+					<div class="icon-heart1">
 						<i class="bi bi-heart" id="jjimButton" onclick="jjim_nolog()"></i>
 					</div>	
 				</c:otherwise>		
 			</c:choose>	
+			</form>
+			</div>
 			
-			
-			
-			<div class="icon-heart">
+			<div class="icon-heart3">
 				<i class="bi bi-chat-left-dots-fill"></i>
 			</div>
 			<div class="d-grid gap-2 d-md-block" >
@@ -112,14 +118,39 @@
 				<p style="text-align: center">
 				${center.intro}
 				</p>
-			</div>
-		</div>	
-		</form>
+			</div>		
+		</div>
 	</div>	
-
-		
-
-
+		<script>
+			//찜 관련 스크립트 
+			let anino = '${center.anino}'; //동물글 번호 
+			
+			$("#jjimInsert").click(function() {
+				//alert(anino);
+				jjimInsert(anino);
+			}); //찜 클릭 
+			
+			function jjimInsert(anino) {
+				//alert(anino);
+				$.ajax({
+					url : '/jjim/insert'  	//요청 명령어
+				   ,type : 'post'
+				   ,data :  { 'anino': anino }
+				   ,error : function(error){ 	//실패 
+					   alert(error);
+				   }//error end
+				   ,success : function(result) {
+					//alert(result);
+					if(result==1){
+						alert("찜하셨습니다");
+						let i='<i class="bi bi-heart-fill" id="jjimDelete"></i>';
+						$(".icon-heart1").html(i);
+					}
+				}//success end
+				})
+			}
+			
+		</script>
 <!-- 본문 끝 -->
 
 
