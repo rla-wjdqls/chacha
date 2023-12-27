@@ -118,75 +118,60 @@
 			//찜 관련 스크립트 
 			let anino = '${center.anino}'; //동물글 번호 
 			
-			$(document).ready(function() {
-				jjimSelect(); 		//페이지 로딩되면 해당 함수 먼저 호출 
-			})
-			
-			function jjimSelect(){
-				$.ajax({
-					url : '/jjim/select'
-				   ,type : 'post'
-				   ,data : { 'anino': anino }
-				   ,error : function(error){ 	//실패 
-					   alert(error);
-				   }//error end
-				   ,success : function(result){
-					   if(result===0){
-						  	 $("#jjimInsertContainer").show();
-			                 $("#jjimDeleteContainer").hide();
-							 $("#jjimInsert").off().on('click', function () {
-								 jjimInsert();
+			$(document).ready(function () {
+			    let jjimState; // 찜 상태 저
+
+			    jjimSelect(); // 페이지 로딩되면 해당 함수 먼저 호출
+
+			    function jjimSelect() {
+			        $.ajax({
+			            url: '/jjim/select',
+			            type: 'post',
+			            data: { 'anino': anino },
+			            error: function (error) {
+			                alert(error);
+			            },
+			            success: function (result) {
+			                jjimState = (result === 1); // 찜 상태 업데이트
+
+			                if (jjimState) {
+			                    // 찜이 되어 있을 때
+			                    $("#jjimDelete").off().on('click', function () {
+			                        jjimAct(); // 함수 호출
 			                    });
-			        	 } else {
-			        		 $("#jjimInsertContainer").hide();
-			                 $("#jjimDeleteContainer").show();
-			                 $("#jjimDelete").off().on('click', function () {
-			                        jjimDelete();
-			        			 });
-				   		}//if end
-					}//success end
-				}); //ajax() end
-			}//jjimSelect() end
-			
-			function jjimInsert() {
-				//alert(anino);
-				$.ajax({
-					url : '/jjim/insert'  	//요청 명령어
-				   ,type : 'post'
-				   ,data :  { 'anino': anino }
-				   ,error : function(error){ 	//실패 
-					   alert(error);
-				   }//error end
-				   ,success : function(result) {
-					//alert(result);
-					if(result===1){
-						alert("동물을 찜하셨습니다");
-						$("#jjimDeleteContainer").show();
-						$("#jjimInsertContainer").hide();
-						jjimSelect(); 
-					} //if end
-				} //success end
-				});//ajax() end
-			} //jjimInsert end
-			
-			function jjimDelete() {
-				$.ajax({
-					url : '/jjim/delete'
-				   ,type : 'post'
-				   ,data : { 'anino': anino }
-				   ,error : function(error){ 	//실패 
-					   alert(error);
-				   }//error end
-				   ,success : function(result) {
-					if(result==0){
-						alert("찜이 해제되었습니다");
-						$("#jjimInsertContainer").show();
-		                $("#jjimDeleteContainer").hide();
-		                jjimSelect(); 
-					}   
-				   }
-				});//ajax end
-			}
+			                    $("#jjimInsertContainer").hide();
+			                    $("#jjimDeleteContainer").show();
+			                } else {
+			                    // 찜이 되어 있지 않을 때 
+			                    $("#jjimInsert").off().on('click', function () {
+			                    	jjimAct(); // 함수 호출
+			                    });
+			                    $("#jjimInsertContainer").show();
+			                    $("#jjimDeleteContainer").hide();
+			                }
+			            }
+			        });
+			    }
+
+			    function jjimAct() {
+			        $.ajax({
+			            url: jjimState ? '/jjim/delete' : '/jjim/insert', // 찜 상태에 따라 요청 URL 선택
+			            type: 'post',
+			            data: { 'anino': anino },
+			            error: function (error) {
+			                alert(error);
+			            },
+			            success: function (result) {
+			                if (result === 1) {
+			                    alert(jjimState ? "찜이 해제되었습니다" : "동물을 찜하셨습니다");
+			                    jjimState = !jjimState; // 찜 상태를 반전
+			                    jjimSelect(); // 변경된 찜 상태에 따라 UI 갱신
+			                }
+			            }
+			        });
+			    }
+			});
+
 			
 		</script>
 <!-- 본문 끝 -->
