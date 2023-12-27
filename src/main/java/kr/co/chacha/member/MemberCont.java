@@ -2,6 +2,7 @@ package kr.co.chacha.member;
 
 import java.io.Console;
 import java.net.http.HttpHeaders;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,6 @@ public class MemberCont {
 	@PostMapping("/loginProc")
 	public String loginProc(HttpServletRequest req, HttpServletResponse resp, MemberDTO memberdto,
 			HttpSession session) {
-
-		// System.out.println(memberdto.getUid()); //kim9595
-		// System.out.println(memberdto.getPasswd()); //dhfdg852@
 
 		String mlevel = memberDao.loginProc(memberdto);
 		// System.out.println(mlevel); //c
@@ -203,16 +201,10 @@ public class MemberCont {
 	@ResponseBody
 	public String idjbCheck(HttpServletRequest req) {
 		String uid = req.getParameter("uid").trim();
-		String cnt ="0";
-		
-		//아이디 중복 확인
-		if(uid.equals("kim9595") || uid.equals("h99999")) {
-			cnt="1"; //아이디가 중복 되었음
-		}//if end
 		
 		//db 확인 
 		//int -> string 
-		//String cnt =String.valueOf(memberDao.idCheck(uid)); //중복 아이디가 있으면 1->"1" 없으면 0->"0"
+		String cnt =String.valueOf(memberDao.idCheck(uid)); //중복 아이디가 있으면 1->"1" 없으면 0->"0"
 		
 		//JSON 응답----------------------------------------------------------
 		//https://mvnrepository.com에서 json-simple검색후, pom.xml에 의존성 추가해야 함
@@ -222,6 +214,17 @@ public class MemberCont {
 	}//idjbCheck() end
 	
 	
+	@PostMapping("emailjbcheck")
+	@ResponseBody
+	public String emailjbCheck(HttpServletRequest req) {
+		String email = req.getParameter("email").trim();
+		String cnt =String.valueOf(memberDao.emailCheck(email));
+		
+		JSONObject json = new JSONObject();
+		json.put("count", cnt); //key, value
+		return json.toString();
+	}//emailjbCheck() end
+	
 
 	// 입력 아이디,이메일 db 데이터 중복 확인 후 회원가입 폼전송
 	@PostMapping("/insert")
@@ -229,15 +232,8 @@ public class MemberCont {
 		String userid = req.getParameter("uid");
 		String useremail = req.getParameter("email");
 		
-		//System.out.println(uid);
-		//System.out.println(email);
-		
 		int cnt_uid = memberDao.idCheck(userid);
 		int cnt_email = memberDao.emailCheck(useremail);
-		
-		System.out.println(cnt_uid);  //1
-		System.out.println(cnt_email); //1
-		
 		
 		MemberDTO memberdto = new MemberDTO();
 
@@ -264,17 +260,7 @@ public class MemberCont {
         return "member/navercallback";
     }//naverCallbackGet() end
     
-    
-    
-    //@PostMapping("/navercallback")
-    //public String naverCallbackPost(HttpSession session, HttpServletRequest req, HttpServletResponse resp, MemberDTO memberDto) {
-    	
-    //}//naverCallbackPost() end
-    
-    
-    
-    
-    
+
     
 	
 	

@@ -48,6 +48,12 @@
   </select> 
  	
  	
+  <insert id="s_insert" parameterType="kr.co.chacha.member.MemberDTO">
+   INSERT INTO member(s_uname, s_tel, s_email, s_birth)
+   VALUES(#{s_uname}, #{s_tel}, #{s_email}, #{s_birth})
+  </insert>
+ 	
+ 	
  	
 
  	
