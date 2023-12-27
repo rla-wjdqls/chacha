@@ -75,4 +75,22 @@ public class HelpCont {
     	return mav;
     }
 	
+	// 게시물 수정
+		@GetMapping("/helpUpdate")
+		public ModelAndView helpUpdate(int textno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("help/helpUpdate");
+			mav.addObject("helpup", helpDAO.detail(textno));
+			return mav;
+			
+		}
+		
+		@PostMapping("/helpUpdate")
+		public ModelAndView helpUpdate(HelpDTO helpdto) {
+			ModelAndView mav = new ModelAndView();
+			helpDAO.update(helpdto);
+			mav.setViewName("redirect:/help/helpList");		
+			return mav;
+		}
+	
 }

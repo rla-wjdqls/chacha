@@ -10,7 +10,7 @@
 		<nav class="navbar navbar-light bg-light" style="height: 42px">
 			 <ul class="list-inline ml-auto" style="align-items: center;">
 				<li class="list-inline-item">
-					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575; margin-left: 15px;" alt="홈으로"></i></a>
 					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
 				</li>
 				<li class="list-inline-item">
@@ -22,10 +22,12 @@
 				</li>
 			</ul>
 		</nav>
+		
 <!-- 본문 시작 template.jsp -->
-<div class="container text-center"> <h3> 목격/제보 게시판 </h3>
+<div class="container text-center">
+	 <h3> 목격/제보 게시판 </h3>
 
-<p><a href="/help/helpForm" class="btn btn-primary right">글쓰기</a></p><br><br>
+<p><a href="/help/helpForm" class="right">[글쓰기]</a></p><br><br>
 
 <form name="helpfrm" id="helpfrm" method="post" action="help">
 
