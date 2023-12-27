@@ -27,18 +27,20 @@ public class HelpCont {
 	private HelpDAO helpDAO;
 	
 	@RequestMapping("/helpList")
-	public ModelAndView helpList2() {
+	public ModelAndView helpList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("help/helpList");
-		mav.addObject("helpList2",helpDAO.helpList2());
+		mav.addObject("helpList",helpDAO.helpList());
 		return mav;
 	}
 	
 	
 	
 	@GetMapping("/helpForm")
-	public String helpForm() {
-		return "help/helpForm";
+	public ModelAndView helpForm() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("help/helpForm");
+		return mav;
 	}
 	
 	@PostMapping("/insert")
@@ -65,11 +67,11 @@ public class HelpCont {
 	}//insert() end
 	
 	//상세 페이지
-	@GetMapping("/helpdetail")
-    public ModelAndView helpd(int sno) {
+	@GetMapping("/helpDetail")
+    public ModelAndView helpd(int textno) {
     	ModelAndView mav = new ModelAndView();
-    	mav.setViewName("help/helpdetail");
-    	mav.addObject("helpd", helpDAO.detail(sno));
+    	mav.setViewName("help/helpDetail");
+    	mav.addObject("helpd", helpDAO.detail(textno));
     	return mav;
     }
 	

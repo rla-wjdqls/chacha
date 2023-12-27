@@ -83,7 +83,7 @@
 		    	<h5 class="card-title">고양이 교육강의</h5>
 		    	<p class="card-text">고양이</p>
 		    	<a href="/css/cat.html" class="btn btn-primary">신청하기</a>
-		    	<button onclick="openCatQuizModal()" class="btn btn-primary">퀴즈풀기</A>
+		    	<button onclick="openCatQuizModal()" class="btn btn-primary">퀴즈풀기</button>
 			</div>
 	</div>
 </div>
@@ -101,7 +101,7 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="quizForm">
+        <form id="dogquizForm">
             <div class="question">
                 <label>1. 종합백신(DHPPL) 종류에 광견병이 포함된다. </label>
                 <input type="radio" name="qd1" value="O"> O
@@ -177,7 +177,7 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="quizForm">
+        <form id="catquizForm">
             <div class="question">
                 <label>1. 고양이는 높은 곳에서 떨어져서 다치지 않는다. </label>
                 <input type="radio" name="qc1" value="O"> O
@@ -226,7 +226,7 @@
                 <input type="radio" name="qc9" value="X"> X
             </div>
             <div class="question">
-                <label>10. 고양이는 수태후 평균 65일 만에 출산한다. </label>
+                <label>10. 고양이는 수태 후 평균 65일 만에 출산한다. </label>
                 <input type="radio" name="qc10" value="O"> O
                 <input type="radio" name="qc10" value="X"> X
             </div>
@@ -262,10 +262,10 @@
 
     function closeDogQuizModal() {
         document.getElementById('dogQuizModal').style.display = 'none';
-    }
+    } 
 
-    // 모달 외부 클릭 시 닫기
-    window.onclick = function(event) {
+    // 모달 외부 클릭 시 닫기 (굳이 필요없어서 뺌)
+    /* window.onclick = function(event) {
         var catModal = document.getElementById('catQuizModal');
         if (event.target == catModal) {
             catModal.style.display = 'none';
@@ -275,7 +275,7 @@
         if (event.target == dogModal) {
             dogModal.style.display = 'none';
         }
-    }
+    } */
 
     function gradeQuiz() {
         // 문제별 정답 배열

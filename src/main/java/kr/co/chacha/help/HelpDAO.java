@@ -23,15 +23,7 @@ public class HelpDAO {
 	//	return sqlSession.selectList("help.list", textno);
 	//}//list() end
 	
-	public int helpUpdate(HelpDTO help) {
-		return sqlSession.update("help.update", help);
-	}//update() end
 	
-	public int helpDelete(int textno) throws Exception {
-		return sqlSession.delete("help.delete", textno);
-	}//Delete() end
-	
-
 	public void insert(Map<String, Object> map) {
 		sqlSession.insert("help.insert", map);
 	}//insert() end
@@ -40,8 +32,8 @@ public class HelpDAO {
 		return sqlSession.selectList("help.list");
 	}
 	
-	public List<HelpDTO> helpList2() {
-		return sqlSession.selectList("help.helpList2");
+	public List<HelpDTO> helpList() {
+		return sqlSession.selectList("help.helpList");
 		    }
 	
 	public HelpDTO detail(int textno){
