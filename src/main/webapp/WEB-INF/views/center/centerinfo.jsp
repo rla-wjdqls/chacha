@@ -48,7 +48,6 @@
 		    </tr>
 		</thead>
 		<tbody>
-		<button id=""></button>
 		    <tr>
 		      <th scope="row">주소</th>
 		      <td>마포구 매봉산로 31 시너지움 지하 1층 <br>
@@ -70,7 +69,30 @@
 	    </table>
 	</div>
 </div>
-	
+
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = { 
+    center: new kakao.maps.LatLng(37.5759133, 126.8899231), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+};
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(37.5759133, 126.8899231); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);    */ 
+</script>	
 
 <!-- 본문 끝 -->
 

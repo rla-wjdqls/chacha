@@ -53,7 +53,14 @@
 				</dl>
 				<dl class="anidl">
 					<dt class="anidt">성별</dt>
-					<dd class="anidd">${center.gender}</dd>
+					<c:choose>
+						<c:when test="${center.gender eq 'M'}">
+							<dd class="anidd">남자</dd>
+						</c:when>
+						<c:when test="${center.gender eq 'F'}">
+							<dd class="anidd">여자</dd>
+						</c:when>
+					</c:choose>
 				</dl>
 				<dl class="anidl">
 					<dt class="anidt">몸무게</dt>
@@ -61,15 +68,33 @@
 				</dl>
 				<dl class="anidl" >
 					<dt class="anidt" >중성화여부</dt>
-					<dd class="anidd" >${center.genop}</dd>
+					<c:choose>
+						<c:when test="${center.genop eq 'Y'}">
+							<dd class="anidd">완료</dd>
+						</c:when>
+						<c:when test="${center.genop eq 'N'}">
+							<dd class="anidd">완료</dd>
+						</c:when>
+					</c:choose>
 				</dl>
 				<dl class="anidl">
 					<dt class="anidt">예방접종여부</dt>
-					<dd class="anidd">${center.vac}</dd>
+					<c:choose>
+						<c:when test="${center.vac eq 'Y'}">
+							<dd class="anidd">완료</dd>
+						</c:when>
+						<c:when test="${center.vac eq 'N'}">
+							<dd class="anidd">미완료</dd>
+						</c:when>
+					</c:choose>
 				</dl>
 				<dl class="anidl" >
 					<dt class="anidt">입양가능여부</dt>
-					<dd class="anidd">${center.adopt_pos}</dd>
+					<c:choose>
+						<c:when test="${center.adopt_pos eq 'Y'}">
+							<dd class="anidd">가능</dd>
+						</c:when>
+					</c:choose>
 				</dl>
 			</div>
 		</div>
@@ -159,7 +184,7 @@
 		<script>
 			//찜 관련 스크립트 
 			let anino = '${center.anino}'; //동물글 번호 
-			alert(anino);
+			//alert(anino);
 			
 			$(document).ready(function () {
 			    let jjimState; // 찜 상태 저
