@@ -3,7 +3,11 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
+
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>  
 
 <!DOCTYPE html>
 <html>
@@ -39,6 +43,9 @@
     
     <!-- adopt,education,help Stylesheet -->
     <link href="/css/aeh.css" rel="stylesheet">
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
     
     <script>
 	function logout(){

@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
 
 
-
-
 .login__logo{
 	text-align: center;
 }
@@ -285,23 +283,6 @@ img {
 .none {
   display: none;
 }
-
-
-
-/*@keyframes animateLogin {
-  0% {
-    transform: scale(1, 1);
-  }
-  50% {
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    transform: scale(1, 1);
-  }
-}
-*/
-
-
 
 
 

@@ -85,6 +85,8 @@ function DaumPostcode() {
           element_wrap.style.display = 'block';
       }
 
+
+
 function checkSignup() {
 	
 	
@@ -173,6 +175,7 @@ function checkSignup() {
 
 
 
+
 function checkModify() {
 
     //1)이메일 5글자 이고 '@' 포함하고 있는지?
@@ -225,6 +228,10 @@ function checkModify() {
 	return true;
 	
 }//checkModify() end
+
+
+
+
 
 
 

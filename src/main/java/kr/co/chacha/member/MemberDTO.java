@@ -20,6 +20,16 @@ public class MemberDTO {
     private String mlevel;
     
     
+    //소셜멤버
+	private String s_email;
+	private String s_uname;
+	private String s_tel;
+	private String s_birth;
+	private String s_mlevel;
+    
+    
+    
+    
     //소셜로그인 
     private String sid;
     private String ptype;
@@ -204,7 +214,58 @@ public class MemberDTO {
 
 	
 	
+	
 	//toString
+
+	public String getS_email() {
+		return s_email;
+	}
+
+
+	public void setS_email(String s_email) {
+		this.s_email = s_email;
+	}
+
+
+	public String getS_uname() {
+		return s_uname;
+	}
+
+
+	public void setS_uname(String s_uname) {
+		this.s_uname = s_uname;
+	}
+
+
+	public String getS_tel() {
+		return s_tel;
+	}
+
+
+	public void setS_tel(String s_tel) {
+		this.s_tel = s_tel;
+	}
+
+
+	public String getS_birth() {
+		return s_birth;
+	}
+
+
+	public void setS_birth(String s_birth) {
+		this.s_birth = s_birth;
+	}
+
+
+	public String getS_mlevel() {
+		return s_mlevel;
+	}
+
+
+	public void setS_mlevel(String s_mlevel) {
+		this.s_mlevel = s_mlevel;
+	}
+
 
 	@Override
 	public String toString() {

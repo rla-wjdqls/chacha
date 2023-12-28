@@ -28,8 +28,8 @@ public class MemberDAO {
 	}//idCheck() end
 	
 	//이메일 중복 확인
-	public int emailCheck(String useremail) {
-		return sqlSession.selectOne("member.emailcheck", useremail);
+	public int emailCheck(String email) {
+		return sqlSession.selectOne("member.emailcheck", email);
 	}//emailCheck() end
 	
 	//회원가입 폼 전송
@@ -48,6 +48,13 @@ public class MemberDAO {
 	public String findPasswd(MemberDTO memberdto) {
 		return sqlSession.selectOne("member.findPasswd", memberdto);
 	}//findID() end
+	
+	
+	//소셜로그인
+	public int s_Insert(MemberDTO memberdto) {
+		return sqlSession.insert("member.s_insert", memberdto);
+	}//loginInsert() end
+	
 	
 	
 	
