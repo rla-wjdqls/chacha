@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴-->
+ 
+ <!--mypage.xml-->
+ <mapper namespace="servicea">
+ 	
+ <select id="serviceaList" resultType="kr.co.chacha.servicea.ServiceaDTO">
+ 	SELECT sno, uid, sano, sadate, stime, astate
+	FROM servicea	
+	ORDER BY sno		
+ </select>
+ 
+ <insert id="insert" parameterType="kr.co.chacha.servicea.ServiceaDTO">
+		INSERT INTO servicea(sno, uid, sano, sadate, stime, astate)
+		VALUES(#{sno}, #{uid}, #{sano}, #{sadate}, #{stime}, #{astate})
+</insert>
+
+ <!--  게시글 상세정보  -->
+<select id="detail" resultType="kr.co.chacha.servicea.ServiceaDTO">
+	SELECT sno, uid, sano, sadate, stime, astate
+	FROM servicea
+	WHERE sno = #{sno}
+</select>
+
+<delete id="delete" parameterType="int">
+    	DELETE FROM servicea
+    	WHERE sno = #{sno}
+</delete>
+    
+<update id="update" parameterType="kr.co.chacha.servicea.ServiceaDTO">
+	UPDATE servicea 
+	SET sno = #{sno}, uid = #{uid}, sano = #{sano}, sadate = #{sadate}, stime = #{stime}, astate = #{astate}
+</update>
+
+ </mapper>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

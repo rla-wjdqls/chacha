@@ -96,7 +96,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light">
         
         <a href="" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><i class=></i>그냥 데려가개</h2>
+            <img class="logo" src="/img/logolineye.png" alt="Image" style="width:50px; margin-right:10px;"><h2 class="m-0">그냥 데려가개</h2>
         </a>
         
         <div class="collapse navbar-collapse" id="navbarCollapse">

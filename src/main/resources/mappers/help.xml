@@ -28,5 +28,11 @@
     	DELETE FROM help
     	WHERE textno = #{textno}
 </delete>
+
+<update id="update" parameterType="kr.co.chacha.help.HelpDTO">
+	UPDATE help
+	SET textno = #{textno}, texttitle = #{texttitle}, uid = #{uid}, text = #{text}, helppic = #{helppic}
+	WHERE textno = #{textno}
+</update>
  	
  </mapper> 
