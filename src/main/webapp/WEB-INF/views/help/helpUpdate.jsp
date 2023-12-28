@@ -14,7 +14,7 @@
 				<div class="col-sm-12">
 				<table class="table">
 					<tr>
-						<td>제목</td>
+						<td >제목</td>
 						<td><input type="text" name="texttitle" id="texttitle" class="form-control" value="${helpup.texttitle}"></td>
 					</tr>
 					<tr>

@@ -31,7 +31,7 @@
 
 <update id="update" parameterType="kr.co.chacha.help.HelpDTO">
 	UPDATE help
-	SET textno = #{textno}, uid = #{uid}, text = #{text}, helppic = #{helppic}
+	SET textno = #{textno}, texttitle = #{texttitle}, uid = #{uid}, text = #{text}, helppic = #{helppic}
 	WHERE textno = #{textno}
 </update>
  	
