@@ -35,7 +35,7 @@ public class MypageDTO {
     private String astate;
     
     //찜목록
-    private String jjim_icon;
+    private int jjimno;
     
     //입양동물
     private String anino;
@@ -235,13 +235,13 @@ public class MypageDTO {
 	}
 
 
-	public String getJjim_icon() {
-		return jjim_icon;
+	public int getJjimno() {
+		return jjimno;
 	}
 
 
-	public void setJjim_icon(String jjim_icon) {
-		this.jjim_icon = jjim_icon;
+	public void setJjimno(int jjimno) {
+		this.jjimno = jjimno;
 	}
 
 

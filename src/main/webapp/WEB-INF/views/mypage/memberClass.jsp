@@ -11,17 +11,17 @@
 
 	<!-- Page content-->
 	<div class="container">
-		<h4>내 강의실</h4>
-		<p>내가 신청한 강의 수강 현황을 확인할 수 있습니다</p>
+		<h4>교육신청내역</h4>
+		<p>회원님들의 교육신청내역을 확인할 수 있습니다</p>
 		<br>
 		
 		<div>
 			<table class="table table-condensed">
 	        <thead>
 	            <tr>
-	                <th>아이디</th>
-	                <th>강의번호</th>
+	                <!-- <th>강의번호</th> -->
 	                <th>교육신청번호</th>
+	                <th>아이디</th>
 	                <th>내용</th>
 	                <th>수료상태</th>
 	                <th>신청날짜</th>
@@ -31,9 +31,9 @@
 	        <tbody>
 	            <c:forEach items="${memberClassList}" var="memedu" >
 	                <tr>
-	                    <td>${memedu.uid}</td>
-	                    <td>${memedu.myno}</td>
+	                    <%-- <td>${memedu.myno}</td> --%>
 	                    <td>${memedu.eduno}</td>
+	                    <td>${memedu.uid}</td>
 	                    <td>${memedu.mycon}</td>
 	                    <td>
 			            <c:choose>

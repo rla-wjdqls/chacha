@@ -36,10 +36,9 @@
                 <tr>
                    <td>
 		            <c:choose>
-					<%--로그인 상태에 찜 클릭 --%>
 					<c:when test="${not empty sessionScope.s_id}">
 						<div class="icon-heart" id="jjimDeleteContainer">
-								<i class="bi bi-heart-fill" id="jjimDelete"></i>
+							<i class="bi bi-heart-fill" id="jjimDelete"></i>
 						</div>	
 					</c:when>	
 					</c:choose>	
@@ -76,7 +75,36 @@
 
 <!-- 본문 끝 -->
 
-
+<script>
+	let anino = '${jjim.anino}';
+	//alert(anino); //확인 안됨
+	
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 시
+        $("#jjimDelete").click(function() {
+            // 서버로 삭제 요청을 보내는 AJAX 요청
+            
+            $.ajax({
+                type: "POST", // 또는 "GET" 등 필요에 따라 변경
+                url: "/mypage/delete", // 실제 서버 엔드포인트로 변경
+                data: {
+                    // 삭제에 필요한 데이터를 전달 (예: 삭제할 아이템의 식별자)
+                    anino: anino
+                },
+                error: function(error) {
+                    // 실패 시 수행할 작업
+                    console.log(error);
+                },
+                success: function(result) {
+                    // 성공 시 수행할 작업
+                    if(result ===1){
+                    alert("삭제 성공");
+                    }
+                }
+            });
+        });
+    });
+</script>
 
 
 <%@ include file="./mypageFooter.jsp" %>      

@@ -16,12 +16,13 @@
 	<div class="container">
 	<br><br>
 		<h4>입양신청내역</h4>
-		<p>나의 입양 신청 내역을 확인 할 수 있습니다</p>
+		<p>회원님들의 입양신청내역을 확인 할 수 있습니다</p>
 	<table class="table table-condensed">
         <thead>
             <tr>
             	<!--신청글 제목없음 -->
                 <th>신청번호</th>
+                <th>아이디</th>
                 <th>신청글 사진</th>
                 <!-- <th>신청내용</th> -->
                 <th>신청일자</th>
@@ -34,6 +35,7 @@
             <c:forEach items="${myAdoptList}" var="myAdopt" >
                 <tr>
                     <td>${myAdopt.apno}</td>
+                    <td>${myAdopt.uid}</td>
                     <td><a href="/center/detail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
                     <%-- <td>${myAdopt.sub_cont}</td> --%>
                     <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
@@ -52,7 +54,7 @@
     </table>
     <br><hr><br><br>
     	<h4>책임금 결제 내역</h4>
-		<p>나의 책임금 결제 내역을 확인 할 수 있습니다</p>
+		<p>회원님들의 책임금 결제 내역을 확인 할 수 있습니다</p>
 	<table class="table table-condensed">
         <thead>
             <tr>

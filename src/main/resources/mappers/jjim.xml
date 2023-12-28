@@ -18,7 +18,6 @@
   	<delete id="delete" parameterType="String">
   	  	DELETE FROM jjim
 		WHERE ( uid = #{uid} AND anino = #{anino} )
-  	
   	</delete>
   </mapper>
  

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDTO;
 
 @Repository
@@ -61,6 +62,11 @@ SqlSession sqlSession;
 	public List<MypageDTO> jjimList(String s_id) {		
 		return sqlSession.selectList("mypage.jjimList", s_id);
 	}//jjimList() end
+	
+	
+	public int jjimDelete(MypageDTO mypagedto) {
+		return sqlSession.delete("jjim.jjimDelete", mypagedto);
+	}
 	
 	
 	public List<MypageDTO> myComment(String s_id) {		

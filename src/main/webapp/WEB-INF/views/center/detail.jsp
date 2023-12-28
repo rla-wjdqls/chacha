@@ -159,6 +159,7 @@
 		<script>
 			//찜 관련 스크립트 
 			let anino = '${center.anino}'; //동물글 번호 
+			alert(anino);
 			
 			$(document).ready(function () {
 			    let jjimState; // 찜 상태 저

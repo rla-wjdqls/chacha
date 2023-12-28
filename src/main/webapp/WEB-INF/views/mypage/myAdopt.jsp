@@ -20,13 +20,12 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
-            	<!--신청글 제목없음 -->
                 <th>신청번호</th>
                 <th>신청글 사진</th>
-                <!-- <th>신청내용</th> -->
                 <th>신청일자</th>
-                <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>첨부파일</th>
+                <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
+                <th>	  </th>
                 
             </tr>
         </thead>
@@ -37,19 +36,27 @@
                     <td><a href="/center/detail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
                     <%-- <td>${myAdopt.sub_cont}</td> --%>
                     <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
+                   <td>${myAdopt.subpic}</td>
                     <td>
 		            <c:choose>
 		                <c:when test="${myAdopt.sub_state eq 'S'}">신청완료</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'P'}">심사중</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'W'}">심사완료</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'X'}">입양취소</c:when>
 		            </c:choose>
 		        	</td>
-                    <td>${myAdopt.subpic}</td>
+		        	<td></td>
+		        	<!-- <td><input type="button" value="결제" class="btn btn basic"></td> -->
                 </tr>
             </c:forEach>
         </tbody>
     </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    신청상태 : 신청완료 -> 심사중 -> 심사완료 -> 입양가능 -> 책임금결제 -> 입양완료
     <br><hr><br><br>
     	<h4>책임금 결제 내역</h4>
 		<p>나의 책임금 결제 내역을 확인 할 수 있습니다</p>

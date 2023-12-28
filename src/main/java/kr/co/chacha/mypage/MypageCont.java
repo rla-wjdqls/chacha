@@ -28,19 +28,18 @@ public class MypageCont {
 	@Autowired
 	MypageDAO mypageDao;
 	
-		
-	@GetMapping("/mypage/myList_c")
-	public ModelAndView myList_c(HttpSession session) {
+	
+	//내글목록(관리자)
+	@GetMapping("/mypage/myList_a")
+	public ModelAndView myList_a(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myList_c");
-		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
-		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
+		mav.setViewName("mypage/myList_a");
+		//mav.addObject("myList_a", mypageDao.myList_a(s_id));
 		return mav;
-	}//myList_c() end
-
+	}//myList_b() end
 	
-	//봉사글목록(파트너)
+	//내글목록(파트너)
 	@GetMapping("/mypage/myList_b")
 	public ModelAndView myList_b(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
@@ -51,6 +50,17 @@ public class MypageCont {
 	}//myList_b() end
 	
 	
+	//내글목록(사용자)
+	@GetMapping("/mypage/myList_c")
+	public ModelAndView myList_c(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myList_c");
+		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
+		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
+		return mav;
+	}//myList_c() end
+		
 	
 	@GetMapping("/mypage/myAdopt")
 	public ModelAndView myAdopt(HttpSession session) {
@@ -58,6 +68,16 @@ public class MypageCont {
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
     	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+        return mav; 
+	}//myAdopt() end
+	
+	
+	@GetMapping("/mypage/memberAdopt")
+	public ModelAndView memAdopt(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/memberAdopt");
+    	//mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
         return mav; 
 	}//myAdopt() end
 	
@@ -252,18 +272,19 @@ public class MypageCont {
 	}//logout()
 	
 	
-//	//찜리스트 삭제
-//	@PostMapping("/mypage/delte")
-//	@ResponseBody
-//	public String jjimDelete(HttpSession session,HttpServletRequest req) {
-//		String anino = (String)session.getAttribute("s_passwd"); 
-//		
-//		mypageDao.jjimDelete(anino);
-//		
-//
-//		
-//		return "redirect:/mypage/jjimList";
-//	}//jjimDelete() end
+	//찜리스트 삭제
+	@PostMapping("/mypage/delete")
+	@ResponseBody
+	public int jjimDelete(HttpSession session, String anino) {
+		String s_id = (String)session.getAttribute("s_id");
+		MypageDTO mypagedto = new MypageDTO();
+		mypagedto.setAnino(anino);
+		mypagedto.setUid(s_id);
+		
+		int cnt = mypageDao.jjimDelete(mypagedto);
+		
+		return cnt;
+	}//jjimDelete() end
 	
 	
 }//end

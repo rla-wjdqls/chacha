@@ -89,7 +89,6 @@ function DaumPostcode() {
 
 function checkSignup() {
 	
-	
 	 //1) 이름 두글자 이상 인지?
      let uname = document.getElementById("uname").value;
 	 uname=uname.trim();

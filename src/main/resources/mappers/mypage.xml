@@ -48,18 +48,26 @@
  
  
   <select id="memberService" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT sno, stitle, stitle, cnt, uid
-	FROM service
+  	SELECT sa.sano, sa.stime, sa.sadate, sa.astate, sa.uid, sc.stitle
+  	FROM servicea sa join service sc
+  	ON sa.sno = sc.sno
+  	ORDER BY sa.sano DESC
  </select>
  
  
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino
+	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino, jj.jjimno
 	FROM jjim jj join animal ani
 	ON jj.anino = ani.anino
 	WHERE jj.uid = #{uid}
  </select>
  
+	
+ <delete id="jjimDelete" parameterType="String">
+  	DELETE FROM jjim
+	WHERE uid = #{uid} AND anino = #{anino}
+ </delete>
+	
  
  <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
@@ -109,11 +117,7 @@
 	WHERE uid = #{uid}
  </update>
  
- 
- <delete id="jjimDelete" parameterType="String">
-   DELETE FROM jjim
-   WHERE anino = #{anino}
- </delete>
+
  
 
  	
