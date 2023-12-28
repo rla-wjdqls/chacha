@@ -38,7 +38,7 @@
 	        <tr>
 	            <td><input type="checkbox"></td> <!-- 삭제기능 넣을 것 -->
 	            <td>${myhelp.textno}</td>
-	            <td>${myhelp.texttitle}</td>
+	            <td><a href="/help/helpDetail?textno=${myhelp.textno}">${myhelp.texttitle}</a></td>
 	            <td>${myhelp.cnt_help}</td>
 	            <td><fmt:formatDate value="${myhelp.uploaddate}" pattern="yyyy-MM-dd" /></td>
 	        </tr>

@@ -27,6 +27,12 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myeduList", s_id);
 	}//myeduList() end
 	
+	//회원 교육신청 내역(파트너)
+	public List<MypageDTO> memeduList() {		
+		return sqlSession.selectList("mypage.memeduList");
+	}//myeduList() end
+	
+	
 	public List<MypageDTO> myHelp(String s_id) {		
 		return sqlSession.selectList("mypage.myHelp", s_id);
 	}//myHelp() end
@@ -43,6 +49,12 @@ SqlSession sqlSession;
 	//봉사신청내역
 	public List<MypageDTO> myService(String s_id) {		
 		return sqlSession.selectList("mypage.myService", s_id);
+	}//mvsList() end
+	
+	
+	//회원 봉사신청내역(파트너)
+	public List<MypageDTO> memserviceList() {		
+		return sqlSession.selectList("mypage.memberService");
 	}//mvsList() end
 	
 	

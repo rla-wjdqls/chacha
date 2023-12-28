@@ -98,6 +98,16 @@ public class MypageCont {
     	mav.addObject("myClassList", mypageDao.myeduList(s_id));
         return mav; 
     }//myClassList() end
+    
+    
+	//회원 강의신청 내역(파트너)
+    @RequestMapping("/mypage/memberClass")
+    public ModelAndView memClassList(HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/memberClass");
+    	mav.addObject("memberClassList", mypageDao.memeduList());
+        return mav; 
+    }//memClassList() end
  
     
     //봉사신청내역(사용자)
@@ -114,10 +124,9 @@ public class MypageCont {
     //봉사신청내역(파트너)
     @RequestMapping("/mypage/memberService")
     public ModelAndView serviceList(HttpSession session) {
-    	String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/memberService");
-//    	mav.addObject("serviceList", mypageDao.serviceList(s_id));
+    	mav.addObject("memserviceList", mypageDao.memserviceList());
         return mav; 
     }//myClassList() end
     	

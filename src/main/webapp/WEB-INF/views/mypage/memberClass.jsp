@@ -19,6 +19,7 @@
 			<table class="table table-condensed">
 	        <thead>
 	            <tr>
+	                <th>아이디</th>
 	                <th>강의번호</th>
 	                <th>교육신청번호</th>
 	                <th>내용</th>
@@ -28,19 +29,20 @@
 	            </tr>
 	        </thead>
 	        <tbody>
-	            <c:forEach items="${myClassList}" var="myedu" >
+	            <c:forEach items="${memberClassList}" var="memedu" >
 	                <tr>
-	                    <td>${myedu.myno}</td>
-	                    <td>${myedu.eduno}</td>
-	                    <td>${myedu.mycon}</td>
+	                    <td>${memedu.uid}</td>
+	                    <td>${memedu.myno}</td>
+	                    <td>${memedu.eduno}</td>
+	                    <td>${memedu.mycon}</td>
 	                    <td>
 			            <c:choose>
-			                <c:when test="${myedu.mystate eq 'y'}">수료완료</c:when>
-			                <c:when test="${myedu.mystate eq 'n'}">수료미완료</c:when>
+			                <c:when test="${memedu.mystate eq 'y'}">수료완료</c:when>
+			                <c:when test="${memedu.mystate eq 'n'}">수료미완료</c:when>
 			            </c:choose>
 		       	   		</td>
-	                    <td><fmt:formatDate value="${myedu.mydate}" pattern="yyyy-MM-dd" /></td>
-	                    <td><fmt:formatDate value="${myedu.mycomple}" pattern="yyyy-MM-dd" /></td>
+	                    <td><fmt:formatDate value="${memedu.mydate}" pattern="yyyy-MM-dd" /></td>
+	                    <td><fmt:formatDate value="${memedu.mycomple}" pattern="yyyy-MM-dd" /></td>
 	                </tr>
 	            </c:forEach>
 	        </tbody>

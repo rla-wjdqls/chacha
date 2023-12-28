@@ -54,13 +54,23 @@
 		       	   </td>
                    <td>${jjim.age}</td>
                    <td>${jjim.weight}</td>
-                   <td>${jjim.genop}</td>
-                   <td>${jjim.vac}</td>
+                   <td>
+                   <c:choose>
+		                <c:when test="${jjim.genop eq 'Y'}">완료</c:when>
+		                <c:when test="${jjim.genop eq 'X'}">미완료</c:when>
+		           </c:choose>
+		           </td>
+		           <td>
+		           <c:choose>
+		                <c:when test="${jjim.vac eq 'Y'}">완료</c:when>
+		                <c:when test="${jjim.vac eq 'X'}">미완료</c:when>
+		           </c:choose>
+		           </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-		</div>
+	</div>
 	</div>
 
 

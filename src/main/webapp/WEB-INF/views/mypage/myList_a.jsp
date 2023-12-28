@@ -38,7 +38,7 @@
 	        <tr>
 	            <td><input type="checkbox"></td> <!-- 삭제기능 넣을 것 -->
 	            <td>${myservice.sno}</td>
-	            <td><a href="/service/servicedetail?sno=${myservice.sno}">${myservice.stitle}</a></td>
+	            <td>${myservice.stitle}</td>
 	            <td>${myservice.cnt}</td>
 	            <%-- <td><fmt:formatDate value="${myservice.uploaddate}" pattern="yyyy-MM-dd" /></td> --%>
 	        </tr>

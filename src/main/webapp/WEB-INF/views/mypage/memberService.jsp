@@ -30,17 +30,17 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${serviceList}" var="service" >
+            <c:forEach items="${memserviceList}" var="memservice" >
                 <tr>
-                    <td>${service.uid}</td>
-                    <td>${service.sano}</td>
-                    <td><a href="/service/servicedetail?sno=${service.sno}">${service.stitle}</a></td>
-                    <td><fmt:formatDate value="${service.sadate}" pattern="yyyy-MM-dd" /></td>
-                    <td>${service.stime}</td>
+                    <td>${memservice.uid}</td>
+                    <td>${memservice.sano}</td>
+                    <td><a href="/service/servicedetail?sno=${memservice.sno}">${memservice.stitle}</a></td>
+                    <td><fmt:formatDate value="${memservice.sadate}" pattern="yyyy-MM-dd" /></td>
+                    <td>${memservice.stime}</td>
                     <td>
 		            <c:choose>
-		                <c:when test="${service.astate eq 'o'}">신청완료</c:when>
-		                <c:when test="${service.astate eq 'x'}">신청취소</c:when>
+		                <c:when test="${memservice.astate eq 'o'}">신청완료</c:when>
+		                <c:when test="${memservice.astate eq 'x'}">신청취소</c:when>
 		            </c:choose>
 		        	</td>
                 </tr>

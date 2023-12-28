@@ -14,6 +14,13 @@
  </select>
  
  
+ <select id="memeduList" resultType="kr.co.chacha.mypage.MypageDTO">
+ 	SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
+	FROM myeducation
+	ORDER BY mydate DESC
+ </select>
+ 
+ 
   <select id="myHelp" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT textno, texttitle, uploaddate, cnt, uid
 	FROM help
@@ -37,6 +44,12 @@
 	FROM servicea sa JOIN service sc
 	ON sa.sno = sc.sno
 	WHERE sa.uid = #{uid}	
+ </select>
+ 
+ 
+  <select id="memberService" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT sno, stitle, stitle, cnt, uid
+	FROM service
  </select>
  
  
