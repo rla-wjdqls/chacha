@@ -18,27 +18,6 @@ public class ServiceaDAO {
 		System.out.println("----ServiceaDAO()객체 생성");
 	}//end
 	
-	@Autowired
-	SqlSession sqlSession;
-	
-	public void insert(ServiceaDTO serviceadto) {
-		sqlSession.insert("servicea.insert", serviceadto);
-	}//insert() end
-	
-	public List<ServiceaDTO> serviceaList() {
-		return sqlSession.selectList("servicea.serviceaList");
-	}
-	
-	public ServiceaDTO detail(int sno){
-		return sqlSession.selectOne("servicea.detail", sno);
-	}
-	
-	public ServiceaDTO update(ServiceaDTO serviceadto){
-		return sqlSession.selectOne("servicea.update", serviceadto);
-	}
-	
-	public ServiceaDTO delete(int sno){
-		return sqlSession.selectOne("servicea.delete", sno);
-	}
+
 
 }//end

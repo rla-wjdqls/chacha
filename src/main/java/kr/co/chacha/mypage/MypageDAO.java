@@ -35,9 +35,14 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myAdoprv", s_id);
 	}//myAdoprvList() end
 
-	
+	//봉사신청내역
 	public List<MypageDTO> mysvList(String s_id) {		
 		return sqlSession.selectList("mypage.mysvList", s_id);
+	}//mvsList() end
+	
+	//봉사신청내역
+	public List<MypageDTO> myService(String s_id) {		
+		return sqlSession.selectList("mypage.myService", s_id);
 	}//mvsList() end
 	
 	
@@ -80,6 +85,10 @@ SqlSession sqlSession;
 	}//memberWithdra() end
 	
 	
+	//찜리스트 삭제
+	public void jjimDelete(String anino) {
+		sqlSession.delete("mypage.jjimDelete", anino);
+	}//memberWithdra() end
 	
 	
 	

@@ -1,15 +1,19 @@
 package kr.co.chacha.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.servicea.ServiceaDTO;
 
 @Controller
 @RequestMapping("/service")
@@ -30,7 +34,7 @@ public class ServiceCont {
 	 * }//serviceList() end
 	 */	
 	@RequestMapping("/serviceList")
-	public ModelAndView serviceList() {
+	public ModelAndView serviceList(ServiceaDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName ("service/serviceList");
 		mav.addObject("serviceList",serviceDAO.serviceList());
@@ -105,7 +109,16 @@ public class ServiceCont {
 			
 		}//화면전환
 		
-	
+		@PostMapping("/servicea")
+		public ModelAndView servicea(ServiceDTO servicedto) {
+			ModelAndView mav = new ModelAndView();
+			serviceDAO.insertServicea(servicedto);
+			mav.setViewName("redirect:/service/serviceList");
+			return mav;
+			
+		}//화면전환
+		
+
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		

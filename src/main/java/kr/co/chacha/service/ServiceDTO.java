@@ -15,7 +15,7 @@ public class ServiceDTO {
 		private String sstate;
 		private int cnt;
 		private String sstime;
-		private String etime;
+		private String setime;
 	 
 		private int sano;
 	 	private Date sadate;
@@ -39,10 +39,10 @@ public class ServiceDTO {
 			this.sstime = sstime;
 		}
 		public String getEtime() {
-			return etime;
+			return setime;
 		}
-		public void setEtime(String etime) {
-			this.etime = etime;
+		public void setEtime(String setime) {
+			this.setime = setime;
 		}
 		public String getUid() {
 			return uid;
@@ -132,7 +132,7 @@ public class ServiceDTO {
 		public String toString() {
 			return "ServiceDTO [sno=" + sno + ", uid=" + uid + ", stitle=" + stitle + ", sinfo=" + sinfo + ", ssdate="
 					+ ssdate + ", sedate=" + sedate + ", time=" + time + ", sp=" + sp + ", splace=" + splace
-					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", etime=" + etime + ", sano="
+					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", etime=" + setime + ", sano="
 					+ sano + ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", getSno()=" + getSno()
 					+ ", getSstime()=" + getSstime() + ", getEtime()=" + getEtime() + ", getUid()=" + getUid()
 					+ ", getStitle()=" + getStitle() + ", getSinfo()=" + getSinfo() + ", getSsdate()=" + getSsdate()
