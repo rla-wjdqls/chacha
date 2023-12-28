@@ -53,6 +53,11 @@
 		<p>봉사모집시작일자<input type="date"name="ssdate" id="ssdate" value="${serviceup.ssdate}" class="form-control" maxlength="100" required>봉사모집종료날짜&nbsp;<input type="date" name="sedate" id="sedate" value="${serviceup.sedate}" class="form-control" maxlength="100" required></p>
 	</table>
 </div>		
+<div class="container col-sm-12">
+	<table class="table">	
+		<p>봉사시작시간<input type="time"name="sstime" id="sstime" value="${serviceup.sstime}" class="form-control" maxlength="100" required>봉사종료시간&nbsp;<input type="time" name="etime" id="etime" value="${serviceup.etime}" class="form-control" maxlength="100" required></p>
+	</table>
+</div>			
 
 <div class="container col-sm-12">
 	<table class="table">

@@ -5,7 +5,7 @@
 <nav class="navbar navbar-light bg-light" style="height: 42px">
 			 <ul class="list-inline ml-auto" style="align-items: center;">
 				<li class="list-inline-item">
-					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+					<a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575; margin-left: 15px;" alt="홈으로"></i></a>
 					<i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
 				</li>
 				<li class="list-inline-item">

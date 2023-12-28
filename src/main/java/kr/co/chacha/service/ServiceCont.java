@@ -105,6 +105,7 @@ public class ServiceCont {
 			
 		}//화면전환
 		
+<<<<<<< HEAD
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
@@ -121,4 +122,12 @@ public class ServiceCont {
 		
 		
 		
+=======
+		 
+
+		 
+
+		 
+
+>>>>>>> b3e74235434c8ae81908d63c5b37f02eafa99aa6
 }//end

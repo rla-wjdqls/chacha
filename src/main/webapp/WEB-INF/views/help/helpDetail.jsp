@@ -9,6 +9,7 @@
 
 th{
 width: 10%;
+text-align: center;
 }
 
 td{
@@ -28,7 +29,7 @@ function hdelete() {
 <nav class="navbar navbar-light bg-light" style="height: 42px">
     <ul class="list-inline ml-auto" style="align-items: center;">
       <li class="list-inline-item">
-         <a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575" alt="홈으로"></i></a>
+         <a href="/"><i class="bi bi-house fs-7" style="font-size: 20px, color: #757575; margin-left: 15px;" alt="홈으로"></i></a>
          <i class="bi bi-arrow-right-short" style="font-size: 20px, color: #666"></i>
       </li>
       <li class="list-inline-item">
@@ -41,11 +42,6 @@ function hdelete() {
    </ul>
 </nav>
 
-
-<div style="text-align: right; height: 50px;">
-	<!-- <p><a href="/help/helpList" class="nav-item nav-link">
-		<input type="button" value="글목록"></a></p>	 -->
-</div>
 
 <div class="container text-center">
 	<div class="row">
@@ -80,7 +76,8 @@ function hdelete() {
 	  
 	  <tr>
 		  <th>첨부파일</th>
-		  <td colspan="3">${helpd.helppic}</td>
+		  <td colspan="3">
+		  <img src="../storage/${helpd.helppic}" width="400"></td>
 	  </tr>
 	  
 	  <tr>
@@ -99,7 +96,7 @@ function hdelete() {
 
 <div style="text-align:center; height: 50px; padding-top: 15px;">
 	<p><a href="/help/helpUpdate?textno=${helpd.textno}">
-	<input type="button" class="btn btn-success" value="수정"></a> &nbsp;
+	<input type="button" class="btn btn-success" value="수정"></a>
 	<input type="button" class="btn btn-danger" onclick="hdelete();" value="삭제"> &nbsp;
 	</p>
 </div>

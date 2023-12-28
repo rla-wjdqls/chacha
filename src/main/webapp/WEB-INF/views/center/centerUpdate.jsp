@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="./centerheader.jsp" %>
+<%@ include file="../header.jsp" %>
 
 	<div class="container text-center">
 <!-- 본문 시작 template.jsp -->

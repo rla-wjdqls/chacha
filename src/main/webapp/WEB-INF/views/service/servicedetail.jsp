@@ -128,7 +128,7 @@ function sdelete() {
 
 <div style="text-align:center; height: 50px; padding-top: 15px;">
 	<p><a href="/service/serviceUpdate?sno=${serviced.sno}">
-	<input type="button" value="수정" style="background-color: azure;"></a> &nbsp;
+	<input type="button" value="수정"></a> &nbsp;
 	<input type="button" onclick="sdelete();" value="삭제"> &nbsp;
 	<a href="/service/servicea?sno=${serviced.sno}"><input type="button" value="신청"></a></p>
 </div>
