@@ -9,6 +9,7 @@
 
 th{
 width: 10%;
+text-align: center;
 }
 
 td{
@@ -75,7 +76,8 @@ function hdelete() {
 	  
 	  <tr>
 		  <th>첨부파일</th>
-		  <td colspan="3">${helpd.helppic}</td>
+		  <td colspan="3">
+		  <img src="../storage/${helpd.helppic}" width="400"></td>
 	  </tr>
 	  
 	  <tr>
