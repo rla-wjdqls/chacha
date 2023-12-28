@@ -50,4 +50,22 @@
 			alert("로그인 필요");
 		}//jjim_nolog() end
 		
-		
+		//입양신청 유효성 검사
+		function adopt(){
+			//alert();
+			let gg = document.getElementById("gg").value;
+			let bb = document.getElementById("bb").value;
+			let da = document.getElementById("da").value;
+			let sub_cont = document.getElementById("sub_cont").value;
+			//alert(gg);
+			//alert(bb);
+			//alert(da);
+			//alert(sub_cont);
+			
+			if(gg==1 || bb!=2 || da==1 || sub_cont.length === 0){
+				alert("신청불가");
+			}else{
+				alert("신청가능");
+			}
+
+		}		
