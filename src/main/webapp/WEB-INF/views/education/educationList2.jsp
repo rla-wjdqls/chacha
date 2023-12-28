@@ -313,63 +313,32 @@
         }
     } */
 
-   
+    function gradeQuiz() {
         // 문제별 정답 배열
-         var quizData = [
-        { quizno: "qd1", quiz_cont: "종합백신(DHPPL) 종류에 광견병이 포함된다.", ox: "X" },
-        { quizno: "qd2", quiz_cont: "동물 보호법으로 정해진 리드줄 길이는 2m 이하이다.", ox: "O" },
-        { quizno: "qd3", quiz_cont: "광견병 예방접종은 매년 맞지 않아도 된다.", ox: "X" },
-        { quizno: "qd4", quiz_cont: "강아지는 꽃은 먹어도 된다.", ox: "X" },
-        { quizno: "qd5", quiz_cont: "임신중에 구충약 복용해야 한다.", ox: "X" },
-        { quizno: "qd6", quiz_cont: "임신기간은 평균 9주이다.", ox: "O" },
-        { quizno: "qd7", quiz_cont: "성견 치아는 40개 이상이다.", ox: "O" },
-        { quizno: "qd8", quiz_cont: "강아지는 땀배출을 발바닥으로 한다.", ox: "O" },
-        { quizno: "qd9", quiz_cont: "강아지 치석은 3개월 이상부터 생긴다.", ox: "X" },
-        { quizno: "qd10", quiz_cont: "입양 후 동물등록신고는 30일 안에 해야 한다.", ox: "O" },
-        { quizno: "qc1", quiz_cont: "고양이는 높은 곳에서 떨어져서 다치지 않는다.", ox: "X" },
-        { quizno: "qc2", quiz_cont: "고양이가 문어,전복을 먹으면 심장에 부담이 가므로 먹으면 안된다.", ox: "O" },
-        { quizno: "qc3", quiz_cont: "고양이는 폐경이 없다.", ox: "O" },
-        { quizno: "qc4", quiz_cont: "고양이는 관절염이 없다.", ox: "X" },
-        { quizno: "qc5", quiz_cont: "길고양이는 사람의 도움이 없어도 굶지 않는다.", ox: "X" },
-        { quizno: "qc6", quiz_cont: "고양이가 푸른 생선을 너무 많이 먹으면 배에 응어리가 만져진다.", ox: "O" },
-        { quizno: "qc7", quiz_cont: "고양이는 사람보다 시력이 좋다.", ox: "X" },
-        { quizno: "qc8", quiz_cont: "고양이는 단맛을 제한적으로 또는 전혀 느끼지 못한다.", ox: "O" },
-        { quizno: "qc9", quiz_cont: "고양이는 빨간색을 알아볼 수 없다.", ox: "O" },
-        { quizno: "qc10", quiz_cont: "고양이는 수태 후 평균 65일 만에 출산한다.", ox: "O" }
-        ];
-        
-        function gradeQuiz() {
+        var correctAnswers = ["O", "X"];
+
         // 사용자가 선택한 답 배열
-        var score = 0;
-        var allanswer = true;  // 모든 문제를 풀었는지 여부
-        
-        for (var i = 0; i <= quizData.length; i++) {
-            var answer = document.querySelector('input[name="' + quizData[i].quizno + '"]:checked');
-            
-            // 사용자가 모든 문제의 답을 선택하지 않은 경우
-            if(!answer){
-            	allanswer = false;
-            	break;
+        var userAnswers = [];
+        for (var i = 1; i <= correctAnswers.length; i++) {
+            var selectedAnswer = document.querySelector('input[name="q' + i + '"]:checked');
+            if (selectedAnswer) {
+                userAnswers.push(selectedAnswer.value);
+            } else {
+                alert("모든 문제에 답을 선택해주세요.");
+                return;
             }
-            /*
-            if (answer) {
-            	var quizno = quizData[i].quizno;
-            	var answer = quizData[i].ox;
-            }	*/
-            
-            //사용자가 선택한 답과 정답을 비교하여 점수 부여
-            if (answer.value === quizData[i].ox) {
+        }
+
+        // 점수 계산
+        var score = 0;
+        for (var i = 0; i < correctAnswers.length; i++) {
+            if (userAnswers[i] === correctAnswers[i]) {
                 score += 10;
-           
             }
         }
 
         // 결과 표시
-        if (allanswer) {
-            document.getElementById("result").innerHTML = "총 점수: " + score + "점";
-        } else {
-            document.getElementById("result").innerHTML = "모든 문제를 풀어주세요!";
-        }
+        document.getElementById("result").innerHTML = "총 점수: " + score + "점";
     }
     </script>
  
