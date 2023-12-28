@@ -9,7 +9,6 @@
 
 th{
 width: 10%;
-text-align: center;
 }
 
 td{
