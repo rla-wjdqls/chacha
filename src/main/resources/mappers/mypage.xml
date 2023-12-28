@@ -15,13 +15,13 @@
  
  
   <select id="myHelp" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT textno, texttitle, uploaddate, cnt_help, uid
+	SELECT textno, texttitle, uploaddate, cnt, uid
 	FROM help
 	WHERE uid = #{uid}		
  </select>
  
   <select id="myAdoprv" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT arno, artitle, ardate, cnt_adoprv, uid
+	SELECT arno, artitle, ardate, cnt, uid
 	FROM adoprv
 	WHERE uid = #{uid}
  </select>
@@ -35,10 +35,10 @@
  
  
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ani.jjim_icon, ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino
+	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino
 	FROM jjim jj join animal ani
 	ON jj.anino = ani.anino
-	WHERE jj.uid = #{uid} and ani.jjim_icon = 1
+	WHERE jj.uid = #{uid}
  </select>
  
  

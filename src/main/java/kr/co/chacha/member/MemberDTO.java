@@ -214,7 +214,6 @@ public class MemberDTO {
 
 	
 	
-	
 	//toString
 
 	public String getS_email() {

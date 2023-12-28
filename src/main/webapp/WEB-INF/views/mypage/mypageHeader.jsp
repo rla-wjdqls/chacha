@@ -175,7 +175,7 @@
             <c:if test="${not empty sessionScope.s_id}">
                 <!-- If logged in, show logout link -->
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="logout2" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
+                    <a href="logout" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
                 </div>
             </c:if>
             

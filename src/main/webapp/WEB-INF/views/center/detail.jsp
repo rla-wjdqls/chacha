@@ -30,7 +30,6 @@
 				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
 				   <input type="button" value="삭제" class="btn btn-danger rotate-text" onclick="center_delete()">
 		    </div>
-		 
 		</nav>
 	
 

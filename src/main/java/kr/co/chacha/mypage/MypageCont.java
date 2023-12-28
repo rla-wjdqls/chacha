@@ -207,7 +207,7 @@ public class MypageCont {
 	
 		
 	//로그아웃 클릭시 세션 만료
-	@RequestMapping("/mypage/logout2")
+	@RequestMapping("/mypage/logout")
 	public String logout2(HttpSession session) {
 		
 		session.removeAttribute("s_id");
@@ -215,7 +215,7 @@ public class MypageCont {
 		session.removeAttribute("s_mlevel");
 		
 		return "redirect:/";
-	}//logout2()
+	}//logout()
 	
 	
 }//end

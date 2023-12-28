@@ -82,7 +82,6 @@
 		}
 		
 		
-		
 		function jjim_de(){
 			alert("찜 해제");
 		}

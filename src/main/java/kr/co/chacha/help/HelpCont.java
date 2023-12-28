@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/help")
@@ -74,5 +75,16 @@ public class HelpCont {
     	mav.addObject("helpd", helpDAO.detail(textno));
     	return mav;
     }
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("s_id");
+		session.removeAttribute("s_passwd");
+		session.removeAttribute("s_mlevel");
+		
+		return "redirect:/";
+		
+	}//logout end
 	
 }

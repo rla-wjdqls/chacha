@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.member.MemberDAO;
 
 @Controller
@@ -29,6 +30,20 @@ public class ResearchCont {
 		mav.setViewName("research/researchForm");
 		return mav;
 	}//research() end
+	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("s_id");
+		session.removeAttribute("s_passwd");
+		session.removeAttribute("s_mlevel");
+		
+		return "redirect:/";
+		
+	}//logout end
+	
+	
 	
 	
 }//class end

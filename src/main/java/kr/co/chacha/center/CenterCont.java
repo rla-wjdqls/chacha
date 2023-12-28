@@ -153,6 +153,17 @@ public class CenterCont {
 		
 		return "redirect:/center/centerForm";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.removeAttribute("s_id");
+		session.removeAttribute("s_passwd");
+		session.removeAttribute("s_mlevel");
+		
+		return "redirect:/";
+		
+	}//logout end
 
 			
 }
