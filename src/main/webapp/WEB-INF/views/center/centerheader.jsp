@@ -5,6 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,18 +66,26 @@
 		
 		// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 		// marker.setMap(null);    */ 
-
+		
+		//로그아웃 함수 
+		function logout(){
+		alert("로그아웃 되었습니다");
+		}//logout() end
+		
+		//수정내용 작성 페이지 연결 함수 
 		function center_Update() {
 			document.centerfrm.action="/center/centerUpdate";
 			document.centerfrm.submit();
 		}
 		
+		//동물글 수정 함수 
 		function center_update() {
 			document.centerfrm.action="/center/update";
 			document.centerfrm.submit();
 		
 		}
-	
+		
+		//동물글 삭제 함수 
 		function center_delete() {
 			if(confirm("삭제하시겠습니까?")){
 				document.centerfrm.action="/center/delete";
@@ -81,12 +93,7 @@
 			}
 		}
 		
-		
-		
-		function jjim_de(){
-			alert("찜 해제");
-		}
-		
+		//비회원 로그인 시 알럿창 
 		function jjim_nolog(){
 			alert("로그인 필요");
 		}
@@ -125,20 +132,20 @@
             <c:if test="${not empty sessionScope.s_id}">
                 <!-- If logged in, show logout link -->
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/">LOGOUT</a> <!-- Adjust the logout URL accordingly -->
+                    <a href="logout" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
                 </div>
             </c:if>
             
             <!-- If not logged in, show login and sign-up links -->
             <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/loginForm">LOGIN</a>  
-                </div>
-                &nbsp; &nbsp;
-                <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/signupForm">SIGN-UP</a>  
+                    <a href="/member/loginForm">로그인</a>  
                 </div>
             </c:if>
+             &nbsp; &nbsp;
+                <div class="h-100 d-inline-flex mx-n2">
+                    <a href="/member/signupForm">회원가입</a>  
+                </div>
             </div>
         </div>
     </div>
@@ -169,11 +176,9 @@
                 <div class="nav-item dropdown">
                    <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
                    <div class="dropdown-menu bg-light m-0">
-                       <a href="/mypage/jjimList" class="dropdown-item">찜 목록</a>
-                       <a href="/mypage/myList" class="dropdown-item">내 글목록</a>
-                       <a href="/mypage/myClass" class="dropdown-item">내 강의실</a>
-                       <a href="/mypage/myService" class="dropdown-item">봉사신청내역</a>
-                       <a href="/mypage/myInfo" class="dropdown-item">회원정보</a>
+                       <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+                       <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+                       <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
                    </div>
         </div>
     </nav>
