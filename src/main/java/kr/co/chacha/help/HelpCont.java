@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.service.ServiceDTO;
+
 
 @Controller
 @RequestMapping("/help")
@@ -47,9 +49,10 @@ public class HelpCont {
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
 						 @RequestParam(name="img") MultipartFile img,
-						 HttpServletRequest req) {
+						 HttpServletRequest req,
+						 HttpSession session) {
 		String helppic="-";
-		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
+		if(img != null && !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			helppic=img.getOriginalFilename();
 			try {
 				ServletContext application = req.getSession().getServletContext();
@@ -61,11 +64,26 @@ public class HelpCont {
 		}//if end
 		
 		map.put("helppic", helppic);
+		String uid=(String)session.getAttribute("s_id");
+		map.put("uid", uid);
 		
 		helpDAO.insert(map);
 		return "redirect:/help/helpList";
 	
 	}//insert() end
+
+	/*
+	@PostMapping("/helpForm")
+	public ModelAndView helpIns(HelpDTO helpdto, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String sid = session.getAttribute("s_id").toString();
+		//System.out.println("세션값 확인 : " + sid); 세션값 가져오는 거 확인되고 로그 찌겪혀으니까 확실한거 확인
+		helpdto.setUid(sid);
+		helpDAO.insert(helpdto);
+		mav.setViewName("redirect:/help/helpList");		
+		return mav;
+	} */
 	
 	//상세 페이지
 	@GetMapping("/helpDetail")

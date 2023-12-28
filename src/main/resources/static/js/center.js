@@ -52,7 +52,7 @@
 		
 		//입양신청 유효성 검사
 		function adopt(){
-			//alert();
+			//alert(anino);
 			let gg = document.getElementById("gg").value;
 			let bb = document.getElementById("bb").value;
 			let da = document.getElementById("da").value;
@@ -66,6 +66,26 @@
 				alert("신청불가");
 			}else{
 				alert("신청가능");
-			}
+				eduCheck();
+			}//if end
+			
+			function eduCheck(){
+				$.ajax({
+					url : 'eduCheck' ,
+				    type : 'post' ,
+				    data : { 'anino' : anino } ,
+				    error : function (error){
+						alert(error);
+					},
+					success : function(result){
+						if(result === 0)
+						alert("아");
+							//aniInsert();
+					}	
+				   
+				});//ajax end
+			}//eduCheck() end
+			
+			
 
 		}		

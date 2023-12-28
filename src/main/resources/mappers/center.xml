@@ -38,6 +38,20 @@
  		WHERE anino = #{anino}
  	</delete>
  	
+ 	<!-- <select id="check" parameterType="java.util.Map" resultType="int">
+ 		SELECT count(SUM(score))
+		FROM select uid
+			 from quiz_sub
+			 group by uid
+		QS INNER JOIN education ED ON QS.uid = ED.uid
+		GROUP BY score
+		
+		
+		education
+		INNER JOIN quiz_sub ON education.uid = quiz_sub.uid
+		GROUP BY quiz_sub.uid = #{uid} AND eduop = #{str}
+		HAVING sum(score) >= 60;
+ 	</select> -->
  </mapper>
  
 

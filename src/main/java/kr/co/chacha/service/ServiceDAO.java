@@ -38,4 +38,8 @@ public class ServiceDAO {
 	public ServiceDTO delete(int sno){
 		return sqlSession.selectOne("service.delete", sno);
 	}
+	
+	public void insertServicea(ServiceDTO servicedto) {
+		sqlSession.insert("service.insertServicea", servicedto);
+	}//insert() end
 }//end

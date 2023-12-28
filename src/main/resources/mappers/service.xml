@@ -34,6 +34,10 @@
 	WHERE sno = #{sno}		
 </update>
 
+ <insert id="insertServicea" parameterType="kr.co.chacha.service.ServiceDTO">
+		INSERT INTO servicea (uid, sno, sadate, astate)
+		VALUES(#{uid}, #{sno}, #{sadate}, 'O')
+</insert>
  </mapper>
  
  

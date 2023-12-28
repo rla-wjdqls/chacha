@@ -101,48 +101,48 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="dogquizForm">
-            <div class="question">
+        <form id="dogquizForm" action="quizan">
+            <div class="question" name="qd">
                 <label>1. 종합백신(DHPPL) 종류에 광견병이 포함된다. </label>
                 <input type="radio" name="qd1" value="X"> O
                 <input type="radio" name="qd1" value="O"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>2. 동물 보호법으로 정해진 리드줄 길이는 2m 이하이다. </label>
                 <input type="radio" name="qd2" value="O"> O
                 <input type="radio" name="qd2" value="X"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>3. 광견병 예방접종은 매년 맞지 않아도 된다. </label>
                 <input type="radio" name="qd3" value="X"> O
                 <input type="radio" name="qd3" value="O"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>4. 강아지는 꽃은 먹어도 된다. </label>
                 <input type="radio" name="qd4" value="X"> O
                 <input type="radio" name="qd4" value="O"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>5. 임신 중에 구충약 복용해야 한다. </label>
                 <input type="radio" name="qd5" value="X"> O
                 <input type="radio" name="qd5" value="O"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>6. 임신기간은 평균 9주이다. </label>
                 <input type="radio" name="qd6" value="O"> O
                 <input type="radio" name="qd6" value="X"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>7. 성견 치아는 40개 이상이다. </label>
                 <input type="radio" name="qd7" value="O"> O
                 <input type="radio" name="qd7" value="X"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>8. 강아지는 땀배출을 발바닥으로 한다. </label>
                 <input type="radio" name="qd8" value="O"> O
                 <input type="radio" name="qd8" value="X"> X
             </div>
-            <div class="question">
+            <div class="question" name="qd">
                 <label>9. 강아지 치석은 3개월 이상부터 생긴다. </label>
                 <input type="radio" name="qd9" value="X"> O
                 <input type="radio" name="qd9" value="O"> X
@@ -154,7 +154,7 @@
             </div>
            <!-- 추가 문제 추가 가능 -->
 
-            <button type="button" onclick="gradeQuiz()">결과보기</button>
+            <button type="submit">결과보기</button>
         </form>
 
         <!-- 채점 결과 -->
@@ -177,64 +177,71 @@
        		 <br>
 
         <!-- 문제 표시 및 풀이 양식 -->
-        <form id="catquizForm">
+        <form id="catquizForm" action="quizan">
             <div class="question">
                 <label>1. 고양이는 높은 곳에서 떨어져서 다치지 않는다. </label>
-                <input type="radio" name="qc1" value="X"> O
-                <input type="radio" name="qc1" value="O"> X
+                <select name="qc" >
+                	<option value="o">o</option>
+                	<option value="x">x</option>
+                </select>
+                
             </div>
 
             <div class="question">
                 <label>2. 고양이가 문어,전복을 먹으면 심장에 부담이 가므로 먹으면 안된다. </label>
-                <input type="radio" name="qc2" value="O"> O
-                <input type="radio" name="qc2" value="X"> X
+                <select name="qc" >
+                	<option value="o">o</option>
+                	<option value="x">x</option>
+                </select>
             </div>
             
             <div class="question">
                 <label>3. 고양이는 폐경이 없다. </label>
-                <input type="radio" name="qc3" value="O"> O
-                <input type="radio" name="qc3" value="X"> X
+            	<select name="qc" >
+                	<option value="o">o</option>
+                	<option value="x">x</option>
+                </select>    
             </div>
             <div class="question">
                 <label>4. 고양이는 관절염이 없다. </label>
-                <input type="radio" name="qc4" value="X"> O
-                <input type="radio" name="qc4" value="O"> X
+                <input type="radio" name="qc" value="X"> O
+                <input type="radio" name="qc" value="O"> X
             </div>
             <div class="question">
                 <label>5. 길고양이는 사람의 도움이 없어도 굶지 않는다. </label>
-                <input type="radio" name="qc5" value="X"> O
-                <input type="radio" name="qc5" value="O"> X
+                <input type="radio" name="qc" value="X"> O
+                <input type="radio" name="qc" value="O"> X
             </div>
             <div class="question">
                 <label>6. 고양이가 푸른 생선을 너무 많이 먹으면 배에 응어리가 만져진다. </label>
-                <input type="radio" name="qc6" value="O"> O
-                <input type="radio" name="qc6" value="X"> X
+                <input type="radio" name="qc" value="O"> O
+                <input type="radio" name="qc" value="X"> X
             </div>
             <div class="question">
                 <label>7. 고양이는 사람보다 시력이 좋다. </label>
-                <input type="radio" name="qc7" value="X"> O
-                <input type="radio" name="qc7" value="O"> X
+                <input type="radio" name="qc" value="X"> O
+                <input type="radio" name="qc" value="O"> X
             </div>
             <div class="question">
                 <label>8. 고양이는 단맛을 제한적으로 또는 전혀 느끼지 못한다. </label>
-                <input type="radio" name="qc8" value="O"> O
-                <input type="radio" name="qc8" value="X"> X
+                <input type="radio" name="qc" value="O"> O
+                <input type="radio" name="qc" value="X"> X
             </div>
             <div class="question">
                 <label>9. 고양이는 빨간색을 알아볼 수 없다. </label>
-                <input type="radio" name="qc9" value="O"> O
-                <input type="radio" name="qc9" value="X"> X
+                <input type="radio" name="qc" value="O"> O
+                <input type="radio" name="qc" value="X"> X
             </div>
             <div class="question">
                 <label>10. 고양이는 수태 후 평균 65일 만에 출산한다. </label>
-                <input type="radio" name="qc10" value="O"> O
-                <input type="radio" name="qc10" value="X"> X
+                <input type="radio" name="qc" value="O"> O
+                <input type="radio" name="qc" value="X"> X
             </div>
             
 
             <!-- 추가 문제 추가 가능 -->
 
-            <button type="button" onclick="gradeQuiz()">결과보기</button>
+            <button type="submit">결과보기</button>
         </form>
 
         <!-- 채점 결과 -->
