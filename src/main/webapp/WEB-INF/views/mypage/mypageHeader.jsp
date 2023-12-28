@@ -39,6 +39,9 @@
     <!-- Template Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/mypage.css" rel="stylesheet">    
+    
+    <script src="/js/jquery-3.7.1.min.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
 
 
 <script>
@@ -195,7 +198,7 @@
     <nav class="navbar navbar-expand-lg bg-white navbar-light">
         
         <a href="/" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
-            <h2 class="m-0"><i class=></i>그냥 데려가개</h2>
+            <img class="logo" src="/img/logolineye.png" alt="Image" style="width:50px; margin-right:10px;"><h2 class="m-0"><i class=></i>그냥 데려가개</h2>
         </a>
         
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -217,14 +220,54 @@
                         <a href="/research/researchForm" class="dropdown-item">설문조사</a>
                     </div>
                 </div>
-                <div class="nav-item dropdown">
-                   <a href="/mypage/home" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
-                   <div class="dropdown-menu bg-light m-0">
-                       <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
-                       <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-                       <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
-                   </div>
-        </div>
+               <c:choose>
+	    <c:when test="${not empty s_mlevel}">
+	        <div class="h-100 d-inline-flex mx-n2">
+	            <c:choose>
+	                <c:when test="${s_mlevel eq 'a'}">
+	                    <div class="nav-item dropdown">
+	                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">관리자페이지</a>
+	                        <div class="dropdown-menu bg-light m-0">
+	                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+	                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+	                        </div>
+	                    </div>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'b'}">
+	                    <div class="nav-item dropdown">
+	                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">파트너페이지</a>
+	                        <div class="dropdown-menu bg-light m-0">
+	                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+	                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+	                        </div>
+	                    </div>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'c'}">
+	                    <div class="nav-item dropdown">
+	                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+	                        <div class="dropdown-menu bg-light m-0">
+	                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+	                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+	                        </div>
+	                    </div>
+	                </c:when>
+	                <c:otherwise>
+	                    <div class="nav-item dropdown">
+	                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+	                        <div class="dropdown-menu bg-light m-0">
+	                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+	                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+	                        </div>
+	                    </div>
+	                </c:otherwise>
+	            </c:choose>
+	        </div>
+	    </c:when>
+	</c:choose>
     </nav>
     </nav>
     <!-- Topbar End -->
@@ -248,13 +291,27 @@
 				</li> -->
 			</ul>
 		</nav>
-
-
-
 	<br>
-		<h3>마이페이지</h3>
+	<c:choose>
+	    <c:when test="${not empty s_mlevel}">
+	        <div class="h-100 d-inline-flex mx-n2">
+	            <c:choose>
+	                <c:when test="${s_mlevel eq 'a'}">
+	           			&nbsp; &nbsp; <h3>관리자페이지</h3>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'b'}">
+	     				&nbsp; &nbsp; <h3>파트너페이지</h3>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'c'}">
+	  					&nbsp; &nbsp; <h3>마이페이지</h3>
+	                </c:when>
+	               
+	            </c:choose>
+	        </div>
+	    </c:when>
+	</c:choose>
 	<br>
-	안녕하세요! <strong>${s_id}</strong> 님
+	&nbsp;&nbsp;안녕하세요! <strong>${s_id}</strong> 님
 	
 	<br><br>
 	</nav>
@@ -264,21 +321,66 @@
     <nav>
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">-글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
-                </div>
-            </div>
+            
+                   <c:choose>
+	    <c:when test="${not empty s_mlevel}">
+	        <div class="h-100 d-inline-flex mx-n2">
+	            <c:choose>
+	                <c:when test="${s_mlevel eq 'a'}">
+	                <div class="border-end bg-white" id="sidebar-wrapper">
+	                <div class="list-group list-group-flush">
+	   					<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList">-글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원관리</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
+	                </div>
+	                </div>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'b'}">
+	                <div class="border-end bg-white" id="sidebar-wrapper">
+	                <div class="list-group list-group-flush">
+	       				<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList_b">-글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/memberClass">-교육신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/memberService">-봉사신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
+	                </div>
+	                </div>
+	                </c:when>
+	                <c:when test="${s_mlevel eq 'c'}">
+	                <div class="border-end bg-white" id="sidebar-wrapper">
+	                <div class="list-group list-group-flush">
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList_c">-글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
+	                </div>
+	            	</div>
+	                </c:when>
+	            </c:choose>
+	        </div>
+	    </c:when>
+	</c:choose>
+	
+	
+            
+            
 
             
             

@@ -7,10 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.member.MemberDTO;
 
@@ -27,16 +29,28 @@ public class MypageCont {
 	MypageDAO mypageDao;
 	
 		
-	@GetMapping("/mypage/myList")
-	public ModelAndView mypage(HttpSession session) {
+	@GetMapping("/mypage/myList_c")
+	public ModelAndView myList_c(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("mypage/myList");
+		mav.setViewName("mypage/myList_c");
 		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
 		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
 		return mav;
-	}//mypage() end
+	}//myList_c() end
 
+	
+	//봉사글목록(파트너)
+	@GetMapping("/mypage/myList_b")
+	public ModelAndView myList_b(HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/myList_b");
+		mav.addObject("myServiceList", mypageDao.myService(s_id));
+		return mav;
+	}//myList_b() end
+	
+	
 	
 	@GetMapping("/mypage/myAdopt")
 	public ModelAndView myAdopt(HttpSession session) {
@@ -86,13 +100,24 @@ public class MypageCont {
     }//myClassList() end
  
     
-    
+    //봉사신청내역(사용자)
     @RequestMapping("/mypage/myService")
     public ModelAndView myServiceList(HttpSession session) {
     	String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myService");
     	mav.addObject("myServiceList", mypageDao.mysvList(s_id));
+        return mav; 
+    }//myClassList() end
+    
+    
+    //봉사신청내역(파트너)
+    @RequestMapping("/mypage/memberService")
+    public ModelAndView serviceList(HttpSession session) {
+    	String s_id = (String)session.getAttribute("s_id");
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("mypage/memberService");
+//    	mav.addObject("serviceList", mypageDao.serviceList(s_id));
         return mav; 
     }//myClassList() end
     	
@@ -218,9 +243,21 @@ public class MypageCont {
 	}//logout()
 	
 	
+//	//찜리스트 삭제
+//	@PostMapping("/mypage/delte")
+//	@ResponseBody
+//	public String jjimDelete(HttpSession session,HttpServletRequest req) {
+//		String anino = (String)session.getAttribute("s_passwd"); 
+//		
+//		mypageDao.jjimDelete(anino);
+//		
+//
+//		
+//		return "redirect:/mypage/jjimList";
+//	}//jjimDelete() end
+	
+	
 }//end
-
-
 
 
 

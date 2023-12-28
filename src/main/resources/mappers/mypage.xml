@@ -25,6 +25,12 @@
 	FROM adoprv
 	WHERE uid = #{uid}
  </select>
+ 
+ <select id="myService" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT sno, stitle, stitle, cnt, uid
+	FROM service
+	WHERE uid = #{uid}
+ </select>
  	
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT sa.sano, sa.sadate, sa.stime, sa.astate , sc.stitle, sa.sno
@@ -89,6 +95,13 @@
 	SET passwd = #{passwd}, tel = #{tel}, birth = #{birth}, zipcode = #{zipcode}, addr1 = #{addr1}, addr2 = #{addr2} 
 	WHERE uid = #{uid}
  </update>
+ 
+ 
+ <delete id="jjimDelete" parameterType="String">
+   DELETE FROM jjim
+   WHERE anino = #{anino}
+ </delete>
+ 
 
  	
  </mapper>

@@ -38,18 +38,10 @@
 		            <c:choose>
 					<%--로그인 상태에 찜 클릭 --%>
 					<c:when test="${not empty sessionScope.s_id}">
-						<div class="icon-heart" id="jjimInsertContainer"> 
-							<i class="bi bi-heart" id="jjimInsert"></i>
-						</div>	
 						<div class="icon-heart" id="jjimDeleteContainer">
 								<i class="bi bi-heart-fill" id="jjimDelete"></i>
 						</div>	
-					</c:when>
-					<c:otherwise>
-						<div class="icon-heart">
-							<i class="bi bi-heart" id="jjimButton" onclick="jjim_nolog()"></i>
-						</div>	
-					</c:otherwise>		
+					</c:when>	
 					</c:choose>	
 		           </td>
                    <td><a href="/center/detail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a></td>
@@ -73,6 +65,8 @@
 
 
 <!-- 본문 끝 -->
+
+
 
 
 <%@ include file="./mypageFooter.jsp" %>      
