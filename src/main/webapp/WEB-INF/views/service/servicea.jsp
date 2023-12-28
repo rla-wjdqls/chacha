@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <!DOCTYPE html>
-<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +19,14 @@
     </style>
 </head>
 <body>
-    <div class="container"><p><a href="/service/serviceList" class="nav-item nav-link"><input type="button" value="글목록" style="width: 10%; height: 30px;"></a></p>
+<form method="post" action="/service/servicea" name="calendarForm" id="calendarForm">
+	<input type="hidden" name="sno" id="sno" value="${servicea.sno}"/>
+	<input type="hidden" name="uid" id="uid" value="${servicea.uid}"/>
+	<input type="hidden" name="sadate" id="sadate" value=""/>
+	<input type="hidden" name="astate" id="astate" value=""/>
+	
+    <div class="container"><p><a href="/service/serviceList" class="nav-item nav-link">
+    	<input type="button" value="글목록" style="width: 10%; height: 30px;"></a></p>
         <div id="calendar"></div>
     </div>
 
@@ -35,17 +42,17 @@
                     <!-- 여기에 이벤트 정보 입력란을 추가하세요. 예: -->
                     <div class="mb-3">
                         <label for="inputTitle" class="form-label">신청시간</label>
-                        "${servicea.time}"
+                        ${servicea.time}
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-                    <button type="submit" class="btn btn-primary" onclick="location.href='/service/serviceList'">신청</button>
+                    <button type="button" class="btn btn-primary" onclick="apply();">신청</button>
                 </div>
             </div>
         </div>
     </div>
-
+	</form>
     <!-- jQuery, Popper.js, Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js" crossorigin="anonymous"></script>
@@ -56,6 +63,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js" crossorigin="anonymous"></script>
 
     <script>
+
+    function apply() {
+        		$("#calendarForm").submit();
+        	
+    	}
         // 여기에 JavaScript 코드를 작성하세요.
 
         // 변수 선언
@@ -77,7 +89,7 @@
                 editable: true,
                 eventLimit: true,
 					
-                // 이벤트 클릭 이벤트 처리
+                // 오픈 이벤트
                 eventClick: function (calEvent, jsEvent, view) {
                     event = calEvent;
                     $('#inputTitle').val(calEvent.title);
@@ -92,14 +104,20 @@
                         title: "신청가능한 날짜",
                         start: "${servicea.ssdate}",
                         end: "${servicea.sedate}",
-                        
+                        //신청날짜는 하루인데, DB에 왜 asdate 하고 aeㅇㅁㅅㄷ rk emf
+                        //여러사람이 신청할수있게 신청할수있는 기간을 준거고 사용자가 신청하는거는 sadate라고 칼럼따로있어쇼
+                       
                         // 이미지 URL 등 추가 속성
                     },
                     // 추가적인 이벤트들...
                     
                 ],
-                // 날짜 클릭 이벤트 처리
+                // 날짜 클릭 이벤트 처리 이게 모달창이요
                 dayClick: function (date, jsEvent, view) {
+                	var clickDate = new Date(date);
+                	var applyDate = clickDate.getFullYear()+"-"+(clickDate.getMonth()+1)+"-"+clickDate.getDate();
+                	$("#sadate").val(applyDate);
+                
                     event = null;
                     $('#inputTitle').val('');
                     $('#eventModalLabel').text('신청하시겠습니까?');
@@ -124,7 +142,7 @@
                     event.title = title;
                     $('#calendar').fullCalendar('updateEvent', event);
                 } else {
-                    // 이벤트 생성
+                    // 이벤트 생성 이코드자체를 긁어온건데 제가 수정했어요 몇개
                     $('#calendar').fullCalendar('renderEvent', eventData, true);
                 }
                 $('#eventModal').modal('hide');
@@ -133,5 +151,6 @@
             }
         }
     </script>
+   
 </body>
 </html>
