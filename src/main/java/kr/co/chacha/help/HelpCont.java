@@ -92,5 +92,14 @@ public class HelpCont {
 			mav.setViewName("redirect:/help/helpList");		
 			return mav;
 		}
+		
+		@PostMapping("/helpDelete")
+		public ModelAndView helpDelete(int textno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/help/helpList");
+			helpDAO.delete(textno);
+			return mav;
+			
+		}
 	
 }
