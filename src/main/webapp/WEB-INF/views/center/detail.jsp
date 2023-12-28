@@ -109,39 +109,42 @@
 			  <div class="modal-dialog">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h1 class="modal-title fs-5" id="staticBackdropLabel">입양 신청서</h1>
+			        <h1 class="modal-title fs-5" id="aniRequest">입양 신청서</h1>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
-			      <div class="modal-body">
-			     	* 사전질문 * <br>
-			     	* 모든 항목을 선택하셔야 입양 신청이 가능합니다 * <hr>
-			     	1. 가구원은 몇명인가요?
-			        <select class="form-select" id="gg" aria-label="가구원 선택">
-						  <option selected>선택하세요</option>
-						  <option value="1">한명</option>
-						  <option value="2">두명</option>
-						  <option value="3">세명이상</option>
-					</select>
-					2. 신혼부부인가요?
-					<select class="form-select" id="bb" aria-label="신혼부부여부 선택">
-						  <option selected>선택하세요</option>
-						  <option value="1">그렇다</option>
-						  <option value="2">아니다</option>
-						  <option value="3">예정있다</option>
-					</select>
-					3. 동물 알레르기가 있나요?
-					<select class="form-select" id="da" aria-label="동물 알레르기 여부 선택">
-						  <option selected>선택하세요</option>
-						  <option value="1">예</option>
-						  <option value="2">아니오</option>
-					</select>
-					4. 간단한 입양 신청서 작성바랍니다.
-					<textarea class="form-control" id="sub_cont" name="sub_cont"></textarea>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-			        <button type="button" class="btn btn-primary" onclick="adopt()">신청하기</button>
-			      </div>
+			      <form name="aniRefrm" id="aniRefrm">
+				      <div class="modal-body">
+				     	* 사전질문 * <br>
+				     	* 모든 항목을 선택하셔야 입양 신청이 가능합니다 * <hr>
+				     	1. 가구원은 몇명인가요?
+				        <select class="form-select" id="gg" aria-label="가구원 선택">
+							  <option selected>선택하세요</option>
+							  <option value="1">한명</option>
+							  <option value="2">두명</option>
+							  <option value="3">세명이상</option>
+						</select>
+						2. 신혼부부인가요?
+						<select class="form-select" id="bb" aria-label="신혼부부여부 선택">
+							  <option selected>선택하세요</option>
+							  <option value="1">그렇다</option>
+							  <option value="2">아니다</option>
+							  <option value="3">예정있다</option>
+						</select>
+						3. 동물 알레르기가 있나요?
+						<select class="form-select" id="da" aria-label="동물 알레르기 여부 선택">
+							  <option selected>선택하세요</option>
+							  <option value="1">예</option>
+							  <option value="2">아니오</option>
+						</select>
+						4. 간단한 입양 신청서 작성바랍니다.
+						<textarea class="form-control" id="sub_cont" name="sub_cont"></textarea>
+						<input type="file" name="img" class="form-control" multiple="multiple">
+				      </div>
+			      	<div class="modal-footer">
+				        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+				        <button type="button" class="btn btn-primary" onclick="adopt()">신청하기</button>
+			      	</div>
+			      </form>
 			    </div>
 			  </div>
 			</div>

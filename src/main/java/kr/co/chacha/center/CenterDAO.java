@@ -1,5 +1,6 @@
 package kr.co.chacha.center;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -42,5 +43,13 @@ public class CenterDAO {
 	public void delete(String anino) {
 		sqlSession.delete("center.delete", anino);
 	}
+	
+//	public int check(String uid, String str) {
+//		Map<String, Object> params = new HashMap<>();
+//	    params.put("uid", uid);
+//	    params.put("str", str);
+//	    return sqlSession.selectOne("center.check", params);
+//		
+//	}
 	
 }
