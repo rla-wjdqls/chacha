@@ -70,7 +70,7 @@ SqlSession sqlSession;
 	
 	
 	public int jjimDelete(MypageDTO mypagedto) {
-		return sqlSession.delete("jjim.jjimDelete", mypagedto);
+		return sqlSession.delete("mypage.jjimDelete", mypagedto);
 	}
 	
 	

@@ -13,12 +13,11 @@
 
 
 
-	<div class="container">
+	<div class="container" id=jjimReload>
 	<br><br>
 		<h4>찜목록</h4>
 		<p>콕! 찜해 놓은 아이들을 볼 수 있는 공간입니다</p>
 		<br>
-	<form>
 	<table class="table table-condensed">
         <thead>
             <tr>
@@ -34,6 +33,10 @@
         </thead>     
 		<tbody>
             <c:forEach items="${myjjimList}" var="jjim" >
+            <script>
+            	//데이터 꺼내오기
+            	let anino =  "${jjim.anino}";
+            </script>
                 <tr>
                    <td>
 		            <c:choose>
@@ -70,7 +73,6 @@
             </c:forEach>
         </tbody>
     </table>
-    </form>
 	</div>
 	</div>
 
@@ -78,20 +80,18 @@
 <!-- 본문 끝 -->
 
 <script>
-	let anino = '${jjim.anino}';
-	alert(anino); //확인 안됨
-	
+	//alert(anino); //확인 안됨 */
+
     $(document).ready(function() {
         // 삭제 버튼 클릭 시
         $("#jjimDelete").click(function() {
             // 서버로 삭제 요청을 보내는 AJAX 요청
-            
             $.ajax({
                 type: "POST", // 또는 "GET" 등 필요에 따라 변경
                 url: "/mypage/delete", // 실제 서버 엔드포인트로 변경
                 data: {
                     // 삭제에 필요한 데이터를 전달 (예: 삭제할 아이템의 식별자)
-                    {'anino'}: anino
+                    'anino' : anino
                 },
                 error: function(error) {
                     // 실패 시 수행할 작업
@@ -101,6 +101,7 @@
                     // 성공 시 수행할 작업
                     if(result ===1){
                     alert("삭제 성공");
+                    $('#jjimReload').load(location.href+' #jjimReload');
                     }
                 }
             });

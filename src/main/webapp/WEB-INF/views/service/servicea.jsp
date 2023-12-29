@@ -101,8 +101,8 @@
                     // 예시:
                     {
                   	 
-                        title: "신청가능한 날짜",
-                        start: "${servicea.ssdate}",
+                        title: "신청가능한 날짜입니다",
+                        start: new Date,
                         end: "${servicea.sedate}",
                         //신청날짜는 하루인데, DB에 왜 asdate 하고 aeㅇㅁㅅㄷ rk emf
                         //여러사람이 신청할수있게 신청할수있는 기간을 준거고 사용자가 신청하는거는 sadate라고 칼럼따로있어쇼
@@ -120,9 +120,12 @@
                 
                     event = null;
                     $('#inputTitle').val('');
-                    $('#eventModalLabel').text('신청하시겠습니까?');
+                    $('#eventModalLabel').text('신청하시겠습니까??');
                     $('#eventModal').modal('show');
                 },
+                
+            
+             
             });
         });
 
