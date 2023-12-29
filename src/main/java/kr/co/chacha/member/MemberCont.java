@@ -247,6 +247,7 @@ public class MemberCont {
 		memberdto.setTel(req.getParameter("tel"));
 		memberdto.setBirth(req.getParameter("birth"));
 
+		//System.out.println(memberdto.toString());
 		memberDao.memberInsert(memberdto);
 		
 
