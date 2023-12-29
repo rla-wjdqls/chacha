@@ -120,7 +120,7 @@
                 
                     event = null;
                     $('#inputTitle').val('');
-                    $('#eventModalLabel').text('신청하시겠습니까?');
+                    $('#eventModalLabel').text('신청하시겠습니까??');
                     $('#eventModal').modal('show');
                 },
                 
