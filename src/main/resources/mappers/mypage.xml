@@ -117,7 +117,7 @@
 
 
  <select id="memList" resultType="kr.co.chacha.mypage.MypageDTO">
-  	SELECT uid, uname, eamil, passwd, tel, birth, mlevel, mdate, zipcode, addr1, addr2
+  	SELECT uid, uname, email, passwd, tel, birth, mlevel, mdate, zipcode, addr1, addr2
   	FROM member
   	ORDER BY mdate DESC
  </select>

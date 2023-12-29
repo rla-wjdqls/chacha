@@ -34,8 +34,8 @@
                     <td>${memAdopt.apno}</td>
                     <td>${memAdopt.uid}</td>
                     <td><fmt:formatDate value="${memAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
-                    <td style="text-align: left">
-				        <select name="job"  id="job">
+                    <td>
+				        <select name="sub_state"  id="sub_state">
 				          <option value="0">선택하세요.</option>
 				          <option value="S">신청완료</option>
 				          <option value="P" selected>심사중</option>
@@ -45,7 +45,7 @@
 				          <option value="F">입양완료</option>
 				          <option value="X">입양불가능</option>
 				        </select>
-<%-- 		            <c:choose>
+<%-- 		        <c:choose>
 		                <c:when test="${memAdopt.sub_state eq 'S'}">신청완료</c:when>
 		                <c:when test="${memAdopt.sub_state eq 'P'}">심사중</c:when>
 		                <c:when test="${memAdopt.sub_state eq 'W'}">심사완료</c:when>
@@ -53,7 +53,8 @@
 		                <c:when test="${memAdopt.sub_state eq 'C'}">책임금결제</c:when>
 		                <c:when test="${memAdopt.sub_state eq 'F'}">입양완료</c:when>
 		                <c:when test="${memAdopt.sub_state eq 'X'}">입양불가능</c:when>
-		            </c:choose>  --%>
+		            </c:choose>  
+--%>
 		        	</td>
                     <td>${memAdopt.subpic}</td>
                 </tr>
@@ -81,7 +82,7 @@
                     <td>${memAdopt.payno}</td>
                     <td>${memAdopt.apno}</td>
                     <td>${memAdopt.uid}</td>
-                    <td>${memAdopt.patamt}</td>
+					<td><fmt:formatNumber value="${memAdopt.patamt}" pattern="##,###"/></td>
                     <td>
 		            <c:choose>
 		                <c:when test="${memAdopt.paymet eq 'cd'}">카드</c:when>

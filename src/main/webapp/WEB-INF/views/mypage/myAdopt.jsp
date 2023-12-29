@@ -34,7 +34,6 @@
                 <tr>
                     <td>${myAdopt.apno}</td>
                     <td><a href="/center/detail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
-                    <%-- <td>${myAdopt.sub_cont}</td> --%>
                     <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
                    <td>${myAdopt.subpic}</td>
                     <td>
@@ -76,7 +75,7 @@
                 <tr>
                     <td>${myAdopt.payno}</td>
                     <td>${myAdopt.apno}</td>
-                    <td>${myAdopt.patamt}</td>
+                    <td><fmt:formatNumber value="${memAdopt.patamt}" pattern="##,###"/></td>
                     <td>
 		            <c:choose>
 		                <c:when test="${myAdopt.paymet eq 'cd'}">카드</c:when>
