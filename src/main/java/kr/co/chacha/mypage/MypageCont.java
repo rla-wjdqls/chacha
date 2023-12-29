@@ -35,7 +35,7 @@ public class MypageCont {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_a");
-		mav.addObject("myLista", mypageDao.myLista(s_id));
+		mav.addObject("myList_a", mypageDao.myLista(s_id));
 		return mav;
 	}//myList_a() end
 	
@@ -60,7 +60,8 @@ public class MypageCont {
 		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
 		return mav;
 	}//myList_c() end
-		
+	
+	
 	
 	@GetMapping("/mypage/myAdopt")
 	public ModelAndView myAdopt(HttpSession session) {
@@ -74,10 +75,9 @@ public class MypageCont {
 	
 	@GetMapping("/mypage/memberAdopt")
 	public ModelAndView memAdopt(HttpSession session) {
-		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/memberAdopt");
-    	//mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+    	mav.addObject("memAdoptList", mypageDao.memAdopt());
         return mav; 
 	}//myAdopt() end
 	
@@ -159,6 +159,17 @@ public class MypageCont {
     	mav.addObject("myjjimList", mypageDao.jjimList(s_id));
         return mav; 
 	}//jjimlist() end
+	
+	
+	//회원관리(관리자)
+	@GetMapping("/mypage/memList")
+	public ModelAndView memList(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/memList");
+		mav.addObject("myList_a", mypageDao.memList());
+		return mav;
+	}//memList() end
+	
 
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동

@@ -97,12 +97,31 @@
  </select>
  
  
+ <select id="memAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
+	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid
+	FROM payment py
+	JOIN (
+			    SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date
+			    FROM adopt ap JOIN animal an 
+			    ON ap.uid = an.uid
+		     )  AA 
+	ON py.apno = AA.apno
+ </select>
+ 
+ 
   <select id="checkPasswd" parameterType="String" resultType="Int">
  	SELECT COUNT(*)
 	FROM member
 	WHERE passwd = #{passwd}
  </select>
 
+
+ <select id="memList" resultType="kr.co.chacha.mypage.MypageDTO">
+  	SELECT uid, uname, eamil, passwd, tel, birth, mlevel, mdate, zipcode, addr1, addr2
+  	FROM member
+  	ORDER BY mdate DESC
+ </select>
+ 
  
  <update id="memberWithdraw" parameterType="String">
 	UPDATE member
