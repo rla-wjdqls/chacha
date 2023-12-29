@@ -81,7 +81,7 @@
 							<dd class="anidd">완료</dd>
 						</c:when>
 						<c:when test="${center.genop eq 'N'}">
-							<dd class="anidd">완료</dd>
+							<dd class="anidd">미완료</dd>
 						</c:when>
 					</c:choose>
 				</dl>
