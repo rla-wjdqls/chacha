@@ -31,18 +31,19 @@ public class MypageCont {
 	
 	//내글목록(관리자)
 	@GetMapping("/mypage/myList_a")
-	public ModelAndView myList_a(HttpSession session) {
+	public ModelAndView myLista(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_a");
-		mav.addObject("myLista", mypageDao.myLista(s_id));
+		mav.addObject("myList_a", mypageDao.myLista(s_id));
 		return mav;
-	}//myList_a() end
+	}//myLista() end
 	
 	//내글목록(파트너)
 	@GetMapping("/mypage/myList_b")
 	public ModelAndView myList_b(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
+		System.out.println(s_id);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_b");
 		mav.addObject("myServiceList", mypageDao.myService(s_id));
@@ -60,7 +61,8 @@ public class MypageCont {
 		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
 		return mav;
 	}//myList_c() end
-		
+	
+	
 	
 	@GetMapping("/mypage/myAdopt")
 	public ModelAndView myAdopt(HttpSession session) {
@@ -74,10 +76,9 @@ public class MypageCont {
 	
 	@GetMapping("/mypage/memberAdopt")
 	public ModelAndView memAdopt(HttpSession session) {
-		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/memberAdopt");
-    	//mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+    	mav.addObject("memAdoptList", mypageDao.memAdopt());
         return mav; 
 	}//myAdopt() end
 	
@@ -159,6 +160,17 @@ public class MypageCont {
     	mav.addObject("myjjimList", mypageDao.jjimList(s_id));
         return mav; 
 	}//jjimlist() end
+	
+	
+	//회원관리(관리자)
+	@GetMapping("/mypage/memList")
+	public ModelAndView memList(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/memList");
+		mav.addObject("memberList", mypageDao.memList());
+		return mav;
+	}//memList() end
+	
 
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동

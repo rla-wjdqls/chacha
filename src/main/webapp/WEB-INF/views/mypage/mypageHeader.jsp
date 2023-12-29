@@ -230,7 +230,7 @@
 	                        <div class="dropdown-menu bg-light m-0">
 	                            <a href="/mypage/myList_a" class="dropdown-item">내 활동</a>
 	                            <a href="/mypage/memberAdopt" class="dropdown-item">신청내역</a>
-	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+	                            <a href="/mypage/memList" class="dropdown-item">회원정보</a>
 	                        </div>
 	                    </div>
 	                </c:when>
@@ -325,7 +325,7 @@
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/memberAdopt">-입양신청내역</a>
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원관리</a>
+	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/memList">-회원관리</a>
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
 	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
 	                </div>

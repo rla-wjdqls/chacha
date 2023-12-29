@@ -50,6 +50,7 @@ public class MypageDTO {
     private String adopt;
     private String cnt;
     private String adopt_pos;
+    private Date animal_date;
     
     
     //후기글
@@ -813,6 +814,17 @@ public class MypageDTO {
 	public void setPatamt(String patamt) {
 		this.patamt = patamt;
 	}
+
+
+	public Date getAnimal_date() {
+		return animal_date;
+	}
+
+
+	public void setAnimal_date(Date animal_date) {
+		this.animal_date = animal_date;
+	}
+	
 	
 	
 	

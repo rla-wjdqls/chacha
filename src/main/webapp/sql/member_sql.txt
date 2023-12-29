@@ -23,6 +23,9 @@ CREATE TABLE login (
 );
 
 
+
+
+
 --로그인
 SELECT mlevel
 FROM member
@@ -51,7 +54,21 @@ WHERE  uid = #{uid} AND email = #{email} AND birth = #{birth}
 
 
 
-
+CREATE TABLE `member` (
+    `uid` VARCHAR(20) NOT NULL PRIMARY KEY,
+    `myno` INT(5) NULL,
+    `sano` INT(5) NULL,
+    `uname` VARCHAR(20) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `passwd` VARCHAR(50) NOT NULL,
+    `zipcode` VARCHAR(10) NOT NULL,
+    `addr1` TEXT NOT NULL,
+    `addr2` TEXT NOT NULL,
+    `tel` VARCHAR(50) NOT NULL,
+    `birth` VARCHAR(50) NOT NULL,
+    `mdate` DATETIME NOT NULL,
+    `mlevel` CHAR(1) NOT NULL DEFAULT 'c'
+)ENGINE=MyISAM DEFAULT CHARSET="utf8";
 
 
 

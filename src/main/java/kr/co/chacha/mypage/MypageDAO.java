@@ -55,7 +55,7 @@ SqlSession sqlSession;
 	//입양글 목록(관리자)
 	public List<MypageDTO> myLista(String s_id) {		
 		return sqlSession.selectList("mypage.myLista", s_id);
-	}//mvsList_a() end
+	}//mvsLista() end
 	
 	
 	//회원 봉사신청내역(파트너)
@@ -78,8 +78,14 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myComment", s_id);
 	}//mvsList() end
 	
+	//나의 입양신청 내역
 	public List<MypageDTO> myAdopt(String s_id) {		
 		return sqlSession.selectList("mypage.myAdopt", s_id);
+	}//mvsList() end
+	
+	//회원들 입양신청 내역
+	public List<MypageDTO> memAdopt() {		
+		return sqlSession.selectList("mypage.memAdopt");
 	}//mvsList() end
 	
 	//비밀번호 확인
@@ -100,6 +106,11 @@ SqlSession sqlSession;
 		return sqlSession.selectOne("mypage.myInfoCheck", s_id);
 	}//myInfoCheck() end
 	
+	//회원관리
+	public List<MypageDTO> memList() {
+		//System.out.println(mypagedto.getPasswd());
+		return sqlSession.selectList("mypage.memList");
+	}//memList() end
 	
 	//회원정보 수정
 	public void memberModify(MypageDTO mypagedto) {
