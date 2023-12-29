@@ -80,8 +80,6 @@
 <!-- 본문 끝 -->
 
 <script>
-	//alert(anino); //확인 안됨 */
-
     $(document).ready(function() {
         // 삭제 버튼 클릭 시
         $("#jjimDelete").click(function() {

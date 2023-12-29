@@ -8,48 +8,64 @@
 
 	<!-- Page content wrapper-->
 	<div id="page-content-wrapper">
-
 	<!-- Page content-->
-	<!-- 목격제보, 입양후기, 봉사글, 입양동물, (교육? 테이블 없음) -->
-	<!-- 어느 게시판 글인지 어떻게 보여줄지 아직 미정 --> 
 
 	<div class="container">
 	<br>
-		<h4>글목록</h4>
-		<p>내가 쓴 글목록을 확인 할 수 있습니다</p>
+		<h4>회원관리</h4>
+		<p>그냥 데려가개 회원님들의 정보를 확인 할 수 있습니다</p>
 	<br><br>
 	<table class="table table-condensed">
         <thead>
             <tr>
-                <th>동물번호</th>
+                <th>아이디</th>
                 <th>이름</th>
-                <th>나이</th>
-                <th>성별</th>
-                <th>무게</th>
-                <th>중성화</th>
-                <th>백신</th>
-                <th>입양상태</th>
-                <th>입양가능</th>
-                <th>작성일자</th>
+                <th>이메일</th>
+                <th>비밀번호</th>
+                <th>전화번호</th>
+                <th>생년월일</th>
+                <th>회원등급</th>
+                <th>가입일자</th>
+                <th>우편번호</th>
+                <th>주소1</th>
+                <th>주소2</th>
             </tr>
         </thead>
   		<tbody>
-		<c:forEach items="${myList_a}" var="mylista">
-	    <c:if test="${s_id eq mylista.uid}"> <!-- help 테이블의 작성자 아이디와 s_id 가 일치하면 원하는 값 가져옴 -->
-	        <!-- 조건이 참일 때 실행할 내용 -->
+		<c:forEach items="${memberList}" var="memlist">
 	        <tr>
-	            <td>${mylista.anino}</td>
-	            <td>${mylista.aname}</td>
-	            <td>${mylista.age}</td>
-	            <td>${mylista.gender}</td>
-	            <td>${mylista.weight}</td>
-	            <td>${mylista.genop}</td>
-	            <td>${mylista.vac}</td>
-	            <td>${mylista.adopt}</td>
-	            <td>${mylista.adopt_pos}</td>
-	            <td>${mylista.animal_date}</td>
+	            <td>${memlist.uid}</td>
+	            <td>${memlist.uname}</td>
+	            <td>${memlist.email}</td>
+	            <td>${memlist.passwd}</td>
+	            <td>${memlist.tel}</td>
+	            <td>${memlist.birth}</td>
+	            <td>
+ 				<select name="mlevel" id="mlevel">
+                  <c:choose>
+                      <c:when test="${memlist.mlevel eq 'a'}">
+                          <option value="a" selected>관리자</option>
+                          <option value="b">파트너</option>
+                          <option value="c">사용자</option>
+                      </c:when>
+                      <c:when test="${memlist.mlevel eq 'b'}">
+                          <option value="a">관리자</option>
+                          <option value="b" selected>파트너</option>
+                          <option value="c">사용자</option>
+                      </c:when>
+                      <c:otherwise>
+                          <option value="a">관리자</option>
+                          <option value="b">파트너</option>
+                          <option value="c" selected>사용자</option>
+                      </c:otherwise>
+                  </c:choose>
+                </select>
+		        </td>
+	            <td><fmt:formatDate value="${memlist.mdate}" pattern="yyyy-MM-dd" /></td>
+	            <td>${memlist.zipcode}</td>
+	            <td>${memlist.addr1}</td>
+	            <td>${memlist.addr2}</td>
 	        </tr>
-	    </c:if>
 		</c:forEach>
         </tbody>
     </table>

@@ -31,18 +31,19 @@ public class MypageCont {
 	
 	//내글목록(관리자)
 	@GetMapping("/mypage/myList_a")
-	public ModelAndView myList_a(HttpSession session) {
+	public ModelAndView myLista(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_a");
 		mav.addObject("myList_a", mypageDao.myLista(s_id));
 		return mav;
-	}//myList_a() end
+	}//myLista() end
 	
 	//내글목록(파트너)
 	@GetMapping("/mypage/myList_b")
 	public ModelAndView myList_b(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
+		System.out.println(s_id);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_b");
 		mav.addObject("myServiceList", mypageDao.myService(s_id));
@@ -166,7 +167,7 @@ public class MypageCont {
 	public ModelAndView memList(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/memList");
-		mav.addObject("myList_a", mypageDao.memList());
+		mav.addObject("memberList", mypageDao.memList());
 		return mav;
 	}//memList() end
 	
