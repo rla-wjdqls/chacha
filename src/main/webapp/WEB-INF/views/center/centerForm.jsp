@@ -3,6 +3,9 @@
     
 <%@ include file="../header.jsp" %>
 
+<% 
+	String s_mlevel = (String)session.getAttribute("m_mlevel");
+%>
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -27,9 +30,16 @@
   			<div class="input-container" style="display: inline-block;">
 		      <form class="d-flex">
 		        <input class="form-control me-2" type="text" placeholder="Search" style="width: 300px" >
+		        <c:choose>
+		        <c:when test="${s_mlevel eq 'c' or empty s_mlevel}">
 		        <button class="btn btn-success rotate-text" type="submit">검색</button>
+		        </c:when>
+		        <c:otherwise>
 		        <button class="btn btn-warning rotate-text" type="button" onclick="location.href='centerWrite'">동물 추가</button>
+		        </c:otherwise>
+		        </c:choose>
 		      </form>
+		      
 		    </div>
 		</nav>
 
