@@ -12,7 +12,6 @@
 	<!-- Page content-->
 
 
-
 	<div class="container">
 	<br><br>
 		<h4>입양신청내역</h4>
@@ -24,7 +23,6 @@
                 <th>신청번호</th>
                 <th>아이디</th>
                 <th>신청글 사진</th>
-                <!-- <th>신청내용</th> -->
                 <th>신청일자</th>
                 <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>첨부파일</th>
@@ -32,10 +30,10 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myAdoptList}" var="myAdopt" >
+            <c:forEach items="${memAdoptList}" var="memAdopt" >
                 <tr>
-                    <td>${myAdopt.apno}</td>
-                    <td>${myAdopt.uid}</td>
+                    <td>${memAdopt.apno}</td>
+                    <td>${memAdopt.uid}</td>
                     <td><a href="/center/detail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
                     <%-- <td>${myAdopt.sub_cont}</td> --%>
                     <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>

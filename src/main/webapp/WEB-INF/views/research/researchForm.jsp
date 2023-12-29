@@ -21,7 +21,7 @@
 <div class="container text-center"> <h3>설문조사</h3>
 	<div class="container">
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
-		<hr><br>
+		<hr><br><br>
 		<div class="container-line">
 			<h5>여러분의 의견을 들려주세요~<h5>
 			<form class="modifycheck" id="modifycheck" action="myInfoModify" method="post" onsubmit="return checkModify()" >

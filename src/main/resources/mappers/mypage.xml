@@ -54,6 +54,13 @@
   	ORDER BY sa.sano DESC
  </select>
  
+ <select id="myLista" resultType="kr.co.chacha.mypage.MypageDTO">
+  	SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos, animal_date
+  	FROM animal
+  	WHERE uid = #{uid}
+  	ORDER BY animal_date DESC
+ </select>
+ 
  
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino, jj.jjimno

@@ -14,39 +14,46 @@
 	<!-- 어느 게시판 글인지 어떻게 보여줄지 아직 미정 --> 
 
 	<div class="container">
-	<br><br>
+	<br>
 		<h4>글목록</h4>
 		<p>내가 쓴 글목록을 확인 할 수 있습니다</p>
-	<br>
-	<input type="button" value="전체선택" class="btn btn default">
-	<input type="button" value="삭제" class="btn btn default">
-	<br>
+	<br><br>
 	<table class="table table-condensed">
         <thead>
             <tr>
-            	<th></th>
-                <th>글번호</th>
-                <th>제목</th>
-                <th>조회수</th>
-                <!-- <th>작성일</th> -->
+                <th>동물번호</th>
+                <th>이름</th>
+                <th>나이</th>
+                <th>성별</th>
+                <th>무게</th>
+                <th>중성화</th>
+                <th>백신</th>
+                <th>입양상태</th>
+                <th>입양가능</th>
+                <th>작성일자</th>
             </tr>
         </thead>
   		<tbody>
-		<c:forEach items="${myServiceList}" var="myservice">
-	    <c:if test="${s_id eq myservice.uid}"> <!-- help 테이블의 작성자 아이디와 s_id 가 일치하면 원하는 값 가져옴 -->
+		<c:forEach items="${myLista}" var="mylista">
+	    <c:if test="${s_id eq mylista.uid}"> <!-- help 테이블의 작성자 아이디와 s_id 가 일치하면 원하는 값 가져옴 -->
 	        <!-- 조건이 참일 때 실행할 내용 -->
 	        <tr>
-	            <td><input type="checkbox"></td> <!-- 삭제기능 넣을 것 -->
-	            <td>${myservice.sno}</td>
-	            <td>${myservice.stitle}</td>
-	            <td>${myservice.cnt}</td>
-	            <%-- <td><fmt:formatDate value="${myservice.uploaddate}" pattern="yyyy-MM-dd" /></td> --%>
+	            <td>${mylista.anino}</td>
+	            <td>${mylista.aname}</td>
+	            <td>${mylista.age}</td>
+	            <td>${mylista.gender}</td>
+	            <td>${mylista.weight}</td>
+	            <td>${mylista.genop}</td>
+	            <td>${mylista.vac}</td>
+	            <td>${mylista.adopt}</td>
+	            <td>${mylista.adopt_pos}</td>
+	            <td>${mylista.animal_date}</td>
 	        </tr>
 	    </c:if>
 		</c:forEach>
         </tbody>
     </table>
-		</div>
+	</div>
 	</div>
 
 
@@ -54,3 +61,14 @@
 
 
 <%@ include file="./mypageFooter.jsp" %>      
+
+
+
+
+
+
+
+
+
+
+

@@ -52,6 +52,11 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myService", s_id);
 	}//mvsList() end
 	
+	//입양글 목록(관리자)
+	public List<MypageDTO> myLista(String s_id) {		
+		return sqlSession.selectList("mypage.myLista", s_id);
+	}//mvsList_a() end
+	
 	
 	//회원 봉사신청내역(파트너)
 	public List<MypageDTO> memserviceList() {		

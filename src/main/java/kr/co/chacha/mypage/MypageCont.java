@@ -35,9 +35,9 @@ public class MypageCont {
 		String s_id = (String)session.getAttribute("s_id");
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_a");
-		//mav.addObject("myList_a", mypageDao.myList_a(s_id));
+		mav.addObject("myLista", mypageDao.myLista(s_id));
 		return mav;
-	}//myList_b() end
+	}//myList_a() end
 	
 	//내글목록(파트너)
 	@GetMapping("/mypage/myList_b")
