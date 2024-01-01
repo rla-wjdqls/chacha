@@ -3,6 +3,10 @@
     
 <%@ include file="../header.jsp" %>
 
+<% 
+	String s_mlevel = (String)session.getAttribute("m_mlevel");
+%>
+
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -26,10 +30,14 @@
 		<form name="centerfrm" id="centerftm" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="${center.anino}" name="anino" class="anino">
 		<nav class="navbar navbar-light i-nav">
+			<c:choose>
+			<c:when test="${s_mlevel eq 'a'}">
   			<div class="input-container" style="display: inline-block;">
 				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
 				   <input type="button" value="삭제" class="btn btn-danger rotate-text" onclick="center_delete()">
 		    </div>
+		    </c:when>
+		    </c:choose>
 		</nav>
 	
 
@@ -73,7 +81,7 @@
 							<dd class="anidd">완료</dd>
 						</c:when>
 						<c:when test="${center.genop eq 'N'}">
-							<dd class="anidd">완료</dd>
+							<dd class="anidd">미완료</dd>
 						</c:when>
 					</c:choose>
 				</dl>

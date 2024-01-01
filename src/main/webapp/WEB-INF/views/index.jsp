@@ -397,6 +397,10 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
    
+   <!-- 게시글 랜덤으로 가져오기 -->
+   <script>
+   		//fetch API 사용하여 데이터 가져오
+   </script>
     
 </body>
 </html>
