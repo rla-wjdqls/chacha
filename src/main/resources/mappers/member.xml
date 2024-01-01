@@ -21,11 +21,36 @@
   </select>
   
   
-    <select id="emailcheck" parameterType="String" resultType="Int">
+   <select id="emailcheck" parameterType="String" resultType="Int">
   	SELECT count(*)
   	FROM member
   	WHERE email = #{email}
   </select>
+  
+  
+  <select id="naverCheck" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
+  	SELECT s_mlevel
+  	FROM s_member
+  	WHERE s_uname = #{s_uname} AND s_email = #{s_email}
+  </select>
+  
+ <insert id="naverInsert" parameterType="kr.co.chacha.member.MemberDTO">
+   INSERT INTO s_member(s_email, s_uname)
+   VALUES(#{s_email}, #{s_uname})
+ </insert>
+  
+  <select id="kakaoCheck" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
+  	SELECT s_mlevel
+  	FROM s_member
+  	WHERE s_uname = #{s_uname} AND s_email = #{s_email}
+  </select>
+  
+   <insert id="kakaoInsert" parameterType="kr.co.chacha.member.MemberDTO">
+   INSERT INTO s_member(s_email, s_uname)
+   VALUES(#{s_email}, #{s_uname})
+ </insert>
+  
+  
   
   
  <insert id="insert" parameterType="kr.co.chacha.member.MemberDTO">

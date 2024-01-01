@@ -43,6 +43,9 @@
     <script src="/js/jquery-3.7.1.min.js"></script>
 	<script src="/js/jquery.cookie.js"></script>
 
+	<!-- <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>  -->
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
@@ -187,11 +190,11 @@
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">로그인</a>  
                 </div>
-            </c:if>
-                &nbsp; &nbsp; &nbsp;
+                 &nbsp; &nbsp; &nbsp;
                  <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/signupForm">회원가입</a>  
                 </div>
+            </c:if>
             </div>
         </div>
     </div>
@@ -312,7 +315,7 @@
     <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             
-                   <c:choose>
+        <c:choose>
 	    <c:when test="${not empty s_mlevel}">
 	        <div class="h-100 d-inline-flex mx-n2">
 	            <c:choose>
