@@ -50,16 +50,50 @@ public class MemberDAO {
 	}//findID() end
 	
 	
-	//소셜로그인
-	public int s_Insert(MemberDTO memberdto) {
-		return sqlSession.insert("member.s_insert", memberdto);
+	//네이버로그인 등급 확인
+	public String naverCheck(MemberDTO memberdto) {
+		return sqlSession.selectOne("member.naverCheck", memberdto);
+	}//loginInsert() end
+	
+	//네이버로그인 처음 이용 시 등록
+	public void naverInsert(MemberDTO memberdto) {
+		sqlSession.insert("member.naverInsert", memberdto);
+	}//loginInsert() end
+	
+	//카카오로그인 등급 확인
+	public String kakaoCheck(MemberDTO memberdto) {
+		return sqlSession.selectOne("member.kakaoCheck", memberdto);
+	}//loginInsert() end
+	
+	//카카오로그인 처음 이용 시 등록
+	public void kakaoInsert(MemberDTO memberdto) {
+		sqlSession.insert("member.kakaoInsert", memberdto);
 	}//loginInsert() end
 	
 	
 	
-	
-	
 }//end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

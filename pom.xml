@@ -89,12 +89,6 @@
 			<version>3.2.0</version> <!-- 현재 최신 버전 확인 -->
 		</dependency>
 
-<!--
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-oauth2-client</artifactId>
-		</dependency>
--->
 
 		<!--서버 자동 재시작-->
 		<dependency>

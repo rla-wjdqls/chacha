@@ -23,10 +23,11 @@
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
 		<hr><br><br>
 		<div class="container-line">
-			<h5>여러분의 의견을 들려주세요~<h5>
-			<form class="modifycheck" id="modifycheck" action="myInfoModify" method="post" onsubmit="return checkModify()" >
-				<input type="submit" value="설문조사 하러가기" class="btn btn">
-			</form>
+			<h5>여러분의 의견을 들려주세요~</h5>
+			<h6>목록</h6>
+			<br><br>
+			<a href="/research/researchList" class="btn btn">설문조사 하러가기</a>
+			<a href="/research/researchReg" class="btn btn">설문조사 등록하기</a>
 			<br><br>
 		</div>
 		</div>
@@ -38,6 +39,8 @@
 		
 </form>
 </div>
+
+
 
 
 <%@ include file="../footer.jsp" %>      

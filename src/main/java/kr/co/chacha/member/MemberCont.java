@@ -1,5 +1,7 @@
 package kr.co.chacha.member;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.Console;
 import java.net.http.HttpHeaders;
 import java.util.Map;
@@ -14,6 +16,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,9 +56,6 @@ public class MemberCont {
 			HttpSession session) {
 
 		String mlevel = memberDao.loginProc(memberdto);
-		// System.out.println(mlevel); //c
-
-		// ModelAndView mav = new ModelAndView();
 
 		if (mlevel == null) { // 로그인 실패했을 때
 			//System.out.println("로그인 실패");
@@ -70,9 +70,6 @@ public class MemberCont {
 			session.setAttribute("s_mlevel", mlevel);
 
 			// 세션에 아이디, 비밀번호, 회원등급 저장됨을 확인함
-			//System.out.println(session.getAttribute("s_id"));
-			// System.out.println(session.getAttribute("s_passwd"));
-			// System.out.println(session.getAttribute("s_mlevel"));
 			// session.setMaxInactiveInterval(60 * 30); //세션 유지시간 설정
 
 			// 쿠키 시작--------------------------------------------------------------
@@ -96,8 +93,6 @@ public class MemberCont {
 			resp.addCookie(cookie);
 
 			// 쿠키 끝---------------------------------------------------------------
-			// mav.setViewName("/index");
-			//System.out.println("로그인 성공");
 			return "redirect:/";
 		} // if end
 
@@ -105,6 +100,111 @@ public class MemberCont {
 	}// loginProc() end
 
 	
+	
+    @GetMapping("/navercallback")
+    public String naverCallbackGet() {
+        return "member/loginForm";
+    }//naverCallbackGet() end
+    
+
+	
+	//네이버 로그인
+	@PostMapping("/navercallback")
+	@ResponseBody
+	public String navercallbackPost(@RequestBody MemberDTO memberdto, HttpSession session,
+			HttpServletRequest req, HttpServletResponse resp) {
+		
+		// JSON 형식으로 응답
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+		// AJAX 요청에서 받은 데이터 처리
+		//콜백에서 받아온 정보 가져오기
+		String s_email = memberdto.getS_email(); 
+		String s_uname = memberdto.getS_uname();
+		
+		//dto에 필요한 값 담기 
+		memberdto.setS_email(s_email);
+		memberdto.setS_uname(s_uname);
+		
+		//세션로그인 테이블에 회원정보 있는지 확인
+		String s_mlevel  = String.valueOf(memberDao.naverCheck(memberdto));
+		//System.out.println(s_mlevel); //"1"
+		
+		if("c".equals(s_mlevel)) {
+			session.setAttribute("s_id", s_email);
+			session.setAttribute("s_mlevel", s_mlevel);
+			
+	        return "{\"result\": \"c\"}";
+			
+		}else {
+			memberDao.naverInsert(memberdto);
+			
+			session.setAttribute("s_id", s_email);
+			session.setAttribute("s_mlevel", s_mlevel);
+			
+			return "{\"result\": \"c\"}";
+			
+		}//if end
+		
+	}//navercallbackPost() end
+    
+	
+	
+    @GetMapping("/kakaocallback")
+    public String kakaoLogin() {
+        return "member/loginForm";
+    }//kakaoLogin() end
+	
+	
+	//카카오 로그인
+	@PostMapping("/kakaocallback")
+	@ResponseBody
+	public String kakaocallbackPost(@RequestBody MemberDTO memberdto, HttpSession session,
+			HttpServletRequest req, HttpServletResponse resp) {
+		
+		//사용자 정보 받아오기(이름, 이메일)
+		
+		// JSON 형식으로 응답
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+
+		// AJAX 요청에서 받은 데이터 처리
+		//콜백에서 받아온 정보 가져오기
+		String s_email = memberdto.getS_email(); 
+		String s_uname = memberdto.getS_uname();
+		
+		//dto에 필요한 값 담기 
+		memberdto.setS_email(s_email); //rla-wjdqls@daum.net
+		memberdto.setS_uname(s_uname); //김정빈
+		
+		//세션로그인 테이블에 회원정보 있는지 확인
+		String s_mlevel  = String.valueOf(memberDao.kakaoCheck(memberdto));
+		//System.out.println(s_mlevel); //"1"   null
+		
+		if("c".equals(s_mlevel)) {
+			session.setAttribute("s_id", s_email);
+			session.setAttribute("s_mlevel", s_mlevel);
+			
+	        return "{\"result\": \"c\"}";
+			
+		}else { //소셜멤버 테이블에 정보 없을 시 insert -> 확인 완료
+			memberDao.kakaoInsert(memberdto);
+			
+			session.setAttribute("s_id", s_email);
+			session.setAttribute("s_mlevel", s_mlevel);
+			
+			return "{\"result\": \"c\"}";
+			
+		}//if end
+		
+	}//kakaocallbackPost() end
+    
+    
+    
+    
+    
+    
 	// 아이디 찾기 페이지 이동
 	@GetMapping("/findID")
 	public ModelAndView findID() {
@@ -229,11 +329,11 @@ public class MemberCont {
 	// 입력 아이디,이메일 db 데이터 중복 확인 후 회원가입 폼전송
 	@PostMapping("/insert")
 	public String insert(HttpServletRequest req) {
-		String userid = req.getParameter("uid");
-		String useremail = req.getParameter("email");
+		String uid = req.getParameter("uid");
+		String email = req.getParameter("email");
 		
-		int cnt_uid = memberDao.idCheck(userid);
-		int cnt_email = memberDao.emailCheck(useremail);
+		int cnt_uid = memberDao.idCheck(uid);
+		int cnt_email = memberDao.emailCheck(email);
 		
 		MemberDTO memberdto = new MemberDTO();
 
@@ -256,19 +356,7 @@ public class MemberCont {
 
 	
 		
-    @GetMapping("/navercallback")
-    public String naverCallbackGet() {
-        return "member/navercallback";
-    }//naverCallbackGet() end
-    
 
-    
-	
-	
-    @GetMapping("/kakaocallback")
-    public String kakaoLogin() {
-        return "member/kakaocallback";
-    }//kakaoLogin() end
 
 	
 	

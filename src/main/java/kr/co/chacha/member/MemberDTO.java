@@ -26,8 +26,8 @@ public class MemberDTO {
 	private String s_tel;
 	private String s_birth;
 	private String s_mlevel;
-    
-    
+	//private String s_token;
+	//private String s_type;
     
     
     //소셜로그인 
@@ -211,10 +211,7 @@ public class MemberDTO {
 		this.semail = semail;
 	}
 
-
 	
-	
-	//toString
 
 	public String getS_email() {
 		return s_email;
@@ -266,14 +263,7 @@ public class MemberDTO {
 	}
 
 
-	@Override
-	public String toString() {
-		return "MemberDTO [uid=" + uid + ", myno=" + myno + ", sano=" + sano + ", uname=" + uname + ", email=" + email
-				+ ", passwd=" + passwd + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel="
-				+ tel + ", birth=" + birth + ", mdate=" + mdate + ", mlevel=" + mlevel + ", sid=" + sid + ", ptype="
-				+ ptype + ", token=" + token + ", semail=" + semail + "]";
-	}
-	
+
 	
 	
 
