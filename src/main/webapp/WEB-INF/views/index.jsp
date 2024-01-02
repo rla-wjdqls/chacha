@@ -257,7 +257,7 @@
     <!-- Team Start -->
     <div class="container-xxl py-6">
         <div class="container">
-            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
                 <h6 class="text-primary text-uppercase mb-2">입양 가능한 친구들</h6>
                 <h1 class="display-6 mb-4">귀여운 친구들을 소개합니다~^^</h1>
             </div>
