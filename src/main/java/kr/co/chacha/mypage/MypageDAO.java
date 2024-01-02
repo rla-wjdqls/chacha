@@ -108,7 +108,6 @@ SqlSession sqlSession;
 	
 	//회원관리
 	public List<MypageDTO> memList() {
-		//System.out.println(mypagedto.getPasswd());
 		return sqlSession.selectList("mypage.memList");
 	}//memList() end
 	

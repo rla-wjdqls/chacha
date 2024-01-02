@@ -14,7 +14,6 @@
 	<br><br>
 		<h4>입양신청내역</h4>
 		<p>나의 입양 신청 내역을 확인 할 수 있습니다</p>
-		<input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()" >
 	<table class="table table-condensed">
         <thead>
             <tr>
@@ -72,7 +71,7 @@
                 <tr>
                     <td>${myAdopt.payno}</td>
                     <td>${myAdopt.apno}</td>
-                    <td><fmt:formatNumber value="${memAdopt.patamt}" pattern="##,###"/></td>
+                    <td><fmt:formatNumber value="${myAdopt.patamt}" pattern="##,###"/></td>
                     <td>
 		            <c:choose>
 		                <c:when test="${myAdopt.paymet eq 'cd'}">카드</c:when>
@@ -90,73 +89,77 @@
             </c:forEach>
         </tbody>
     </table>
+    <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()" >
     <br><br>
 	</div>
 	</div>
 
 <script>
 
+
+var IMP = window.IMP;
 IMP.init('imp40880183');
 
 function requestPay() {
-	IMP.request_pay({
-	    pg : 'html5_inicis',
-	    pay_method : 'card',
-	    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호를 전달
-	    name : '주문명:결제테스트',
-	    amount : 100,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456',
-	    m_redirect_url : '{모바일에서 결제 완료 후 리디렉션 될 URL}' // 예: https://www.my-service.com/payments/complete/mobile
-	}, function(rsp) { // callback 로직
-		//* ...중략 (README 파일에서 상세 샘플코드를 확인하세요)... *//
-	});
+    // 서버에서 주문번호를 생성하여 가져오는 로직
+    $.ajax({
+        url: "/mypage/payNum",
+        method: "GET",
+        success: function (result) {
+        	
+        	var merchant_uid = result.payno;
+            var buyer_email = result.buyer_email;
+            var buyer_name = result.buyer_name;
+            var buyer_tel = result.buyer_tel;
+
+            //alert("주문번호: " + merchant_uid);
+            //alert("이메일: " + buyer_email);
+            //alert("이름: " + buyer_name);
+            //alert("전화번호: " + buyer_tel);
+            
+            IMP.request_pay({
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: merchant_uid,
+                name: "그냥데려가개 입양 책임금",
+                amount: 100,
+                buyer_email: buyer_email,
+                buyer_name: buyer_name,
+                buyer_tel: buyer_tel
+            }, function (rsp) {
+                var params = {
+                    imp_uid: rsp.imp_uid,
+                    merchant_uid: rsp.merchant_uid
+                };
+
+                if (rsp.success) {
+                    // 서버 검증 요청
+                    $.ajax({
+                        url: "/pay_validate",
+                        method: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(params),
+                        success: function (result) {
+                            console.log(result);
+                            alert("결제가 완료되었습니다.");
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('서버 오류:', rsp.error_msg);
+                            alert("결제에 실패하였습니다. 에러 내용: " + rsp.error_msg);
+                        }
+                    });
+                }
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('주문번호 생성 오류:', error);
+            alert("주문번호 생성에 실패하였습니다.");
+        }
+    });
 }
 
 
-
-
-/* function requestPay() {
-    IMP.init('imp40880183'); //iamport 대신 자신의 "가맹점 식별코드"를 사용
-    IMP.request_pay({
-      pg: "inicis",
-      pay_method: "card",
-      merchant_uid: 'merchant_' + new Date().getTime(),
-      name: '결제테스트',
-      amount: 100,
-      buyer_email: 'iamport@siot.do',
-      buyer_name: '구매자',
-      buyer_tel: '010-1234-5678',
-      buyer_addr: '서울특별시 강남구 삼성동',
-      buyer_postcode: '123-456'
-    }, function (rsp) { // callback
-      // 결제 성공 시 로직
-      console.log(rsp);
-      if (rsp.success) {
-        var msg = '결제가 완료되었습니다.';
-        alert(msg);
-        location.href = "http://localhost:9095/member/myAdopt";
-      } else {
-        var msg = '결제에 실패하였습니다.';
-        msg += '에러내용 : ' + rsp.error_msg;
-        //에러내용 : 등록된 사용자 또는 PG 설정 정보가 없거나, 조회 할 수 없습니다
-        alert(msg);
-      }
-    });
-  } */
-
-/* $(document).ready(function () {
-    $("#btn_payment").click(function () {
-      requestPay();
-    });
-  }); */
-
-/* $("#btn_payment").click(function(){
-alert();
-})//click end */
 
 </script>
 

@@ -120,7 +120,7 @@
                     <div class="dropdown-menu bg-light m-0">
                         <a href="/help/helpList" class="dropdown-item">목격/제보</a>
                         <a href="/adopt/adoptReview" class="dropdown-item">입양 후기</a>
-                        <a href="/research/researchForm" class="dropdown-item">설문조사</a>
+                        <a href="/research/researchList" class="dropdown-item">설문조사</a>
                     </div>
                 </div>
 			<c:choose>

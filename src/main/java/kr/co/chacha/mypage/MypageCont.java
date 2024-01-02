@@ -1,6 +1,10 @@
 package kr.co.chacha.mypage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDAO;
@@ -297,6 +302,53 @@ public class MypageCont {
 		
 		return cnt;
 	}//jjimDelete() end
+	
+	
+	@GetMapping("/mypage/payNum")
+	@ResponseBody
+	public Map<String, String> payNum(HttpSession session) {
+	
+	Map<String, String> response = new HashMap<>();
+		
+	String s_id = (String)session.getAttribute("s_id");
+		
+	mypageDao.myInfoCheck(s_id); //이메일,이름,전화번호
+	
+	//MypageDTO mypagedto = new MypageDTO(); null값 출력
+	MypageDTO mypagedto = mypageDao.myInfoCheck(s_id); // 이메일, 이름, 전화번호를 가진 객체를 리턴받음
+	
+	String buyer_email = mypagedto.getEmail();
+	String buyer_name = mypagedto.getUname();
+	String buyer_tel = mypagedto.getTel();
+	
+	//주문서 번호 생성하기
+	
+	//오늘날짜 및 현재시각을 문자열 "년월일시분초"로 구성해서 반환하기
+	//->예)20231123143615
+	SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
+	String date = sd.format(new Date());
+	String payno = "p" + date;
+	//System.out.println(payno); //결제버튼 누르면 출력 p20240102221606
+	
+	// 응답 데이터 설정
+    response.put("buyer_email", buyer_email);
+    response.put("buyer_name", buyer_name);
+    response.put("buyer_tel", buyer_tel);
+    response.put("payno", payno);
+
+    return response;
+	
+	}//payNum() end
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }//end
