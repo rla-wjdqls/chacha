@@ -18,12 +18,86 @@
 			</ul>
 		</nav>
 <br>
-<div class="container text-center"> <h3>설문조사</h3>
+<div class="container text-center"> <h3>설문조사 등록</h3>
 	<div class="container">
-		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
+		<p>설문조사를 등록해 주세요</p>
 		<hr><br><br>
 		 <div class="container-line" id="surveyContainer">
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
+            	<div class="row">
+		<div class="col-sm-12">
+			<form name="helpfrm" id="helpfrm" method="post" action="insert" enctype="multipart/form-data">
+	<table class="table">
+            <tr>
+                <th>제목</th>
+				<td><input type="text"></td>
+            </tr>
+            <tr>
+                <th>설문기간</th>
+				<td><input type="text"> ~ <input type="text"></td>
+            </tr>
+    </table>
+	
+	<br><br><br>
+	
+	<table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>질문번호</th>
+                <th>질문내용</th>
+                <!-- <th>답변수</th> -->
+                <th>답변내용</th>
+            </tr>
+        </thead>
+  		<tbody>
+		<%-- <c:forEach items="${myList_a}" var="mylista"> --%>
+	        <!-- 조건이 참일 때 실행할 내용 -->
+	        <tr>
+	            <td><input type="checkbox"></td>
+	            <td>질문1</td>
+	            <td><input type="text" placeholder="질문을 입력해주세요"></td>
+	     <!--        <td>
+	            <select>
+	            	<option>1</option>
+	            	<option>2</option>
+	            	<option>3</option>
+	            </select>
+	            </td> -->
+	            <td>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="button" value="추가" class="btn btn">
+	            </td>
+	        </tr>
+	          <tr>
+	            <td><input type="checkbox"></td>
+	            <td>질문2</td>
+	            <td><input type="text" placeholder="질문을 입력해주세요"></td>
+	     <!--        <td>
+	            <select>
+	            	<option>1</option>
+	            	<option>2</option>
+	            	<option>3</option>
+	            </select>
+	            </td> -->
+	            <td>
+            	<input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="text" placeholder="답변을 입력해주세요"> 삭제<br>
+	            <input type="button" value="추가" class="btn btn">
+	            </td>
+	        </tr>
+		<%-- </c:forEach> --%>
+        </tbody>
+    </table>
+    <input type="button" value="추가" class="btn btn">
+		</form>
+	</div>
+	<!-- col end -->
+</div>
             <br><br><br>
         </div>
 		</div>
