@@ -4,7 +4,7 @@
 <%@ include file="../header.jsp" %>
 
 <% 
-	String s_mlevel = (String)session.getAttribute("m_mlevel");
+	String s_mlevel = (String)session.getAttribute("s_mlevel");
 %>
 
 <!-- 본문 시작 template.jsp -->
@@ -102,12 +102,17 @@
 						<c:when test="${center.adopt_pos eq 'Y'}">
 							<dd class="anidd">가능</dd>
 						</c:when>
+						<c:when test="${center.adopt_pos eq 'N'}">
+							<dd class="anidd">불가능</dd>
+						</c:when>
 					</c:choose>
 				</dl>
 			</div>
 		</div>
 			</form>
-			
+		
+		<c:choose>
+		<c:when test="${s_mlevel ne 'A'}">
 		<div class="container">
 			<div class="jjimStart">
 			<form name="jjimfrm" id="jjimfrm">
@@ -132,9 +137,12 @@
 			</form>
 			</div>
 			
+			<form name="chatfrm" id="chatfrm" method="post">
+			<input type="hidden" name="anino" id="anino" value="${center.anino}">
 			<div class="icon-heart">
-				<i class="bi bi-chat-left-dots-fill"></i>
+				<i class="bi bi-chat-left-dots-fill" onclick="chat_popup()"></i>
 			</div>
+			</form>
 			<div class="d-grid gap-2 d-md-block" >
 			  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">신청하기</button>
 			</div>
@@ -181,6 +189,8 @@
 			    </div>
 			  </div>
 			</div>
+			</c:when>
+			</c:choose>
 			<hr>
 			<div>
 				<p style="text-align: center">
@@ -247,7 +257,22 @@
 			        });
 			    }
 			});
-
+	
+			function chat_popup(){ 
+				let uid = '<%= (String)session.getAttribute("s_id") %>';
+				if(uid == "null"){
+					uid = "";
+				}
+				//alert(uid);
+				if(uid.length === 0){
+					alert("로그인 후 이용바랍니다");
+				}else{
+					//window.open('chat', 'Chat', 'width=400,height=400');
+					document.chatfrm.action="/chat/centerChat";
+					document.chatfrm.submit();
+				}
+				
+			}
 			
 </script>
 <!-- 본문 끝 -->

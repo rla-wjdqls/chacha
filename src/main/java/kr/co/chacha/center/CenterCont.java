@@ -177,6 +177,10 @@ public class CenterCont {
 //		
 //	}
 	
+//	@RequestMapping("centerChat")
+//	public String start() {
+//		return "/center/centerChat";
+//	}
 
 			
 }

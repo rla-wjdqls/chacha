@@ -46,7 +46,8 @@
 	   
 	<div class="container-fixed row">
 			<c:forEach items="${form}" var="row" varStatus="vs">
-				<c:if test="${row.adopt_pos != 'N'}">
+				<c:choose>
+					<c:when test="${s_mlevel eq 'a' and (row.adopt_pos eq 'N' or row.adopt_pos eq 'Y')}">
 					<div class="card" style="width: 18rem;">
 						<c:choose>
 							<c:when test="${row.anipic == '-' || empty row.anipic}">
@@ -55,17 +56,32 @@
 				  			<c:otherwise>
 				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid">
 				  			</c:otherwise>
-				  			
 				  		</c:choose>
-			
 				  	<div class="card-body">
 				    	<h5 class="card-title">${row.aname}</h5>
 				    	<p class="card-text">${row.age}</p>
 				    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
 				  	</div>
 			   		</div>
-			
-				</c:if>
+					</c:when>
+					<c:when test="${s_mlevel ne 'a' and row.adopt_pos ne 'N' }">
+						<div class="card" style="width: 18rem;">
+						<c:choose>
+							<c:when test="${row.anipic == '-' || empty row.anipic}">
+							  	<img src="/img/noimg.png" class="card-img-top img-fixed img-fluid">
+							</c:when>
+				  			<c:otherwise>
+				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid">
+				  			</c:otherwise>
+				  		</c:choose>
+				  	<div class="card-body">
+				    	<h5 class="card-title">${row.aname}</h5>
+				    	<p class="card-text">${row.age}</p>
+				    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
+				  	</div>
+			   		</div>
+					</c:when>
+				</c:choose>
 			</c:forEach>
 		   
 	</div>

@@ -85,7 +85,6 @@
 				   
 				});//ajax end
 			}//eduCheck() end
-			
-			
-
-		}		
+		}//adopt() end	
+		
+		
