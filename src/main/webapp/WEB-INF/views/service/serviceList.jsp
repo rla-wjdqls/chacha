@@ -82,7 +82,7 @@ tbody td {
 					<option value="sinfo">내용
 					<option value="uid">아이디				
 				</select>
-					<input type="text" name="word" id="word">
+					<input type="text" name="word" id="word" placeholder="검색어를 입력하세요">
 					<input type="submit" value="검색">	
 			</form>
 		</td>
@@ -90,5 +90,5 @@ tbody td {
 
  </table>
  </div>
- 
+
 <%@ include file="../footer.jsp" %>      

@@ -40,10 +40,15 @@
                 </div>
                 <div class="modal-body">
                     <!-- 여기에 이벤트 정보 입력란을 추가하세요. 예: -->
-                    <div class="mb-3">
-                        <label for="inputTitle" class="form-label">신청시간</label>
-                        ${servicea.time}
+               		 <div class="mb-3"> 
+                        <label for="inputTitle" class="form-label">신청날짜 :<span id="applyDate"></span></label>  
                     </div>
+                    
+                     <div class="mb-3"> 
+                        <label for="inputTitle" class="form-label">신청시간 :</label>
+                        ${servicea.time}                   
+                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -76,6 +81,11 @@
 
         // FullCalendar 초기화
         $(document).ready(function () {
+        	var startDate = "${servicea.ssdate}";
+        	var endDate = "${servicea.sedate}";
+        	var newEndDate = new Date(endDate);
+        	var lastEndDate = newEndDate.getFullYear()+"-"+("0" + (newEndDate.getMonth()+1)).slice(-2)+"-"+("0"+(newEndDate.getDate()+1)).slice(-2);
+        	
             calendar = $('#calendar').fullCalendar({
                 // FullCalendar 옵션 설정
                 header: {
@@ -94,37 +104,51 @@
                     event = calEvent;
                     $('#inputTitle').val(calEvent.title);
                     $('#eventModalLabel').text('Edit Event');
-                    $('#eventModal').modal('show');
+                    $('#eventModal').modal('');
                 },
                 events: [
                     // 서버로부터 가져온 데이터를 이용하여 이벤트 추가
                     // 예시:
                     {
                   	 
-                        title: "신청가능한 날짜입니다",
-                        start: new Date,
-                        end: "${servicea.sedate}",
-                        //신청날짜는 하루인데, DB에 왜 asdate 하고 aeㅇㅁㅅㄷ rk emf
-                        //여러사람이 신청할수있게 신청할수있는 기간을 준거고 사용자가 신청하는거는 sadate라고 칼럼따로있어쇼
+                        title: "신청가능한 날짜",
+                        start: startDate,                        
+                        end: lastEndDate,                       
                        
                         // 이미지 URL 등 추가 속성
                     },
                     // 추가적인 이벤트들...
                     
                 ],
-                // 날짜 클릭 이벤트 처리 이게 모달창이요
+                // 날짜 클릭 이벤트 처리 
                 dayClick: function (date, jsEvent, view) {
-                	var clickDate = new Date(date);
+             
+                    var clickDate = new Date(date);
                 	var applyDate = clickDate.getFullYear()+"-"+(clickDate.getMonth()+1)+"-"+clickDate.getDate();
                 	$("#sadate").val(applyDate);
-                
-                    event = null;
-                    $('#inputTitle').val('');
-                    $('#eventModalLabel').text('신청하시겠습니까??');
-                    $('#eventModal').modal('show');
+                	
+                	//신청날짜확인 붙이기
+                	$("#applyDate").text(applyDate);
+						
+                		var _startDate = new Date(startDate);
+                		var _lastEndDate = new Date(lastEndDate);
+                		
+                        // 날짜 비교 제약조건
+                        if (clickDate >= _startDate && clickDate < _lastEndDate) {
+                          
+                        	$('#inputTitle').val('');
+                            $('#eventModalLabel').text('신청하시겠습니까?');
+                            $('#eventModal').modal('show');
+                        } else {
+                          
+                        	// 범위 밖의 날짜 클릭 시 메시지 표시 또는 다른 처리
+                            alert('선택된 날짜는 신청 가능한 범위가 아닙니다.');
+                        } 
                 },
+
+           
                 
-            
+       
              
             });
         });
@@ -145,7 +169,7 @@
                     event.title = title;
                     $('#calendar').fullCalendar('updateEvent', event);
                 } else {
-                    // 이벤트 생성 이코드자체를 긁어온건데 제가 수정했어요 몇개
+                    // 이벤트 생성 
                     $('#calendar').fullCalendar('renderEvent', eventData, true);
                 }
                 $('#eventModal').modal('hide');
