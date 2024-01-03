@@ -99,8 +99,8 @@
 			</div>
    			
 <!--  			
-<div id="naver_id_login"></div>
-<div class="sns_login_box">
+				<div id="naver_id_login"></div>
+				<div class="sns_login_box">
 				<div class="sns_login_item">
 					<img src="/img/naver_login.png" alt="naver_login"  class="naver_id_login" id="naver_id_login"></a>
 				</div>
@@ -108,7 +108,7 @@
 					<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_id_login" id="kakao_id_login">onclick="javascript:doKakaoLogin()"
 				</div>
 				<a id="kakao-login-btn"></a>
-			</div>  -->
+				</div>  -->
 			<br>
 			<div>
 				<span class="login__account login__account--account">계정이 없으신가요?</span> 
