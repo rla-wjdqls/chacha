@@ -29,10 +29,14 @@
         height: 500px;
         overflow: auto;
     }
-    .chating p {
-        color: #fff;
-        text-align: left;
-    }
+    .chating .me{
+			color: #F6F6F6;
+			text-align: right;
+		}
+	.chating .others{
+			color: #FFE400;
+			text-align: left;
+	}
     input {
         width: 330px;
         height: 25px;
@@ -52,14 +56,29 @@
 
     function wsEvt() {
         ws.onopen = function(data) {
-            // 소켓이 연결되면 초기 세팅
+            // 소켓이 연결되면 
         }
-        ws.onmessage = function(data) {
+        ws.onmessage = function(data) { // 메시지를 받으면
             let msg = data.data;
             if (msg != null && msg.trim() != '') {
-                $("#chating").append("<p>" + msg + "</p>");
-            }
+            	let d = JSON.parse(msg); //JSON 형태로 받은 데이터를 파싱
+            	if(d.type == "getId"){ //getID이면 초기 설정한 값
+            		let si = d.sessionId != null ? d.sessionId : "";
+            		if(si != ''){
+            			$("#sessionId").val(si); //sessionId 값 세팅 / 소켓이 종료되기 전까지 자기를 알 수 있는 구분값
+            		}
+            	}else if(d.type == "message"){ //채팅을 보낸 경우
+            		if(d.sessionId == $("#sessionId").val()){ //최초 세션값과 현재 세션값이 같으면 동일 인물
+            			$("#chating").append("<p class='me'>나 :" + d.msg + "<p>");
+            		}else{ //아니면 다른 사람
+            			$("#chating").append("<p class='others'>" + d.userName + " :" + d.msg + "</p>");
+            		}
+            	}else{
+            		console.warn("unknown type");
+            	}
+            }//if end
         }
+        
         document.addEventListener("keypress", function(e) {
             if (e.keyCode == 13) { // 엔터를 치면
                 send();
@@ -80,16 +99,23 @@
     }
 
     function send() {
-        let uN = $("#userName").val();
-        let msg = $("#chatting").val();
-        ws.send(uN + ":" + msg);
+    	let option = { //JSON형태로 담아서 서버로 보내기 
+    			type: "message",
+    			sessionId: $("#sessionId").val(),
+    			userName: $("#userName").val(),
+    			msg: $("#chatting").val()
+    	}
+        ws.send(JSON.stringify(option));
         $("#chatting").val("");
     }
 </script>
 <body>
     <div id="container" class="container">
         <h1>채팅</h1>
-        <div id="chating" class="chating"></div>
+        <input type="hidden" id="sessionId" value=""> <!-- 현재 세션값을 저장하기 위 -->
+        
+        <div id="chating" class="chating">
+        </div>
         
         <div id="yourName">
             <table class="inputTable">
@@ -101,7 +127,7 @@
             </table>
         </div>
         
-        <div id="yourMsg" style="display: none;">
+        <div id="yourMsg">
             <table class="inputTable">
                 <tr>
                     <th>메시지 입력</th>
