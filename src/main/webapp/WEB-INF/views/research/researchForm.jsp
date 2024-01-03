@@ -26,7 +26,7 @@
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
             <!-- 선택하지 않았을 경우 페이지 넘어가지 않음 -->
 
-			<!-- 이 부분에 내용 들어감 -->
+			<!-- 이 부분에 내용 들어감 질문1 시작-->
 			<div id="panel"></div>
 			<br><br><br>
            <!--  <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p" onclick="click()"> -->
