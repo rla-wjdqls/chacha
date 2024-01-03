@@ -43,8 +43,8 @@
     <script src="/js/jquery-3.7.1.min.js"></script>
 	<script src="/js/jquery.cookie.js"></script>
 
-	<!-- <script src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>  -->
-	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+	 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+	<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> --> 
 
 
 <script>
@@ -220,7 +220,7 @@
                     <div class="dropdown-menu bg-light m-0">
                         <a href="/help/helpList" class="dropdown-item">목격/제보</a>
                         <a href="/adopt/adoptReview" class="dropdown-item">입양 후기</a>
-                        <a href="/research/researchForm" class="dropdown-item">설문조사</a>
+                        <a href="/research/researchList" class="dropdown-item">설문조사</a>
                     </div>
                 </div>
                <c:choose>

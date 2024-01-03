@@ -22,25 +22,67 @@
 	<div class="container">
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
 		<hr><br><br>
-		<div class="container-line">
-			<h5>여러분의 의견을 들려주세요~</h5>
-			<h6>목록</h6>
-			<br><br>
-			<a href="/research/researchList" class="btn btn">설문조사 하러가기</a>
-			<a href="/research/researchReg" class="btn btn">설문조사 등록하기</a>
-			<br><br>
-		</div>
+		 <div class="container-line" id="surveyContainer">
+            <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
+            <!-- 선택하지 않았을 경우 페이지 넘어가지 않음 -->
+
+			<!-- 이 부분에 내용 들어감 -->
+			<div id="panel"></div>
+			<br><br><br>
+           <!--  <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p" onclick="click()"> -->
+            <input type="button" value="다음" class="btn btn" name="btn_research_n" id="btn_research_n">
+        </div>
 		</div>
 	</div>
 	<br><br><br>
 
+<script>
 
+
+/* $("#btn_research_n").click(function(){
+	$.get("researchNext", researchProc);
+})//click() end
+
+function researchProc(result){
+	$("#panel").html(result);
+}//researchProc() end */
+
+
+
+var currentQuestionNumber = 1; // 초기 질문 번호 설정
+
+$("#btn_research_n").click(function(){
+    $.get("researchNext", { questionNumber: currentQuestionNumber }, researchProc);
+})
+
+function researchProc(result){
+    $("#panel").html(result);
+    currentQuestionNumber++; // 다음 질문 번호로 업데이트
+}
+
+
+
+
+
+</script>
 <!-- 본문 끝 -->
-		
-</form>
-</div>
 
 
 
 
-<%@ include file="../footer.jsp" %>      
+
+
+
+<%@ include file="../footer.jsp" %>     
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
