@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>그냥 데려가게</title>
+    <style>
+        .quiz-container {
+            display: row;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>고양이 OX Quiz</h1>
+
+    <form id="quizForm">
+        <div id="quizContainer"></div>
+        <button type="button" onclick="checkAnswers()">결과 확인</button>
+    </form>
+
+    <script>
+        const questions = [
+        	{ question:"1. 고양이는 높은 곳에서 떨어져서 다치지 않는다.", answer: "x" },
+        	{ question:"2. 고양이가 문어,전복을 먹으면 심장에 부담이 가므로 먹으면 안된다.", answer: "o" },
+        	{ question:"3. 고양이는 폐경이 없다.", answer: "o" },
+        	{ question:"4. 고양이는 관절염이 없다.", answer:"x"},
+        	{ question:"5. 길고양이는 사람의 도움이 없어도 굶지 않는다.", answer:"x"},
+        	{ question:"6. 고양이가 푸른 생선을 너무 많이 먹으면 배에 응어리가 만져진다.", answer:"o"},
+        	{ question:"7. 고양이는 사람보다 시력이 좋다.", answer:"x"},
+        	{ question:"8. 고양이는 단맛을 제한적으로 또는 전혀 느끼지 못한다.", answer:"o"},
+        	{ question:"9. 고양이는 빨간색을 알아볼 수 없다.", answer:"o"},
+        	{ question:"10. 고양이는 수태 후 평균 65일 만에 출산한다.", answer:"o"},
+        	
+            // ... 나머지 문제들 추가
+        ];
+
+        function initializeQuiz() {
+            const quizContainer = document.getElementById('quizContainer');
+            questions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('quiz-container');
+                questionDiv.innerHTML = `
+                    <p>${question.question}</p>
+                    <label for="o${index}">O</label>
+                    <input type="radio" name="answer${index}" id="o${index}" value="o">
+
+                    <label for="x${index}">X</label>
+                    <input type="radio" name="answer${index}" id="x${index}" value="x">
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswers() {
+            let totalScore = 0;
+
+            questions.forEach((question, index) => {
+                const selectedAnswer = document.querySelector(`input[name="answer${index}"]:checked`);
+
+                if (selectedAnswer) {
+                    const userAnswer = selectedAnswer.value;
+
+                    if (userAnswer.toLowerCase() === question.answer) {
+                        totalScore += 10;
+                    }
+                }
+            });
+
+            alert(`퀴즈가 종료되었습니다. 총 점수는 ${totalScore}점입니다.`);
+        }
+
+        initializeQuiz();
+    </script>
+
+
+</body>
+</html>

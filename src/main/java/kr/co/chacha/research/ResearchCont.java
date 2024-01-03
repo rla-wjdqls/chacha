@@ -1,5 +1,8 @@
 package kr.co.chacha.research;
 
+import java.time.LocalDate;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,15 +29,6 @@ public class ResearchCont {
 	ResearchDAO researchdao;
 
 	
-	// 설문조사 페이지 이동
-	@GetMapping("/researchForm")
-	public ModelAndView research() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("research/researchForm");
-		return mav;
-	}//research() end
-	
-	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		
@@ -46,6 +40,13 @@ public class ResearchCont {
 		
 	}//logout end
 	
+	// 설문조사 페이지 이동
+	@GetMapping("/researchForm")
+	public ModelAndView research() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("research/researchForm");
+		return mav;
+	}//research() end
 	
 	
 	// 설문조사 폼 이동
@@ -64,6 +65,36 @@ public class ResearchCont {
 		mav.setViewName("research/researchReg");
 		return mav;
 	}//researchReg() end
+	
+	
+	
+	@GetMapping("/researchNext")
+	@ResponseBody
+		public String researchNext(@RequestParam("questionNumber") int questionNumber) {
+		    // 각 질문에 대한 HTML을 반환하는 로직 추가
+		    if (questionNumber == 1) {
+		        return "질문1. 귀하의 성별은 어떻게 되십니까?<br><br>" +
+		                "<input type='radio' name='survay1' value='5' />만족" +
+		                "<input type='radio' name='survay1' value='4' />다소만족" +
+		                "<input type='radio' name='survay1' value='3' />보통" +
+		                "<input type='radio' name='survay1' value='2' />다소미흡" +
+		                "<input type='radio' name='survay1' value='1' />매우미흡";
+		    } else if (questionNumber == 2) {
+		        return "질문2. 귀하의 가구원은 어떻게 되십니까?<br><br>" +
+		                "<input type='radio' name='survay2' value='5' />만족" +
+		                "<input type='radio' name='survay2' value='4' />다소만족" +
+		                "<input type='radio' name='survay2' value='3' />보통" +
+		                "<input type='radio' name='survay2' value='2' />다소미흡" +
+		                "<input type='radio' name='survay2' value='1' />매우미흡";
+		    } else {
+		        // 다른 질문에 대한 처리 추가
+		        return "다음문제";
+		    }
+		
+	}//researchNext() end
+	
+	
+	
 	
 	
 	@PostMapping("/getNextQuestion")

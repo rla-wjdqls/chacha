@@ -25,13 +25,13 @@
     align-items: center; /* 엘리먼트를 세로로 가운데 정렬 */
 }
 
-        #naver_id_login {
-            margin-left: 130px; /* 왼쪽 여백을 최대로 늘림 */
-        }
+   #naver_id_login {
+       margin-left: 130px; /* 왼쪽 여백을 최대로 늘림 */
+   }
 
-        #kakao-login-btn {
-            margin-right: 130px; /* 오른쪽 여백을 최대로 늘림 */
-        }
+   #kakao-login-btn {
+       margin-right: 130px; /* 오른쪽 여백을 최대로 늘림 */
+   }
 
         
 </style>
