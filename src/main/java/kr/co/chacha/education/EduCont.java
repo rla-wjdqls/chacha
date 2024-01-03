@@ -45,6 +45,13 @@ public class EduCont {
 		return mav;
 	}
 	
+	@GetMapping("/catox")
+	public ModelAndView catox() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/catox");
+		return mav;
+	}
+	
 	
 
 }
