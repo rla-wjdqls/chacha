@@ -75,7 +75,6 @@
                     <td>
 		            <c:choose>
 		                <c:when test="${myAdopt.paymet eq 'cd'}">카드</c:when>
-		                <c:when test="${myAdopt.paymet eq 'ch'}">현금</c:when>
 		            </c:choose>
 		        	</td>
                     <td>
@@ -111,7 +110,7 @@ function requestPay() {
             var buyer_email = result.buyer_email;
             var buyer_name = result.buyer_name;
             var buyer_tel = result.buyer_tel;
-
+            
             //alert("주문번호: " + merchant_uid);
             //alert("이메일: " + buyer_email);
             //alert("이름: " + buyer_name);
@@ -120,29 +119,42 @@ function requestPay() {
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: merchant_uid,
+                merchant_uid: merchant_uid, //p202401021120
                 name: "그냥데려가개 입양 책임금",
                 amount: 100,
-                buyer_email: buyer_email,
-                buyer_name: buyer_name,
-                buyer_tel: buyer_tel
+                buyer_email: buyer_email, //kim9595@gmail.com
+                buyer_name: buyer_name, //김정빈
+                buyer_tel: buyer_tel //010-2323-5834
             }, function (rsp) {
                 var params = {
                     imp_uid: rsp.imp_uid,
                     merchant_uid: rsp.merchant_uid
                 };
-
+                
                 if (rsp.success) {
-                    // 서버 검증 요청
+                    // 서버 검증 요청. 서버단에서 결제정보 조회를 위해 ajax로 imp_uid 전달하기
+                    alert(rsp.merchant_uid); //확인
+               		alert(rsp.imp_uid); //imp_623410885382
                     $.ajax({
-                        url: "/pay_validate",
+                        url: "/mypage/payValidate",
                         method: "POST",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(params),
                         success: function (result) {
                             console.log(result);
-                            alert("결제가 완료되었습니다.");
+                            
+                           //결제 정보 확인
+							var msg = '결제가 완료되었습니다.';
+							msg += '<br>성함: ' + rsp.buyer_name;
+							msg += '<br>이메일: ' + rsp.buyer_email;
+							msg += '<br>결제 수단: ' + rsp.pay_method;
+							msg += '<br>결제 금액: ' + rsp.paid_amount + '원';
+                			//msg += '\n결제 일자 : ' + rsp.paid_at;
+                			//msg += '\n고유ID : ' + rsp.imp_uid;
+                			//msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                			alert(msg);
+                            window.location.href = "http://localhost:9095/mypage/myAdopt"; // 리다이렉트할 URL로 변경
                         },
                         error: function (xhr, status, error) {
                             console.error('서버 오류:', rsp.error_msg);

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -304,6 +305,7 @@ public class MypageCont {
 	}//jjimDelete() end
 	
 	
+	//결제 버튼 클릭 시 주문번호 생성
 	@GetMapping("/mypage/payNum")
 	@ResponseBody
 	public Map<String, String> payNum(HttpSession session) {
@@ -341,17 +343,56 @@ public class MypageCont {
 	}//payNum() end
 	
 	
+	//검증 유저가 결제한 금액과 DB에서 가져온 금액만 비교하면 된다 (50,000)
+	@PostMapping("/mypage/payValidate")
+	@ResponseBody
+	public Map<String, String> payValidate(@RequestBody Map<String, String> params, HttpSession session) {
+	    Map<String, String> response = new HashMap<>();
+	    String s_id = (String) session.getAttribute("s_id");
+
+	    // params 값을 콘솔에 출력
+	    //System.out.println("Received params: " + params);
+	    //{imp_uid=imp_873665469821, merchant_uid=p20240103212425}
+
+	    // 이후 로직은 여기에 추가
+	    try {
+	        String imp_uid = params.get("imp_uid");
+
+	        // 여기에서 이니시스 API를 호출하여 결제 정보를 검증하는 로직을 구현
+	        // 예시로 결제된 금액이 100원이 맞는지 확인
+	        int paymentAmount = getPaymentAmountFromInicis(imp_uid);
+	        //System.out.println(paymentAmount); //100
+	        if (paymentAmount == 100) {
+	            response.put("result", "success");
+	        } else {
+	            response.put("result", "failure");
+	        }
+	    } catch (Exception e) {
+	        response.put("result", "error");
+	        response.put("message", e.getMessage());
+	    }
+
+	    return response;
+	}
+
+	// 이니시스 API를 사용하여 결제된 금액을 조회하는 메서드 (예시)
+	private int getPaymentAmountFromInicis(String imp_uid) {
+	    // 여기에서 이니시스 API를 호출하여 결제 정보를 조회하는 로직을 구현
+	    // 실제로는 HTTPS 통신 및 OAuth 인증 등을 통해 안전한 방법으로 조회해야 합니다.
+	    // 조회된 결제 정보에서 결제된 금액을 반환합니다. (예시로 100원 반환)
+	    return 100;
+	}
+
+}
+
+
+	
+	
+
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-}//end
+
 
 
 
