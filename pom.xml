@@ -50,7 +50,7 @@
 			<version>3.0.3</version>
 			<scope>test</scope>
 		</dependency>
-
+	
 
 		<!--Tomcat10기반 뷰페이지 관련 라이브러리(JSP, JSTL)-->
 		<dependency>
@@ -90,8 +90,6 @@
 		</dependency>
 
 
-		<!--사용자 추가 라이브러리(의존성) 끝-->
-
 		<!--서버 자동 재시작-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -106,8 +104,11 @@
 		<version>2.8.1</version>		
 	</dependency>
 	
-	
-
+	<!-- 웹소켓 -->
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-websocket</artifactId>
+    </dependency>
 
 	</dependencies>
 
