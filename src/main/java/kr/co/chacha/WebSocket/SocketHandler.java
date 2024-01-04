@@ -48,7 +48,8 @@ public class SocketHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status)throws Exception{
 		//소켓 종료
 		sessionMap.remove(session.getId());
-		super.afterConnectionClosed(session, status);
+		super.afterConnectionClosed(session, status); 
+		//연결 종료된 세션을 sessionMap에서 제거한다
 	}
 	
 	private static JSONObject jsonToJsonObjectParser(String jsonStr) {

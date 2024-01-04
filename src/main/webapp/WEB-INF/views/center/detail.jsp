@@ -268,7 +268,7 @@
 					alert("로그인 후 이용바랍니다");
 				}else{
 					//window.open('chat', 'Chat', 'width=400,height=400');
-					document.chatfrm.action="/chat/centerChat";
+					document.chatfrm.action="/chat/room";
 					document.chatfrm.submit();
 				}
 				
