@@ -112,7 +112,8 @@
 			<td colspan="2" align="center">
 				<input type="submit"value="새글쓰기" class="btn btn-success">
 				<input type="button" value="취소" onclick="location.href='/service/serviceList'" class="btn btn-danger">
-			</td>	
+			</td>	  
+			
 	</table>
 </div>
 </form>
