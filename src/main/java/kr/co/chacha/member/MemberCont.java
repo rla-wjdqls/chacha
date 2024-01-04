@@ -307,7 +307,6 @@ public class MemberCont {
 		String cnt =String.valueOf(memberDao.idCheck(uid)); //중복 아이디가 있으면 1->"1" 없으면 0->"0"
 		
 		//JSON 응답----------------------------------------------------------
-		//https://mvnrepository.com에서 json-simple검색후, pom.xml에 의존성 추가해야 함
 		JSONObject json = new JSONObject();
 		json.put("count", cnt); //key, value
 		return json.toString();

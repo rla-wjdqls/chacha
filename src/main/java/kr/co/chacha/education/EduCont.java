@@ -38,7 +38,19 @@ public class EduCont {
 		
 	}//logout end
 	
+	@GetMapping("/dogox")
+	public ModelAndView dogox() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/dogox");
+		return mav;
+	}
 	
+	@GetMapping("/catox")
+	public ModelAndView catox() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/catox");
+		return mav;
+	}
 	
 	
 

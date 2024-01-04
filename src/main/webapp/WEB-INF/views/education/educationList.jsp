@@ -72,7 +72,7 @@
 		    	<h5 class="card-title">강아지 교육강의</h5>
 		    	<p class="card-text">강아지</p>
 		    	<button onclick="eduredog()" class="btn btn-primary">신청하기</button>
-		    	<a href="/css/edu/dogox.html" class="btn btn-primary">퀴즈풀기</a>
+		    	<a href="/education/dogox" class="btn btn-primary">퀴즈풀기</a>
 			</div>
 	</div>
 
@@ -83,7 +83,7 @@
 		    	<h5 class="card-title">고양이 교육강의</h5>
 		    	<p class="card-text">고양이</p>
 		    	<button onclick="edurecat()" class="btn btn-primary">신청하기</button>
-		    	<a href="/css/edu/catox.html" class="btn btn-primary">퀴즈풀기</a>
+		    	<a href="/education/catox" class="btn btn-primary">퀴즈풀기</a>
 			</div>
 	</div>
 </div>
