@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adopt">
+	
+	<insert id="insert" parameterType="kr.co.chacha.adopt.AdoptDTO">
+		INSERT INTO adoprv(uid, artitle, arinfo, ardate, arimg)
+		VALUES(#{uid},#{artitle},#{arinfo},NOW(),#{arimg})
+	</insert>
+
+	<select id="adoptReview" resultType="kr.co.chacha.adopt.AdoptDTO">
+		SELECT arno, artitle, cnt, uid, ardate
+		FROM adoprv
+		ORDER BY arno
+	</select>
+	
+	<select id="detail" resultType="kr.co.chacha.adopt.AdoptDTO">
+		SELECT arno, artitle, cnt, uid, arimg, arinfo, ardate
+		FROM adoprv
+		WHERE arno = #{arno}
+	</select>
+	
+	
+	
+	
+</mapper>
