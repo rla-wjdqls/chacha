@@ -4,34 +4,43 @@
 <%@ include file="../header.jsp" %>
 
 <!-- 본문 시작 template.jsp -->
-<div class="container">
-    <div class="card-body">
+<div class="container mt-2">
+
       <h2>입양 후기 글 작성</h2>
       <p>사랑스러운 가족이 생긴 것을 자랑해주세요~</p>
-      <form class="forms-sample" action="your-action-url" method="post">
       
-        <div class="form-group">
-          <label for="InputName">제목</label>
-          <input type="text" class="form-control" id="artitle" name="artitle" placeholder="반려동물 이름">
-        </div>
-        
-        <div class="form-group mb-3 mt-3">
-          <div class="custom-file">
-            <input type="file" class="form-control visibility-hidden" id="arimg" name="arimg">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="Textarea">내용</label>
-          <textarea class="form-control" id="arinfo" name="arinfo" rows="4"></textarea>
-        </div>
-        
-        <div class="mb-3 mt-3">
-	        <button type="submit" class="btn btn-primary">완료</button>
-	        <button type="button" class="btn btn-light">취소</button>
-        </div>
-      </form>
-    </div>
+      <div class="row">
+		<div class="col-sm-12">
+			<form name="adoptfrm" id="adoptfrm" method="post" action="insert" enctype="multipart/form-data">
+				<table class="table table-hover">
+					<tr>
+						<td>제목</td>
+						<td><input type="text" name="artitle" class="form-control"></td>
+					</tr>
+					<tr>
+						<td>내용</td>
+						<td><textarea rows="3" cols="60" name="arinfo"
+								class="form-control"></textarea></td>
+					</tr>
+					<tr>
+						<td>첨부파일</td>
+						<td><input type="file" name="img" class="form-control"></td>
+					</tr>
+
+					<tr>
+						<td colspan="2" align="center">
+						<input type="submit" value="완료" class="btn btn-success"></td>
+					</tr>
+
+					
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</div>
 </div>
+	
+
 <!-- 본문 끝 -->
 
 

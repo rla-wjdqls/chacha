@@ -245,6 +245,7 @@
 
 .team-item {
     padding: .75rem;
+    display: inline-block;
 }
 
 .team-item::after {

@@ -135,7 +135,7 @@
                 		
                         // 날짜 비교 제약조건
                         if (clickDate >= _startDate && clickDate < _lastEndDate) {
-                          
+                       
                         	$('#inputTitle').val('');
                             $('#eventModalLabel').text('신청하시겠습니까?');
                             $('#eventModal').modal('show');

@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp"%>
-<script type="text/javascript" src="/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <style>* {font-size: 16px; font-family: Consolas, sans-serif;}</style>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
     <ul class="list-inline ml-auto" style="align-items: center;">
@@ -43,10 +45,27 @@
 		</tr>
 		<tr>
 			<th class="success">내용</th>
-			<td><textarea rows="5" class="form-control" name="sinfo" id="sinfo">${serviceup.sinfo}</textarea></td>
+			<td><textarea rows="5" class="form-control" id="summernote" name="sinfo">${serviceup.sinfo}</textarea></td>
 		</tr>
 	</table>
 </div>
+<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 100,
+        width: 700,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script>
 
 <div class="container col-sm-12">
 	<table class="table">	
@@ -83,7 +102,6 @@
 					</select>
 				</td>
 			</tr>
-	
 		<tr>
 			<td colspan="2" align="center">
 				<input type="submit"value="수정하기" class="btn btn-success">

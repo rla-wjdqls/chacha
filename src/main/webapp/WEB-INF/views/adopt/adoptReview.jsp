@@ -28,7 +28,7 @@
 	<thead>
 		<tr class="success">
 			<th>후기글번호</th>
-			<th>입양동물</th>
+	   <!-- <th>입양동물</th> -->
 			<th>제목</th>		
 			<th>작성자</th>
 			<th>작성일</th>
@@ -36,17 +36,15 @@
 		</tr>
 	</thead>
 	<tbody>
-    		<c:forEach items="${list}" var="row">
+    		<c:forEach items="${adoptReview}" var="row">
     			<tr>
-    				<td>${row.arno}</td>
-    				<td>${row.anino}</td>
-    				<td>${row.artitle}</td>
+    				<td><a href="adoptDetail?arno=${row.arno}">${row.arno}</a></td>
+    		<!-- 	<td>${row.anino}</td> -->
+    				<td><a href="adoptDetail?arno=${row.arno}">${row.artitle}</a></td>
     				<td>${row.uid}</td>
     				<td>${row.ardate}</td>
     				<td>${row.cnt}</td>
-    				<td>
-    					<input type="button" value="삭제" onclick="adoprvDelete(${row.arno})">	
-    				</td>
+    				
     			</tr>
     		</c:forEach>
  </tbody>
@@ -56,11 +54,11 @@
 		
 		<tr>
 			<td colspan="4" style="text-align:center; height:50px;">
-				<form action="helpList.jsp" onsubmit="return helpCheck()"><!-- help.js함수 작성 안 함 -->
+				<form action="adoptReview" onsubmit="return adoptCheck()"><!-- adopt.js함수 작성 안 함 -->
 					<select name="col">
-						<option value="texttitle_text">제목+내용
-						<option value="texttitle">제목
-						<option value="text">내용
+						<option value="artitle_text">제목+내용
+						<option value="artitle">제목
+						<option value="arinfo">내용
 						<option value="uid">작성자
 					</select>
 					<input type="text" name="word" id="word">
