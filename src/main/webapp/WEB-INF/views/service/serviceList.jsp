@@ -65,7 +65,12 @@ tbody td {
                     <td>${myservice.sedate}</td>
                     <td>${myservice.time}</td>
                     <td>${myservice.sp}</td>
-                    <td>${myservice.sstate}</td>
+                     <td>
+		            <c:choose>
+		                <c:when test="${myservice.sstate eq 'I'}">모집중</c:when>
+		                <c:when test="${myservice.sstate eq 'E'}">모집마감</c:when>
+		            </c:choose>
+		       	   </td>
                     <td>${myservice.cnt}</td>
                 </tr>
   			</c:forEach>

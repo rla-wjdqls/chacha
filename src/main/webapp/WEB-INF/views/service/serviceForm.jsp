@@ -4,6 +4,13 @@
 
 <%@ include file="../header.jsp"%>
 <script type="text/javascript" src="/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+ <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+
 <style>* {font-size: 16px; font-family: Consolas, sans-serif;}</style>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -31,22 +38,40 @@
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceList" class="nav-item nav-link"><input type="button" value="글목록"></a></p>	
 </div>
-
+	
 <form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceForm">
 <div class="container col-sm-12">
 	<table class="table"> 
-		
 		<tr>
 			<th class="success">제목</th>
-			<td><input type="text" name="stitle" id="stitle" class="form-control" maxlength="100" required></td>
-		</tr>
-		<tr>
+			<td><input type="text" name="stitle" id="stitle" class="form-control"></td>
+		</tr>		
+		<tr style="text:center">
 			<th class="success">내용</th>
-			<td><textarea rows="5" class="form-control" name="sinfo" id="sinfo"></textarea></td>
+			<td>
+				<textarea id="summernote" name="sinfo"></textarea>
+			</td>
 		</tr>
 	</table>
-</div>
+</div>	
 
+ <script>
+      $('#summernote').summernote({
+        placeholder: '내용을 입력해주세요',
+        tabsize: 2,
+        height: 100,
+        width: 700,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
+    </script>
 <div class="container col-sm-12">
 	<table class="table">	
 		<p>봉사모집시작일자<input type="date"name="ssdate" id="ssdate" class="form-control" maxlength="100" required>봉사모집종료날짜&nbsp;<input type="date" name="sedate" id="sedate" class="form-control" maxlength="100" required></p>
