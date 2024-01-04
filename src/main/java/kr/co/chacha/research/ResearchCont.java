@@ -1,6 +1,10 @@
 package kr.co.chacha.research;
 
+import java.net.http.HttpRequest;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.member.MemberDAO;
+import kr.co.chacha.mypage.MypageDTO;
 
 @Controller
 @RequestMapping("/research")
@@ -65,6 +71,36 @@ public class ResearchCont {
 		mav.setViewName("research/researchReg");
 		return mav;
 	}//researchReg() end
+	
+	
+	//설문조사 등록
+	@GetMapping("/researchInsert")
+	public void researchInsert(HttpServletRequest req, ResearchDTO researchDto) {
+		//설문번호 발급 생성하기
+		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
+		String date = sd.format(new Date());
+		String rno = "r" + date;
+		//System.out.println(rno); //r20240104170120
+
+		//date 타입 가져오기
+		String rtitle = req.getParameter("rtitle");
+		String rstate = req.getParameter("rstate");
+		String rop = req.getParameter("rop");
+		
+		researchDto.setRno(rno);
+		researchDto.setRstate(rstate);
+		researchDto.setRop(rop);
+		researchDto.setRtitle(rtitle);
+		
+		System.out.println(researchDto.getRno());
+		System.out.println(researchDto.getRstate());
+		System.out.println(researchDto.getRop());
+		System.out.println(researchDto.getRtitle());
+		
+
+	}//researchInsert() end
+	
+	
 	
 	
 	
