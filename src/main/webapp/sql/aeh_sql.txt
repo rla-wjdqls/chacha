@@ -61,17 +61,16 @@ CREATE TABLE `education` (
 
 --퀴즈
 CREATE TABLE `quiz` (
-    `quizno` INT(2) NOT NULL AUTO_INCREMENT PRIMARY KEY,	--퀴즈번호
-    `quiz_cont` TEXT NOT NULL,								--퀴즈내용
-    `ox` CHAR(1) NOT NULL									--정답
+    `question` VARCHAR(100) NOT NULL AUTO_INCREMENT PRIMARY KEY, --질문
+    `ox` CHAR(1) NOT NULL								   --정답
 );
 
 --퀴즈제출
 CREATE TABLE `quiz_sub` (
-	`subno`	INT(5)	NOT NULL AUTO_INCREMENT PRIMARY KEY,	--제출번호
-	`uid`	VARCHAR(20)	NOT NULL,							--아이디
-	`quizno`	INT(2)	NOT NULL,							--퀴즈번호
-	`answer`	CHAR(1)	NOT NULL,							--답변
-	`score`	INT(3)	NOT NULL,								--점수
-	`quiz_date` DATETIME NOT NULL							--제출날짜
+	`subno`	INT(5)	NOT NULL AUTO_INCREMENT PRIMARY KEY,  --제출번호
+	`uid`	VARCHAR(20)	NOT NULL,						  --아이디
+	`question` VARCHAR(100)	NOT NULL,					  --질문
+	`answer`	CHAR(1)	NOT NULL,						  --답변
+	`score`	INT(3)	NOT NULL,							  --점수
+	`quiz_date` DATETIME NOT NULL						  --제출날짜
 );

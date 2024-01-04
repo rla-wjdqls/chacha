@@ -54,11 +54,11 @@
             }
         %>
     </div>
-    <button type="button" onclick="checkAnswers()">결과 확인</button>
+    <button type="button" onclick="quiz_sub()">결과 확인</button>
 </form>
 
 <script>
-    function checkAnswers() {
+    function quiz_sub() {
         let score = 0;
         let allAnswered = true; // 모든 문제가 풀렸는지 여부
 
@@ -77,6 +77,7 @@
 
         if (allAnswered) {
         	 alert('퀴즈가 종료되었습니다. 총 점수는 ' + score + '점입니다.');
+        	 window.location.href = '/education/educationList';
         } else {
             alert('모든 문제를 풀어주세요.');
         }
