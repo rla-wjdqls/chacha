@@ -364,8 +364,9 @@ public class MypageCont {
 	        //System.out.println(paymentAmount); //100
 	        if (paymentAmount == 100) {
 	            response.put("result", "success");
-	            //payment 테이블 update
+	            //payment, adopt 테이블 update
 	            mypageDao.payUpdate(s_id);
+	            mypageDao.adoptUpdate(s_id);
 	        } else {
 	            response.put("result", "failure");
 	        }

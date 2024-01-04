@@ -1,6 +1,7 @@
 package kr.co.chacha.research;
 
 import java.net.http.HttpRequest;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -81,22 +82,35 @@ public class ResearchCont {
 		String date = sd.format(new Date());
 		String rno = "r" + date;
 		//System.out.println(rno); //r20240104170120
-
-		//date 타입 가져오기
+		
 		String rtitle = req.getParameter("rtitle");
 		String rstate = req.getParameter("rstate");
 		String rop = req.getParameter("rop");
 		
-		researchDto.setRno(rno);
-		researchDto.setRstate(rstate);
-		researchDto.setRop(rop);
-		researchDto.setRtitle(rtitle);
-		
-		System.out.println(researchDto.getRno());
-		System.out.println(researchDto.getRstate());
-		System.out.println(researchDto.getRop());
-		System.out.println(researchDto.getRtitle());
-		
+		//문자열 값 -> java.util.Date 변환
+		String rdate1String = req.getParameter("rdate1");
+	    String rdate2String = req.getParameter("rdate2");
+
+	    // String을 Date로 변환
+	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    try {
+	        Date rdate1 = dateFormat.parse(rdate1String);
+	        Date rdate2 = dateFormat.parse(rdate2String);
+
+	        researchDto.setRno(rno);
+	        researchDto.setRstate(rstate);
+	        researchDto.setRop(rop);
+	        researchDto.setRtitle(rtitle);
+	        researchDto.setRdate1(rdate1);
+	        researchDto.setRdate2(rdate2);
+	        
+	        System.out.println(researchDto.getRdate1());
+	        System.out.println(researchDto.getRdate2());
+
+
+	    } catch (ParseException e) {
+	        e.printStackTrace(); // 날짜 형식이 잘못된 경우 예외 처리
+	    }
 
 	}//researchInsert() end
 	

@@ -38,6 +38,9 @@
 		                <c:when test="${myAdopt.sub_state eq 'S'}">신청완료</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'P'}">심사중</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'W'}">심사완료</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'I'}">입양가능</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'C'}">책임금결제</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'E'}">입양완료</c:when>
 		            </c:choose>
 		        	</td>
 		        	<td></td>

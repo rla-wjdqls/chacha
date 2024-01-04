@@ -129,6 +129,10 @@ SqlSession sqlSession;
 		sqlSession.update("mypage.payUpdate", s_id);
 	}//memberWithdra() end
 	
+	//입양신청 상태 업데이트 
+	public void adoptUpdate(String s_id) {
+		sqlSession.update("mypage.adoptUpdate", s_id);
+	}//memberWithdra() end
 	
 	
 	

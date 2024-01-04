@@ -151,9 +151,13 @@
 	SET payop = 'Y', pdate = NOW()
 	WHERE uid = #{uid}
  </update>
-
  
-
+ <update id="adoptUpdate" parameterType="String">
+	UPDATE adopt
+	SET sub_state = 'E'
+	WHERE uid = #{uid}
+ </update>
+ 
  	
  </mapper>
  

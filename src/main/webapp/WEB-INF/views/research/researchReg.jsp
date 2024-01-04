@@ -32,14 +32,14 @@
 	                <th>제목</th>
 					<td><input type="text" placeholder="제목 입력해 주세요" name="rtitle" id="rtitle"></td>
 	            </tr>
-	            <tr>
+	 	        <tr>
 					<th>시작일자</th>
 					<td><input type="date"name="rdate1" id="rdate1" class="form-control"></td>
 	            </tr>
 	           <tr>
 					<th>종료일자</th>
 					<td><input type="date" name="rdate2" id="rdate2" class="form-control"></td>
-	            </tr>
+	            </tr> 
 	            <tr>
 	                <th>진행상태</th>
 					<td>
@@ -52,7 +52,7 @@
 	            <tr>
 	                <th>공개여부</th>
 					<td>
-						<select name="rstate" id="rstate">
+						<select name="rop" id="rop">
 							<option value="Y">공개</option>
 							<option value="N">비공개</option>
 						</select>
