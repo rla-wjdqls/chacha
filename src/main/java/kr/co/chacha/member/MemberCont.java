@@ -202,9 +202,6 @@ public class MemberCont {
     
     
     
-    
-    
-    
 	// 아이디 찾기 페이지 이동
 	@GetMapping("/findID")
 	public ModelAndView findID() {
@@ -216,7 +213,6 @@ public class MemberCont {
 	
 	// 입력한 정보가 db 데이터와 일치 할 경우, 아이디 확인 페이지 이동 
 	// 입력한 정보가 db 데이터와 불일치 할 경우, 아이디  
-	
 	@PostMapping("/findIDResult")
 	public ModelAndView findIDResult(HttpServletRequest req) {
 		

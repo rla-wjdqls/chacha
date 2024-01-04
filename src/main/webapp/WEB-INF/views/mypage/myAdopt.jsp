@@ -111,11 +111,6 @@ function requestPay() {
             var buyer_name = result.buyer_name;
             var buyer_tel = result.buyer_tel;
             
-            //alert("주문번호: " + merchant_uid);
-            //alert("이메일: " + buyer_email);
-            //alert("이름: " + buyer_name);
-            //alert("전화번호: " + buyer_tel);
-            
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
@@ -146,10 +141,10 @@ function requestPay() {
                             
                            //결제 정보 확인
 							var msg = '결제가 완료되었습니다.';
-							msg += '<br>성함: ' + rsp.buyer_name;
-							msg += '<br>이메일: ' + rsp.buyer_email;
-							msg += '<br>결제 수단: ' + rsp.pay_method;
-							msg += '<br>결제 금액: ' + rsp.paid_amount + '원';
+							msg += '\n성함: ' + rsp.buyer_name;
+							msg += '\n이메일: ' + rsp.buyer_email;
+							msg += '\n결제 수단: ' + rsp.pay_method;
+							msg += '\n결제 금액: ' + rsp.paid_amount + '원';
                 			//msg += '\n결제 일자 : ' + rsp.paid_at;
                 			//msg += '\n고유ID : ' + rsp.imp_uid;
                 			//msg += '\n상점 거래ID : ' + rsp.merchant_uid;

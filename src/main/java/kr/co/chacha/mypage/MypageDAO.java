@@ -124,6 +124,13 @@ SqlSession sqlSession;
 	}//memberWithdra() end
 	
 	
+	//결제 테이블 업데이트 
+	public void payUpdate(String s_id) {
+		sqlSession.update("mypage.payUpdate", s_id);
+	}//memberWithdra() end
+	
+	
+	
 	
 }//end
 

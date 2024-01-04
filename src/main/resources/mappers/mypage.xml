@@ -146,6 +146,12 @@
  </update>
  
 
+<update id="payUpdate" parameterType="String">
+	UPDATE payment
+	SET payop = 'Y', pdate = NOW()
+	WHERE uid = #{uid}
+ </update>
+
  
 
  	

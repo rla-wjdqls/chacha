@@ -364,6 +364,8 @@ public class MypageCont {
 	        //System.out.println(paymentAmount); //100
 	        if (paymentAmount == 100) {
 	            response.put("result", "success");
+	            //payment 테이블 update
+	            mypageDao.payUpdate(s_id);
 	        } else {
 	            response.put("result", "failure");
 	        }
@@ -382,7 +384,6 @@ public class MypageCont {
 	    // 조회된 결제 정보에서 결제된 금액을 반환합니다. (예시로 100원 반환)
 	    return 100;
 	}
-
 }
 
 

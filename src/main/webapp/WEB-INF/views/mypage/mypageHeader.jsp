@@ -44,7 +44,6 @@
 	<script src="/js/jquery.cookie.js"></script>
 
 	 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-	<!-- <script src="https://cdn.iamport.kr/v1/iamport.js"></script> --> 
 
 
 <script>
