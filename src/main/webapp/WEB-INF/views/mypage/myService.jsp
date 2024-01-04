@@ -34,11 +34,11 @@
                     <td>${myservice.sano}</td>
                     <td><a href="/service/servicedetail?sno=${myservice.sno}">${myservice.stitle}</a></td>
                     <td><fmt:formatDate value="${myservice.sadate}" pattern="yyyy-MM-dd" /></td>
-                    <td>${myservice.stime}</td>
+                    <td>${myservice.time}</td>
                     <td>
 		            <c:choose>
-		                <c:when test="${myservice.astate eq 'o'}">신청완료</c:when>
-		                <c:when test="${myservice.astate eq 'x'}">신청취소</c:when>
+		                <c:when test="${myservice.astate eq 'O'}">신청완료</c:when>
+		                <c:when test="${myservice.astate eq 'X'}">신청취소</c:when>
 		            </c:choose>
 		        	</td>
                 </tr>

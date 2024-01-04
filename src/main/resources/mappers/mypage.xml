@@ -40,7 +40,7 @@
  </select>
  	
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT sa.sano, sa.sadate, sa.stime, sa.astate , sc.stitle, sa.sno
+	SELECT sa.sano, sa.sadate, sc.time, sa.astate , sc.stitle, sa.sno
 	FROM servicea sa JOIN service sc
 	ON sa.sno = sc.sno
 	WHERE sa.uid = #{uid}	
