@@ -1,6 +1,7 @@
 package kr.co.chacha.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.servicea.ServiceaDTO;
@@ -34,10 +36,37 @@ public class ServiceCont {
 	 * }//serviceList() end
 	 */	
 	@RequestMapping("/serviceList")
-	public ModelAndView serviceList(ServiceaDTO dto) {
+	public ModelAndView serviceList(@RequestParam(value="page", required=false) Integer page) {
 		ModelAndView mav = new ModelAndView();
+		
+		int currentPage = (page != null) ? page: 1;
+		int totalCount = serviceDAO.serviceListCnt();
+		int boardLimit = 10;
+		int naviLimit = 5;
+		int maxPage;
+		int startNavi;
+		int endNavi;
+		
+		maxPage = (int)((double)totalCount/boardLimit+0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		endNavi=startNavi+naviLimit-1;
+		
+		if(maxPage<endNavi) {
+			endNavi = maxPage;
+		}
+		
+		List<ServiceDTO> serviceList = serviceDAO.serviceList(currentPage, boardLimit);
+		
+		if(!serviceList.isEmpty()) {
+			mav.addObject("startNavi",startNavi);
+			mav.addObject("endNavi",endNavi);
+			mav.addObject("maxPage",maxPage);
+			mav.addObject("serviceList",serviceList);
+		}
+		
 		mav.setViewName ("service/serviceList");
-		mav.addObject("serviceList",serviceDAO.serviceList());
+		//mav.addObject("serviceList",serviceDAO.serviceList(dto));
+		//mav.addObject("serviceListCnt",serviceDAO.serviceListCnt());
 		return mav;
 	}//serviceList() end
 	
@@ -130,7 +159,17 @@ public class ServiceCont {
 		
 	}//logout end
 		
-		
+	//페이징
+	
+	//처음페이지 요청은 1페이지를 보여줌
+	
+	@GetMapping("/paging")
+	public String paging(Model model,
+						@RequestParam(value = "page", required = false, defaultValue = "1")int page) {
+		System.out.println("page = " + page);
+		return "redirect:/";
+	}
+	
 		 
 
 		 

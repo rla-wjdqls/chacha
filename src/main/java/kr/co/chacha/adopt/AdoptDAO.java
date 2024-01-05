@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.chacha.adopt.AdoptDTO;
+import kr.co.chacha.help.HelpDTO;
 
 @Repository
 public class AdoptDAO {
@@ -30,5 +31,11 @@ public class AdoptDAO {
 		return sqlSession.selectOne("adopt.detail", arno);
 	}
 	
+	public AdoptDTO delete(int arno){
+		return sqlSession.selectOne("adopt.delete", arno);
+	}
+	public AdoptDTO update(AdoptDTO adoptdto){
+		return sqlSession.selectOne("adopt.update", adoptdto);
+	}
 	
 }

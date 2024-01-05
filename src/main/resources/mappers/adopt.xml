@@ -20,7 +20,16 @@
 		WHERE arno = #{arno}
 	</select>
 	
+	<delete id="delete" parameterType="int">
+    	DELETE FROM adoprv
+    	WHERE arno = #{arno}
+	</delete>
 	
+	<update id="update" parameterType="kr.co.chacha.adopt.AdoptDTO">
+	UPDATE adoprv
+	SET arno = #{arno}, artitle = #{artitle}, arinfo = #{arinfo}, arimg = #{arimg}
+	WHERE arno = #{arno}
+	</update>	
 	
-	
+
 </mapper>

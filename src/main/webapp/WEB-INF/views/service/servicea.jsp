@@ -13,7 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <!-- FullCalendar CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-
+	<!-- 날짜형식 변경 사용 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+	
     <style>
         /* 여기에 추가적인 CSS 스타일을 적용하세요. */
     </style>
@@ -122,25 +124,34 @@
                 ],
                 // 날짜 클릭 이벤트 처리 
                 dayClick: function (date, jsEvent, view) {
-             
                     var clickDate = new Date(date);
-                	var applyDate = clickDate.getFullYear()+"-"+(clickDate.getMonth()+1)+"-"+clickDate.getDate();
+                	var applyDate = moment(clickDate).format('YYYY-MM-DD');
+                	var _applyDate = new Date(applyDate);
                 	$("#sadate").val(applyDate);
                 	
                 	//신청날짜확인 붙이기
                 	$("#applyDate").text(applyDate);
 						
-                		var _startDate = new Date(startDate);
-                		var _lastEndDate = new Date(lastEndDate);
+                		var _startDate = new Date(moment(startDate).format('YYYY-MM-DD'));                		
+                		var _lastEndDate = new Date(moment(lastEndDate).format('YYYY-MM-DD'));
+                		var currentDate = new Date();
+                		var _currentDate = new Date(moment(currentDate).format('YYYY-MM-DD'));
                 		
                         // 날짜 비교 제약조건
-                        if (clickDate >= _startDate && clickDate < _lastEndDate) {
-                       
-                        	$('#inputTitle').val('');
-                            $('#eventModalLabel').text('신청하시겠습니까?');
-                            $('#eventModal').modal('show');
+                        // 오늘 기준 조건이 여기 없네
+                        //클릭날짜는 시작날짜이상이거나 종료날찌 이하신청가능 여기에다가 오늘기준날짜 조건 추가
+                        //시간지 계산되니까 년월일만 비교해야지
+                        //년월일 만 출력하는 date 내장함수 사용 포맷형식 년월일만  .toLocaleDateString()
+                        if (_applyDate >= _startDate && _applyDate < _lastEndDate) {
+                        	//원래 기본조건 맞고 거기에다가 오늘날짜 기준 선택을 조건 하나 더 추가해줘야함. 같이 하니까 로직이 헷갈려서  위에꺼는 통과그리고 그 다음조건에서 비교
+                        	if(_applyDate >= _currentDate){
+                        		$('#inputTitle').val('');
+                                $('#eventModalLabel').text('신청하시겠습니까?');
+                                $('#eventModal').modal('show');	
+                        	}else{
+                        		alert('선택된 날짜는 기간이 지나서 신청이 안됩니다.');
+                        	}
                         } else {
-                          
                         	// 범위 밖의 날짜 클릭 시 메시지 표시 또는 다른 처리
                             alert('선택된 날짜는 신청 가능한 범위가 아닙니다.');
                         } 

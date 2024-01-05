@@ -7,6 +7,10 @@
   float: right;
 }
 
+.left {
+  float: left;
+}
+
 th{
 width: 10%;
 }
@@ -46,10 +50,24 @@ function adelete() {
 	<div class="row">
  		<div class="col-sm-12"> 
 			<h3> 입양 후기글 상세보기 </h3>
-			<p><a href="/adopt/adoptReview" class="right">[글목록]</a></p><br><br>
+			<p><a href="/adopt/adoptReview" class="left">[글목록]</a></p>
+			<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
+			<input type="button" class="btn right" value="수정"></a>
+			<input type="button" class="btn right" onclick="adelete();" value="삭제">
+			</p>
 		</div>
 	</div>
 </div>
+
+<form id="adoptDelete" name="adoptDelete" method="post" action="/adopt/adoptDelete">
+	<input type="hidden" name="arno" id="arno" value="${adoptd.arno}"/>
+</form> 
+<!-- <div style="text-align:center; height: 50px; padding-top: 15px;">
+	<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
+	<input type="button" class="btn btn-success" value="수정"></a>
+	<input type="button" class="btn btn-danger" onclick="adelete();" value="삭제"> &nbsp;
+	</p>
+</div> -->
 
 <div class="container text-center">
 	<table class="table table-hover container">
@@ -89,16 +107,9 @@ function adelete() {
 	  </thead>
 	</table>
 </div>
-<form id="adoptDelete" name="adoptDelete" method="post" action="/adopt/adoptDelete">
-	<input type="hidden" name="arno" id="arno" value="${adoptd.arno}"/>
-</form>              
+             
 
-<div style="text-align:center; height: 50px; padding-top: 15px;">
-	<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
-	<input type="button" class="btn btn-success" value="수정"></a>
-	<input type="button" class="btn btn-danger" onclick="adelete();" value="삭제"> &nbsp;
-	</p>
-</div>
+
 
 
 
