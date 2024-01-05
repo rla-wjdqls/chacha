@@ -1,43 +1,42 @@
 package kr.co.chacha.research;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ResearchDTO {
 
 	//설문
-	private String rno;
-	private String rtitle;
-	private Date rdate1;
-	private Date rdate2;
-	private String rstate;
-	private String rop;
-	private Date rgdate;
+	 private String rno;
+	 private String rtitle;
+	 private Date rdate1;
+	 private Date rdate2;
+	 private String rstate;
+	 private String rop;
+	 private Date rgdate;
 
-	//질문
-	private int qno;
-	private String qcont;
-	private String qtype;
-	
-	//선택지
-	private int cno;
-	private String choice;
+	 //질문
+	 private int qno;
+	 private String qcont;
+	 private String qtype;
+	 
+	 //선택지
+	 private int cno;
+	 private String choice;
 
-	//객관식 답변
-	private int rpno_g;
-	private String uid;
-	private String reply_g;
-	private Date rpdate_g;
+	 //객관식 질문
+	 private int rpno_g;
+	 private String uid;
+	 private int reply_g;
+	 private Date rpdate_g;
 
-	//주관식 답변
-	private int rpno_j;
-	private String reply_j;
-	private Date rpdate_j;
-	
-	
-
-	public ResearchDTO() {}
-	
-	
+	 //주관식 질문
+	 private int rpno_j;
+	 private String reply_j;
+	 private Date rpdate_j;
+	 
+	 
+	 public ResearchDTO() {}
+	 
+	 
 	public String getRno() {
 		return rno;
 	}
@@ -89,8 +88,8 @@ public class ResearchDTO {
 	public String getQcont() {
 		return qcont;
 	}
-	public void setQcont(String qcont) {
-		this.qcont = qcont;
+	public void setQcont(String qcont2) {
+		this.qcont = qcont2;
 	}
 	public String getQtype() {
 		return qtype;
@@ -107,8 +106,8 @@ public class ResearchDTO {
 	public String getChoice() {
 		return choice;
 	}
-	public void setChoice(String choice) {
-		this.choice = choice;
+	public void setChoice(String choice2) {
+		this.choice = choice2;
 	}
 	public int getRpno_g() {
 		return rpno_g;
@@ -122,10 +121,10 @@ public class ResearchDTO {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getReply_g() {
+	public int getReply_g() {
 		return reply_g;
 	}
-	public void setReply_g(String reply_g) {
+	public void setReply_g(int reply_g) {
 		this.reply_g = reply_g;
 	}
 	public Date getRpdate_g() {
@@ -154,25 +153,11 @@ public class ResearchDTO {
 	}
 
 
-	@Override
-	public String toString() {
-		return "ResearchDTO [rno=" + rno + ", rtitle=" + rtitle + ", rdate1=" + rdate1 + ", rdate2=" + rdate2
-				+ ", rstate=" + rstate + ", rop=" + rop + ", rgdate=" + rgdate + ", qno=" + qno + ", qcont=" + qcont
-				+ ", qtype=" + qtype + ", cno=" + cno + ", choice=" + choice + ", rpno_g=" + rpno_g + ", uid=" + uid
-				+ ", reply_g=" + reply_g + ", rpdate_g=" + rpdate_g + ", rpno_j=" + rpno_j + ", reply_j=" + reply_j
-				+ ", rpdate_j=" + rpdate_j + "]";
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
+	 
+	 
+	 
+	 
+	 
 	
 }//end

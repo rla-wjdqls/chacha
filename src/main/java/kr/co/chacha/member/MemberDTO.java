@@ -26,8 +26,6 @@ public class MemberDTO {
 	private String s_tel;
 	private String s_birth;
 	private String s_mlevel;
-	//private String s_token;
-	//private String s_type;
     
     
     //소셜로그인 

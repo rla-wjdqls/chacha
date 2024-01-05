@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="research">
+ 
+ 	<insert id="researchInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	 	INSERT INTO research (rno, rtitle, rdate1, rdate2, rstate, rop, rgdate)
+		VALUES (#{rno}, #{rtitle}, #{rdate1}, #{rdate2}, #{rstate}, #{rop}, NOW())
+ 	</insert>
+ 	
+ 	
+	<insert id="researchqInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	    INSERT INTO researchq (rno, qcont, qtype)
+	    VALUES (#{rno}, #{qcont}, #{qtype})
+	</insert>
+	
+	<select id="checkQno" parameterType="kr.co.chacha.research.ResearchDTO" resultType="Int">
+	  	SELECT qno
+	  	FROM researchq
+	  	WHERE rno = #{rno}
+    </select>
+ 
+ 	<insert id="researchcInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	    INSERT INTO researchc (qno, choice)
+	    VALUES (#{qno}, #{choice})
+	</insert>
+
+	
+
+
+
+
+ </mapper>
+ 
+
+ 
+	
+	
+	

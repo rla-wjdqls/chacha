@@ -39,16 +39,6 @@
 <script>
 
 
-/* $("#btn_research_n").click(function(){
-	$.get("researchNext", researchProc);
-})//click() end
-
-function researchProc(result){
-	$("#panel").html(result);
-}//researchProc() end */
-
-
-
 var currentQuestionNumber = 1; // 초기 질문 번호 설정
 
 $("#btn_research_n").click(function(){

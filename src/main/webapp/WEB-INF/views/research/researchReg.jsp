@@ -26,21 +26,21 @@
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
             	<div class="row">
 		<div class="col-sm-12">
-		<form name="researchfrm" id="researchfrm" method="get" action="researchInsert" enctype="multipart/form-data">
+		<form name="researchfrm" id="researchfrm" method="post" action="researchInsert">
 		<table class="table">
 	            <tr>
 	                <th>제목</th>
-					<td><input type="text" placeholder="제목 입력해 주세요" name="rtitle" id="rtitle"></td>
+					<td><input type="text" name="rtitle" id="rtitle" placeholder="제목 입력해 주세요"></td>
 	            </tr>
-	 	        <tr>
+ 	 	        <tr>
 					<th>시작일자</th>
-					<td><input type="date"name="rdate1" id="rdate1" class="form-control"></td>
+					<td><input type="date" name="rdate1" id="rdate1" class="form-control"></td>
 	            </tr>
 	           <tr>
 					<th>종료일자</th>
 					<td><input type="date" name="rdate2" id="rdate2" class="form-control"></td>
-	            </tr> 
-	            <tr>
+	            </tr>  
+	         <tr>
 	                <th>진행상태</th>
 					<td>
 						<select name="rstate" id="rstate">
@@ -75,24 +75,24 @@
 		        <tr>
 		            <td><input type="button" value="삭제" class="btn" name="btn_d1" id="btn_d1" onclick="deleteRow(this)"></td>
 		            <td>질문1</td>
-		            <td>
-		            	<select>
-		            		<option value="gg">객관식(중복불가)</option> <!--선택 시 라디오버튼-->
-		            		<option value="gb">객관식(중복허용)</option> <!--선택 시 체크박스-->
-		            		<option value="gd">객관식(드롭다운)</option> <!--선택 시 드롭다운-->
-		            		<option value="jd">주관식(단답)</option> <!--선택 시 textarea (글자수 제한)-->
-		            		<option value="jj">주관식(장문)</option> <!--선택 시 textarea (글자수 제한)-->
-		            	
-		            	</select>
-		            </td>
-		            <td><input type="text" placeholder="질문을 입력해주세요" id="qcont" name="qcont"></td>
-		            <td>
-		            
-		            <input type="text" placeholder="답변을 입력해주세요" id="choice" name="choice">
-		            <input type="button" value="삭제" class="btn" name="btn_d2" id="btn_d2" onclick="deleteChoice(this)"><br>
-		            <input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1" onclick="addAnswerField(this)">
-		            </td>
-		        </tr>
+		    <!--qtype이 주관식(단답,장문) 이면 qcont 아래와 같음 -->
+		    <!-- <td><input type="text" placeholder="주관식 답입니다" id="qcont" name="qcont" readonly></td>  -->     
+    		<td>
+            	<select name="qtype" id="qtype" onchange="modifyChoice()">
+			   		<option value="gg">객관식(중복불가)</option> <!--선택 시 라디오버튼-->
+			        <option value="gb">객관식(중복허용)</option> <!--선택 시 체크박스-->
+			        <option value="gd">객관식(드롭다운)</option> <!--선택 시 드롭다운-->
+			        <option value="jd">주관식(단답)</option> <!--선택 시 textarea (글자수 제한)-->
+			        <option value="jj">주관식(장문)</option> <!--선택 시 textarea (글자수 제한)-->
+            	</select>
+            </td>
+			<td><input type="text" placeholder="질문을 입력해주세요" id="qcont" name="qcont"></td>
+			<td id="choiceContainer">
+				<input type="text" placeholder="답변을 입력해주세요" id="choice" name="choice">
+	            <input type="button" value="삭제" class="btn" name="btn_d2" id="btn_d2" onclick="deleteChoice(this)"><br>
+	            <input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1" onclick="addAnswerField(this)">
+			</td>
+		    </tr>
 	        </tbody>
 	    </table>
 	    <input type="button" value="추가" class="btn" name="btn_a2" id="btn_a2" onclick="addTableBody()"><br><br>
@@ -112,6 +112,65 @@
 
 <script>
 
+
+
+var questionCount = 2; //초기 질문번호
+
+function addTableBody(){
+
+	//새로운 질문 행 추가
+    var newRow = 
+    	'<tr>' +
+	    '<td><input type="button" value="삭제" class="btn" name="btn_d1" id="btn_d' + questionCount + '" onclick="deleteRow(this)"></td>' +
+	    '<td>질문' + questionCount + '</td>' +
+	    '<td>' +
+	    '<select name="qtype" id="qtype' + questionCount + '" onchange="modifyChoice(' + questionCount + ')">' +
+	    '    <option value="gg">객관식(중복불가)</option>' +
+	    '    <option value="gb">객관식(중복허용)</option>' +
+	    '    <option value="gd">객관식(드롭다운)</option>' +
+	    '    <option value="jd">주관식(단답)</option>' +
+	    '    <option value="jj">주관식(장문)</option>' +
+	    '</select>' +
+	    '</td>' +
+	    '<td><input type="text" placeholder="질문을 입력해주세요" id="qcont' + questionCount + '" name="qcont"></td>' +
+	    '<td id="choiceContainer' + questionCount + '">' +
+	    '    <input type="text" placeholder="답변을 입력해주세요" id="choice' + questionCount + '" name="choice">' +
+	    '    <input type="button" value="삭제" class="btn" name="btn_d2" id="btn_d2_' + questionCount + '" onclick="deleteChoice(this)"><br>' +
+	    '    <input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1_' + questionCount + '" onclick="addAnswerField(this)">' +
+	    '</td>' +
+	    '</tr>';
+	
+    //기존의 tbody에 새로운 행 추가
+    if(questionCount<6){
+    	
+    $("#researchTable").append(newRow);
+    
+    //추가된 질문에 대해 카운트 증가
+	questionCount++;
+    
+    } else {
+    	alert("질문은 5개 까지 추가 가능합니다");
+    }//if end
+	
+}//addTableBody() end
+
+
+function modifyChoice(questionIndex) {
+	 var qtypeSelect = document.getElementById("qtype" + questionIndex);
+	    var choiceContainer = document.getElementById("choiceContainer" + questionIndex);
+
+	    // qtype 값이 'jd' 또는 'jj'일 때 qcont1을 표시하고 qcont2는 숨김
+	    if (qtypeSelect.value === 'jd' || qtypeSelect.value === 'jj') {
+	        choiceContainer.innerHTML =
+	            '<input type="text" placeholder="주관식 답입니다" readonly>';
+	    } else {
+	        // 그 외의 경우 qcont2를 표시하고 qcont1은 숨김
+	        choiceContainer.innerHTML =
+	            '<input type="text" placeholder="답변을 입력해주세요" id="choice' + questionIndex + '" name="choice">' +
+	            '<input type="button" value="삭제" class="btn" name="btn_d2" id="btn_d2_' + questionIndex + '" onclick="deleteChoice(this)"><br>' +
+	            '<input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1_' + questionIndex + '" onclick="addAnswerField(this)">';
+	    }
+}//modifyChoice() end
 
 function addAnswerField(btn){
 	 // btn_a1 클릭 시 선택지 및 삭제 버튼 추가
@@ -154,46 +213,6 @@ function deleteChoice(btn){
 	alert();
 }//deleteChoice() end
 
-
-
-var questionCount = 2; //초기 질문번호
-
-function addTableBody(){
-
-	//새로운 질문 행 추가
-    var newRow = '<tr>' +
-    '<td><input type="button" value="삭제" class="btn" name="btn_d1" id="btn_d1" onclick="deleteRow(this)"></td>' +
-    '<td>질문' + questionCount + '</td>' +
-    '<td>' +
-	'<select>' +
-	'	<option value="gg">객관식(중복불가)</option> ' +
-	'	<option value="gb">객관식(중복허용)</option> ' +
-	'	<option value="gd">객관식(드롭다운)</option> ' + 
-	'	<option value="gd">주관식(단답)</option> ' + 
-	'	<option value="gj">주관식(장문)</option> ' + 
-	'</select> ' +
-	'</td>' +
-    '<td><input type="text" placeholder="질문을 입력해주세요" name="qcont"></td>' +
-    '<td>' +
-    '   <input type="text" placeholder="답변을 입력해주세요" name="choice">' +
-    '   <input type="button" value="삭제" class="btn" onclick="delete(this)"><br>' +
-    '   <input type="button" value="추가" class="btn" onclick="addAnswerField(this)">' +
-    '</td>' +
-    '</tr>';
-	
-    //기존의 tbody에 새로운 행 추가
-    if(questionCount<6){
-    	
-    $("#researchTable").append(newRow);
-    
-    //추가된 질문에 대해 카운트 증가
-	questionCount++;
-    
-    } else {
-    	alert("질문은 5개 까지 추가 가능합니다");
-    }//if end
-	
-}//addTableBody() end
 
 
 function deleteRow(btn) {

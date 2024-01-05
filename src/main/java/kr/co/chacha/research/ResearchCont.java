@@ -56,7 +56,7 @@ public class ResearchCont {
 	}//research() end
 	
 	
-	// 설문조사 폼 이동
+	// 설문조사 페이지 이동
 	@GetMapping("/researchList")
 	public ModelAndView researchList() {
 		ModelAndView mav = new ModelAndView();
@@ -64,57 +64,20 @@ public class ResearchCont {
 		return mav;
 	}//researchList() end
 	
-
-	// 설문조사 등록폼 이동
-	@GetMapping("/researchReg")
-	public ModelAndView researchReg() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("research/researchReg");
-		return mav;
-	}//researchReg() end
+	
+	// 설문조사 폼 불러오기
+	//research
+	@PostMapping("/researchList")
+	public void researchContent() {
+	
+	String rno = "r20240105170513";
+	
+	//선택한 글의 설문번호로 정보 불러오기
+	researchdao.loadContent(rno);
 	
 	
-	//설문조사 등록
-	@GetMapping("/researchInsert")
-	public void researchInsert(HttpServletRequest req, ResearchDTO researchDto) {
-		//설문번호 발급 생성하기
-		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
-		String date = sd.format(new Date());
-		String rno = "r" + date;
-		//System.out.println(rno); //r20240104170120
-		
-		String rtitle = req.getParameter("rtitle");
-		String rstate = req.getParameter("rstate");
-		String rop = req.getParameter("rop");
-		
-		//문자열 값 -> java.util.Date 변환
-		String rdate1String = req.getParameter("rdate1");
-	    String rdate2String = req.getParameter("rdate2");
-
-	    // String을 Date로 변환
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    try {
-	        Date rdate1 = dateFormat.parse(rdate1String);
-	        Date rdate2 = dateFormat.parse(rdate2String);
-
-	        researchDto.setRno(rno);
-	        researchDto.setRstate(rstate);
-	        researchDto.setRop(rop);
-	        researchDto.setRtitle(rtitle);
-	        researchDto.setRdate1(rdate1);
-	        researchDto.setRdate2(rdate2);
-	        
-	        System.out.println(researchDto.getRdate1());
-	        System.out.println(researchDto.getRdate2());
-
-
-	    } catch (ParseException e) {
-	        e.printStackTrace(); // 날짜 형식이 잘못된 경우 예외 처리
-	    }
-
-	}//researchInsert() end
 	
-	
+	}//researchContent() end
 	
 	
 	
@@ -145,28 +108,77 @@ public class ResearchCont {
 	
 	
 	
-	
-	
-	@PostMapping("/getNextQuestion")
-	@ResponseBody
-	public String getNextQuestion(@RequestParam(name = "answer1") String answer1) {
-	    // answer1에 따라서 다음 질문 생성
-	    String nextQuestion = "";
-	    if ("1".equals(answer1)) {
-	        // 예를 들어, answer1이 1일 때의 다음 질문을 생성
-	        nextQuestion = "질문2. 귀하의 가구원은 어떻게 되십니까?<br><br>" +
-	                        "<input type=\"radio\" name=\"survay2\" value=\"5\" />만족 " +
-	                        "<input type=\"radio\" name=\"survay2\" value=\"4\" />다소만족 " +
-	                        "<input type=\"radio\" name=\"survay2\" value=\"3\" />보통 " +
-	                        "<input type=\"radio\" name=\"survay2\" value=\"2\" />다소미흡 " +
-	                        "<input type=\"radio\" name=\"survay2\" value=\"1\" />매우미흡";
-	    } else {
-	        // answer1이 다른 경우에 대한 다음 질문 생성
-	        // ...
-	    }
 
-	    return nextQuestion;
-	}
+	// 설문조사 등록폼 이동
+	@GetMapping("/researchReg")
+	public ModelAndView researchReg() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("research/researchReg");
+		return mav;
+	}//researchReg() end
+	
+	
+	//설문조사 등록
+	@PostMapping("/researchInsert")
+	public void researchInsert(HttpServletRequest req) {
+	    
+		String[] qcont = req.getParameterValues("qcont");
+		String[] qtype = req.getParameterValues("qtype");
+		String[] choice = req.getParameterValues("choice");
+		
+		for(int i=0; i<qcont.length; i++) {
+			System.out.println(qcont[i]);
+		}//for end
+		//우리 아이가 예쁠떄, 얄미울때
+		
+		for(int i=0; i<qtype.length; i++) {
+			System.out.println(qtype[i]);
+		}//for end
+		//우리 아이가 예쁠떄, 얄미울때
+		
+		for(int i=0; i<choice.length; i++) {
+			System.out.println(choice[i]);
+		}//for end
+		//잘때, 항상, 매번
+		
+		ResearchDTO researchDto=new ResearchDTO();
+		
+		//설문번호 발급 생성하기
+		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
+		String date = sd.format(new Date());
+		String rno = "r" + date;
+		//System.out.println(rno); //r20240104170120
+		
+        //researchDto.setRno(rno);
+        //researchDto.setQcont(qcont);
+        //researchDto.setChoice(choice);
+        
+        //researchdao.researchInsert(researchDto);
+        //researchdao.researchqInsertm(researchDto);
+
+        //생성된 일련번호 qno 찾아와서 dto에 담아줌  
+        //int qno = researchdao.checkQno(researchDto);
+        
+        //researchDto.setQno(qno);
+        
+        //researchdao.researchcInsert(researchDto);
+        	
+        
+
+	}//researchInsert() end
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
 
 	
 	
