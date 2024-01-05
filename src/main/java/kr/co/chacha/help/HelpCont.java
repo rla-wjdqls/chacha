@@ -135,6 +135,8 @@ public class HelpCont {
 			return mav;		
 		}
 		
+		
+		/*
 		@PostMapping("/helpUpdate")
 		public ModelAndView helpUpdate(@ModelAttribute HelpDTO dto, HttpServletRequest req) {
 			
@@ -144,15 +146,13 @@ public class HelpCont {
 			////////////////////////////////////////////////////////
 			//파일을 수정할 것인지?
 			
-			ServletContext application=req.getServletContext();
-			String basePath=application.getRealPath("/storage");
 			
 			//1) 
 			MultipartFile img=dto.getHelppic();
-			if(img.getSize()>0) { //새로운 포스터 파일이 첨부되어 전송되었는지?
-				//기존에 저장되어 있는 파일 삭제
-				UploadSaveManager.deleteFile(basePath, oldDTO.getHelppic());
+			if(img != null && img.getSize() > 0) { //새로운 포스터 파일이 첨부되어 전송되었는지?
 				//신규로 전송된 파일 저장
+				ServletContext application = req.getServletContext();
+				String basePath = application.getRealPath("/storage");
 				String helppic = UploadSaveManager.saveFileSpring30(img, basePath);
 				//신규로 전송된 파일명 dto에 담기
 				dto.setHelppic(helppic);
@@ -161,7 +161,7 @@ public class HelpCont {
 				dto.setHelppic(oldDTO.getHelppic());  //기존에 저장된 파일명
 			}//if end
 		}
-		
+		*/
 		
 		
 	
