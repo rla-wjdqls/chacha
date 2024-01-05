@@ -12,6 +12,7 @@
       <div class="row">
 		<div class="col-sm-12">
 			<form name="adoptfrm" id="adoptfrm" method="post" action="insert" enctype="multipart/form-data">
+				<!-- <input type="hidden" name="textno" id="textno" value="${helpup.textno}"/> 동물 부모글번호-->	
 				<table class="table table-hover">
 					<tr>
 						<td>제목</td>

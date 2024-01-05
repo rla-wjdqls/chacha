@@ -34,4 +34,8 @@ public class AdoptDAO {
 	public AdoptDTO delete(int arno){
 		return sqlSession.selectOne("adopt.delete", arno);
 	}
+	public AdoptDTO update(AdoptDTO adoptdto){
+		return sqlSession.selectOne("adopt.update", adoptdto);
+	}
+	
 }

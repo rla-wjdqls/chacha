@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.help.HelpDTO;
 
 @Controller
 @RequestMapping("/adopt")
@@ -95,6 +96,24 @@ public class AdoptCont {
 			adoptDAO.delete(arno);
 			return mav;
 			
+		}
+		
+		// 게시물 수정
+		@GetMapping("/adoptUpdate")
+		public ModelAndView adoptUpdate(int arno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("adopt/adoptUpdate");
+			mav.addObject("adoptup", adoptDAO.detail(arno));
+			return mav;
+			
+		}
+		
+		@PostMapping("/adoptUpdate")
+		public ModelAndView adoptUpdate(AdoptDTO adoptdto) {
+			ModelAndView mav = new ModelAndView();
+			adoptDAO.update(adoptdto);
+			mav.setViewName("redirect:/adopt/adoptReview");		
+			return mav;
 		}
 	
 		
