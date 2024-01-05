@@ -79,7 +79,7 @@ public class AdoptCont {
 	
 	}
 	
-	//상세 페이지
+		//상세 페이지
 		@GetMapping("/adoptDetail")
 	    public ModelAndView adoptd(int arno) {
 	    	ModelAndView mav = new ModelAndView();
@@ -88,6 +88,14 @@ public class AdoptCont {
 	    	return mav;
 	    }
 		
-		
+		@PostMapping("/adoptDelete")
+		public ModelAndView adoptDelete(int arno) {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("redirect:/adopt/adoptReview");
+			adoptDAO.delete(arno);
+			return mav;
+			
+		}
+	
 		
 }

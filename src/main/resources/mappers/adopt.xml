@@ -20,7 +20,10 @@
 		WHERE arno = #{arno}
 	</select>
 	
-	
+	<delete id="delete" parameterType="int">
+    	DELETE FROM adoprv
+    	WHERE arno = #{arno}
+	</delete>
 	
 	
 </mapper>
