@@ -3,6 +3,7 @@ package kr.co.chacha.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,8 +24,14 @@ public class ServiceDAO {
 		sqlSession.insert("service.insert", servicedto);
 	}//insert() end
 	
-	public List<ServiceDTO> serviceList() {
-		return sqlSession.selectList("service.serviceList");
+	public List<ServiceDTO> serviceList(int currentPage, int limit) {
+		int offset = (currentPage-1)*limit;
+		RowBounds rowBounds = new RowBounds(offset, limit);
+		return sqlSession.selectList("service.serviceList", null, rowBounds);
+	}
+	
+	public int serviceListCnt() {
+		return sqlSession.selectOne("service.serviceListCnt");
 	}
 	
 	public ServiceDTO detail(int sno){
