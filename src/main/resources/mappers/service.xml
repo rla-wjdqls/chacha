@@ -11,6 +11,11 @@
 	ORDER BY sno		
  </select>
  
+ <select id="serviceListCnt" resultType="int">
+ 	SELECT COUNT(*) AS cnt
+	FROM service	
+ </select>
+ 
  <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
 		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate)
 		VALUES(#{uid}, #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{sstime}, #{etime}, #{time}, #{sp}, #{splace}, #{sstate})

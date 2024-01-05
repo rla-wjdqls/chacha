@@ -22,8 +22,41 @@ public class ServiceDTO {
 	 	private String stime;
 		private String astate;
 		
+		private int limit = 10;
+		private int offset = 0;
 		
 		public ServiceDTO () {}
+		
+		public String getSetime() {
+			return setime;
+		}
+
+
+		public void setSetime(String setime) {
+			this.setime = setime;
+		}
+
+
+		public int getLimit() {
+			return limit;
+		}
+
+
+		public void setLimit(int limit) {
+			this.limit = limit;
+		}
+
+
+		public int getOffset() {
+			return offset;
+		}
+
+
+		public void setOffset(int offset) {
+			this.offset = offset;
+		}
+
+
 		public int getSno() {
 			return sno;
 		}

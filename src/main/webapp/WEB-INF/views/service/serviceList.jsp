@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp" %>
 
 <style>
@@ -74,6 +75,19 @@ tbody td {
                     <td>${myservice.cnt}</td>
                 </tr>
   			</c:forEach>
+  			<tr align="center" height="20">
+  				<td colspan="9">
+  					<c:if test="${startNavi ne 1 && startNavi > 0}">
+  						<a href="/service/serviceList?page=${startNavi-1}">이전</a>
+  					</c:if>
+  					<c:forEach var="p" begin="${startNavi}" end="${endNavi}">
+  						<a href="/service/serviceList?page=${p}">${p}</a>
+  					</c:forEach>
+  					<c:if test="${endNavi ne maxPage}">
+  						<a href="/service/serviceList?page=${endNavi+1}">다음</a>
+  					</c:if>
+  				</td>
+  			</tr>
   		</tbody>	  
   </table>
 <div style="text-align: center;">
@@ -94,6 +108,13 @@ tbody td {
 	</tr>
 
  </table>
+ <br><br>
+ 
+ <div>
+ <c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
+ 	<span><a href="/service/serviceList?page=${page}">${page}</a></span>
+ </c:forEach>
+ </div>
  </div>
 
 <%@ include file="../footer.jsp" %>      
