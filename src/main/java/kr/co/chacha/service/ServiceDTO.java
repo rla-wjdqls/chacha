@@ -22,9 +22,29 @@ public class ServiceDTO {
 	 	private String stime;
 		private String astate;
 		
+		//페이징
 		private int limit = 10;
 		private int offset = 0;
 		
+		private String type;
+		private String keyword;
+		
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+		public String getKeyword() {
+			return keyword;
+		}
+
+		public void setKeyword(String keyword) {
+			this.keyword = keyword;
+		}
+
 		public ServiceDTO () {}
 		
 		public String getSetime() {
@@ -165,15 +185,9 @@ public class ServiceDTO {
 		public String toString() {
 			return "ServiceDTO [sno=" + sno + ", uid=" + uid + ", stitle=" + stitle + ", sinfo=" + sinfo + ", ssdate="
 					+ ssdate + ", sedate=" + sedate + ", time=" + time + ", sp=" + sp + ", splace=" + splace
-					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", etime=" + setime + ", sano="
-					+ sano + ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", getSno()=" + getSno()
-					+ ", getSstime()=" + getSstime() + ", getEtime()=" + getEtime() + ", getUid()=" + getUid()
-					+ ", getStitle()=" + getStitle() + ", getSinfo()=" + getSinfo() + ", getSsdate()=" + getSsdate()
-					+ ", getSedate()=" + getSedate() + ", getTime()=" + getTime() + ", getSp()=" + getSp()
-					+ ", getSplace()=" + getSplace() + ", getSstate()=" + getSstate() + ", getCnt()=" + getCnt()
-					+ ", getSano()=" + getSano() + ", getSadate()=" + getSadate() + ", getStime()=" + getStime()
-					+ ", getAstate()=" + getAstate() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-					+ ", toString()=" + super.toString() + "]";
+					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", setime=" + setime + ", sano="
+					+ sano + ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", limit=" + limit
+					+ ", offset=" + offset + ", type=" + type + ", keyword=" + keyword + "]";
 		}
 	
 	

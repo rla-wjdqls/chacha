@@ -4,17 +4,7 @@
     
 <%@ include file="../header.jsp" %>
 
-<style>
-table {
-	width: 100%
-}
-th {
-	text-align: center; background-color: #0C2B4B; border: 1px solid black;
-}
-td {
-	text-align: center; background-color: white; border: 1px solid black;
-}
-</style>
+
 
 <script>
 function sdelete() {
@@ -56,7 +46,7 @@ function sdelete() {
 </div>
 
 <div class="container">
-	<table>
+	<table class="table table-hover">
 	  <tr>
 		<th>봉사글번호</th>
 		<td>${serviced.sno}</td>

@@ -11,6 +11,7 @@
 	ORDER BY sno		
  </select>
  
+ <!-- 페이징 -->
  <select id="serviceListCnt" resultType="int">
  	SELECT COUNT(*) AS cnt
 	FROM service	

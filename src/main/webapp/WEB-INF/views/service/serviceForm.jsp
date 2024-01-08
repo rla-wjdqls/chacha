@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ include file="../header.jsp"%>
-<script type="text/javascript" src="/smarteditor/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
-
- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 
 <style>* {font-size: 16px; font-family: Consolas, sans-serif;}</style>
@@ -28,17 +23,12 @@
       </li>
    </ul>
 </nav>
-
-
-
 <div class="container text-center">
 	<p><h3>[봉사모집글쓰기]</h3></p>
 </div>
-
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceList" class="nav-item nav-link"><input type="button" value="글목록"></a></p>	
 </div>
-	
 <form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceForm">
 <div class="container col-sm-12">
 	<table class="table"> 
@@ -51,16 +41,14 @@
 			<td>
 				<textarea id="summernote" name="sinfo"></textarea>
 			</td>
-		</tr>
+		</tr>	
 	</table>
 </div>	
-
- <script>
+<script>
       $('#summernote').summernote({
-        placeholder: '내용을 입력해주세요',
+        placeholder: '글 내용을 입력해주세요',
         tabsize: 2,
-        height: 100,
-        width: 700,
+        height: 300,
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],
