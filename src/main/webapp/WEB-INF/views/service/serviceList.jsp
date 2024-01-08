@@ -3,18 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp" %>
 
-<style>
-table {
-	width: 80%; text-align: center;
-}
-table thead {
-	text-align: center; background-color: #0C2B4B; border: 1px solid black;
-}
-tbody td {
-	text-align: center; background-color: white; border: 1px solid black;
-}
 
-</style>
+
 <nav class="navbar navbar-light bg-light" style="height: 42px">
     <ul class="list-inline ml-auto" style="align-items: center;">
       <li class="list-inline-item">
@@ -42,7 +32,7 @@ tbody td {
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="글쓰기"></a></p>
 </div>
-	<table style="margin-left: auto; margin-right: auto;">
+	<table text-align: center; class="table table-hover" style="margin-left: auto; margin-right: auto;">
 		<thead> 
 			<tr>
 			 	 <td>봉사글번호</td>
@@ -90,31 +80,24 @@ tbody td {
   			</tr>
   		</tbody>	  
   </table>
-<div style="text-align: center;">
- <table class="table">
- 	<tr>
-		<td colspan="4" style="text-align: center; height: 50px;">
-			<form action="serviceList.jsp" onsubmit="return searchCheak()"><!-- myscript.jsp함수 작성함 -->
-				<select name="col">
-					<option value="stitle_sinfo">제목+내용
-					<option value="stitle">제목
-					<option value="sinfo">내용
-					<option value="uid">아이디				
-				</select>
-					<input type="text" name="word" id="word" placeholder="검색어를 입력하세요">
-					<input type="submit" value="검색">	
-			</form>
-		</td>
-	</tr>
+  
+  	<!-- 검색 form -->
+	<div id="search" class="container col-sm-12">
+		<form id="searchForm" action="/service/serviceList" methos="get" >
+			<select name="type">
+				<option value="">선택</option>
+				<option value="T">제목</option>
+				<option value="C">내용</option>
+				<option value="W">아이디</option>
+				<option value="TC">제목 + 내용</option>
+				<option value="TW">제목 + 아이디</option>
+				<option value="TCW">제목 + 내용 + 아이디</option>
+			</select>
+			<input type="text" name="keyword" />
+			<button id="searchBtn">검색</button>
+		</form>
+	</div>
 
- </table>
- <br><br>
- 
- <div>
- <c:forEach begin="1" end="${requestScope.pageLength}" step="1" var="page">
- 	<span><a href="/service/serviceList?page=${page}">${page}</a></span>
- </c:forEach>
- </div>
- </div>
+
 
 <%@ include file="../footer.jsp" %>      

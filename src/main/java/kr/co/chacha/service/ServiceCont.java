@@ -1,8 +1,13 @@
 package kr.co.chacha.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -12,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.JsonObject;
+
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.servicea.ServiceaDTO;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.*;
 @Controller
 @RequestMapping("/service")
 public class ServiceCont {
@@ -41,11 +49,11 @@ public class ServiceCont {
 		
 		int currentPage = (page != null) ? page: 1;
 		int totalCount = serviceDAO.serviceListCnt();
-		int boardLimit = 10;
-		int naviLimit = 5;
-		int maxPage;
-		int startNavi;
-		int endNavi;
+		int boardLimit = 10; //한 화면에 출력할 게시물 수
+		int naviLimit = 5; //한 화면에 출력할 게시판 페이지 수
+		int maxPage; //게시판의 총 페이지 수 
+		int startNavi; //한 화면에 출력되는 게시판 페이지의 첫번째 번호
+		int endNavi; //한 화면에 출력되는 게시판 페이지의 마지막 번호
 		
 		maxPage = (int)((double)totalCount/boardLimit+0.9);
 		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
@@ -146,29 +154,61 @@ public class ServiceCont {
 			return mav;
 			
 		}//화면전환
-		
 
-	@RequestMapping("/logout")
-	public String logout(HttpSession session) {
-		
-		session.removeAttribute("s_id");
-		session.removeAttribute("s_passwd");
-		session.removeAttribute("s_mlevel");
-		
-		return "redirect:/";
-		
-	}//logout end
-		
-	//페이징
-	
-	//처음페이지 요청은 1페이지를 보여줌
-	
-	@GetMapping("/paging")
-	public String paging(Model model,
-						@RequestParam(value = "page", required = false, defaultValue = "1")int page) {
-		System.out.println("page = " + page);
-		return "redirect:/";
-	}
+		@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
+		@ResponseBody
+		public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+			
+			JsonObject jsonObject = new JsonObject();
+			
+			String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
+			String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+					
+			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+			
+			File targetFile = new File(fileRoot + savedFileName);	
+			
+			try {
+				InputStream fileStream = multipartFile.getInputStream();
+				FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+				jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+				jsonObject.addProperty("responseCode", "success");
+					
+			} catch (IOException e) {
+				FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+				jsonObject.addProperty("responseCode", "error");
+				e.printStackTrace();
+			}
+			
+			return jsonObject;
+		}
+//	@RestController //
+//	public class ImageController {
+//
+//	    @PostMapping("/uploadImage")
+//	    public String uploadImage(@RequestParam("file") MultipartFile file) {
+//	        // 이미지를 받아서 처리하는 로직을 구현합니다.
+//	        // file 변수에 업로드된 이미지 파일이 전달됩니다.
+//	        // 저장하거나 다른 작업을 수행할 수 있습니다.
+//	        
+//	        // 예를 들어, 이미지 파일 이름을 반환하거나 처리된 이미지의 URL을 반환할 수 있습니다.
+//	        return "Image uploaded successfully: " + file.getOriginalFilename();
+//	    }	
+	    
+/*	    //글 목록
+		@RequestMapping("/getserviceList")
+		public String getserviceList(getserviceList cri, Model model) {
+			
+			List<serviceDTO> serviceList = service.serviceList(cri);
+			
+			int total = boardService.totalCnt(cri);
+			// Model 정보 저장
+			model.addAttribute("boardList",boardList);
+			model.addAttribute("paging",new PageMaker(cri,total));
+			return "boardList"; // View 이름 리턴
+		}
+	}*/
 	
 		 
 

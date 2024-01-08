@@ -24,6 +24,7 @@ public class ServiceDAO {
 		sqlSession.insert("service.insert", servicedto);
 	}//insert() end
 	
+	//페이징
 	public List<ServiceDTO> serviceList(int currentPage, int limit) {
 		int offset = (currentPage-1)*limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
