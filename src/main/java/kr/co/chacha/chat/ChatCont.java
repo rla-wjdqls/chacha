@@ -1,11 +1,12 @@
 package kr.co.chacha.chat;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,63 +15,64 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/chat")
+//@RequestMapping("/chat")
 public class ChatCont {
 	
-	List<ChatDTO> roomList = new ArrayList<ChatDTO>();
-	static int roomNumber = 0;
+	@Autowired
+	private ChatDAO chatDao;
 	
-	@PostMapping("/centerChat")
-	public ModelAndView chat() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("center/centerChat");
-		return mav;
-	}
-	
-	//채팅방 페이지
-	@PostMapping("/room")
-	public ModelAndView room() {
+	@PostMapping("/chat")
+	public ModelAndView chat(HttpServletRequest req, HttpSession session) {
+		String anino = req.getParameter("anino");
+		String uid2 = req.getParameter("writer");
+		String uid = (String)session.getAttribute("s_id");
+		//System.out.println(anino);	//동물글번호 
+		//System.out.println(uid2);	//글작성
+		//System.out.println(uid);	//회원아이디
+		
+		//파라미터 dto에 담기
+		ChatDTO chatDto = new ChatDTO();
+		chatDto.setAnino(anino);
+		chatDto.setUid(uid);
+		chatDto.setUid2(uid2);
+		
+		int roomno = chatDao.selectChatRoom(chatDto); //채팅방번호 조회
+		//System.out.print(roomno);
+		if(roomno != 0) {	//채팅방이 있으면 방번호 dto에 담기
+			chatDto.setRoomno(roomno);
+			//System.out.print(roomno);
+		}else {
+			int cnt = chatDao.createRoom(chatDto); //없다면 방 생성
+			//System.out.println(cnt);
+			roomno = chatDao.selectChatRoom(chatDto); //생성한 방번호 dto에 담기
+			chatDto.setRoomno(roomno);
+			//System.out.print(roomno);
+		}
+		
+		List<ChatDTO> chatList = chatDao.selectChat(chatDto);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/room");
+		mav.addObject("chatList", chatList);
 		return mav;
 	}
 	
-	
-	//채팅방 생성
-	@PostMapping("/createRoom")
-	public @ResponseBody List<ChatDTO> createRoom(@RequestParam HashMap<Object, Object> params){
-		String roomName = (String) params.get("roomName");
-		if(roomName != null && !roomName.trim().equals("")) {
-			ChatDTO chatDto = new ChatDTO();
-			chatDto.setRoomNumber(++roomNumber);
-			chatDto.setRoomName(roomName);
-			roomList.add(chatDto);
-		}
-		return roomList;
+	@PostMapping("/getRoomno")
+	public ResponseEntity<Integer> getRoomno(String anino, HttpSession session) {
+		System.out.println(anino);
+		String uid = (String)session.getAttribute("s_id");
+		System.out.println(uid);	//회원아이디
+		ChatDTO chatDto = new ChatDTO();
+		chatDto.setAnino(anino);
+		chatDto.setUid(uid);
+		int roomno = chatDao.getRoomno(chatDto);
+		System.out.println(chatDto.getRoomno());
+		return  new ResponseEntity<>(roomno, HttpStatus.OK);
 	}
 	
-	//방 정보 가져오기
-	@PostMapping("/getRoom")
-	public @ResponseBody List<ChatDTO> getRoom(@RequestParam HashMap<Object, Object> params){
-		return roomList;
-	}
 	
-	//채팅방
-	@GetMapping("/moveChating")
-	public ModelAndView chating(@RequestParam HashMap<Object, Object> params) {
-		ModelAndView mav = new ModelAndView();
-		int roomNumber = Integer.parseInt(((String)params.get("roomNumber")).trim());
-		
-		List<ChatDTO> new_list =roomList.stream().filter(o->o.getRoomNumber()==roomNumber).collect(Collectors.toList());
-		if(new_list != null && new_list.size() > 0) {
-			mav.addObject("roomName", params.get("roomName"));
-			mav.addObject("roomNumber", params.get("roomNumber"));
-			mav.setViewName("center/centerChat");
-		}else {
-			mav.setViewName("room");
-		}
-		return mav;
-	}
 }

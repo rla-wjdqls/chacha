@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="chat">
+ 	
+ 	<select id="selectChatRoom" resultType="int">
+ 		SELECT roomno
+ 		FROM chat
+ 		WHERE (uid = #{uid} AND anino = #{anino} )
+ 	</select>
+ 	
+ 	<insert id="createRoom" >
+ 		INSERT INTO chat (uid, anino, textno, uid2)
+ 		VALUES (#{uid}, #{anino}, #{textno}, #{uid2})
+ 	</insert>
+ 	
+ 	<select id="selectChat" resultType="kr.co.chacha.chat.ChatDTO">
+ 		SELECT roomno, sender_id, receiver_id, mcontent, sdate
+ 		FROM message
+ 		WHERE (sender_id = #{uid} AND receiver_id = #{uid} AND roomno = #{roomno})
+ 		ORDER BY sdate ASC
+ 	</select>
+ 	
+ 	<!-- select id="selectRoomno" resultType="int">
+ 		SELECT roomno
+ 		FROM chat
+ 		WHERE (uid = #{uid} AND anino = #{anino} )
+ 	</select>
+ 	
+ 	<insert id="insertMsg">
+ 		INSERT INTO message (uid, roomno, mcontent, sdate)
+ 		VALUES (#{uid}, #{roomno}, #{mcontent}, now())
+ 	</insert>
+ 	
+ 	<select id="getRoom" resultType="java.util.Map">
+ 		SELECT roomno, uid, mcontent, sdate
+ 		FROM message
+ 		WHERE (uid = #{uid})
+ 		ORDER BY sdate ASC;
+ 	</select> 
+ 	
+ 	<select id="headerChat" resultType="java.util.Map">
+ 		SELECT roomno, uid, writer
+ 		FROM chat
+ 		WHERE (writer = #{writer})
+ 	</select> -->
+ </mapper>	
