@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Quiz</title>
+    <style>
+        #quiz {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<video id="myVideo" width="400" height="700" controls>
+    <source src="../img/dog.mp4" type="video/mp4">
+    머라카노.
+</video>
+
+<div id="quiz">
+    <h2>퀴즈 질문</h2>
+    <p>퀴즈 내용...</p>
+    <label>
+        <input type="radio" name="quiz" value="option1"> 1. 종합백신(DHPPL) 종류에 광견병이 포함된다.
+    </label>
+    <label>
+        <input type="radio" name="quiz" value="option2"> 2. 동물 보호법으로 정해진 리드줄 길이는 2m 이하이다.
+    </label>
+    <!-- 다른 퀴즈 옵션들 추가 -->
+
+    <button onclick="checkQuiz()">퀴즈 제출</button>
+</div>
+
+<script>
+    const video = document.getElementById('myVideo');
+    const quizDiv = document.getElementById('quiz');
+
+    // 비디오가 끝날 때 호출되는 함수
+    function videoEnded() {
+        quizDiv.style.display = 'block';  // 퀴즈 보이기
+        video.style.display = 'none';     // 비디오 감추기
+    }
+
+    // 퀴즈 제출 버튼 클릭 시 호출되는 함수
+    function checkQuiz() {
+        // 여기에 퀴즈 체크 로직 추가
+        alert('퀴즈 체크 로직을 구현하세요.');
+    }
+
+    // 비디오 종료 이벤트 리스너 등록
+    video.addEventListener('ended', videoEnded);
+</script>
+
+</body>
+</html>

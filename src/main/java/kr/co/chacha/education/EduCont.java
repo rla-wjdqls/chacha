@@ -52,6 +52,31 @@ public class EduCont {
 		return mav;
 	}
 	
+	@GetMapping("/dog")
+	public ModelAndView dog() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/dog");
+		return mav;
+	}
 	
+	@GetMapping("/dogResult")
+	public ModelAndView dogResult() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/dogResult");
+		return mav;
+	}
+	
+	/*
+	@GetMapping("/quizan")
+	public ModelAndView quizan() {
+	    ModelAndView mav = new ModelAndView();
+	    
+	    // 퀴즈 정답을 배열로 생성하여 뷰로 전달
+	    String[] answers = {"X", "O", "X", "O", "X", "O", "X", "O", "X", "O"};
+	    mav.addObject("answers", answers);  
+	    mav.setViewName("education/quizan");
+	    return mav;
+	
+	}}*/
 
 }

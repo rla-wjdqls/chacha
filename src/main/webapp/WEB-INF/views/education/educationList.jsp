@@ -101,7 +101,7 @@
         if (userChoice) {
             alert("수강이 신청되었습니다.");
          // 페이지 이동
-            window.location.href = '/css/dog.html';
+            window.location.href = './dog';
 		// 여기에 추가적인 수강 처리 로직을 추가할 수 있습니다.
         } else {
             alert("수강이 취소되었습니다.");
