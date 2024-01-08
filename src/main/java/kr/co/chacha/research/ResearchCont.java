@@ -5,7 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,66 +51,28 @@ public class ResearchCont {
 		return "redirect:/";
 		
 	}//logout end
+		
 	
-	// 설문조사 페이지 이동
-	@GetMapping("/researchForm")
-	public ModelAndView research() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("research/researchForm");
-		return mav;
-	}//research() end
-	
-	
-	// 설문조사 페이지 이동
-	@GetMapping("/researchList")
+	// 설문조사 목록 페이지
+	@RequestMapping("/researchList")
 	public ModelAndView researchList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchList");
+		mav.addObject("researchList", researchdao.researchList());
 		return mav;
 	}//researchList() end
 	
 	
-	// 설문조사 폼 불러오기
-	//research
-	@PostMapping("/researchList")
-	public void researchContent() {
-	
-	String rno = "r20240105170513";
-	
-	//선택한 글의 설문번호로 정보 불러오기
-	researchdao.loadContent(rno);
-	
-	
-	
-	}//researchContent() end
-	
-	
-	
-	@GetMapping("/researchNext")
-	@ResponseBody
-		public String researchNext(@RequestParam("questionNumber") int questionNumber) {
-		    // 각 질문에 대한 HTML을 반환하는 로직 추가
-		    if (questionNumber == 1) {
-		        return "질문1. 귀하의 성별은 어떻게 되십니까?<br><br>" +
-		                "<input type='radio' name='survay1' value='5' />만족" +
-		                "<input type='radio' name='survay1' value='4' />다소만족" +
-		                "<input type='radio' name='survay1' value='3' />보통" +
-		                "<input type='radio' name='survay1' value='2' />다소미흡" +
-		                "<input type='radio' name='survay1' value='1' />매우미흡";
-		    } else if (questionNumber == 2) {
-		        return "질문2. 귀하의 가구원은 어떻게 되십니까?<br><br>" +
-		                "<input type='radio' name='survay2' value='5' />만족" +
-		                "<input type='radio' name='survay2' value='4' />다소만족" +
-		                "<input type='radio' name='survay2' value='3' />보통" +
-		                "<input type='radio' name='survay2' value='2' />다소미흡" +
-		                "<input type='radio' name='survay2' value='1' />매우미흡";
-		    } else {
-		        // 다른 질문에 대한 처리 추가
-		        return "다음문제";
-		    }
-		
-	}//researchNext() end
-	
+	// 설문조사 페이지 띄어주기
+	@RequestMapping("/researchForm")
+	public ModelAndView researchForm(@RequestParam String rno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("research/researchForm");
+		mav.addObject("researchList", researchdao.researchList2(rno));
+		mav.addObject("researchForm", researchdao.researchForm(rno));
+		mav.addObject("researchChoice", researchdao.researchChoice(rno));
+		return mav;
+	}//researchForm() end
 	
 	
 
@@ -118,46 +85,50 @@ public class ResearchCont {
 	}//researchReg() end
 	
 	
+	
 	//설문조사 등록
 	@PostMapping("/researchInsert")
-	public void researchInsert(HttpServletRequest req) {
+	public void researchInsert(HttpServletRequest req, ResearchDTO researchDTO) {
 	    
 		String[] qcont = req.getParameterValues("qcont");
 		String[] qtype = req.getParameterValues("qtype");
 		String[] choice = req.getParameterValues("choice");
 		
-		for(int i=0; i<qcont.length; i++) {
-			System.out.println(qcont[i]);
-		}//for end
-		//우리 아이가 예쁠떄, 얄미울때
-		
-		for(int i=0; i<qtype.length; i++) {
-			System.out.println(qtype[i]);
-		}//for end
-		//우리 아이가 예쁠떄, 얄미울때
-		
-		for(int i=0; i<choice.length; i++) {
-			System.out.println(choice[i]);
-		}//for end
-		//잘때, 항상, 매번
-		
-		ResearchDTO researchDto=new ResearchDTO();
+		/*
+			for(int i=0; i<qcont.length; i++) {
+				System.out.println(qcont[i]);
+			}//for end
+			
+			for(int i=0; i<qtype.length; i++) {
+				System.out.println(qtype[i]);
+			}//for end
+			
+			for(int i=0; i<choice.length; i++) {
+				System.out.println(choice[i]);
+			}//for end
+		*/
 		
 		//설문번호 발급 생성하기
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 		String date = sd.format(new Date());
 		String rno = "r" + date;
-		//System.out.println(rno); //r20240104170120
 		
-        //researchDto.setRno(rno);
-        //researchDto.setQcont(qcont);
-        //researchDto.setChoice(choice);
         
-        //researchdao.researchInsert(researchDto);
-        //researchdao.researchqInsertm(researchDto);
+        //research 테이블 isnert 
+        //researchdao.researchInsert(researchDTO);
+        
+        //researchq 테이블 isnert
+        //배열을 list에 담음
+        List<ResearchDTO> researchList = new ArrayList<>();
+        
+        researchList.add(researchDTO);
+        
+        
+	    researchdao.researchqInsert(researchList);
 
         //생성된 일련번호 qno 찾아와서 dto에 담아줌  
-        //int qno = researchdao.checkQno(researchDto);
+        //int qno = researchdao.checkQno(researchDTO);
+        //System.out.println(qno);
         
         //researchDto.setQno(qno);
         

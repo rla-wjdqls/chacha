@@ -23,10 +23,27 @@
 		<p>설문조사 페이지 입니다</p>
 		<hr><br><br>
 		<div class="container-line">
-				<h5>여러분의 의견을 들려주세요~</h5>
-				<h6>목록</h6>
+			<h5>여러분의 의견을 들려주세요~</h5>
+			<br>
+			<!--db 불러오기 -->
+ 			<div class="container-fixed row">
+				<c:forEach items="${researchList}" var="list">
+					  	<div class="col-sm-4 col-md-4">
+					  		<br>
+					    	<h5>${list.rtitle}</h5>
+					    	<p>${list.rdate1} ~ ${list.rdate2}</p>
+					    <c:choose>
+			                <c:when test="${list.rstate eq 'I'}">진행중</c:when>
+			                <c:when test="${list.rstate eq 'E'}">마감</c:when>
+		            	</c:choose>
+		            	<br><br>
+					    <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
+					  	</div>
+				</c:forEach>
+			</div>
+			
+			</div>
 				<br><br>
-				<a href="/research/researchForm" class="btn btn">설문조사 하러가기</a>
 				<a href="/research/researchReg" class="btn btn">설문조사 등록하기</a>
 				<br><br>
 			</div>

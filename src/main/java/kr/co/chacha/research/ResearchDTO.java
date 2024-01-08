@@ -1,6 +1,8 @@
 package kr.co.chacha.research;
 
 import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
 
 public class ResearchDTO {
 
@@ -15,12 +17,18 @@ public class ResearchDTO {
 
 	 //질문
 	 private int qno;
-	 private String qcont;
-	 private String qtype;
+	 //private List<String> qcont;
+	 //private List<String> qtype;
+	 private String[] qcont;
+	 private String[] qtype;
+	 //private String qcont;
+	 //private String qtype;
 	 
 	 //선택지
 	 private int cno;
-	 private String choice;
+	 //private String choice;
+	 private String[] choice;
+	//private List<String> choice;
 
 	 //객관식 질문
 	 private int rpno_g;
@@ -35,7 +43,7 @@ public class ResearchDTO {
 	 
 	 
 	 public ResearchDTO() {}
-	 
+
 	 
 	public String getRno() {
 		return rno;
@@ -85,30 +93,94 @@ public class ResearchDTO {
 	public void setQno(int qno) {
 		this.qno = qno;
 	}
-	public String getQcont() {
+	
+	
+	
+	
+	
+	
+//	
+//	public String[] getQcont() {
+//		return qcont;
+//	}
+//	public void setQcont(String[] qcont) {
+//		this.qcont = qcont;
+//	}
+//	public String[] getQtype() {
+//		return qtype;
+//	}
+//	public void setQtype(String[] qtype) {
+//		this.qtype = qtype;
+//	}
+//	
+//	public String[] getChoice() {
+//		return choice;
+//	}
+//	public void setChoice(String[] choice) {
+//		this.choice = choice;
+//	}
+	
+//	public String getQcont() {
+//		return qcont;
+//	}
+//	public void setQcont(String qcont) {
+//		this.qcont = qcont;
+//	}
+//	public String getQtype() {
+//		return qtype;
+//	}
+//	public void setQtype(String qtype) {
+//		this.qtype = qtype;
+//	}
+//	
+//	public String getChoice() {
+//		return choice;
+//	}
+//	public void setChoice(String choice) {
+//		this.choice = choice;
+//	}
+	
+
+
+
+	public String[] getQcont() {
 		return qcont;
 	}
-	public void setQcont(String qcont2) {
-		this.qcont = qcont2;
+
+
+	public void setQcont(String[] qcont) {
+		this.qcont = qcont;
 	}
-	public String getQtype() {
+
+
+	public String[] getQtype() {
 		return qtype;
 	}
-	public void setQtype(String qtype) {
+
+
+	public void setQtype(String[] qtype) {
 		this.qtype = qtype;
 	}
+
+
+	public String[] getChoice() {
+		return choice;
+	}
+
+
+	public void setChoice(String[] choice) {
+		this.choice = choice;
+	}
+
+
 	public int getCno() {
 		return cno;
 	}
+
 	public void setCno(int cno) {
 		this.cno = cno;
 	}
-	public String getChoice() {
-		return choice;
-	}
-	public void setChoice(String choice2) {
-		this.choice = choice2;
-	}
+
 	public int getRpno_g() {
 		return rpno_g;
 	}
@@ -151,6 +223,35 @@ public class ResearchDTO {
 	public void setRpdate_j(Date rpdate_j) {
 		this.rpdate_j = rpdate_j;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ResearchDTO [rno=" + rno + ", rtitle=" + rtitle + ", rdate1=" + rdate1 + ", rdate2=" + rdate2
+				+ ", rstate=" + rstate + ", rop=" + rop + ", rgdate=" + rgdate + ", qno=" + qno + ", qcont="
+				+ Arrays.toString(qcont) + ", qtype=" + Arrays.toString(qtype) + ", cno=" + cno + ", choice="
+				+ Arrays.toString(choice) + ", rpno_g=" + rpno_g + ", uid=" + uid + ", reply_g=" + reply_g
+				+ ", rpdate_g=" + rpdate_g + ", rpno_j=" + rpno_j + ", reply_j=" + reply_j + ", rpdate_j=" + rpdate_j
+				+ "]";
+	}
+
+
+	
+
+
+	
+
+
+
+
+	
+
+
+
+
+	
+
+
 
 
 	 
