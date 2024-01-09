@@ -34,17 +34,16 @@
 			</div>
 			<br><hr>
 			
-			
 			<div class="container-fixed row">
 				질문1. ${researchForm.qcont}
 			</div>
 
 			<div class="container-fixed row">
-				<c:forEach items="${researchChoice}" var="choice">
-					  	<div class="col-sm-4 col-md-4">
-					  		<input type="checkbox">${choice.choice}
-					  	</div>
-				</c:forEach>
+			<c:forEach items="${researchChoice}" var="choice">
+				  	<div class="col-sm-4 col-md-4">
+				  		<input type="checkbox">${choice.choice}
+				  	</div>
+			</c:forEach>
 			</div> 
 			
 			<br><br><br>
