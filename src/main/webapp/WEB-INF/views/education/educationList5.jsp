@@ -73,6 +73,7 @@
 		    	<p class="card-text">강아지</p>
 		    	<button onclick="eduredog()" class="btn btn-primary">신청하기</button>
 		    	<button onclick="openDogQuizModal()" class="btn btn-primary">퀴즈풀기</button>
+				<a href="/education/dogox" class="btn btn-primary">퀴즈풀기</a>
 			</div>
 	</div>
 
@@ -84,6 +85,7 @@
 		    	<p class="card-text">고양이</p>
 		    	<button onclick="edurecat()" class="btn btn-primary">신청하기</button>
 		    	<button onclick="openCatQuizModal()" class="btn btn-primary">퀴즈풀기</button>
+				<a href="/education/catox" class="btn btn-primary">퀴즈풀기</a>
 			</div>
 	</div>
 </div>

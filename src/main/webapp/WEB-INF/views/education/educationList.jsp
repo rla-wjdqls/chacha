@@ -63,16 +63,16 @@
 			</ul>
 		</nav>
 
-<div class="container text-center"><h3>입양 전 필수 교육 강의</h3></div>
+<div class="container text-center mb-4"><h3>입양 전 필수 교육 강의</h3></div>
 
 <div class="container-fixed row">
 	<div class="card" style="width: 18rem;">
 		<img src="/img/edudog.png" class="card-img-top img-fixed img-fluid">
 			<div class="card-body">
-		    	<h5 class="card-title">강아지 교육강의</h5>
+		    	<h5 class="card-title">강아지 교육 강의</h5>
 		    	<p class="card-text">강아지</p>
 		    	<button onclick="eduredog()" class="btn btn-primary">신청하기</button>
-		    	<a href="/education/dogox" class="btn btn-primary">퀴즈풀기</a>
+		    	
 			</div>
 	</div>
 
@@ -80,10 +80,10 @@
 	<div class="card" style="width: 18rem;">
 		<img src="/img/educat.png" class="card-img-top img-fixed img-fluid">
 			<div class="card-body">
-		    	<h5 class="card-title">고양이 교육강의</h5>
+		    	<h5 class="card-title">고양이 교육 강의</h5>
 		    	<p class="card-text">고양이</p>
 		    	<button onclick="edurecat()" class="btn btn-primary">신청하기</button>
-		    	<a href="/education/catox" class="btn btn-primary">퀴즈풀기</a>
+		    	
 			</div>
 	</div>
 </div>
@@ -118,7 +118,7 @@
         if (userChoice) {
             alert("수강이 신청되었습니다.");
          // 페이지 이동
-            window.location.href = '/css/cat.html';
+            window.location.href = './cat';
 		 //
         } else {
             alert("수강이 취소되었습니다.");

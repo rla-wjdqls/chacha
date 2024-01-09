@@ -6,7 +6,8 @@
 <% 
 	String s_mlevel = (String)session.getAttribute("s_mlevel");
 %>
-
+<c:set var="writer" value="${center.uid}" />
+<c:set var="anino" value="${center.anino}" />
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -137,8 +138,9 @@
 			</form>
 			</div>
 			
-			<form name="chatfrm" id="chatfrm" method="post">
+			<form name="chatfrm" id="chatfrm" method="post" action="/chat">
 			<input type="hidden" name="anino" id="anino" value="${center.anino}">
+			<input type="hidden" name="writer" id="writer" value="${center.uid}">
 			<div class="icon-heart">
 				<i class="bi bi-chat-left-dots-fill" onclick="chat_popup()"></i>
 			</div>
@@ -260,6 +262,7 @@
 	
 			function chat_popup(){ 
 				let uid = '<%= (String)session.getAttribute("s_id") %>';
+				let writer = document.getElementById('writer');
 				if(uid == "null"){
 					uid = "";
 				}
@@ -267,9 +270,19 @@
 				if(uid.length === 0){
 					alert("로그인 후 이용바랍니다");
 				}else{
-					//window.open('chat', 'Chat', 'width=400,height=400');
-					document.chatfrm.action="/chat/room";
-					document.chatfrm.submit();
+					let form = document.getElementById("chatfrm");
+					
+					//새로운 창 열기
+					let newWindow = window.open("/chat", "_chating", "menubar=no, toolbar=no, width=600, height=700");
+					
+					//폼 보내기
+					form.target = "_chating";
+					//form.method = "post";
+					form.submit();
+					//alert(writer);
+					//alert()
+					//document.chatfrm.action="/chat/room";
+					//document.chatfrm.submit();
 				}
 				
 			}

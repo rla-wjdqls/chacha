@@ -3,8 +3,14 @@
 
 <mapper namespace="education">
 	
-	<insert id="quizins" parameterType="kr.co.chacha.education.EduDTO">
 	
-	</insert>
+    
+    <insert id="insertQuizResults" parameterType="java.util.List">
+        INSERT INTO quiz_sub(uid, question, user_answers, score, quiz_date)
+        VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.uid}, #{item.question}, #{item.userAnswers}, #{item.score}, NOW())
+        </foreach>
+    </insert>
 
 </mapper>

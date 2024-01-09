@@ -33,8 +33,9 @@
 
 <form  name="servicefrm" id="servicefrm" method="post" action="/service/serviceUpdate">
 <input type="hidden" name="sno" id="sno" value="${serviceup.sno}"/>
-<div class="container col-sm-12">
-	<table class="table"> 
+
+<div class="text-center">
+	<table class="table" style="width: 50%; margin-left: auto; margin-right: auto;"> 
 		<tr>
 			<th class="success">아이디</th>
 			<td><input type="text" name="uid" id="uid" value="${serviceup.uid}" class="form-control" maxlength="20" required></td>
@@ -47,14 +48,12 @@
 			<th class="success">내용</th>
 			<td><textarea rows="5" class="form-control" id="summernote" name="sinfo">${serviceup.sinfo}</textarea></td>
 		</tr>
-	</table>
-</div>
-<script>
+		<script>
       $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
         tabsize: 2,
-        height: 100,
-        width: 700,
+        height: 300,
+        width: 800,
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],
@@ -65,7 +64,9 @@
           ['view', ['fullscreen', 'codeview', 'help']]
         ]
       });
-    </script>
+    	</script>
+	</table>
+</div>
 
 <div class="container col-sm-12">
 	<table class="table">	

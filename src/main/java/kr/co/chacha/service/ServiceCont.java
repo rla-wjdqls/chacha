@@ -44,7 +44,11 @@ public class ServiceCont {
 	 * }//serviceList() end
 	 */	
 	@RequestMapping("/serviceList")
-	public ModelAndView serviceList(@RequestParam(value="page", required=false) Integer page) {
+	public ModelAndView serviceList(
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="type", required=false) String type,
+			@RequestParam(value="keyword", required=false) String keyword
+			) {
 		ModelAndView mav = new ModelAndView();
 		
 		int currentPage = (page != null) ? page: 1;
@@ -63,7 +67,17 @@ public class ServiceCont {
 			endNavi = maxPage;
 		}
 		
-		List<ServiceDTO> serviceList = serviceDAO.serviceList(currentPage, boardLimit);
+		ServiceDTO dto = new ServiceDTO();
+		
+		if(!StringUtils.isEmpty(type)) {
+			dto.setType(type);
+		}
+		
+		if(!StringUtils.isEmpty(keyword)) {
+			dto.setKeyword(keyword);
+		}
+		
+		List<ServiceDTO> serviceList = serviceDAO.serviceList(currentPage, boardLimit, dto);
 		
 		if(!serviceList.isEmpty()) {
 			mav.addObject("startNavi",startNavi);

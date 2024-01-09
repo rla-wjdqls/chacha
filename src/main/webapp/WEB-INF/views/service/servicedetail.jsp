@@ -45,8 +45,8 @@ function sdelete() {
 	</div>
 </div>
 
-<div class="container">
-	<table class="table table-hover">
+<div class="text-center">
+	<table class="table table-hover" style="width: 60%; margin-left: auto; margin-right: auto;">
 	  <tr>
 		<th>봉사글번호</th>
 		<td>${serviced.sno}</td>

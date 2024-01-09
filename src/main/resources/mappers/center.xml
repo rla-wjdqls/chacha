@@ -16,7 +16,7 @@
  	</select>
  	
  	<select id="detail" resultType="java.util.Map">
- 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		SELECT anino, aname, age, uid, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
  		FROM animal
  		WHERE anino = #{anino}
  	</select>
