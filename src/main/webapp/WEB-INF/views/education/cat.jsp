@@ -19,33 +19,32 @@
     .btn-primary {
         align-self: flex-end;
     }
-    
      
 </style>
 
-<h3>강아지 반려자를 위한 기초교육강의</h3>
+<h3>고양이 반려자를 위한 기초교육강의</h3>
 <p>사랑하는 내 가족을 위해 주의깊게 들어주시기 바랍니다.</p>
 
-<video id="dogedu" width="400" height="700" controls>
-    <source src="../img/dog.mp4" type="video/mp4">
+<video id="catedu" width="400" height="700" controls>
+    <source src="../img/cat.mp4" type="video/mp4">
 </video>
 
 <div id="quiz" class="container">
-    <h2 class="mb-4">강아지 OX Quiz</h2>
-    <form id="dogquizForm" action="./dogResult">
+    <h2 class="mb-4">고양이 OX Quiz</h2>
+    <form id="catquizForm" action="./catResult">
         <% 
             // 질문 배열 추가
             String[][] questions = {
-                {"1. 종합백신(DHPPL) 종류에 광견병이 포함된다.", "X"},
-                {"2. 동물 보호법으로 정해진 리드줄 길이는 2m 이하이다.", "O"},
-                {"3. 광견병 예방접종은 매년 맞지 않아도 된다.", "X"},
-                {"4. 강아지는 꽃은 먹어도 된다.", "O"},
-                {"5. 임신 중에 구충약 복용해야 한다.", "X"},
-                {"6. 임신기간은 평균 9주이다.", "O"},
-                {"7. 성견 치아는 40개 이상이다.", "O"},
-                {"8. 강아지는 땀배출을 발바닥으로 한다.", "O"},
-                {"9. 강아지 치석은 3개월 이상부터 생긴다.", "X"},
-                {"10. 입양 후 동물등록신고는 30일 안에 해야 한다.", "O"}
+           		 	{"1. 고양이는 높은 곳에서 떨어져서 다치지 않는다.", "x"},
+                    {"2. 고양이가 문어,전복을 먹으면 심장에 부담이 가므로 먹으면 안된다.", "o"},
+                    {"3. 고양이는 폐경이 없다.", "o"},
+                    {"4. 고양이는 관절염이 없다.", "x"},
+                    {"5. 길고양이는 사람의 도움이 없어도 굶지 않는다.", "x"},
+                    {"6. 고양이가 푸른 생선을 너무 많이 먹으면 배에 응어리가 만져진다.", "o"},
+                    {"7. 고양이는 사람보다 시력이 좋다.", "x"},
+                    {"8. 고양이는 단맛을 제한적으로 또는 전혀 느끼지 못한다.", "o"},
+                    {"9. 고양이는 빨간색을 알아볼 수 없다.", "o"},
+                    {"10. 고양이는 수태 후 평균 65일 만에 출산한다.", "o"}
             };
             
             for (int i = 1; i <= 10; i++) {
@@ -61,17 +60,17 @@
 </div>
 
 <script>
-    document.getElementById('dogedu').addEventListener('ended', function () {
+    document.getElementById('catedu').addEventListener('ended', function () {
         alert('동영상이 끝났습니다. 이제 퀴즈를 풀어주세요.');
-        document.getElementById('dogedu').style.display = 'none';
+        document.getElementById('catedu').style.display = 'none';
         document.getElementById('quiz').style.display = 'block';
         document.querySelector('h3').style.display = 'none';
         document.querySelector('p').style.display = 'none';
     });
 
-    const video = document.getElementById('dogedu');
+    const video = document.getElementById('catedu');
     //const quizDiv = document.getElementById('quiz');
-    const quizForm = document.getElementById('dogquizForm');
+    const quizForm = document.getElementById('catquizForm');
    
 
     function videoEnded() {

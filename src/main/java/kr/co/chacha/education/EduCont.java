@@ -2,6 +2,7 @@ package kr.co.chacha.education;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,17 +67,35 @@ public class EduCont {
 		return mav;
 	}
 	
-	/*
-	@GetMapping("/quizan")
-	public ModelAndView quizan() {
-	    ModelAndView mav = new ModelAndView();
-	    
-	    // 퀴즈 정답을 배열로 생성하여 뷰로 전달
-	    String[] answers = {"X", "O", "X", "O", "X", "O", "X", "O", "X", "O"};
-	    mav.addObject("answers", answers);  
-	    mav.setViewName("education/quizan");
-	    return mav;
+	@GetMapping("/cat")
+	public ModelAndView cat() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/cat");
+		return mav;
+	}
 	
-	}}*/
+	@GetMapping("/catResult")
+	public ModelAndView catResult() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("education/catResult");
+		return mav;
+	}
+	
+	/*
+	@Service
+	public class EduServiceImpl implements EduService {
+
+	    private final EduDAO eduDAO;
+
+	    @Autowired
+	    public EduServiceImpl(EduDAO eduDAO) {
+	        this.eduDAO = eduDAO;
+	    }
+
+	    @Override
+	    public void saveQuizResults(List<EduDTO> quizResults) {
+	        eduDAO.insertQuizResults(quizResults);
+	    }
+	*/
 
 }
