@@ -58,8 +58,9 @@
  		ORDER BY sdate ASC
  	</select>
  	
- 	<insert id="insertMsg" >
+ 	<insert id="insertMsg">
  		 INSERT INTO message (receiver_id, sender_id, mcontent, roomno, sdate)
  		 VALUES (#{receiver_id}, #{sender_id}, #{mcontent}, #{roomno}, now())
  	</insert>	
+ 	
  </mapper>	
