@@ -25,10 +25,10 @@ public class ServiceDAO {
 	}//insert() end
 	
 	//페이징
-	public List<ServiceDTO> serviceList(int currentPage, int limit) {
+	public List<ServiceDTO> serviceList(int currentPage, int limit, ServiceDTO servicedto) {
 		int offset = (currentPage-1)*limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sqlSession.selectList("service.serviceList", null, rowBounds);
+		return sqlSession.selectList("service.serviceList", servicedto, rowBounds);
 	}
 	
 	public int serviceListCnt() {

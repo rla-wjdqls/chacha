@@ -5,7 +5,7 @@
  <!--mypage.xml-->
  <mapper namespace="service">
  	
- <select id="serviceList" resultType="kr.co.chacha.service.ServiceDTO">
+ <select id="serviceList" parameterType="kr.co.chacha.service.ServiceDTO" resultType="kr.co.chacha.service.ServiceDTO">
  	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
 	FROM service	
 	ORDER BY sno		

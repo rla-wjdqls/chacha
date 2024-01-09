@@ -32,7 +32,9 @@
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="글쓰기"></a></p>
 </div>
-	<table text-align: center; class="table table-hover" style="margin-left: auto; margin-right: auto;">
+
+<div class="text-center">
+	<table class="table table-hover" style="width: 70%; margin-left: auto; margin-right: auto;">
 		<thead> 
 			<tr>
 			 	 <td>봉사글번호</td>
@@ -80,23 +82,22 @@
   			</tr>
   		</tbody>	  
   </table>
-  
-  	<!-- 검색 form -->
-	<div id="search" class="container col-sm-12">
-		<form id="searchForm" action="/service/serviceList" methos="get" >
-			<select name="type">
-				<option value="">선택</option>
-				<option value="T">제목</option>
-				<option value="C">내용</option>
-				<option value="W">아이디</option>
-				<option value="TC">제목 + 내용</option>
-				<option value="TW">제목 + 아이디</option>
-				<option value="TCW">제목 + 내용 + 아이디</option>
-			</select>
-			<input type="text" name="keyword" />
-			<button id="searchBtn">검색</button>
-		</form>
-	</div>
+</div> 
+<!-- 검색 form -->
+<div class="text-center">
+	<form id="searchForm"name="searchForm" action="/service/serviceList" method="get" >
+		<select name="type" id="type">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="id">아이디</option>
+			<option value="titleContent">제목 + 내용</option>
+			<option value="titleId">제목 + 아이디</option>
+			<option value="titleContentId">제목 + 내용 + 아이디</option>
+		</select>
+		<input class="inputId" type="text" name="keyword" placeholder="검색어 입력해주세요" value=""/>
+		<button class="submitBtn" type="submit">검색</button>
+	</form>
+</div>	
 
 
 
