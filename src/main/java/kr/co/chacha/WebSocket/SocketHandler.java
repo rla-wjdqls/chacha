@@ -35,22 +35,83 @@ public class SocketHandler extends TextWebSocketHandler {
 		String msg = message.getPayload();
 		System.out.println(msg);
 		JSONObject obj = jsonToObjectParser(msg);
+		//System.out.println(obj.get("receiver_id")); 메시지 받은 id
 		
-		if(obj.containsKey(ROOM_NO)) {//받은 메시지에 방번호가 있는지 확인
-			long roomNo = ((Number) obj.get(ROOM_NO)).longValue(); //있다면 정수형으로 변환한 뒤 변수에 저장
+//		if(obj.get("receiver_id")!= null) {
+//			String receiver_id = (String) obj.get("receiver_id");
+//			int roomno = (int) obj.get("roomno");
+//			String sender_id = (String) obj.get("uid");
+//			String mcontent = (String) obj.get("content");
+//			
+//			ChatDTO chatDto = new ChatDTO();
+//				chatDto.setReceiver_id(receiver_id);
+//				chatDto.setSender_id(sender_id);
+//				chatDto.setMcontent(mcontent);
+//				chatDto.setRoomno((int) roomno);
+//				chatDao.insertMsg(chatDto);
+//		}
+		
+		
 			
-			//방번호에 따라 메시지 처리
-			for(WebSocketSession otherSession : sessionMap.values()) {
-				try {
-					if(isInSameRoom(session, otherSession, roomNo)) { //방번호가 동일하면 메시지 보내기
-						otherSession.sendMessage(new TextMessage(obj.toJSONString()));
-					  } 
-				}catch(Exception e) {
-						e.printStackTrace();
-					}
-				
+		if(obj.containsKey(ROOM_NO)) {//받은 메시지에 방번호가 있는지 확인
+			Object roomNoObject = obj.get(ROOM_NO);
+			long roomNo = 0; 
+			if (roomNoObject instanceof Number) {
+			    roomNo = ((Number) roomNoObject).longValue();
+			} else if (roomNoObject instanceof String) {
+			    try {
+			        roomNo = Long.parseLong((String) roomNoObject);
+			    } catch (NumberFormatException e) {
+			        
+			        e.printStackTrace();
+			    }
 			}
+			
+				//방번호에 따라 메시지 처리
+				for(WebSocketSession otherSession : sessionMap.values()) {
+					try {
+						if(isInSameRoom(session, otherSession, roomNo)) { //방번호가 동일하면 메시지 보내기
+							otherSession.sendMessage(new TextMessage(obj.toJSONString()));
+							
+						  } 
+					}catch(Exception e) {
+							e.printStackTrace();
+						}
+					
+				}
+				
+				Object roomNoObject2 = obj.get("roomno");
+				int roomno;
+
+				if (roomNoObject2 instanceof Number) {
+				    // Number 타입인 경우
+				    roomno = ((Number) roomNoObject2).intValue();
+				} else if (roomNoObject2 instanceof String) {
+				    // String 타입인 경우
+				    try {
+				        roomno = Integer.parseInt((String) roomNoObject2);
+				    } catch (NumberFormatException e) {
+				        // 적절한 예외 처리 또는 기본값 설정
+				        roomno = 0; // 기본값 설정
+				    }
+				} else {
+				    // 다른 타입일 경우 처리
+				    roomno = 0; // 예외 처리 또는 기본값 설정
+				}
+
+				String receiver_id = (String) obj.get("receiver_id");
+				String sender_id = (String) obj.get("uid");
+				String mcontent = (String) obj.get("content");
+				
+				ChatDTO chatDto = new ChatDTO();
+					chatDto.setReceiver_id(receiver_id);
+					chatDto.setSender_id(sender_id);
+					chatDto.setMcontent(mcontent);
+					chatDto.setRoomno((int) roomno);
+					chatDao.insertMsg(chatDto);
+			
 		}
+		
 	
 	}//handleTextMessage() end
 	

@@ -14,10 +14,10 @@
  		VALUES (#{uid}, #{anino}, #{textno}, #{uid2})
  	</insert>
  	
- 	<select id="selectChat" resultType="kr.co.chacha.chat.ChatDTO">
+ 	<select id="selectChat" resultType="java.util.Map">
  		SELECT roomno, sender_id, receiver_id, mcontent, sdate
  		FROM message
- 		WHERE (sender_id = #{uid} AND receiver_id = #{uid} AND roomno = #{roomno})
+ 		WHERE roomno = #{roomno}
  		ORDER BY sdate ASC
  	</select>
  	
@@ -44,4 +44,22 @@
  		FROM chat
  		WHERE (writer = #{writer})
  	</select> -->
+ 	
+ 	<select id="headerRoom" resultType="java.util.Map">
+ 		SELECT *
+		FROM chat
+		WHERE uid = #{uid} OR uid2 = #{uid}
+ 	</select>
+ 	
+ 	<select id="headerChat" resultType="java.util.Map">
+ 		SELECT roomno, sender_id, receiver_id, mcontent, sdate
+ 		FROM message
+ 		WHERE roomno = #{roomno}
+ 		ORDER BY sdate ASC
+ 	</select>
+ 	
+ 	<insert id="insertMsg" >
+ 		 INSERT INTO message (receiver_id, sender_id, mcontent, roomno, sdate)
+ 		 VALUES (#{receiver_id}, #{sender_id}, #{mcontent}, #{roomno}, now())
+ 	</insert>	
  </mapper>	

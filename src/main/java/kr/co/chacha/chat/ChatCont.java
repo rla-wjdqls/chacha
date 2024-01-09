@@ -53,11 +53,12 @@ public class ChatCont {
 			//System.out.print(roomno);
 		}
 		
-		List<ChatDTO> chatList = chatDao.selectChat(chatDto);
+		//List<Map<String, Object>> chatList = chatDao.selectChat(chatDto);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/room");
-		mav.addObject("chatList", chatList);
+		mav.addObject("chatList", chatDao.selectChat(chatDto));
+		System.out.println(mav);
 		return mav;
 	}
 	
@@ -74,5 +75,33 @@ public class ChatCont {
 		return  new ResponseEntity<>(roomno, HttpStatus.OK);
 	}
 	
+	@PostMapping("/headerChat")
+	public ModelAndView header_chating(HttpSession session) {
+		String uid = (String)session.getAttribute("s_id");
+		ChatDTO chatDto = new ChatDTO();
+		chatDto.setUid(uid);
+		//System.out.println("아이디" + uid); 
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("headerChat");
+		mav.addObject("headerRoom", chatDao.headerRoom(uid));
+		System.out.println(mav);
+		return mav;
+	}
+	
+	@PostMapping("/headerChatMsg")
+	@ResponseBody
+	public List<ChatDTO> headerChatMsg(HttpSession session, int roomno) {
+		String uid = (String)session.getAttribute("s_id");
+		System.out.println(roomno);
+		System.out.println(uid);
+		ChatDTO chatDto = new ChatDTO();
+		chatDto.setUid(uid);
+		chatDto.setRoomno(roomno);
+		//ModelAndView mav = new ModelAndView();
+		//mav.setViewName("headerChat");
+		List<ChatDTO> list= chatDao.headerChat(chatDto);
+		return list;
+		
+	}
 	
 }

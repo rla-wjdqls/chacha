@@ -30,9 +30,9 @@ public class ChatDAO {
 		return sqlSession.insert("chat.createRoom", chatDto);
 	}// 채팅방 생성
 	
-	public List<ChatDTO> selectChat(ChatDTO chatDto){
+	public List<Map<String, Object>> selectChat(ChatDTO chatDto){
 		return sqlSession.selectList("chat.selectChat", chatDto);
-	}
+	}//메시지 조회
 	
 	public Integer getRoomno(ChatDTO chatDto) {
 		Integer result = sqlSession.selectOne("chat.selectChatRoom", chatDto);
@@ -40,6 +40,18 @@ public class ChatDAO {
 			result = 0;
 		}
 		return result;
+	}//방번호 조회
+	
+	public List<Map<String, Object>> headerRoom(String uid){
+		return sqlSession.selectList("chat.headerRoom", uid);
+	}//헤더에서 채팅방 조회
+	
+	public List<ChatDTO> headerChat(ChatDTO chatDto){
+		return sqlSession.selectList("chat.headerChat", chatDto);
+	}//헤더에서 메시지 조회
+	
+	public int insertMsg(ChatDTO chatDto) {
+		return sqlSession.insert("chat.insertMsg", chatDto);
 	}
 	
 	
