@@ -281,7 +281,9 @@ img{ max-width:100%;}
         document.addEventListener("keypress", function(e){
 			if(e.keyCode == 13){ //enter press
 				msg = $("#write_msg").val(); //입력 창 값 가져오기
-				sendMessage(socket, msg, uid, roomno, sessId, receiver_id);
+				if(msg.length !== 0){
+					sendMessage(socket, msg, uid, roomno, sessId, receiver_id);
+				}
 			}
 		}); 
         
@@ -289,7 +291,9 @@ img{ max-width:100%;}
         msg_send_btn.addEventListener("click", function () {//전송 버튼 클릭하면
         	//alert("오");
         	msg = $("#write_msg").val(); //입력 창 값 가져오기
-	        sendMessage(socket, msg, uid, roomno, sessId, receiver_id); // 메시지 전송
+        	if(msg.length !== 0){
+				sendMessage(socket, msg, uid, roomno, sessId, receiver_id);
+			}
 	    });
         
         function sendMessage(socket, msg, uid, roomno, sessId, receiver_id) {//메시지를 보내는 함수
@@ -339,7 +343,17 @@ img{ max-width:100%;}
 			        <div class="chat_people">
 			            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 			            <div class="chat_ib">
-			                <h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
+			            	<<%-- c:choose>
+				            	<c:when test="${RoomList.uid eq uid}">
+				            		<h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
+				            	</c:when>
+				            	<c:when test="${RoomList.uid ne uid}">
+				            		<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
+				            	</c:when>
+				                <c:otherwise>
+				                	<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
+				                </c:otherwise>
+			                </c:choose> --%>
 			                <p>${chatList.content}</p>
 			            </div>
 			        </div>

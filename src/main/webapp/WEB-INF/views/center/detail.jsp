@@ -262,7 +262,7 @@
 	
 			function chat_popup(){ 
 				let uid = '<%= (String)session.getAttribute("s_id") %>';
-				//let writer = document.getElementById('writer');
+				let writer = document.getElementById('writer');
 				if(uid == "null"){
 					uid = "";
 				}
@@ -273,7 +273,7 @@
 					let form = document.getElementById("chatfrm");
 					
 					//새로운 창 열기
-					let newWindow = window.open("/chat", "_chating", "menubar=no, toolbar=no");
+					let newWindow = window.open("/chat", "_chating", "menubar=no, toolbar=no, width=600, height=700");
 					
 					//폼 보내기
 					form.target = "_chating";
