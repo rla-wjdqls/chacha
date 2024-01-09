@@ -168,32 +168,56 @@ img{ max-width:100%;}
     let roomno;
     let receiver_id;
 
-    //let roomno;
-    //alert(writer);
-    //alert(anino);
-    //alert(uid);
-    /* window.onload = function(){
-    	getRoomno(anino);
-    } */
-    	 
-    	$.ajax({
-        	url : '/getRoomno',
-        	type : 'post',
-        	data : { 'anino' : anino
-        	},
-        	error : function (error) {
-        		alert(error);
-    		},
-    		success : function (roomno) {
-    			//alert('채팅방 번호 :' + roomno);
-    			roomno = roomno
-    		    let chatSocket = openChatSocket(roomno); //채팅방번호를 파라미터로 넘겨주면서 웹소켓 연결
-    		    //웹소켓 객체를 변수에 담기 
-    		}
-        });//ajax end
-      	
-        
-	    
+    function handleClick(roomno) {
+        alert(roomno);	
+        headerChat(roomno);
+        document.getElementById('chatContainer').style.display = 'block';
+        openChatSocket(roomno);
+    }//handleClick end
+    
+    function headerChat(roomno) {
+		$.ajax({
+			url : '/headerChatMsg',
+			type : 'post',
+			data : {'roomno' : roomno
+			},
+			error : function (error) {
+				alert(error);
+			},
+			success : function (result) {
+				//alert("아");
+				console.log(result);
+				$.each(result, function (key, value) {
+					//console.log(value.sender_id);
+					if(value.sender_id != uid){ //보내는 사람이 내가 아니라면
+						let a = '';
+						a += "<div class='incoming_msg_img'>" ;
+						a += "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>" ;
+						a += "<div class='received_msg'>" ;
+						a += "<div class='received_withd_msg' id='received_msg'>" ;
+						a += "<p>" + value.mcontent + "</p>" ;
+						a += "<span class='time_date'>" + value.sdate + "</span>" ;
+						a += "</div>" ;
+						a += "</div>" ;
+						
+						$("#msg_history").append(a);
+					}else if(value.sender_id == uid){ //보내는 사람이 나라면 
+						let a = '';
+						a += "<div class='outgoing_msg'>" ;
+						a += "<div class='sent_msg' id='send_msg'>" ;
+						a += "<p>" + value.mcontent + "</p>" ;
+						a += " <span class='time_date'>" + value.sdate + "</span> " ;
+						a += "</div>" ;
+						a += "</div>" ;
+						$("#msg_history").append(a);
+					}
+				})
+			}
+		});//ajax end
+    	
+    	
+	}//headerChat end
+
     function openChatSocket(roomno) { //소켓이 열리면 
         let socket = new WebSocket("ws://" + location.host + "/chating/" + roomno); //방번호를 넘겨준다
 
@@ -228,15 +252,25 @@ img{ max-width:100%;}
             		}
             	}else if(d.type == "message"){//type이 message
             		if(d.sessId == sessId){//서버에서 받은 세션id가 저장해둔 세션 id와 같다면  //d.uid와 uid 비교도 해보기
-            			let chatMsg = "<p>" + d.content + "</p>" ;
-            			$("#send_msg").append(chatMsg);
-            			//addMessage(chatMsg)
+            			let chatMsg = "<div class='outgoing_msg'>" +
+                  					  "<div class='sent_msg' id='sent_msg'>" +
+                  					  "<p>" + d.content + "</p>" +
+					                  "</div></div>" ;
+            			$("#msg_history").append(chatMsg);
+            			//alert("같다");
             		}else{
             			//alert(d.sessId);
+            			//alert("다르다");
             			alert("보내는 사람 아이디" + d.uid);
             			receiver_id = d.uid;
-            			let chatMsg = "<p>" + d.content + "</p>";
-            			$("#received_msg").append(chatMsg);
+            			let chatMsg = "<div class='incoming_msg'>" +
+        		       				  "<div class='incoming_msg_img'>" +
+            						  "<img src='https://ptetutorials.com/images/user-profile.png' alt='sunil'> </div>" +
+        		        			  "<div class='received_msg'>" +
+        		            		  "<div class='received_withd_msg' id='received_withd_msg'>" +
+                  					  "<p>" + d.content + "</p>" +
+					        		  "</div></div></div>" ;
+            			$("#msg_history").append(chatMsg);
             		}
             	}else{
             		console.log("정의되지 않은 타입");
@@ -258,8 +292,6 @@ img{ max-width:100%;}
 	        sendMessage(socket, msg, uid, roomno, sessId, receiver_id); // 메시지 전송
 	    });
         
-        
-        
         function sendMessage(socket, msg, uid, roomno, sessId, receiver_id) {//메시지를 보내는 함수
             socket.send(JSON.stringify({
                 type: "message",
@@ -272,57 +304,53 @@ img{ max-width:100%;}
             $("#write_msg").val(''); //빈문자열로 바꾸기 
         }//sendMessage end
         
+        //sessions.remove(session.getId());
         return socket;
-    }//openChatSocket end
     
- 
-
+    }//openChatSocket end
+        
 </script>
 <body>
 <div class="container">
-<h3 class=" text-center">Messaging</h3>
+<h3 class=" text-center">채팅</h3>
 <div class="messaging">
       <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>목록</h4>
+            </div>
+            <div class="srch_bar">
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <!-- <div class="chat_list active_chat">
+              <div class="chat_people">
+                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib">
+                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
+                  <p>Test, which is a new approach to have all solutions 
+                    astrology under one roof.</p>
+                </div>
+              </div>
+            </div> -->
+            <c:forEach items="${headerRoom}" var="RoomList" varStatus="lvs">
+			    <div class="chat_list" onclick="handleClick('${RoomList.roomno}')">
+			        <div class="chat_people">
+			            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+			            <div class="chat_ib">
+			                <h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
+			                <p>${chatList.content}</p>
+			            </div>
+			        </div>
+			    </div>
+			</c:forEach>
+          </div>
+        </div>
         <!-- 채팅창 시작 -->
-        <div class="mesgs">
-          <div class="msg_history">
-          	<c:forEach items="${chatList}" var="row" varStatus="vs">
-		    <c:choose>
-		        <c:when test="${row.sender_id eq sessionScope.s_id}">
-		            <!-- 발신 메시지 -->
-		             <div class="outgoing_msg">
-             		 <div class="sent_msg" id="send_msg">
-		                <p>${row.mcontent}</p>
-		               <span class="time_date">${row.sdate}</span>
-		             </div>
-		            </div>
-		        </c:when>
-		        <c:otherwise>
-		            <!-- 수신 메시지 -->
-		              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		              <div class="received_msg">
-		                <div class="received_withd_msg" id="received_msg">
-		                  <p>${row.mcontent}</p>
-                		  <span class="time_date">${row.sdate}</span>
-		                </div>
-		              </div>
-		            
-		        </c:otherwise>
-		    </c:choose>
-		 </c:forEach>
-		 
-          	<div class="outgoing_msg">
-             	<div class="sent_msg" id="sent_msg">
-		        </div>
-		    </div>
-		  <div class="incoming_msg">
-		       <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-		       <div class="received_msg">
-		           <div class="received_withd_msg" id="received_withd_msg">
-				   </div>
-		       </div>
-		  </div>
-
+        <div class="mesgs" style="display: none;" id="chatContainer">
+          <div class="msg_history" id="msg_history">
+          
          </div>
           <div class="type_msg">
             <div class="input_msg_write">
@@ -330,7 +358,6 @@ img{ max-width:100%;}
               <button class="msg_send_btn" id="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" id="button" aria-hidden="true"></i></button>
             </div>
           </div>
-          
         </div>
       </div>
     </div></div>
