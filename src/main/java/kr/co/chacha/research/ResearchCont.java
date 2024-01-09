@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.mypage.MypageDTO;
 
@@ -66,17 +67,23 @@ public class ResearchCont {
 	// 설문조사 페이지 띄어주기
 	@RequestMapping("/researchForm")
 	public ModelAndView researchForm(@RequestParam String rno) {
+		
+		//qno 가져오기
+		int qno = researchdao.chekckminQno(rno);
+		System.out.println(qno);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchForm");
 		mav.addObject("researchList", researchdao.researchList2(rno));
-		mav.addObject("researchForm", researchdao.researchForm(rno));
-		mav.addObject("researchChoice", researchdao.researchChoice(rno));
+		//qno에 맞는 질문 가져오기
+		//mav.addObject("researchForm", researchdao.checkQcont(qno));
+		//mav.addObject("researchChoice", researchdao.researchChoice(rno));
 		return mav;
 	}//researchForm() end
 	
 	
 
-	// 설문조사 등록폼 이동
+	// 설문 등록 페이지 이동
 	@GetMapping("/researchReg")
 	public ModelAndView researchReg() {
 		ModelAndView mav = new ModelAndView();
@@ -85,77 +92,74 @@ public class ResearchCont {
 	}//researchReg() end
 	
 	
-	
 	//설문조사 등록
-	@PostMapping("/researchInsert")
-	public void researchInsert(HttpServletRequest req, ResearchDTO researchDTO) {
-	    
-		String[] qcont = req.getParameterValues("qcont");
-		String[] qtype = req.getParameterValues("qtype");
-		String[] choice = req.getParameterValues("choice");
-		
-		/*
-			for(int i=0; i<qcont.length; i++) {
-				System.out.println(qcont[i]);
-			}//for end
-			
-			for(int i=0; i<qtype.length; i++) {
-				System.out.println(qtype[i]);
-			}//for end
-			
-			for(int i=0; i<choice.length; i++) {
-				System.out.println(choice[i]);
-			}//for end
-		*/
-		
+	@PostMapping("/researchQCReg")
+	public ModelAndView researchInsert(ResearchDTO researchDTO, HttpSession session) {
+
 		//설문번호 발급 생성하기
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 		String date = sd.format(new Date());
 		String rno = "r" + date;
+        researchDTO.setRno(rno);
 		
-        
         //research 테이블 isnert 
-        //researchdao.researchInsert(researchDTO);
+        researchdao.researchInsert(researchDTO);
         
-        //researchq 테이블 isnert
-        //배열을 list에 담음
-        List<ResearchDTO> researchList = new ArrayList<>();
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("research/researchQCReg");
+        return mav;
         
-        researchList.add(researchDTO);
-        
-        
-	    researchdao.researchqInsert(researchList);
-
-        //생성된 일련번호 qno 찾아와서 dto에 담아줌  
-        //int qno = researchdao.checkQno(researchDTO);
-        //System.out.println(qno);
-        
-        //researchDto.setQno(qno);
-        
-        //researchdao.researchcInsert(researchDto);
-        	
-        
-
 	}//researchInsert() end
 	
 	
+	// 질문/선택지 등록 폼 이동
+	@GetMapping("/researchQCReg")
+	public ModelAndView researchQCReg() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("research/researchQCReg");
+		return mav;
+	}//researchQCReg() end
 	
 	
-	
-	
+	//질문/선택지 등록
+	@PostMapping("/researchQCInsert")
+	public void researchQCInsert(ResearchDTO researchDTO) {
+		//System.out.println(researchDTO);
+		//[rno=r20240109180136, qno=0, qcont=질문1, qtype=gg, cno=0, choice=선택지1,선택지2]
+		
+		 //researchq 테이블 isnert
+		int cnt1 = researchdao.researchqInsert(researchDTO);
+		System.out.println(cnt1);
+		
+		//researchc 테이블 insert
+		//qno 가져오기
+		String rno = researchDTO.getRno();
+		int qno = researchdao.checkQno(rno); //49
+		System.out.println(qno);
+		
+		//list에 choice 담아 넘기기
+		List<ResearchDTO> researchList = new ArrayList<>();
+     
+        // 원래의 qcont를 쉼표(,)를 기준으로 분리하여 ResearchDTO를 생성하고 리스트에 추가
+        String[] choiceArray = researchDTO.getChoice().split(",");
+
+        for (int i = 0; i < choiceArray.length; i++) {
+            ResearchDTO newResearchDTO = new ResearchDTO();
+            newResearchDTO.setQno(qno);
+            newResearchDTO.setChoice(choiceArray[i]);
+            researchList.add(newResearchDTO);
+        }//for end
+        
+        //System.out.println(researchList);
+        //[qno=49, choice=선택3-1, qno=49, choice=선택3-2, qno=49, choice=선택3-3]
+        
+	    int cnt2 = researchdao.researchcInsert(researchList);
+	    System.out.println(cnt2);
+		
+		
+	}//researchQCInsert() end
 	
 
-	
-	
-	
-	
-
-
-	
-	
-
-	
-	
 	
 	
 }//class end

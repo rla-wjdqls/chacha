@@ -7,17 +7,32 @@
 	 	INSERT INTO research (rno, rtitle, rdate1, rdate2, rstate, rop, rgdate)
 		VALUES (#{rno}, #{rtitle}, #{rdate1}, #{rdate2}, #{rstate}, #{rop}, NOW())
 	</insert>	
-	
-	<insert id="researchqInsert" parameterType="java.util.List">
+		
+	<insert id="researchqInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	 	INSERT INTO researchq (rno, qtype, qcont)
+		VALUES (#{rno}, #{qtype}, #{qcont})
+	</insert>	
+		
+		
+	<insert id="researchcInsert" parameterType="java.util.List">
+	    INSERT INTO researchc(qno, choice)
+	    VALUES
+	    <foreach collection="list" item="item" index="index" separator=",">
+	        (#{item.qno}, #{item.choice})
+	    </foreach>
+	</insert> 
+		
+		
+ 	<insert id="multinsert" parameterType="java.util.List">
 	    INSERT INTO researchq(rno, qcont, qtype)
 	    VALUES
 	    <foreach collection="list" item="item" index="index" separator=",">
 	        (#{item.rno}, #{item.qcont}, #{item.qtype})
 	    </foreach>
-	</insert>
+	</insert> 
 
-	<select id="checkQno" parameterType="kr.co.chacha.research.ResearchDTO" resultType="Int">
-	  	SELECT qno
+	<select id="checkQno" parameterType="String" resultType="Int">
+	  	SELECT max(qno)
 	  	FROM researchq
 	  	WHERE rno = #{rno}
     </select>
@@ -35,12 +50,20 @@
  		WHERE rno = #{rno}
  	</select>
  	
- 	<select id="researchForm" resultType="kr.co.chacha.research.ResearchDTO"> 		
-		SELECT rq.qcont
-		FROM researchq rq JOIN researchc rc 
-		ON rq.qno = rc.qno
-		WHERE rq.rno = #{rno} AND rc.cno = 14
+ 	<select id="checkminQno" resultType="Int"> 		
+		SELECT min(qno)
+		FROM researchq
+		WHERE rno = #{rno};
  	</select>
+ 	
+    
+    <select id="chekckQcont" resultType="String"> 		
+		SELECT qcont
+		FROM researchq
+		WHERE qno = #{qno};
+ 	</select>
+    
+    
     
     <select id="researchChoice" resultType="kr.co.chacha.research.ResearchDTO"> 		
 		SELECT rc.qno, rc.choice
