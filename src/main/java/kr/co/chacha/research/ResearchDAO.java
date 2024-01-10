@@ -1,6 +1,8 @@
 package kr.co.chacha.research;
 
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
 import java.util.Map;
 
@@ -22,19 +24,27 @@ public class ResearchDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public void researchInsert(ResearchDTO researchDTO) {		
-		sqlSession.insert("research.researchInsert", researchDTO);
+	public int researchInsert(ResearchDTO researchDTO) {		
+		return sqlSession.insert("research.researchInsert", researchDTO);
 	}//researchInsert() end
 
 	//질문 등록
-	public void researchqInsert(List<ResearchDTO> researchList) {		
-		sqlSession.insert("research.researchqInsert", researchList);
+	public int researchqInsert(List<ResearchDTO> researchList) {		
+		return sqlSession.insert("research.researchqInsert", researchList);
 	}//researchqInsert() end
 	
+	//선택지 등록
+	public int researchcInsert(List<ResearchDTO> researchList) {		
+		return sqlSession.insert("research.researchcInsert", researchList);
+	}//researchqInsert() end
 	
-	public int checkQno(ResearchDTO researchDTO) {		
-		return sqlSession.selectOne("research.checkQno", researchDTO);
-	}//researchcInsert() end
+	public List<ResearchDTO> checkQno(String rno) {		
+		return sqlSession.selectList("research.checkQno", rno);
+	}//checkQno() end
+	
+	public int checkQty(String rno) {		
+		return sqlSession.selectOne("research.checkQty", rno);
+	}//checkQty() end
 	
 	
 	//설문조사 목록
@@ -49,11 +59,16 @@ public class ResearchDAO {
 	}//researchList2() end
 	
 	
-	//설문조사 질문 가져오기
-	public ResearchDTO researchForm(String rno){
-		//System.out.println(rno); //r20240107131903
-		return sqlSession.selectOne("research.researchForm", rno);
-	}//researchList() end
+	//설문조사 qno 가져오기
+	public int chekckminQno(String rno){
+		return sqlSession.selectOne("research.checkminQno", rno);
+	}//researchForm() end
+	
+	//질문 가져오기
+	public String checkQcont(int qno){
+		return sqlSession.selectOne("research.checkQcont", qno);
+	}//checkQcont() end
+	
 	
 	//설문조사 선택지 가져오기
 	public List<ResearchDTO> researchChoice(String rno){

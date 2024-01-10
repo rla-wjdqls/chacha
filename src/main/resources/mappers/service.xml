@@ -7,7 +7,17 @@
  	
  <select id="serviceList" parameterType="kr.co.chacha.service.ServiceDTO" resultType="kr.co.chacha.service.ServiceDTO">
  	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
-	FROM service	
+	FROM service
+	WHERE 1=1
+	<if test='type!=null and type.equals("title")'>
+		AND stitle like CONCAT('%',#{keyword},'%')
+	</if>
+	<if test='type!=null and type.equals("id")'>
+		AND uid = #{keyword}
+	</if>
+	<if test='type!=null and type.equals("titleId")'>
+		AND ((uid = #{keyword}) OR (stitle like CONCAT('%',#{keyword},'%')))
+	</if>
 	ORDER BY sno		
  </select>
  
