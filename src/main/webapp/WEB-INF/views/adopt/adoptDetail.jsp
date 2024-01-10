@@ -23,9 +23,10 @@ width: 40%;
         border-radius: 15px; /* 원하는 모서리의 반지름 값을 지정합니다. */
         padding: 6px 9px; /* 원하는 패딩 값을 지정합니다. */
         border: none;
-
+         color: white;
+}
 .gray {
-         /* 원하는 회색 값으로 변경합니다. */
+        background-color: #D5D5D5; /* 원하는 회색 값으로 변경합니다. */
         color: white; /* 텍스트 색상을 조절합니다. */
     }
 </style>
