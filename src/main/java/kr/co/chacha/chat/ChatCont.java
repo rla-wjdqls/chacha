@@ -76,6 +76,7 @@ public class ChatCont {
 	}
 	
 	@PostMapping("/headerChat")
+	@ResponseBody
 	public ModelAndView header_chating(HttpSession session) {
 		String uid = (String)session.getAttribute("s_id");
 		ChatDTO chatDto = new ChatDTO();

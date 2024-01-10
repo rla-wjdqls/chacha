@@ -166,10 +166,12 @@ img{ max-width:100%;}
     let msg;
     let seId;
     let roomno;
+    let roomNum;
     let receiver_id;
 
-    function handleClick(roomno) {
-        alert(roomno);	
+    function handleClick(roomNo) {
+        alert(roomNo);	
+        roomno = roomNo;
         headerChat(roomno);
         document.getElementById('chatContainer').style.display = 'block';
         openChatSocket(roomno);
@@ -219,7 +221,8 @@ img{ max-width:100%;}
 	}//headerChat end
 
     function openChatSocket(roomno) { //소켓이 열리면 
-        let socket = new WebSocket("ws://" + location.host + "/chating/" + roomno); //방번호를 넘겨준다
+    	roomNum = roomno;
+        let socket = new WebSocket("ws://" + location.host + "/chating/" + roomNum); //방번호를 넘겨준다
 
         
         socket.onopen = function (event) {//소켓 연결
@@ -227,7 +230,7 @@ img{ max-width:100%;}
             //소켓이 열리면 방번호와 함께 메시지 전달
             socket.send(JSON.stringify({
                 type: "connect",
-                roomNo: roomno
+                roomNo: roomNum
             }));	
         }//socket.onopen end
         
@@ -282,7 +285,7 @@ img{ max-width:100%;}
 			if(e.keyCode == 13){ //enter press
 				msg = $("#write_msg").val(); //입력 창 값 가져오기
 				if(msg.length !== 0){
-					sendMessage(socket, msg, uid, roomno, sessId, receiver_id);
+					sendMessage(socket, msg, uid, roomNum, sessId, receiver_id);
 				}
 			}
 		}); 
@@ -292,17 +295,17 @@ img{ max-width:100%;}
         	//alert("오");
         	msg = $("#write_msg").val(); //입력 창 값 가져오기
         	if(msg.length !== 0){
-				sendMessage(socket, msg, uid, roomno, sessId, receiver_id);
+				sendMessage(socket, msg, uid, roomNum, sessId, receiver_id);
 			}
 	    });
         
-        function sendMessage(socket, msg, uid, roomno, sessId, receiver_id) {//메시지를 보내는 함수
+        function sendMessage(socket, msg, uid, roomNum, sessId, receiver_id) {//메시지를 보내는 함수
             socket.send(JSON.stringify({
                 type: "message",
                 content: msg,
                 uid : uid,
                 receiver_id : receiver_id,
-                roomno : roomno,
+                roomno : roomNum,
                 sessId : sessId
             }));
             $("#write_msg").val(''); //빈문자열로 바꾸기 
@@ -343,17 +346,14 @@ img{ max-width:100%;}
 			        <div class="chat_people">
 			            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 			            <div class="chat_ib">
-			            	<%-- <c:choose>
-				            	<c:when test="${RoomList.uid eq uid}">
+			            	<c:choose>
+				            	<c:when test="${RoomList.uid eq sessionScope.s_id}">
 				            		<h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
 				            	</c:when>
-				            	
 				                <c:otherwise>
 				                	<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
 				                </c:otherwise>
-			                </c:choose>  --%>
-			                <h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
-			                <p>${chatList.content}</p>
+			                </c:choose>
 			            </div>
 			        </div>
 			    </div>
