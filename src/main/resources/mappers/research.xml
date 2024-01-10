@@ -8,10 +8,13 @@
 		VALUES (#{rno}, #{rtitle}, #{rdate1}, #{rdate2}, #{rstate}, #{rop}, NOW())
 	</insert>	
 		
-	<insert id="researchqInsert" parameterType="kr.co.chacha.research.ResearchDTO">
-	 	INSERT INTO researchq (rno, qtype, qcont)
-		VALUES (#{rno}, #{qtype}, #{qcont})
-	</insert>	
+	<insert id="researchqInsert" parameterType="java.util.List">
+	    INSERT INTO researchq(rno, qcont, qtype)
+	    VALUES
+	    <foreach collection="list" item="item" index="index" separator=",">
+	        (#{item.rno}, #{item.qcont}, #{item.qtype})
+	    </foreach>
+	</insert> 
 		
 		
 	<insert id="researchcInsert" parameterType="java.util.List">

@@ -27,8 +27,8 @@ public class ResearchDAO {
 	}//researchInsert() end
 
 	//질문 등록
-	public int researchqInsert(ResearchDTO researchDTO) {		
-		return sqlSession.insert("research.researchqInsert", researchDTO);
+	public int researchqInsert(List<ResearchDTO> researchList) {		
+		return sqlSession.insert("research.researchqInsert", researchList);
 	}//researchqInsert() end
 	
 	//선택지 등록
