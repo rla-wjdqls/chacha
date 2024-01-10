@@ -168,11 +168,16 @@ img{ max-width:100%;}
     let roomno;
     let roomNum;
     let receiver_id;
+    let socket
 
     function handleClick(roomNo) {
         alert(roomNo);	
         roomno = roomNo;
+        if (socket && socket.readyState === WebSocket.OPEN) {
+            socket.close();
+        }
         headerChat(roomno);
+        $("#msg_history").empty();
         document.getElementById('chatContainer').style.display = 'block';
         openChatSocket(roomno);
     }//handleClick end
@@ -203,6 +208,7 @@ img{ max-width:100%;}
 						a += "</div>" ;
 						
 						$("#msg_history").append(a);
+						
 					}else if(value.sender_id == uid){ //보내는 사람이 나라면 
 						let a = '';
 						a += "<div class='outgoing_msg'>" ;
@@ -212,6 +218,7 @@ img{ max-width:100%;}
 						a += "</div>" ;
 						a += "</div>" ;
 						$("#msg_history").append(a);
+						
 					}
 				})
 			}
@@ -220,11 +227,17 @@ img{ max-width:100%;}
     	
 	}//headerChat end
 
+
     function openChatSocket(roomno) { //소켓이 열리면 
     	roomNum = roomno;
-        let socket = new WebSocket("ws://" + location.host + "/chating/" + roomNum); //방번호를 넘겨준다
+    
+    	if (socket && socket.readyState === WebSocket.OPEN) {
+            // 이미 열려 있는 WebSocket이 있으면 그것을 사용
+            return socket;
+        }
+    	
+        socket = new WebSocket("ws://" + location.host + "/chating/" + roomNum); //방번호를 넘겨준다
 
-        
         socket.onopen = function (event) {//소켓 연결
         	console.log("웹소켓 연결 성공");
             //소켓이 열리면 방번호와 함께 메시지 전달
@@ -260,6 +273,7 @@ img{ max-width:100%;}
                   					  "<p>" + d.content + "</p>" +
 					                  "</div></div>" ;
             			$("#msg_history").append(chatMsg);
+            			$("#msg_history").load(window.location.href + " #msg_history");
             			//alert("같다");
             		}else{
             			//alert(d.sessId);
@@ -274,6 +288,7 @@ img{ max-width:100%;}
                   					  "<p>" + d.content + "</p>" +
 					        		  "</div></div></div>" ;
             			$("#msg_history").append(chatMsg);
+            			$("#msg_history").load(window.location.href + " #msg_history");
             		}
             	}else{
             		console.log("정의되지 않은 타입");
