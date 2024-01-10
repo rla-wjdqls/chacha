@@ -14,6 +14,17 @@ width: 10%;
 td{
 width: 40%;
 }
+
+.btnn {
+        border-radius: 15px; /* 원하는 모서리의 반지름 값을 지정합니다. */
+        padding: 6px 9px; /* 원하는 패딩 값을 지정합니다. */
+        border: none;
+
+.gray {
+        background-color: gray; /* 원하는 회색 값으로 변경합니다. */
+        color: white; /* 텍스트 색상을 조절합니다. */
+    }
+
 </style>
 <script>
 function hdelete() {
@@ -95,8 +106,8 @@ function hdelete() {
 
 <div style="text-align:center; height: 50px; padding-top: 15px;">
 	<p><a href="/help/helpUpdate?textno=${helpd.textno}">
-	<input type="button" class="btn btn-success" value="수정"></a>
-	<input type="button" class="btn btn-danger" onclick="hdelete();" value="삭제"> &nbsp;
+	<input type="button" class="btnn btn-primary" value="수정"></a>
+	<input type="button" class="btnn gray" onclick="hdelete();" value="삭제"> &nbsp;
 	</p>
 </div>
 
