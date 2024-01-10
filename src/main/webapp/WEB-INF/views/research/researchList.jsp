@@ -54,7 +54,19 @@
 
 <!-- 본문 끝 -->
 
+<!--  <script>
+     // 컨트롤러에서 전달된 경고 메시지에 접근
+     var alertMessage = "${alertMessage}";
 
+     // 경고 메시지가 있는지 확인
+     if (alertMessage) {
+         // 경고 표시
+         alert(alertMessage);
+     }
+
+     // 원하는 페이지로 리다이렉트
+     window.location.href = "/research/researchList";
+ </script> -->
 
 
 

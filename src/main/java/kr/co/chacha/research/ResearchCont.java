@@ -1,5 +1,7 @@
 package kr.co.chacha.research;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.net.http.HttpRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,7 +57,7 @@ public class ResearchCont {
 		
 	
 	// 설문조사 목록 페이지
-	@RequestMapping("/researchList")
+	@GetMapping("/researchList")
 	public ModelAndView researchList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchList");
@@ -94,7 +96,7 @@ public class ResearchCont {
 	
 	//설문조사 등록
 		@PostMapping("/researchInsert")
-		public void researchInsert(ResearchDTO researchDTO) {
+		public ModelAndView researchInsert(ResearchDTO researchDTO) {
 
 			//설문번호 발급 생성하기
 			SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -104,7 +106,6 @@ public class ResearchCont {
 			
 	        //research 테이블 isnert 
 	        int cnt1 = researchdao.researchInsert(researchDTO);
-	        //System.out.println(cnt1);
 	        
 	        //researchq 테이블 isnert
 	        List<ResearchDTO> researchList = new ArrayList<>();
@@ -112,42 +113,87 @@ public class ResearchCont {
 	        // 원래의 qcont를 쉼표(,)를 기준으로 분리하여 ResearchDTO를 생성하고 리스트에 추가
 	        String[] qcontArray = researchDTO.getQcont().split(",");
 	        String[] qtypeArray = researchDTO.getQtype().split(",");
-
+	        String[] qtyArray = researchDTO.getQty().split(",");
+	        
+	        //System.out.println(Arrays.toString(qtyArray)); //[2,3]
+	        
 	        for (int i = 0; i < qcontArray.length; i++) {
 	            ResearchDTO newResearchDTO = new ResearchDTO();
-	            newResearchDTO.setRno(researchDTO.getRno());
+	            newResearchDTO.setRno(researchDTO.getRno()); 
 	            newResearchDTO.setQcont(qcontArray[i]);
 	            newResearchDTO.setQtype(qtypeArray[i]);
+	            newResearchDTO.setQty(qtyArray[i]);
 	            researchList.add(newResearchDTO);
 	        }//for end
 	        
 		    int cnt2 = researchdao.researchqInsert(researchList);
 		    //System.out.println(cnt2);
 		    
-		    System.out.println(researchDTO);
-		    //rno=r20240109112244, qno=0, choice=선택지1,선택지2-1,선택지2-2,선택지3-1,선택지3-2,선택지3-3
-		    
-		    //qno 가져오기
-	        System.out.println(researchdao.checkQno(rno)); //[qno=32, qno=33, qno=34]
-	        //[rno=null, qno=38, choice=null, rno=null, qno=39, choice=null, rno=null, qno=40, choice=null]
-	        
-	        
-	        
-	        
-	        //researchDto.setQno(qno);
-	        
-	        //researchdao.researchcInsert(researchDto);
-	        	
-	        
+		    List<ResearchDTO> qnoList = researchdao.checkQno(rno);
 
+			 // qno 값을 추출하여 배열로 만들어줌
+			 int[] qnoArray = qnoList.stream()
+			                         .mapToInt(ResearchDTO::getQno)
+			                         .toArray(); //[121, 122, 123]
+	
+			 // 배열 출력
+			 //System.out.println(Arrays.toString(qnoArray)); //[121, 122, 123]
+        
+			// qtyArray를 정수 배열로 변환
+			 int[] qtyIntArray = Arrays.stream(qtyArray)
+			                            .mapToInt(Integer::parseInt)
+			                            .toArray();
+		        
+			// qnoArray를 이용하여 qtyIntArray에 따라 qno를 반복해서 추가하는 코드
+			 List<Integer> resultQnoList = new ArrayList<>();
+
+			 for (int i = 0; i < qnoArray.length; i++) {
+			     int qno = qnoArray[i];
+			     int qty = qtyIntArray[i];
+
+			     // qty 값에 따라 qno를 반복해서 리스트에 추가
+			     for (int j = 0; j < qty; j++) {
+			         resultQnoList.add(qno);
+			     }
+			 }
+
+			 // 리스트를 배열로 변환
+			 int[] resultQnoArray = resultQnoList.stream()
+			                                      .mapToInt(Integer::intValue)
+			                                      .toArray();
+
+			 // 결과 출력
+			 //System.out.println(Arrays.toString(resultQnoArray)); //[127, 127, 128, 128, 128]
+		        
+
+		    // researchc 테이블 insert
+		    String[] choiceArray = researchDTO.getChoice().split(",");
+		    List<ResearchDTO> researchcList = new ArrayList<>();
+
+		    for (int i = 0; i < resultQnoArray.length; i++) {
+		        ResearchDTO newResearchDTO = new ResearchDTO();
+		        newResearchDTO.setQno(resultQnoArray[i]);
+		        newResearchDTO.setChoice(choiceArray[i]);
+		        researchcList.add(newResearchDTO);
+		    }
+
+		    int cnt3 = researchdao.researchcInsert(researchcList);
+		    //System.out.println(cnt3);
+
+		    ModelAndView mav = new ModelAndView();
+		    
+		    if (cnt3 != 0) {
+		        mav.setViewName("redirect:/research/researchList");
+		        //mav.addObject("alertMessage", "설문조사가 등록되었습니다!");
+		        return mav;
+		    }else {
+		    	mav.setViewName("redirect:/research/researchReg");
+		    	return mav;
+		    }//ir end
+		    
+		    
 		}//researchInsert() end
 
-	
-	
-
-	
-
-	
 	
 }//class end
 

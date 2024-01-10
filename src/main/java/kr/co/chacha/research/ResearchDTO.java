@@ -17,18 +17,14 @@ public class ResearchDTO {
 
 	 //질문
 	 private int qno;
-	 //private List<String> qcont;
-	 //private List<String> qtype;
-	 //private String[] qcont;
-	 //private String[] qtype;
 	 private String qcont;
 	 private String qtype;
+	 private String qty;
 	 
 	 //선택지
 	 private int cno;
 	 private String choice;
-	 //private String[] choice;
-	//private List<String> choice;
+
 
 	 //객관식 질문
 	 private int rpno_g;
@@ -176,42 +172,24 @@ public class ResearchDTO {
 		this.rpdate_j = rpdate_j;
 	}
 
-
-	@Override
-	public String toString() {
-		return "rno=" + rno + ", qno=" + qno + ", qcont=" + qcont + ", qtype=" + qtype + ", cno=" + cno
-				+ ", choice=" + choice;
+	public String getQty() {
+		return qty;
 	}
 
 
+	public void setQty(String qty) {
+		this.qty = qty;
+	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-	
+	@Override
+	public String toString() {
+		return "rno=" + rno + ", qno=" + qno + ", qcont=" + qcont + ", qtype=" + qtype +  ", qty=" + qty 
+				+ ", cno=" + cno + ", choice=" + choice;
+	}
 
 
 	
-
-
-
-
-	
-
-
-
-
-	
-
 
 
 

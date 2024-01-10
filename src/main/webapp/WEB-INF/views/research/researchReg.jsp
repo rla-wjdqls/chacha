@@ -87,13 +87,13 @@
 			<td><input type="text" placeholder="질문을 입력해주세요" id="qcont" name="qcont"></td>
 			<td id="choiceContainer">
 				<select id="qty" name="qty">
-					<option selected>선택지 개수</option>
+					<option value="0">선택지 개수</option>
 					<option value="2">2개</option>
 					<option value="3">3개</option>
 					<option value="4">4개</option>
 				</select><br>
 				<input type="text" placeholder="답변을 입력해주세요" id="choice" name="choice">
-				<input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1_" onclick="addAnswerField(this)">
+				<input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1" onclick="addAnswerField(this)">
 			</td>
 		    </tr>
 	        </tbody>
@@ -113,6 +113,9 @@
 </form>
 </div>
 
+
+
+
 <script>
 
 
@@ -120,8 +123,6 @@
 var questionCount = 2; //초기 질문번호
 
 function addTableBody(){
-	
-
 
 	//새로운 질문 행 추가
     var newRow = 
@@ -136,15 +137,15 @@ function addTableBody(){
 	    '</select>' +
 	    '</td>' +
 	    '<td><input type="text" placeholder="질문을 입력해주세요" id="qcont' + questionCount + '" name="qcont"></td>' +
-		'<td id="choiceContainer">' +
-		'<select>' +
-		'	<option>선택지 개수</option>' +
-		'	<option>2개</option>' +
-		'	<option>3개</option>' +
-		'	<option>4개</option>' +
+	    '<td id="choiceContainer' + questionCount + '">' +
+	    '<select id="qty' + questionCount + '" name="qty">' +
+		'	<option value="0">선택지 개수</option>' +
+		'	<option value="2">2개</option>' +
+		'	<option value="3">3개</option>' +
+		'	<option value="4">4개</option>' +
 		'</select><br>' +
-		'<input type="text" placeholder="답변을 입력해주세요" id="choice" name="choice">' +
-		'<input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1_' + questionCount + '" onclick="addAnswerField(this)">' +
+		'<input type="text" placeholder="답변을 입력해주세요" id="choice' + questionCount + '" name="choice">' +
+		'<input type="button" value="추가" class="btn" name="btn_a1" id="btn_a1" onclick="addAnswerField(this)">' +
 		'</td>' +
 	    '</tr>';
 	
