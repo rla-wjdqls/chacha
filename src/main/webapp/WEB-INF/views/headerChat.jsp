@@ -343,17 +343,16 @@ img{ max-width:100%;}
 			        <div class="chat_people">
 			            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 			            <div class="chat_ib">
-			            	<<%-- c:choose>
+			            	<%-- <c:choose>
 				            	<c:when test="${RoomList.uid eq uid}">
 				            		<h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
 				            	</c:when>
-				            	<c:when test="${RoomList.uid ne uid}">
-				            		<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
-				            	</c:when>
+				            	
 				                <c:otherwise>
 				                	<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
 				                </c:otherwise>
-			                </c:choose> --%>
+			                </c:choose>  --%>
+			                <h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
 			                <p>${chatList.content}</p>
 			            </div>
 			        </div>

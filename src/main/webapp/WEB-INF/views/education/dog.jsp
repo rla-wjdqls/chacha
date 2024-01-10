@@ -52,8 +52,8 @@
         %>
             <div class="question mb-4" name="qd">
                 <label><c:out value="<%= questions[i - 1][0] %>"/></label>
-                <input type="radio" name="qd<%=i%>" value="X"> O
-                <input type="radio" name="qd<%=i%>" value="O"> X
+                <input type="radio" name="qd<%=i%>" value="O"> O
+                <input type="radio" name="qd<%=i%>" value="X"> X
             </div>
         <% } %>
         <button type="submit" class="btn btn-primary mb-4" >퀴즈 제출</button>

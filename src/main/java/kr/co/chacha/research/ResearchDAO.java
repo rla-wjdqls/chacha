@@ -1,6 +1,8 @@
 package kr.co.chacha.research;
 
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +29,8 @@ public class ResearchDAO {
 	}//researchInsert() end
 
 	//질문 등록
-	public int researchqInsert(ResearchDTO researchDTO) {		
-		return sqlSession.insert("research.researchqInsert", researchDTO);
+	public int researchqInsert(List<ResearchDTO> researchList) {		
+		return sqlSession.insert("research.researchqInsert", researchList);
 	}//researchqInsert() end
 	
 	//선택지 등록
@@ -36,9 +38,13 @@ public class ResearchDAO {
 		return sqlSession.insert("research.researchcInsert", researchList);
 	}//researchqInsert() end
 	
-	public int checkQno(String rno) {		
-		return sqlSession.selectOne("research.checkQno", rno);
-	}//researchcInsert() end
+	public List<ResearchDTO> checkQno(String rno) {		
+		return sqlSession.selectList("research.checkQno", rno);
+	}//checkQno() end
+	
+	public int checkQty(String rno) {		
+		return sqlSession.selectOne("research.checkQty", rno);
+	}//checkQty() end
 	
 	
 	//설문조사 목록

@@ -7,8 +7,8 @@
   float: right;
 }
 
-.left {
-  float: left;
+.right {
+  float: right;
 }
 
 th{
@@ -18,6 +18,16 @@ width: 10%;
 td{
 width: 40%;
 }
+
+.btnn {
+        border-radius: 15px; /* 원하는 모서리의 반지름 값을 지정합니다. */
+        padding: 6px 9px; /* 원하는 패딩 값을 지정합니다. */
+        border: none;
+
+.gray {
+         /* 원하는 회색 값으로 변경합니다. */
+        color: white; /* 텍스트 색상을 조절합니다. */
+    }
 </style>
 <script>
 function adelete() {
@@ -50,24 +60,11 @@ function adelete() {
 	<div class="row">
  		<div class="col-sm-12"> 
 			<h3> 입양 후기글 상세보기 </h3>
-			<p><a href="/adopt/adoptReview" class="left">[글목록]</a></p>
-			<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
-			<input type="button" class="btn right" value="수정"></a>
-			<input type="button" class="btn right" onclick="adelete();" value="삭제">
-			</p>
+			<p><a href="/adopt/adoptReview" class="right">[글목록]</a></p>
+			
 		</div>
 	</div>
 </div>
-
-<form id="adoptDelete" name="adoptDelete" method="post" action="/adopt/adoptDelete">
-	<input type="hidden" name="arno" id="arno" value="${adoptd.arno}"/>
-</form> 
-<!-- <div style="text-align:center; height: 50px; padding-top: 15px;">
-	<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
-	<input type="button" class="btn btn-success" value="수정"></a>
-	<input type="button" class="btn btn-danger" onclick="adelete();" value="삭제"> &nbsp;
-	</p>
-</div> -->
 
 <div class="container text-center">
 	<table class="table table-hover container">
@@ -107,9 +104,17 @@ function adelete() {
 	  </thead>
 	</table>
 </div>
-             
 
+<form id="adoptDelete" name="adoptDelete" method="post" action="/adopt/adoptDelete">
+	<input type="hidden" name="arno" id="arno" value="${adoptd.arno}"/>
+</form> 
 
+<div style="text-align:center; height: 50px; padding-top: 15px;">          
+			<p><a href="/adopt/adoptUpdate?arno=${adoptd.arno}">
+			<input type="button" class="btnn btn-primary" value="수정"></a>
+			<input type="button" class="btnn gray" onclick="adelete();" value="삭제">
+			</p>
+</div>
 
 
 
