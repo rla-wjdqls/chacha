@@ -1,5 +1,10 @@
 package kr.co.chacha.service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +12,11 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.google.errorprone.annotations.OverridingMethodsMustInvokeSuper;
+
+import jakarta.servlet.jsp.jstl.sql.Result;
 
 @Repository
 public class ServiceDAO {
@@ -24,11 +32,17 @@ public class ServiceDAO {
 		sqlSession.insert("service.insert", servicedto);
 	}//insert() end
 	
-	//페이징
-	public List<ServiceDTO> serviceList(int currentPage, int limit, ServiceDTO servicedto) {
+	//페이징,검색
+	public List<ServiceDTO> serviceList(int currentPage, int limit, String type, String keyword) {
 		int offset = (currentPage-1)*limit;
 		RowBounds rowBounds = new RowBounds(offset, limit);
-		return sqlSession.selectList("service.serviceList", servicedto, rowBounds);
+		
+		ServiceDTO dto = new ServiceDTO();
+		if(!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+			dto.setType(type);
+			dto.setKeyword(keyword);
+		}
+		return sqlSession.selectList("service.serviceList", dto, rowBounds);
 	}
 	
 	public int serviceListCnt() {
