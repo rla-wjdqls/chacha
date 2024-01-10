@@ -87,7 +87,6 @@
 <div class="text-center">
 	<form id="searchForm"name="searchForm" action="/service/serviceList" method="get" >
 		<select name="type" id="type">
-			<option value="">전체</option>
 			<option value="title" <c:if test="${type eq 'title'}">selected</c:if>>제목</option>
 			<option value="id"  <c:if test="${type eq 'id'}">selected</c:if>>아이디</option>
 			<option value="titleId"  <c:if test="${type eq 'titleId'}">selected</c:if>>제목 + 아이디</option>
