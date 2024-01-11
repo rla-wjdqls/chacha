@@ -69,15 +69,7 @@ public class ServiceCont {
 		
 		ServiceDTO dto = new ServiceDTO();
 		
-		if(!StringUtils.isEmpty(type)) {
-			dto.setType(type);
-		}
-		
-		if(!StringUtils.isEmpty(keyword)) {
-			dto.setKeyword(keyword);
-		}
-		
-		List<ServiceDTO> serviceList = serviceDAO.serviceList(currentPage, boardLimit, dto);
+		List<ServiceDTO> serviceList = serviceDAO.serviceList(currentPage, boardLimit, type, keyword);
 		
 		if(!serviceList.isEmpty()) {
 			mav.addObject("startNavi",startNavi);
@@ -87,8 +79,10 @@ public class ServiceCont {
 		}
 		
 		mav.setViewName ("service/serviceList");
-		//mav.addObject("serviceList",serviceDAO.serviceList(dto));
-		//mav.addObject("serviceListCnt",serviceDAO.serviceListCnt());
+		if(!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+			mav.addObject("type",type);
+			mav.addObject("keyword",keyword);
+		}
 		return mav;
 	}//serviceList() end
 	

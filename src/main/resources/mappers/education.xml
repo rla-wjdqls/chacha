@@ -5,12 +5,9 @@
 	
 	
     
-    <insert id="insertQuizResults" parameterType="java.util.List">
-        INSERT INTO quiz_sub(uid, question, user_answers, score, quiz_date)
-        VALUES
-        <foreach collection="list" item="item" separator=",">
-            (#{item.uid}, #{item.question}, #{item.userAnswers}, #{item.score}, NOW())
-        </foreach>
+    <insert id="eduIns" parameterType="java.util.Map">
+        INSERT INTO education(uid, eduno, eduop, edu_date, score)
+        VALUES(#{uid},#{eduno},#{eduop},#{edu_date},#{score})
     </insert>
 
 </mapper>

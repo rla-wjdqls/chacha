@@ -87,14 +87,11 @@
 <div class="text-center">
 	<form id="searchForm"name="searchForm" action="/service/serviceList" method="get" >
 		<select name="type" id="type">
-			<option value="title">제목</option>
-			<option value="content">내용</option>
-			<option value="id">아이디</option>
-			<option value="titleContent">제목 + 내용</option>
-			<option value="titleId">제목 + 아이디</option>
-			<option value="titleContentId">제목 + 내용 + 아이디</option>
+			<option value="title" <c:if test="${type eq 'title'}">selected</c:if>>제목</option>
+			<option value="id"  <c:if test="${type eq 'id'}">selected</c:if>>아이디</option>
+			<option value="titleId"  <c:if test="${type eq 'titleId'}">selected</c:if>>제목 + 아이디</option>
 		</select>
-		<input class="inputId" type="text" name="keyword" placeholder="검색어 입력해주세요" value=""/>
+		<input class="inputId" type="text" name="keyword" placeholder="검색어 입력해주세요" value="${keyword}"/>
 		<button class="submitBtn" type="submit">검색</button>
 	</form>
 </div>	
