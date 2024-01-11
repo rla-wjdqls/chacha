@@ -17,7 +17,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.service.ServiceDTO;
 
@@ -163,6 +167,28 @@ public class HelpCont {
 		}
 		*/
 		
+		// 세션에서 로그인 정보를 가져오는 메서드
+		private boolean isLoggedIn(HttpServletRequest request) {
+		    HttpSession session = request.getSession();
+		    return session.getAttribute("uid") != null; // "uid=loggedInUser"는 로그인된 사용자 정보를 담고 있는 세션 속성 이름
+		}
+		
+		@WebServlet("/login")
+		public class LoginServlet extends HttpServlet {
+		    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		        // 사용자 아이디와 비밀번호를 확인하는 로직 (이 부분은 실제 로그인 로직으로 대체되어야 합니다)
+
+		        // 로그인이 성공했다고 가정하고 세션에 사용자 정보를 저장
+		        String loggedInUser = "s_id"; // 실제로는 데이터베이스에서 가져오거나 로그인 정보를 확인하는 과정이 있어야 합니다.
+
+		        // 세션에 사용자 정보를 저장
+		        HttpSession session = request.getSession();
+		        session.setAttribute("uid", loggedInUser);
+
+		        // 로그인 후 리다이렉트 등의 로직 수행
+		        response.sendRedirect("/index"); // 로그인 후 이동할 페이지로 설정
+		    }
+		}
 		
 	
 }

@@ -54,6 +54,30 @@
    
     </script>
     
+<style>
+	.login-container {
+	    display: flex; /* Flexbox 사용 */
+	    justify-content: space-between; /* 엘리먼트 사이의 공간을 최대한으로 늘림 */
+	    align-items: center; /* 엘리먼트를 세로로 가운데 정렬 */
+	}
+	
+	   #naver_id_login {
+	       margin-left: 130px; /* 왼쪽 여백을 최대로 늘림 */
+	   }
+	
+	   #kakao-login-btn {
+	       margin-right: 130px; /* 오른쪽 여백을 최대로 늘림 */
+	   }
+
+
+    #researchTable th,
+    #researchTable td {
+        text-align: center; /* 텍스트 가운데 정렬 */
+        vertical-align: middle; /* 수직 가운데 정렬 */
+    }
+        
+</style>
+    
 </head>
 
 <body>

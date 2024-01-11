@@ -6,6 +6,19 @@
 .right {
   float: right;
 }
+.btnn {
+        border-radius: 100px; /* 원하는 모서리의 반지름 값을 지정합니다. */
+        padding: 5px 7px; /* 원하는 패딩 값을 지정합니다. */
+        border: none;
+        background-color: white;
+        color: #F3BD00;
+        }
+        
+.yellow {
+		background-color: white;
+        color: #F3BD00;
+}
+        
 </style>
 		<nav class="navbar navbar-light bg-light" style="height: 42px">
 			 <ul class="list-inline ml-auto" style="align-items: center;">
@@ -27,8 +40,15 @@
 <div class="container text-center">
 	 <h3> 목격/제보 게시판 </h3>
 
-<p><a href="/help/helpForm" class="right">[글쓰기]</a></p><br><br>
+<input type="button" class="btnn yellow right mb-3" onclick="idPopup()" value="[글쓰기]">
+<!-- <p><a href="/help/helpForm" class="right" onclick="idPopup()">[글쓰기]</a></p><br><br> -->
 
+	<%
+        // 세션에서 로그인 여부 확인
+        String loggedInUser = (String) session.getAttribute("s_id");
+	
+    %>
+    
 <form name="helpfrm" id="helpfrm" method="post" action="help">
 
 	<table class="table table-hover container">
@@ -72,13 +92,29 @@
 			</td>
 		</tr>
 	</table>	
-	
-		 
-
-
-<!-- 본문 끝 -->
-		
 </form>
 </div>
+
+<script>
+	
+    
+ 	// JSP에서 세션 값을 JavaScript로 전달
+    var loggedInUser = '<%= loggedInUser %>';
+
+    
+    function idPopup(){ 
+		let uid = '<%= (String)session.getAttribute("s_id") %>';
+		if(uid == "null"){
+			uid = "";
+		}
+		//alert(uid);
+		if(uid.length === 0){
+			alert("로그인 후 이용 바랍니다.");
+		}else{
+			window.location.href = '/help/helpForm'; //글쓰기 페이지로 이동
+		}//if end
+   }//idPopup() end
+	
+</script>
 
 <%@ include file="../footer.jsp" %>      
