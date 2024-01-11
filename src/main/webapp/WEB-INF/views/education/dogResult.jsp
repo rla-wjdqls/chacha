@@ -3,11 +3,13 @@
 
 <title>퀴즈 결과</title>
 
+
 <%
-    int score = 0;
+	int score = 0;  // 세션에서 총점 가져오기
     String[] userAnswers = new String[10];
     String[] correctAnswers = {"X", "O", "X", "X", "X", "O", "O", "O", "X", "O"};
 
+    
  	// 질문 배열 추가
     String[] questions = {
         "1. 종합백신(DHPPL) 종류에 광견병이 포함된다.",
@@ -28,7 +30,9 @@
             score += 10;
         }
     }
+    
 %>
+
 
 <div class="container text-center">
     <h2>퀴즈 결과</h2>

@@ -33,29 +33,41 @@
 <div id="quiz" class="container">
     <h2 class="mb-4">강아지 OX Quiz</h2>
     <form id="dogquizForm" action="./dogResult">
+    	<input type='hidden' name='score' id='score'>
         <% 
+        	int score = 0; // 점수 변수 선언
+       		String[] userAnswers = new String[10];
+        	String[] correctAnswers = {"X", "O", "X", "O", "X", "O", "O", "O", "X", "O"};
+        
             // 질문 배열 추가
-            String[][] questions = {
-                {"1. 종합백신(DHPPL) 종류에 광견병이 포함된다.", "X"},
-                {"2. 동물 보호법으로 정해진 리드줄 길이는 2m 이하이다.", "O"},
-                {"3. 광견병 예방접종은 매년 맞지 않아도 된다.", "X"},
-                {"4. 강아지는 꽃은 먹어도 된다.", "O"},
-                {"5. 임신 중에 구충약 복용해야 한다.", "X"},
-                {"6. 임신기간은 평균 9주이다.", "O"},
-                {"7. 성견 치아는 40개 이상이다.", "O"},
-                {"8. 강아지는 땀배출을 발바닥으로 한다.", "O"},
-                {"9. 강아지 치석은 3개월 이상부터 생긴다.", "X"},
-                {"10. 입양 후 동물등록신고는 30일 안에 해야 한다.", "O"}
+            String[] questions = {
+                "1. 종합백신(DHPPL) 종류에 광견병이 포함된다.",
+                "2. 동물 보호법으로 정해진 리드줄 길이는 2m 이하이다.",
+                "3. 광견병 예방접종은 매년 맞지 않아도 된다.",
+                "4. 강아지는 꽃은 먹어도 된다.",
+                "5. 임신 중에 구충약 복용해야 한다.",
+                "6. 임신기간은 평균 9주이다.",
+                "7. 성견 치아는 40개 이상이다.",
+                "8. 강아지는 땀배출을 발바닥으로 한다.",
+                "9. 강아지 치석은 3개월 이상부터 생긴다.",
+                "10. 입양 후 동물등록신고는 30일 안에 해야 한다.",
             };
             
             for (int i = 1; i <= 10; i++) {
+                userAnswers[i - 1] = request.getParameter("qd" + i);
+                if (userAnswers[i - 1] != null && userAnswers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
+                    score += 10;
+                }
         %>
-            <div class="question mb-4" name="qd">
-                <label><c:out value="<%= questions[i - 1][0] %>"/></label>
-                <input type="radio" name="qd<%=i%>" value="O"> O
-                <input type="radio" name="qd<%=i%>" value="X"> X
-            </div>
-        <% } %>
+                <div class="question mb-4" name="qd">
+                    <label><c:out value="<%= questions[i - 1] %>"/></label>
+                    <input type="radio" name="qd<%=i%>" value="O"> O
+                    <input type="radio" name="qd<%=i%>" value="X"> X
+                </div>
+        <% 
+            } 
+        %>
+       
         <button type="submit" class="btn btn-primary mb-4" >퀴즈 제출</button>
     </form>
 </div>
@@ -73,14 +85,10 @@
     //const quizDiv = document.getElementById('quiz');
     const quizForm = document.getElementById('dogquizForm');
    
-
-    function videoEnded() {
-        quizDiv.style.display = 'block';
+    video.addEventListener('ended', function() {
+        quizForm.style.display = 'block';
         video.style.display = 'none';
-    }
-    
-    video.addEventListener('ended', videoEnded);
-    
+    });
   
     quizForm.addEventListener('submit', function (event) {
         // 모든 문제에 대한 응답 여부를 확인
@@ -105,7 +113,13 @@
         if (!allQuestionsAnswered) {
             alert('모든 문제에 답해주세요.');
             event.preventDefault(); // 폼 제출 방지
-        }
+        }else{
+        	//alert('수고!!')
+        	
+        	//최종 맞은 갯수의 점수를 변수에 보관
+        	// 모든 문제에 답했을 때, 점수를 hidden 필드에 할당
+            $("#score").val(score);
+        }//if end
     });
     
 </script>
