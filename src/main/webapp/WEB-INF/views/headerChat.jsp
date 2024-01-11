@@ -189,7 +189,7 @@ img{ max-width:100%;}
     
     
     function handleClick(roomNo) {
-        alert(roomNo);	
+		//alert(roomNo);	
         roomno = roomNo;
         if (socket && socket.readyState === WebSocket.OPEN) { //이전에 연결되어있던 소켓이 있으면 닫는
             socket.close();
@@ -277,12 +277,12 @@ img{ max-width:100%;}
             	let d = JSON.parse(message);
             	//let myId = d.uid;
             	if(d.type == "getId"){ //서버에서 받은 메시지 type이 getId
-            		alert(d.sessionId);
+            		//alert(d.sessionId);
             		let si = d.sessionId != null ? d.sessionId : "";
             		if(si != ""){ //세션 아이디가 빈문자열이 아니라면
             			sessId = si;
-            			alert(sessId);
-            			alert(d.type);
+            			//alert(sessId);
+            			//alert(d.type);
             		}
             	}else if(d.type == "message"){//type이 message
             		if(d.sessId == sessId){//서버에서 받은 세션id가 저장해둔 세션 id와 같다면  //d.uid와 uid 비교도 해보기
@@ -298,7 +298,7 @@ img{ max-width:100%;}
             		}else{
             			//alert(d.sessId);
             			//alert("다르다");
-            			alert("보내는 사람 아이디" + d.uid);
+            			//alert("보내는 사람 아이디" + d.uid);
             			receiver_id = d.uid;
             			let chatMsg = "<div class='incoming_msg'>" +
         		       				  "<div class='incoming_msg_img'>" +

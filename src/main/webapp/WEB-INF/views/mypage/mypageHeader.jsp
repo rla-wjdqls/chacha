@@ -170,8 +170,13 @@
                     <small>월 - 금 : 09.00 AM - 06.00 PM</small>
                 </div>
             </div>
+            
             <div class="col-lg-5 px-5 text-end">
                 <div class="h-100 d-inline-flex align-items-center me-4">
+                	<form name="chatfrm_header" id="chatfrm_header" method="post" action="/headerChat">
+                	<i class="bi-chat-left-dots-fill text-primary me-2" onclick="chat_popup_header()"></i>
+                	</form>
+                	&nbsp;&nbsp;
                     <small class="fa fa-phone-alt text-primary me-2"></small>
                     <small>+0507-1401-8061</small>
                 </div>
@@ -370,6 +375,34 @@
 	    </c:when>
 	</c:choose>
 	
+	   <script>
+	    function chat_popup_header(){ 
+			let uid = '<%= (String)session.getAttribute("s_id") %>';
+			//let writer = document.getElementById('writer');
+			if(uid == "null"){
+				uid = "";
+			}
+			//alert(uid);
+			if(uid.length === 0){
+				alert("로그인 후 이용바랍니다");
+			}else{
+				let form = document.getElementById("chatfrm_header");
+				
+				//새로운 창 열기
+				let newWindow = window.open("/headerChat", "header_chating", "menubar=no, toolbar=no");
+				
+				//폼 보내기
+				form.target = "header_chating";
+				//form.method = "post";
+				form.submit();
+				//alert(writer);
+				//alert()
+				//document.chatfrm.action="/chat/room";
+				//document.chatfrm.submit();
+			}
+			
+		}
+    </script>
 	
             
             
