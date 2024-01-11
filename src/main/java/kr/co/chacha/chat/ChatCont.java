@@ -1,5 +1,10 @@
 package kr.co.chacha.chat;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -78,15 +83,15 @@ public class ChatCont {
 	@PostMapping("/headerChat")
 	@ResponseBody
 	public ModelAndView header_chating(HttpSession session) {
-		String uid = (String)session.getAttribute("s_id");
-		ChatDTO chatDto = new ChatDTO();
-		chatDto.setUid(uid);
-		//System.out.println("아이디" + uid); 
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("headerChat");
-		mav.addObject("headerRoom", chatDao.headerRoom(uid));
-		System.out.println(mav);
-		return mav;
+		String uid = (String) session.getAttribute("s_id");
+	    ChatDTO chatDto = new ChatDTO();
+	    chatDto.setUid(uid);
+
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("headerChat");
+	    mav.addObject("headerRoom", chatDao.headerRoom(uid));
+	    System.out.println(mav);
+	    return mav;
 	}
 	
 	@PostMapping("/headerChatMsg")

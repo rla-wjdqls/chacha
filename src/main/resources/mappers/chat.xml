@@ -46,13 +46,30 @@
  	</select> -->
  	
  	<select id="headerRoom" resultType="java.util.Map">
- 		SELECT *
-		FROM chat
-		WHERE uid = #{uid} OR uid2 = #{uid}
+ 		SELECT
+		    cr.*,
+		    m.mcontent,
+		    m.sender_id,
+		    m.receiver_id,
+		    DATE_FORMAT(m.sdate, '%Y-%m-%d %H:%i') AS formatted_sdate
+		FROM
+		    chat cr
+		JOIN
+		    message m ON cr.roomno = m.roomno
+		WHERE
+		    (cr.uid = #{uid} OR cr.uid2 = #{uid})
+		    AND m.sdate = (
+		        SELECT MAX(sdate)
+		        FROM message
+		        WHERE roomno = cr.roomno
+		    )
+		ORDER BY m.sdate DESC; 
+
+
  	</select>
  	
  	<select id="headerChat" resultType="java.util.Map">
- 		SELECT roomno, sender_id, receiver_id, mcontent, sdate
+ 		SELECT roomno, sender_id, receiver_id, mcontent, DATE_FORMAT(sdate, '%Y-%m-%d %H:%i') AS formatted_sdate
  		FROM message
  		WHERE roomno = #{roomno}
  		ORDER BY sdate ASC

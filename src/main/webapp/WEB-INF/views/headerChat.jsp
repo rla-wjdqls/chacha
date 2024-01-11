@@ -152,9 +152,11 @@ img{ max-width:100%;}
 .messaging { padding: 0 0 50px 0;}
 .msg_history {
   height: 516px;
-  overflow-y: auto;
+  overflow: auto;
+  
 }
-    </style>
+
+</style>
 </head>
 <%String uid2 = request.getParameter("writer");%>
 <%String anino = request.getParameter("anino");%>
@@ -169,15 +171,31 @@ img{ max-width:100%;}
     let roomNum;
     let receiver_id;
     let socket
+    
+    let today = new Date();
 
+    let year = today.getFullYear();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+    let day = ('0' + today.getDate()).slice(-2);
+    let hours = ('0' + today.getHours()).slice(-2); 
+    let minutes = ('0' + today.getMinutes()).slice(-2);
+    let seconds = ('0' + today.getSeconds()).slice(-2); 
+    
+    let dateString = year + '-' + month  + '-' + day + ' ' + hours + ':' + minutes;
+	
+   /*  let element = document.getElementById("type_msg");   
+    element.scrollIntoView();
+   	$("#type_msg").scrollIntoView(); */
+    
+    
     function handleClick(roomNo) {
         alert(roomNo);	
         roomno = roomNo;
-        if (socket && socket.readyState === WebSocket.OPEN) {
+        if (socket && socket.readyState === WebSocket.OPEN) { //이전에 연결되어있던 소켓이 있으면 닫는
             socket.close();
         }
         headerChat(roomno);
-        $("#msg_history").empty();
+        $("#msg_history").empty(); 
         document.getElementById('chatContainer').style.display = 'block';
         openChatSocket(roomno);
     }//handleClick end
@@ -196,6 +214,7 @@ img{ max-width:100%;}
 				console.log(result);
 				$.each(result, function (key, value) {
 					//console.log(value.sender_id);
+					
 					if(value.sender_id != uid){ //보내는 사람이 내가 아니라면
 						let a = '';
 						a += "<div class='incoming_msg_img'>" ;
@@ -203,10 +222,9 @@ img{ max-width:100%;}
 						a += "<div class='received_msg'>" ;
 						a += "<div class='received_withd_msg' id='received_msg'>" ;
 						a += "<p>" + value.mcontent + "</p>" ;
-						a += "<span class='time_date'>" + value.sdate + "</span>" ;
+						a += "<span class='time_date'>" + value.formatted_sdate + "</span>" ;
 						a += "</div>" ;
 						a += "</div>" ;
-						
 						$("#msg_history").append(a);
 						
 					}else if(value.sender_id == uid){ //보내는 사람이 나라면 
@@ -214,11 +232,11 @@ img{ max-width:100%;}
 						a += "<div class='outgoing_msg'>" ;
 						a += "<div class='sent_msg' id='send_msg'>" ;
 						a += "<p>" + value.mcontent + "</p>" ;
-						a += " <span class='time_date'>" + value.sdate + "</span> " ;
+						a += " <span class='time_date'>" + value.formatted_sdate + "</span> " ;
 						a += "</div>" ;
 						a += "</div>" ;
 						$("#msg_history").append(a);
-						
+							
 					}
 				})
 			}
@@ -271,9 +289,11 @@ img{ max-width:100%;}
             			let chatMsg = "<div class='outgoing_msg'>" +
                   					  "<div class='sent_msg' id='sent_msg'>" +
                   					  "<p>" + d.content + "</p>" +
+                  					  "<span class='time_date'>" + dateString + "</span>" +
 					                  "</div></div>" ;
             			$("#msg_history").append(chatMsg);
-            			$("#msg_history").load(window.location.href + " #msg_history");
+            			
+            			
             			//alert("같다");
             		}else{
             			//alert(d.sessId);
@@ -286,9 +306,10 @@ img{ max-width:100%;}
         		        			  "<div class='received_msg'>" +
         		            		  "<div class='received_withd_msg' id='received_withd_msg'>" +
                   					  "<p>" + d.content + "</p>" +
+                  					 "<span class='time_date'>" + dateString + "</span>" +
 					        		  "</div></div></div>" ;
             			$("#msg_history").append(chatMsg);
-            			$("#msg_history").load(window.location.href + " #msg_history");
+            			
             		}
             	}else{
             		console.log("정의되지 않은 타입");
@@ -301,6 +322,7 @@ img{ max-width:100%;}
 				msg = $("#write_msg").val(); //입력 창 값 가져오기
 				if(msg.length !== 0){
 					sendMessage(socket, msg, uid, roomNum, sessId, receiver_id);
+					
 				}
 			}
 		}); 
@@ -311,6 +333,7 @@ img{ max-width:100%;}
         	msg = $("#write_msg").val(); //입력 창 값 가져오기
         	if(msg.length !== 0){
 				sendMessage(socket, msg, uid, roomNum, sessId, receiver_id);
+				$('#msg_history').scrollTop($('#msg_history')[0].scrollHeight);
 			}
 	    });
         
@@ -334,7 +357,7 @@ img{ max-width:100%;}
 </script>
 <body>
 <div class="container">
-<h3 class=" text-center">채팅</h3>
+<h3 class="text-center" id="text-cente">채팅</h3>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -357,16 +380,20 @@ img{ max-width:100%;}
               </div>
             </div> -->
             <c:forEach items="${headerRoom}" var="RoomList" varStatus="lvs">
-			    <div class="chat_list" onclick="handleClick('${RoomList.roomno}')">
+			    <div class="chat_list" id="chat_list" onclick="handleClick('${RoomList.roomno}')">
 			        <div class="chat_people">
 			            <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
 			            <div class="chat_ib">
 			            	<c:choose>
 				            	<c:when test="${RoomList.uid eq sessionScope.s_id}">
-				            		<h5>${RoomList.uid2}<span class="chat_date">${chatList.sdate}</span></h5>
+				            		<h5>${RoomList.uid2}
+				            		<span class="chat_date">${RoomList.formatted_sdate}</span></h5>
+				            		<p>${RoomList.mcontent}</p>
 				            	</c:when>
 				                <c:otherwise>
-				                	<h5>${RoomList.uid}<span class="chat_date">${chatList.sdate}</span></h5>
+				                	<h5>${RoomList.uid}
+				                	<span class="chat_date">${RoomList.formatted_sdate}</span></h5>
+				            		<p>${RoomList.mcontent}</p>
 				                </c:otherwise>
 			                </c:choose>
 			            </div>
@@ -380,7 +407,7 @@ img{ max-width:100%;}
           <div class="msg_history" id="msg_history">
           
          </div>
-          <div class="type_msg">
+          <div class="type_msg" id="type_msg">
             <div class="input_msg_write">
               <input type="text" class="write_msg" id="write_msg" placeholder="Type a message" />
               <button class="msg_send_btn" id="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" id="button" aria-hidden="true"></i></button>
@@ -389,6 +416,8 @@ img{ max-width:100%;}
         </div>
       </div>
     </div></div>
-    </body>
+    <script>
+    
+    </script>
     </body>
 </html>
