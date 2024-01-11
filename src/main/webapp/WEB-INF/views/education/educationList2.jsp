@@ -71,12 +71,8 @@
 			<div class="card-body">
 		    	<h5 class="card-title">강아지 교육 강의</h5>
 		    	<p class="card-text">강아지</p>
-		    	<button onclick="checkLoginAndApply('dog')" class="btn btn-primary">신청하기</button>
-		    	<%
-        // 세션에서 로그인 여부 확인
-        String loggedInUser = (String) session.getAttribute("s_id");
-	
-    %>
+		    	<button onclick="eduredog()" class="btn btn-primary">신청하기</button>
+		    	
 			</div>
 	</div>
 
@@ -86,7 +82,7 @@
 			<div class="card-body">
 		    	<h5 class="card-title">고양이 교육 강의</h5>
 		    	<p class="card-text">고양이</p>
-		    	<button onclick="checkLoginAndApply('cat')" class="btn btn-primary">신청하기</button>
+		    	<button onclick="edurecat()" class="btn btn-primary">신청하기</button>
 		    	
 			</div>
 	</div>
@@ -96,39 +92,35 @@
     <!-- 스크립트 링크 -->
     <script>
 
-    var loggedInUser = '<%= loggedInUser %>';
 
-    function idPopup(coursesType) {
-        let uid = '<%= (String)session.getAttribute("s_id") %>';
-        if (uid == "null") {
-            uid = "";
-        }
-        if (uid.length === 0) {
-            alert("로그인 후 이용 바랍니다.");
-        } else {
-            edureCourse(coursesType); // 로그인한 사용자를 위한 수강 등록 함수 호출
-        }
-    }
-
-    function checkLoginAndApply(coursesType) {
-        if (loggedInUser.length === 0) {
-            alert("로그인 후 이용 바랍니다.");
-            // 사용자가 로그인하지 않은 경우 추가적인 로직을 여기에 추가할 수 있습니다.
-            // 예를 들어 로그인 모달 표시 또는 로그인 페이지로 리디렉션
-        } else {
-            idPopup(coursesType); // 사용자가 로그인했는지 확인하고 그에 따라 진행하는 함수 호출
-        }
-    }
-
-    function edureCourse(coursesType) {
-        // 확인 대화상자를 표시하는 confirm 함수
+    //강아지 수강신청하는 경우
+    function eduredog(){
+    	//confirm 함수를 사용하여 확인 창 표시
         var userChoice = confirm("수강을 신청하시겠습니까?");
 
-        // 사용자의 선택 처리
+        // 사용자의 선택에 따라 처리
         if (userChoice) {
             alert("수강이 신청되었습니다.");
-            // 여기에 추가적인 수강 등록 로직을 추가할 수 있습니다.
-            window.location.href = './' + coursesType; // 원하는 페이지로 리디렉션
+         // 페이지 이동
+            window.location.href = './dog';
+		// 여기에 추가적인 수강 처리 로직을 추가할 수 있습니다.
+        } else {
+            alert("수강이 취소되었습니다.");
+            // 사용자가 취소를 선택한 경우의 처리를 추가할 수 있습니다.
+        }
+    }//eduredog end
+    
+  	//고양이 수강신청하는 경우
+    function edurecat(){
+    	//confirm 함수를 사용하여 확인 창 표시
+        var userChoice = confirm("수강을 신청하시겠습니까?");
+
+        // 사용자의 선택에 따라 처리
+        if (userChoice) {
+            alert("수강이 신청되었습니다.");
+         // 페이지 이동
+            window.location.href = './cat';
+		 //
         } else {
             alert("수강이 취소되었습니다.");
             // 사용자가 취소를 선택한 경우의 처리를 추가할 수 있습니다.
