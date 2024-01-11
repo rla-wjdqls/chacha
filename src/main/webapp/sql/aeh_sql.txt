@@ -56,7 +56,12 @@ CREATE TABLE `education` (
 	`eduno`	VARCHAR(20)	NOT NULL PRIMARY KEY,	--교육신청번호
 	`uid`	VARCHAR(20)	NOT NULL,				--아이디
 	`eduop`	CHAR(1)	NOT NULL,					--강의구분
-	`edu_date` DATETIME NOT NULL				--교육신청날짜
+	`edu_date` DATETIME NOT NULL,				--교육신청날짜
+	
+	`score`	INT(3)	NOT NULL					--점수
+	
+	`question` VARCHAR(100) NOT NULL, 			--질문
+    `ox` CHAR(1) NOT NULL						--정답
 );
 
 --퀴즈

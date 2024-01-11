@@ -16,7 +16,6 @@
 	    </foreach>
 	</insert> 
 		
-		
 	<insert id="researchcInsert" parameterType="java.util.List">
 	    INSERT INTO researchc(qno, choice)
 	    VALUES
@@ -25,21 +24,12 @@
 	    </foreach>
 	</insert> 
 	
-	<!-- 82,82,83,83,84,84 -->
-	<!-- 1-1, 1-2, 2-1, 2-2, 3-1, 3-2 -->
-		
-
 	<select id="checkQno" parameterType="String" resultType="kr.co.chacha.research.ResearchDTO">
 	  	SELECT qno
 	  	FROM researchq
 	  	WHERE rno = #{rno}
     </select>
     
-    <select id="checkQty" parameterType="String" resultType="Int">
-	  	SELECT sum(qty)
-	  	FROM researchq
-	  	WHERE rno = #{rno}
-    </select>
     
     <select id="researchCheck" resultType="kr.co.chacha.research.ResearchDTO">
  		SELECT rno, rtitle, rdate1, rdate2, rstate, rop, rgdate
@@ -53,26 +43,12 @@
  		WHERE rno = #{rno}
  	</select>
  	
- 	<select id="checkminQno" resultType="Int"> 		
-		SELECT min(qno)
-		FROM researchq
-		WHERE rno = #{rno};
- 	</select>
  	
-    
-    <select id="chekckQcont" resultType="String"> 		
-		SELECT qcont
-		FROM researchq
-		WHERE qno = #{qno};
- 	</select>
-    
-    
-    
-    <select id="researchChoice" resultType="kr.co.chacha.research.ResearchDTO"> 		
-		SELECT rc.qno, rc.choice
+ 	<select id="researchrList" resultType="kr.co.chacha.research.ResearchDTO">
+		SELECT rq.rno, rq.qcont, rq.qtype, rc.cno, rc.qno, rc.choice, rq.qty
 		FROM researchq rq
 		JOIN researchc rc ON rq.qno = rc.qno
-		WHERE rq.rno = #{rno} AND rq.qno = 17
+		WHERE rq.rno = #{rno}
  	</select>
     
     
