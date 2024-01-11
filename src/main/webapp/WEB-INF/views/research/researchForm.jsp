@@ -27,21 +27,15 @@
 			<div id="panel"></div>
 
 			<div class="container-fixed row">
-			
 				설문번호 :  ${researchList2.rno}<br>
 				제목 :  	  ${researchList2.rtitle}<br>
 				설문 기간 : ${researchList2.rdate1} ~ ${researchList2.rdate2}<br>
 				등록일자 :  ${researchList2.rgdate}<br>
-				 
 			</div>
 			<br><hr>
 			
 		  <!-- 설문폼 시작 -->
-		  <div class="row">
-		    <div class="col-sm-12"><!-- 목록 -->
-				<div class="researchrForm"></div>  
-		  	</div><!-- col end -->
-		  </div><!-- row end -->
+				<div class="researchrList"></div>  
 			<br><br><br>
            <!--  <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p" onclick="click()"> -->
             <input type="button" value="다음" class="btn btn" name="btn_research_n" id="btn_research_n">
@@ -55,66 +49,71 @@
 
 
 <script>
-
+let rno = '${researchList2.rno}'; //부모글 번호
 
 $(document).ready(function () {
 	//alert("페이지 호출");
-	
-    // 페이지 로드 시 설문조사 데이터를 가져오는 Ajax 호출
-    /*
-    $.ajax({
-        type: "post",
-        url: "/research/researchrForm", // 서버에서 설문조사 데이터를 반환하는 엔드포인트
-        dataType: "json",
-        success: function (result) {
-            // 받아온 데이터를 기반으로 동적으로 HTML을 생성하여 추가
-            alert(result);
-            console.log(data);
-            //renderSurvey(data);
-        },
-        error: function (xhr, status, error) {
-        	console.error(error);
-        }
-    });
-	*/
-	loadForm();
+	researchrList();
 });
 
-var questionNo = 1; // 초기 질문번호
+//rno 보내서 db정보 가져와 출력
+function researchrList(){ 
+	//alert("질문+선택지 출력");
+		$.ajax({ 
+			url: '/research/researchrList'
+		   ,type: 'get'
+		   ,data: {'rno': rno} //부모글번호(전역변수로 선언되어 있음)
+		   ,error:function(error){
+			   alert('에러!');
+			   console.log(error);
+		   }//error end
+		   ,success:function(result){
+			  //alert('성공~');
+			  //console.log(result);
+			  
+			 let a=''; //출력할 결과값
+  			 $.each(result, function(key, value){ //안에 들어있는 요소만큼 반복된다. result 3건 -> function 3번 반복
+  				//console.log(key);	   //index 순서 0 1 2
+  				//console.log(value);  //[object object]
+  				
+  				//console.log(value.qcont);
+  				//console.log(value.qty);
+  				//console.log(value.qno);
+  				//console.log(value.choice);
+  				
+  				
+  				
+  				
+  				
+  				
+  				
+  				
+  			 });
+			 
+		   }//success end 
+		});//ajax() end
+}//researchList() end
+
+
+let questionNo = 1; // 초기 질문번호
 //questionNo++;
 
+
+
+/*
 function loadForm() {
-    var newHtml =
-       ' <form name="researchrFrm" id="researchrFrm">' +
-	    <!-- 부모글 번호 -->
-		'<input type="hidden" name="rno" id="rno" value="${researchList.rno}">' +
-		'<p id="qcont" name="qcont">질문' + questionNo + ' : ${researchForm.qcont}</p>' +
-		<!--reply에 저장 -->
-		'<c:forEach items="${researchChoice}" var="choice">' +
-		'	  	<div class="col-sm-4 col-md-4">' +
-		'	  		<input type="checkbox">${choice.choice}' +
-		'	  	</div>' +
-		'</c:forEach>' +
-		'</form>';
-
-		
-		 // 추가된 질문에 대해 카운트 증가
-        
-		 $("#researchrForm").html(newHtml);
-		
+	//alert("호출");
 	
-	/*
-    // 받아온 데이터를 기반으로 동적으로 HTML을 생성하여 추가
-    var surveyContainer = $("#surveyContainer");
-
-    // 예시: 각 질문을 순회하면서 동적으로 HTML 생성
-    for (var i = 0; i < data.questions.length; i++) {
-        var question = data.questions[i];
-        var questionHTML = '<h5>' + question + '</h5>';
-        surveyContainer.append(questionHTML);
-    }
-	*/
-}//end
+    let newHtml =
+    	
+    '        <form name="researchrFrm" id="researchrFrm">' +
+    '        질문' + questionNo 
+    '        </form>';
+		
+	$("#researchrList").html(newHtml);
+	
+}//loadForm() end
+*/
 
 
  var answer1; 

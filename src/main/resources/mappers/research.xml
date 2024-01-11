@@ -44,11 +44,11 @@
  	</select>
  	
  	
- 	<select id="researchrForm" resultType="kr.co.chacha.research.ResearchDTO">
+ 	<select id="researchrList" resultType="kr.co.chacha.research.ResearchDTO">
 		SELECT rq.rno, rq.qcont, rq.qtype, rc.cno, rc.qno, rc.choice, rq.qty
 		FROM researchq rq
 		JOIN researchc rc ON rq.qno = rc.qno
-		WHERE rs.rno = #{rno}
+		WHERE rq.rno = #{rno}
  	</select>
     
     

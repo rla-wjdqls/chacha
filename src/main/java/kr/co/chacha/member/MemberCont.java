@@ -43,7 +43,7 @@ public class MemberCont {
 	MemberDAO memberDao;
 
 	// 로그인 페이지 이동
-	@GetMapping("/newloginForm")
+	@GetMapping("/loginForm")
 	public ModelAndView login() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("member/loginForm");

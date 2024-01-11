@@ -79,17 +79,15 @@ public class ResearchCont {
 	}//researchForm() end
 	
 	
-	// 설문조사 페이지 띄어주기
-	@PostMapping("/researchrForm")
+	// 설문조사 내용 가져와 보여주기
+	@GetMapping("/researchrList")
 	@ResponseBody
-	public List<ResearchDTO> researchrForm(@RequestParam String rno) {
-		//System.out.println(rno); //r20240110144825
+	public List<ResearchDTO> researchrList(@RequestParam String rno) {
 		
-		List<ResearchDTO> list = researchdao.researchrForm(rno);
+		List<ResearchDTO> list = researchdao.researchrList(rno);
 		return list;
 		
-	}//researchrForm() end
-	
+	}//researchrList() end
 	
 	
 	

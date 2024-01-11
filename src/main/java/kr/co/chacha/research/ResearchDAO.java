@@ -66,9 +66,9 @@ public class ResearchDAO {
 	
 	
 	//설문조사 질문 + 선택지 가져오기
-	public List<ResearchDTO> researchrForm(String rno){
+	public List<ResearchDTO> researchrList(String rno){
 		//System.out.println(rno); //r20240107131903
-		return sqlSession.selectList("research.researchrForm", rno);
+		return sqlSession.selectList("research.researchrList", rno);
 	}//researchrForm() end
 	
 	
