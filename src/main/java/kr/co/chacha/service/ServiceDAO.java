@@ -3,6 +3,8 @@ package kr.co.chacha.service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,4 +66,19 @@ public class ServiceDAO {
 	public void insertServicea(ServiceDTO servicedto) {
 		sqlSession.insert("service.insertServicea", servicedto);
 	}//insert() end
+	
+	//조회수
+	public void incrementCnt(int uid) {
+		   // SQL UPDATE 문을 사용하여 조회수 증가
+        String sql = "UPDATE service SET cnt = cnt + 1 WHERE uid = ?";
+        
+        Statement dataSource = null;
+		try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, uid);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(); // 오류 처리 로직 추가
+        }
+	    }//incrementCnt() end    
 }//end

@@ -1,3 +1,5 @@
+<%@page import="kr.co.chacha.servicea.ServiceaDAO"%>
+<%@page import="kr.co.chacha.service.ServiceDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
@@ -124,4 +126,13 @@ function sdelete() {
 	<a href="/service/servicea?sno=${serviced.sno}"><input type="button" value="신청"></a></p>
 </div>
 
+<%
+int sno = Integer.parseInt(request.getParameter("sno"));
+ServiceDTO dto = dao.read(sno);
+if(dto == null) {
+    out.println("해당 글 없음!!");
+} else {
+	    
+		dao.incrementCnt(sno); //조회수 증가}
+%>
 <%@ include file="../footer.jsp" %>      

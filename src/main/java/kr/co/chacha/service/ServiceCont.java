@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.servicea.ServiceaDTO;
 import org.springframework.web.bind.annotation.*;
@@ -218,8 +219,21 @@ public class ServiceCont {
 		}
 	}*/
 	
-		 
+		 @GetMapping("/service/{uid}")
+		    public String viewData(@PathVariable int uid) {
+		        // 해당 데이터 조회
+		        // ...
 
-		 
+		        ServiceDAO servicedetail = null;
+				// 조회수 증가
+		        servicedetail.incrementCnt(uid);
+
+		        // 모델에 데이터를 추가하고 뷰 반환
+		        // ...
+
+		        return "redirect:/service/serviceList";
+		    }
+		
+		
 
 }//end

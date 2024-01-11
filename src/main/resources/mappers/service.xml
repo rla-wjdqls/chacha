@@ -27,6 +27,13 @@
 	FROM service	
  </select>
  
+<!-- 조회수 증가 -->
+ <update id="incrementCnt">
+    UPDATE service
+    SET cnt = cnt + 1
+    WHERE uid = #{uid}
+</update>
+ 
  <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
 		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate)
 		VALUES(#{uid}, #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{sstime}, #{etime}, #{time}, #{sp}, #{splace}, #{sstate})

@@ -30,9 +30,13 @@
 </div>
 
 <div style="text-align: right; height: 50px;">
-	<p><a href="/service/serviceForm" class="nav-item nav-link"><input type="button" value="글쓰기"></a></p>
+	<p><input type="button" onclick="idPopup()" value="글쓰기"></p>
 </div>
-
+<%
+        // 세션에서 로그인 여부 확인
+        String loggedInUser = (String) session.getAttribute("s_id");
+	
+ %>
 <div class="text-center">
 	<table class="table table-hover" style="width: 70%; margin-left: auto; margin-right: auto;">
 		<thead> 
@@ -95,7 +99,27 @@
 		<button class="submitBtn" type="submit">검색</button>
 	</form>
 </div>	
+<script>
+	
+    
+ 	// JSP에서 세션 값을 JavaScript로 전달
+    var loggedInUser = '<%= loggedInUser %>';
 
+    
+    function idPopup(){ 
+		let uid = '<%= (String)session.getAttribute("s_id") %>';
+		if(uid == "null"){
+			uid = "";
+		}
+		//alert(uid);
+		if(uid.length === 0){
+			alert("로그인 후 이용 바랍니다.");
+		}else{
+			window.location.href = '/service/serviceForm'; //글쓰기 페이지로 이동
+		}//if end
+   }//idPopup() end
+	
+</script>
 
 
 <%@ include file="../footer.jsp" %>      
