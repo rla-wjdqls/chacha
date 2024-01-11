@@ -35,10 +35,13 @@
 			<br><hr>
 			
 		  <!-- 설문폼 시작 -->
-				<div class="researchrList"></div>  
+		  <form name="researchrFrm" id="researchrFrm">
+			<div class="researchrList" name="researchrList" id="researchrList"></div>  
 			<br><br><br>
-           <!--  <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p" onclick="click()"> -->
+           <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p">
             <input type="button" value="다음" class="btn btn" name="btn_research_n" id="btn_research_n">
+            <input type="button" value="제출" class="btn btn" name="btn_research_r" id="btn_research_r">
+          </form>
         </div>
 		</div>
 	</div>
@@ -49,95 +52,96 @@
 
 
 <script>
-let rno = '${researchList2.rno}'; //부모글 번호
+
+let rno = '${researchList2.rno}'; // 부모글 번호
+let questionNo = 1; // 초기 질문 번호
+let currentQuestionIndex = 0; // 현재 질문 인덱스 초기화
 
 $(document).ready(function () {
-	//alert("페이지 호출");
-	researchrList();
-});
+    researchrList();
 
-//rno 보내서 db정보 가져와 출력
-function researchrList(){ 
-	//alert("질문+선택지 출력");
-		$.ajax({ 
-			url: '/research/researchrList'
-		   ,type: 'get'
-		   ,data: {'rno': rno} //부모글번호(전역변수로 선언되어 있음)
-		   ,error:function(error){
-			   alert('에러!');
-			   console.log(error);
-		   }//error end
-		   ,success:function(result){
-			  //alert('성공~');
-			  //console.log(result);
-			  
-			 let a=''; //출력할 결과값
-  			 $.each(result, function(key, value){ //안에 들어있는 요소만큼 반복된다. result 3건 -> function 3번 반복
-  				//console.log(key);	   //index 순서 0 1 2
-  				//console.log(value);  //[object object]
-  				
-  				//console.log(value.qcont);
-  				//console.log(value.qty);
-  				//console.log(value.qno);
-  				//console.log(value.choice);
-  				
-  				
-  				
-  				
-  				
-  				
-  				
-  				
-  			 });
-			 
-		   }//success end 
-		});//ajax() end
-}//researchList() end
+    $("#btn_research_n").on("click", function () {
+        currentQuestionIndex++;
+        researchrList();
+    });
 
-
-let questionNo = 1; // 초기 질문번호
-//questionNo++;
-
-
-
-/*
-function loadForm() {
-	//alert("호출");
-	
-    let newHtml =
-    	
-    '        <form name="researchrFrm" id="researchrFrm">' +
-    '        질문' + questionNo 
-    '        </form>';
-		
-	$("#researchrList").html(newHtml);
-	
-}//loadForm() end
-*/
-
-
- var answer1; 
-
-function moveToNextPage() {
-    // 여기서는 다음 페이지로 이동할 때 필요한 데이터를 서버로 전송하는 예시입니다.
-    var surveyData = {
-        answer1: $('input[name="survay1"]:checked').val(),
-    };
-
-    $.ajax({
-        url: "getNextQuestion", // 서버에 전송할 엔드포인트
-        method: "POST",
-        data: { answer1: answer1 },
-        success: function (data) {
-            // 서버에서 받은 데이터로 질문2 업데이트
-            $("#surveyContainer").html(data);
-        },
-        error: function () {
-            alert("서버와의 통신 중 에러가 발생했습니다.");
+    $("#btn_research_p").on("click", function () {
+        if (currentQuestionIndex > 0) {
+            currentQuestionIndex--;
+            researchrList();
         }
     });
-} 
 
+    $("#btn_research_r").on("click", function () {
+        // 여기에 제출 로직을 추가하면 됩니다.
+        alert("설문 조사를 제출합니다.");
+        researchrInsert();
+        
+    });
+});
+
+
+function researchrInsert(){
+	alert("답변 insert");
+}// researchrInsert() end
+
+
+function researchrList() {
+    $.ajax({
+        url: '/research/researchrList',
+        type: 'get',
+        data: { 'rno': rno },
+        error: function (error) {
+            alert('에러!');
+            console.log(error);
+        },
+        success: function (result) {
+            let a = ''; // 출력할 결과값
+            let questionNo = 0; // 질문 번호 초기화
+            let prevQuestion = ''; // 이전 질문 추적
+
+            $.each(result, function (key, value) {
+                // 현재 질문이 이전 질문과 중복되지 않을 때만 출력
+                if (value.qcont !== prevQuestion) {
+                    questionNo++;
+                    if (questionNo === currentQuestionIndex + 1) {
+                        a += '질문' + questionNo + ': ' + value.qcont + '<br><br>';
+                    }
+                }
+
+                // 선택지를 qty 수만큼 반복해서 출력
+                if (questionNo === currentQuestionIndex + 1) {
+                    a += '<input type="checkbox">';
+                    a += value.choice + ' ';
+                }
+
+                // 이전 질문 갱신
+                prevQuestion = value.qcont;
+            });
+
+            // 마지막 질문 처리
+            if (prevQuestion !== '') {
+                $(".researchrList").html(a);
+
+                // 마지막 페이지인 경우 "다음" 버튼과 "제출" 버튼 보이기
+                if (currentQuestionIndex < questionNo - 1) {
+                    $("#btn_research_n").show();
+                } else {
+                    $("#btn_research_n").hide();
+                    $("#btn_research_r").show();
+                }
+
+                // 첫 페이지에서는 "이전" 버튼 숨기기
+                if (currentQuestionIndex > 0) {
+                    $("#btn_research_p").show();
+                } else {
+                    $("#btn_research_p").hide();
+                    $("#btn_research_r").hide();
+                }
+            }
+        }
+    });
+}
 
 
 
