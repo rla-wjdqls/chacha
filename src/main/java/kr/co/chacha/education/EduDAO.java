@@ -21,8 +21,9 @@ public class EduDAO {
 		return sqlSession.selectList("education.list");
 	}
 	
-	public void eduIns(Map<String, Object> map) {
-		sqlSession.insert("help.insert", map);
+	public void eduIns(EduDTO edudto) {
+		sqlSession.insert("education.insert", edudto);
+	
 	}//insert() end
 	
 	

@@ -5,9 +5,9 @@
 	
 	
     
-     <insert id="eduIns" parameterType="java.util.Map">
-        INSERT INTO education(uid, eduno, eduop, edu_date, score)
-        VALUES(#{uid},#{eduno},#{eduop},NOW(),#{score})
+     <insert id="insert" parameterType="kr.co.chacha.education.EduDTO">
+        INSERT INTO education(uid, eduop, edu_date, score)
+        VALUES(#{uid},#{eduop},NOW(),#{score})
     </insert>
     
     

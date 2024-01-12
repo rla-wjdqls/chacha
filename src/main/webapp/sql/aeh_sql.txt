@@ -54,7 +54,7 @@ CREATE TABLE `payment` (
 --교육신청
 CREATE TABLE `education` (
 	`uid`	VARCHAR(20)	NOT NULL,				--아이디
-	`eduno`	VARCHAR(20)	NOT NULL PRIMARY KEY,	--교육신청번호	
+	`eduno`	INT(5)	NOT NULL AUTO_INCREMENT PRIMARY KEY,	--교육신청번호	
 	`eduop`	CHAR(1)	NOT NULL,					--강의구분
 	`edu_date` DATETIME NOT NULL,				--교육신청날짜
 	

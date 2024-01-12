@@ -82,28 +82,13 @@ document.getElementById('dogedu').addEventListener('ended', function () {
     document.querySelector('p').style.display = 'none';
 });
 
+const video = document.getElementById('dogedu');
 const quizForm = document.getElementById('dogquizForm');
 
 quizForm.addEventListener('submit', function (event) {
     // 모든 문제에 대한 응답 여부를 확인
     const questions = document.querySelectorAll('.question');
     let allQuestionsAnswered = true;
-    // 정답 여부를 확인하고 점수를 score 필드에 저장
-    let score = 0;
-
-    <% 
-    for (int i = 1; i <= 10; i++) {
-        String userAnswer = "qd" + i;
-    %>
-        const <%= userAnswer %> = document.querySelector('input[name="<%= userAnswer %>"]:checked');
-        if (<%= userAnswer %> && <%= userAnswer %>.value === "<%= correctAnswers[i-1] %>") {
-            score += 10;
-        }
-    <%
-    } 
-    %>
-
-    document.getElementById('score').value = score;
 
     questions.forEach(function (question) {
         const radioButtons = question.querySelectorAll('input[type="radio"]');
@@ -123,10 +108,13 @@ quizForm.addEventListener('submit', function (event) {
     if (!allQuestionsAnswered) {
         alert('모든 문제에 답해주세요.');
         event.preventDefault(); // 폼 제출 방지
-        
-        
-    }else {
-    	$("#score").val(score);
+  
+    }  else {
+
+    	 
+        // 점수를 감춘 필드에 할당
+        document.getElementById('score').value = score;
+        //$("#score").val(score);
     }
 });
     

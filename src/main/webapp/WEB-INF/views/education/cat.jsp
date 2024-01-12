@@ -72,14 +72,14 @@
     //const quizDiv = document.getElementById('quiz');
     const quizForm = document.getElementById('catquizForm');
    
-
+	/*
     function videoEnded() {
         quizDiv.style.display = 'block';
         video.style.display = 'none';
     }
     
     video.addEventListener('ended', videoEnded);
-    
+    */
   
     quizForm.addEventListener('submit', function (event) {
         // 모든 문제에 대한 응답 여부를 확인
