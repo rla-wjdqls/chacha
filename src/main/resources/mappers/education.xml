@@ -5,9 +5,18 @@
 	
 	
     
-    <insert id="eduIns" parameterType="java.util.Map">
+     <insert id="eduIns" parameterType="java.util.Map">
         INSERT INTO education(uid, eduno, eduop, edu_date, score)
         VALUES(#{uid},#{eduno},#{eduop},NOW(),#{score})
     </insert>
-
+    
+    
+	<select id="eduList" resultType="java.util.Map">
+		SELECT eduno, eduop, edu_date, score
+		FROM education
+		ORDER BY edu_date
+	</select>
+	
+	
+	
 </mapper>

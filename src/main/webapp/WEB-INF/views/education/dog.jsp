@@ -34,6 +34,7 @@
     <h2 class="mb-4">강아지 OX Quiz</h2>
     <form id="dogquizForm" action="./dogResult">
     	<input type='hidden' name='score' id='score'>
+    	
         <% 
         	int score = 0; // 점수 변수 선언
        		String[] userAnswers = new String[10];
@@ -73,54 +74,62 @@
 </div>
 
 <script>
-    document.getElementById('dogedu').addEventListener('ended', function () {
-        alert('동영상이 끝났습니다. 이제 퀴즈를 풀어주세요.');
-        document.getElementById('dogedu').style.display = 'none';
-        document.getElementById('quiz').style.display = 'block';
-        document.querySelector('h3').style.display = 'none';
-        document.querySelector('p').style.display = 'none';
-    });
+document.getElementById('dogedu').addEventListener('ended', function () {
+    alert('동영상이 끝났습니다. 이제 퀴즈를 풀어주세요.');
+    document.getElementById('dogedu').style.display = 'none';
+    document.getElementById('quiz').style.display = 'block';  // 추가된 부분
+    document.querySelector('h3').style.display = 'none';
+    document.querySelector('p').style.display = 'none';
+});
 
-    const video = document.getElementById('dogedu');
-    //const quizDiv = document.getElementById('quiz');
-    const quizForm = document.getElementById('dogquizForm');
-   
-    video.addEventListener('ended', function() {
-        quizForm.style.display = 'block';
-        video.style.display = 'none';
-    });
-  
-    quizForm.addEventListener('submit', function (event) {
-        // 모든 문제에 대한 응답 여부를 확인
-        const questions = document.querySelectorAll('.question');
-        let allQuestionsAnswered = true;
+const quizForm = document.getElementById('dogquizForm');
 
-        questions.forEach(function (question) {
-            const radioButtons = question.querySelectorAll('input[type="radio"]');
-            let radioButtonChecked = false;
+quizForm.addEventListener('submit', function (event) {
+    // 모든 문제에 대한 응답 여부를 확인
+    const questions = document.querySelectorAll('.question');
+    let allQuestionsAnswered = true;
+    // 정답 여부를 확인하고 점수를 score 필드에 저장
+    let score = 0;
 
-            radioButtons.forEach(function (radioButton) {
-                if (radioButton.checked) {
-                    radioButtonChecked = true;
-                }
-            });
+    <% 
+    for (int i = 1; i <= 10; i++) {
+        String userAnswer = "qd" + i;
+    %>
+        const <%= userAnswer %> = document.querySelector('input[name="<%= userAnswer %>"]:checked');
+        if (<%= userAnswer %> && <%= userAnswer %>.value === "<%= correctAnswers[i-1] %>") {
+            score += 10;
+        }
+    <%
+    } 
+    %>
 
-            if (!radioButtonChecked) {
-                allQuestionsAnswered = false;
+    document.getElementById('score').value = score;
+
+    questions.forEach(function (question) {
+        const radioButtons = question.querySelectorAll('input[type="radio"]');
+        let radioButtonChecked = false;
+
+        radioButtons.forEach(function (radioButton) {
+            if (radioButton.checked) {
+                radioButtonChecked = true;
             }
         });
 
-        if (!allQuestionsAnswered) {
-            alert('모든 문제에 답해주세요.');
-            event.preventDefault(); // 폼 제출 방지
-        }else{
-        	//alert('수고!!')
-        	
-        	//최종 맞은 갯수의 점수를 변수에 보관
-        	// 모든 문제에 답했을 때, 점수를 hidden 필드에 할당
-            $("#score").val(score);
-        }//if end
+        if (!radioButtonChecked) {
+            allQuestionsAnswered = false;
+        }
     });
+
+    if (!allQuestionsAnswered) {
+        alert('모든 문제에 답해주세요.');
+        event.preventDefault(); // 폼 제출 방지
+        
+        
+    }else {
+    	$("#score").val(score);
+    }
+});
+    
     
 </script>
 

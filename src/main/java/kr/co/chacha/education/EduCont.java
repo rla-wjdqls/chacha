@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,31 +58,64 @@ public class EduCont {
 	}
 	
 	@GetMapping("/dogResult")
-	public ModelAndView dogResult(HttpSession session) {
+	public String dogResult(HttpSession session, EduDTO edudto) {
 		
 		// 여기에 퀴즈 결과 데이터를 처리하는 로직을 추가
-	    String uid = (String) session.getAttribute("s_id");  //사용자 아이디
-	    int applicationNumber = 8;  //신청번호
-	    String lectureType = "강아지"; //강의구분
-	    int totalScore = 10; //세션에서 총점 가져오기
-	    String currentDate = "2024-01-10";  //현재 날짜를 가져오는 메서드
+	    //String uid = (String) session.getAttribute("s_id");  //사용자 아이디
+	    //int applicationNumber = 14;  //신청번호
+	    //String lectureType = "강아지"; //강의구분
+	    
+	    System.out.println(edudto);
+	    //int totalScore = (score); 
+	    //int score = (int) session.getAttribute("score");
+		//Integer score = (Integer) session.getAttribute("score");
+		 
 
 	    // Controller 또는 Servlet에서 데이터 처리
 	    Map<String, Object> paramMap = new HashMap<>();
 	    paramMap.put("uid", uid);
 	    paramMap.put("eduno", applicationNumber);
 	    paramMap.put("eduop", lectureType);
-	    paramMap.put("score", totalScore);
-	    paramMap.put("edu_date", currentDate);
+	    paramMap.put("score", score);
 
 	    // MyBatis를 사용하여 DB에 데이터 삽입
 	    sqlSession.insert("eduIns", paramMap);
-	    session.setAttribute("score", totalScore);
+	    //session.setAttribute("score", score);
+	    
+	    // 리다이렉트 경로 반환
+	    return "redirect:/education/dogResult";
+	}
+	
+	/*
+	@PostMapping("/dogResult")
+	public ModelAndView dogResult(HttpSession session) {
+		
+		// 여기에 퀴즈 결과 데이터를 처리하는 로직을 추가
+	    String uid = (String) session.getAttribute("s_id");  //사용자 아이디
+	    int applicationNumber = 14;  //신청번호
+	    String lectureType = "강아지"; //강의구분
+	    
+	    //int totalScore = (score); 
+	    //int score = (int) session.getAttribute("score");
+		Integer score = (Integer) session.getAttribute("score");
+		 
 
+	    // Controller 또는 Servlet에서 데이터 처리
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("uid", uid);
+	    paramMap.put("eduno", applicationNumber);
+	    paramMap.put("eduop", lectureType);
+	    paramMap.put("score", score);
+
+	    // MyBatis를 사용하여 DB에 데이터 삽입
+	    sqlSession.insert("eduIns", paramMap);
+	    //session.setAttribute("score", score);
+	    
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("education/dogResult");
 	    return mav;
 	}
+	*/
 	
 	// 현재 날짜를 문자열로 반환하는 메서드
     private String getCurrentDate() {
