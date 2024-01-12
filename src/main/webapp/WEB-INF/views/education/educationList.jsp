@@ -73,10 +73,10 @@
 		    	<p class="card-text">강아지</p>
 		    	<button onclick="checkLoginAndApply('dog')" class="btn btn-primary">신청하기</button>
 		    	<%
-        // 세션에서 로그인 여부 확인
-        String loggedInUser = (String) session.getAttribute("s_id");
-	
-    %>
+		        // 세션에서 로그인 여부 확인
+		        String loggedInUser = (String) session.getAttribute("s_id");
+			
+		    	%>
 			</div>
 	</div>
 
