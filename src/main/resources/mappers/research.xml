@@ -52,10 +52,17 @@
  	</select>
     
     
+    <insert id="researchrInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	    INSERT INTO researchr(qno, uid, reply, rpdate)
+	    VALUES(#{qno}, #{uid}, #{reply}, NOW())
+	</insert> 
+   	
+    
+    
     <!--qno = {166, 167, 168}  -->
     <!--reply = {135, 138, 140}  -->
     
-    <insert id="researchrInsert" parameterType="java.util.List">
+    <insert id="researchrInsertmul" parameterType="java.util.List">
 	    INSERT INTO researchr(qno, uid, reply, rpdate)
 	    VALUES
 	    <foreach collection="list" item="item" index="index" separator=",">

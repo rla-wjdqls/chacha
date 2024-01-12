@@ -26,17 +26,13 @@ public class ResearchDTO {
 	 private String choice;
 
 
-	 //객관식 질문
-	 private int rpno_g;
+	 //질문
+	 private int rpno;
 	 private String uid;
-	 private int reply_g;
-	 private Date rpdate_g;
+	 private int reply;
+	 private Date rpdate;
 
-	 //주관식 질문
-	 private int rpno_j;
-	 private String reply_j;
-	 private Date rpdate_j;
-	 
+
 	 
 	 public ResearchDTO() {}
 
@@ -129,63 +125,53 @@ public class ResearchDTO {
 		this.cno = cno;
 	}
 
-	public int getRpno_g() {
-		return rpno_g;
-	}
-	public void setRpno_g(int rpno_g) {
-		this.rpno_g = rpno_g;
-	}
+	
 	public String getUid() {
 		return uid;
 	}
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public int getReply_g() {
-		return reply_g;
-	}
-	public void setReply_g(int reply_g) {
-		this.reply_g = reply_g;
-	}
-	public Date getRpdate_g() {
-		return rpdate_g;
-	}
-	public void setRpdate_g(Date rpdate_g) {
-		this.rpdate_g = rpdate_g;
-	}
-	public int getRpno_j() {
-		return rpno_j;
-	}
-	public void setRpno_j(int rpno_j) {
-		this.rpno_j = rpno_j;
-	}
-	public String getReply_j() {
-		return reply_j;
-	}
-	public void setReply_j(String reply_j) {
-		this.reply_j = reply_j;
-	}
-	public Date getRpdate_j() {
-		return rpdate_j;
-	}
-	public void setRpdate_j(Date rpdate_j) {
-		this.rpdate_j = rpdate_j;
-	}
+	
 
 	public String getQty() {
 		return qty;
 	}
 
-
 	public void setQty(String qty) {
 		this.qty = qty;
+	}
+	
+
+	public int getRpno() {
+		return rpno;
+	}
+
+	public void setRpno(int rpno) {
+		this.rpno = rpno;
+	}
+
+	public int getReply() {
+		return reply;
+	}
+
+	public void setReply(int reply) {
+		this.reply = reply;
+	}
+
+	public Date getRpdate() {
+		return rpdate;
+	}
+
+	public void setRpdate(Date rpdate) {
+		this.rpdate = rpdate;
 	}
 
 
 	@Override
 	public String toString() {
 		return "rno=" + rno + ", qno=" + qno + ", qcont=" + qcont + ", qtype=" + qtype +  ", qty=" + qty 
-				+ ", cno=" + cno + ", choice=" + choice;
+				+ ", cno=" + cno + ", reply=" + reply + ", uid=" + uid + ", choice=" + choice;
 	}
 
 

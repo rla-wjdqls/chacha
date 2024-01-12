@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,13 +47,11 @@ public class ResearchCont {
 	
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
-		
 		session.removeAttribute("s_id");
 		session.removeAttribute("s_passwd");
 		session.removeAttribute("s_mlevel");
 		
 		return "redirect:/";
-		
 	}//logout end
 		
 	
@@ -93,19 +92,30 @@ public class ResearchCont {
 	// 설문조사 답변 insert
 	@PostMapping("/researchrInsert")
 	@ResponseBody
-	public int researchrInsert(@RequestParam String rno, HttpSession session, ResearchDTO researchDTO) {
+	public int researchrInsert(HttpSession session, @RequestBody Map<String, Object> insertData) {
 		
 		String s_id = (String)session.getAttribute("s_id");
+		
+		ResearchDTO researchDTO = new ResearchDTO();	
 		researchDTO.setUid(s_id);
 		
-		List<ResearchDTO> researchrList = new ArrayList<>();
+		// 여기서 insertData를 원하는 형태로 사용하면 됩니다.
+	    Object qnoObject = insertData.get("qno");
+	    Object cnoObject = insertData.get("cno");
 		
-		int cnt = researchdao.researchrInsert(researchrList);
+	    // 각 값이 null이 아닌지 확인 후 ResearchDTO에 설정
+	    if (qnoObject != null) {
+	        researchDTO.setQno(Integer.parseInt((String)qnoObject));
+	    }//if end
+	    if (cnoObject != null) {
+	        researchDTO.setReply(Integer.parseInt((String)cnoObject));
+	    }//if end
+	    
+		int cnt = researchdao.researchrInsert(researchDTO);
+		
 		return cnt;
 		
 	}//researchrList() end
-
-	
 	
 
 	// 설문 등록 페이지 이동

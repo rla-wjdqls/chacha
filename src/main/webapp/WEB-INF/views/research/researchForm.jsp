@@ -32,20 +32,18 @@
 				설문 기간 : ${researchList2.rdate1} ~ ${researchList2.rdate2}<br>
 				등록일자 :  ${researchList2.rgdate}<br>
 			</div>
-			<br><hr>
+			<br><hr><br>
 			
 		  <!-- 설문폼 시작 -->
 		  <form name="researchrFrm" id="researchrFrm">
 			<div class="researchrList" name="researchrList" id="researchrList"></div>  
 			<br><br><br>
-           <input type="button" value="이전" class="btn btn" name="btn_research_p" id="btn_research_p">
             <input type="button" value="다음" class="btn btn" name="btn_research_n" id="btn_research_n">
-            <input type="button" value="제출" class="btn btn" name="btn_research_r" id="btn_research_r">
           </form>
         </div>
 		</div>
 	</div>
-	<br><br><br>
+	<br><br>
 
 
 <!-- 본문 끝 -->
@@ -59,83 +57,75 @@ let currentQuestionIndex = 0; // 현재 질문 인덱스 초기화
 
 $(document).ready(function () {
     researchrList();
-
+    
     $("#btn_research_n").on("click", function () {
+    	//alert("설문 조사를 제출합니다.");
+    	
+    	// 체크된 체크박스들을 선택
+	    let checkedCheckboxes = $("input[type=checkbox]:checked");
+		 
+	 	// 체크된 체크박스가 없을 경우 경고 메시지 띄우고 종료
+	    if (checkedCheckboxes.length === 0) {
+	        alert("적어도 하나 이상의 항목을 선택하세요.");
+	        return;
+	    }//if end
+	    
+	    // 체크된 체크박스가 있는 경우에만 페이지 이동
         currentQuestionIndex++;
         researchrList();
-    });
-
-    $("#btn_research_p").on("click", function () {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            researchrList();
-        }
-    });
-
-    $("#btn_research_r").on("click", function () {
-        // 여기에 제출 로직을 추가하면 됩니다.
-        alert("설문 조사를 제출합니다.");
-        researchrInsert();
         checkHiddenValues();
-        
+        researchrInsert();
     });
-});
+});//ready() end
 
-//어떤 이벤트(예: 버튼 클릭)가 발생했을 때 실행되는 함수
 function checkHiddenValues() {
-    // 숨겨진 필드의 값을 가져오기
-    let qnoValue = $("input[name='qno']").val();
-    let cnoValue = $("input[name='cno']").val();
+    
+let checkedCheckbox = $("input[type=checkbox]:checked");
+    
+ 	// 체크된 첫 번째 체크박스의 qno 및 cno 값을 가져오기
+    let qnoValue = checkedCheckbox.siblings("input[name='qno']").val();
+    let cnoValue = checkedCheckbox.siblings("input[name='cno']").val();
 
     // 가져온 값 출력 또는 다른 작업 수행
-    console.log("QNO Value:", qnoValue);
-    console.log("CNO Value:", cnoValue);
-}
-
-
-<!--해당하는 문제 qno = {166, 167, 168}  -->
-<!--선택한 답안  cno = {135, 138, 140}  -->
-
-
-function researchrInsert(){
-	alert("답변 insert");
-	
-	// qno 및 cno 값을 가져오기
-    let qnoValue = $("input[name='qno']").val();
-    let cnoValue = $("input[name='cno']").val();
-
+    console.log("QNO Values:", qnoValue);
+    console.log("CNO Values:", cnoValue);
+    
     // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
     let insertData = {
         qno: qnoValue, //168
-        cno: cnoValue, //140
-        // 필요에 따라 다른 데이터를 추가
+        cno: cnoValue //140
     };
-	
-    alert(insertData);
-    console.log(insertData);
     
-    /*
+ 	// researchrInsert 함수 호출 시 insertData 전달
+    researchrInsert(insertData);
+    
+}//checkHiddenValues() end
+
+
+function researchrInsert(insertData){
+	//alert("답변 insert");
+	
 	$.ajax({
 		url : '/research/researchrInsert' //요청명령어
 	   ,type: 'post'
-	   ,data: insertData        //전달값
+	   ,contentType: 'application/json'
+	   ,data: JSON.stringify(insertData) //전달값
 	   ,error: function(error){
-		 alert(error);
+		 //alert('에러!' + error);
 		 console.log(error);
 	   }//error end
 	   ,success: function(result){
-		 alert(result);
+		 //alert('성공' +result);
 		 console.log(result);
-		 //console.log(data);
-		// if(result==1){ //댓글등록 성공
-		//	 alert("댓글이 추가되었습니다");
-		//	 commentList();//댓글등록 후 댓글목록 함수 호출
-		//	 $("#content").val('');//기존 댓글 내용을 빈 문자열로 대입(초기화)
-		// }//if end
+		 //마지막 value="제출" 성공했을때만 
+         if(result === 1){ // 댓글 등록 성공
+             alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
+             // 댓글 등록 후 researchList.jsp로 이동
+         }//if end
 		 
 	   }//success end
 	}); //ajax() end	
-    */
+    
     
 }//researchrInsert() end
 
@@ -165,7 +155,7 @@ function researchrList() {
 
                 // 선택지를 qty 수만큼 반복해서 출력
                 if (questionNo === currentQuestionIndex + 1) {
-                	  // 숨겨진 필드 추가
+                    // 숨겨진 필드 추가
                     a += '<label>';
                     a += '<input type="hidden" name="qno" value="' + value.qno + '">';
                     a += '<input type="hidden" name="cno" value="' + value.cno + '">';
@@ -175,36 +165,30 @@ function researchrList() {
                     a += value.choice + ' ';
                     
                     a += '</label>';
-                    
                 }//if end
 
                 // 이전 질문 갱신
                 prevQuestion = value.qcont;
-            });//each() end
+            });//each()end
 
             // 마지막 질문 처리
             if (prevQuestion !== '') {
                 $(".researchrList").html(a);
 
-                // 마지막 페이지인 경우 "다음" 버튼과 "제출" 버튼 보이기
+                // 마지막 페이지인 경우 "다음" 버튼을 "제출" 버튼으로 변경
                 if (currentQuestionIndex < questionNo - 1) {
                     $("#btn_research_n").show();
+                    $("#btn_research_n").val("다음");
                 } else {
-                    $("#btn_research_n").hide();
-                    $("#btn_research_r").show();
-                }
-
-                // 첫 페이지에서는 "이전" 버튼 숨기기
-                if (currentQuestionIndex > 0) {
-                    $("#btn_research_p").show();
-                } else {
-                    $("#btn_research_p").hide();
-                    $("#btn_research_r").hide();
+                	 $("#btn_research_n").show();
+                     $("#btn_research_n").val("제출");
                 }//if end
             }//if end
+            
         }//success end
-    }); //ajax end
+    });//ajax end
 }//researchrList() end
+
 
 
 
