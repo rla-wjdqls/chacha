@@ -37,8 +37,10 @@
 			                <c:when test="${list.rstate eq 'E'}">마감</c:when>
 		            	</c:choose>
 		            	<br><br>
-					    <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
-					    <a href="/research/researchForm?rno=${list.rno}" class="btn btn-success">결과보기</a>
+		            <c:if test="${list.rstate ne 'E'}">
+		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
+		            </c:if>
+		            <a href="/research/researchForm?rno=${list.rno}" class="btn btn-success">결과보기</a>
 					  	</div>
 				</c:forEach>
 			</div>

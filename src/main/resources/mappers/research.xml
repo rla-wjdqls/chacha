@@ -52,6 +52,16 @@
  	</select>
     
     
+    <!--qno = {166, 167, 168}  -->
+    <!--reply = {135, 138, 140}  -->
+    
+    <insert id="researchrInsert" parameterType="java.util.List">
+	    INSERT INTO researchr(qno, uid, reply, rpdate)
+	    VALUES
+	    <foreach collection="list" item="item" index="index" separator=",">
+	        (#{item.qno}, #{item.uid}, #{item.reply}, NOW())
+	    </foreach>
+	</insert> 
     
 
     
@@ -59,6 +69,17 @@
  </mapper>
  
 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 	
 	

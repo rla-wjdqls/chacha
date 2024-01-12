@@ -76,14 +76,68 @@ $(document).ready(function () {
         // 여기에 제출 로직을 추가하면 됩니다.
         alert("설문 조사를 제출합니다.");
         researchrInsert();
+        checkHiddenValues();
         
     });
 });
 
+//어떤 이벤트(예: 버튼 클릭)가 발생했을 때 실행되는 함수
+function checkHiddenValues() {
+    // 숨겨진 필드의 값을 가져오기
+    let qnoValue = $("input[name='qno']").val();
+    let cnoValue = $("input[name='cno']").val();
+
+    // 가져온 값 출력 또는 다른 작업 수행
+    console.log("QNO Value:", qnoValue);
+    console.log("CNO Value:", cnoValue);
+}
+
+
+<!--해당하는 문제 qno = {166, 167, 168}  -->
+<!--선택한 답안  cno = {135, 138, 140}  -->
+
 
 function researchrInsert(){
 	alert("답변 insert");
-}// researchrInsert() end
+	
+	// qno 및 cno 값을 가져오기
+    let qnoValue = $("input[name='qno']").val();
+    let cnoValue = $("input[name='cno']").val();
+
+    // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
+    let insertData = {
+        qno: qnoValue, //168
+        cno: cnoValue, //140
+        // 필요에 따라 다른 데이터를 추가
+    };
+	
+    alert(insertData);
+    console.log(insertData);
+    
+    /*
+	$.ajax({
+		url : '/research/researchrInsert' //요청명령어
+	   ,type: 'post'
+	   ,data: insertData        //전달값
+	   ,error: function(error){
+		 alert(error);
+		 console.log(error);
+	   }//error end
+	   ,success: function(result){
+		 alert(result);
+		 console.log(result);
+		 //console.log(data);
+		// if(result==1){ //댓글등록 성공
+		//	 alert("댓글이 추가되었습니다");
+		//	 commentList();//댓글등록 후 댓글목록 함수 호출
+		//	 $("#content").val('');//기존 댓글 내용을 빈 문자열로 대입(초기화)
+		// }//if end
+		 
+	   }//success end
+	}); //ajax() end	
+    */
+    
+}//researchrInsert() end
 
 
 function researchrList() {
@@ -106,18 +160,27 @@ function researchrList() {
                     questionNo++;
                     if (questionNo === currentQuestionIndex + 1) {
                         a += '질문' + questionNo + ': ' + value.qcont + '<br><br>';
-                    }
-                }
+                    }//if end
+                }//if end
 
                 // 선택지를 qty 수만큼 반복해서 출력
                 if (questionNo === currentQuestionIndex + 1) {
+                	  // 숨겨진 필드 추가
+                    a += '<label>';
+                    a += '<input type="hidden" name="qno" value="' + value.qno + '">';
+                    a += '<input type="hidden" name="cno" value="' + value.cno + '">';
+                    
+                    // 체크박스 및 선택지 출력
                     a += '<input type="checkbox">';
                     a += value.choice + ' ';
-                }
+                    
+                    a += '</label>';
+                    
+                }//if end
 
                 // 이전 질문 갱신
                 prevQuestion = value.qcont;
-            });
+            });//each() end
 
             // 마지막 질문 처리
             if (prevQuestion !== '') {
@@ -137,11 +200,12 @@ function researchrList() {
                 } else {
                     $("#btn_research_p").hide();
                     $("#btn_research_r").hide();
-                }
-            }
-        }
-    });
-}
+                }//if end
+            }//if end
+        }//success end
+    }); //ajax end
+}//researchrList() end
+
 
 
 

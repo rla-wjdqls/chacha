@@ -72,6 +72,13 @@ public class ResearchDAO {
 	}//researchrForm() end
 	
 	
+	//설문조사 질문 + 선택지 가져오기
+	public int researchrInsert(List<ResearchDTO> researchrList){
+		return sqlSession.insert("research.researchrInsert", researchrList);
+	}//researchrInsert() end
+	
+	
+	
 	
 }//class end
 

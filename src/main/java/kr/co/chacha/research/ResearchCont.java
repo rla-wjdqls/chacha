@@ -90,7 +90,20 @@ public class ResearchCont {
 	}//researchrList() end
 	
 	
-
+	// 설문조사 답변 insert
+	@PostMapping("/researchrInsert")
+	@ResponseBody
+	public int researchrInsert(@RequestParam String rno, HttpSession session, ResearchDTO researchDTO) {
+		
+		String s_id = (String)session.getAttribute("s_id");
+		researchDTO.setUid(s_id);
+		
+		List<ResearchDTO> researchrList = new ArrayList<>();
+		
+		int cnt = researchdao.researchrInsert(researchrList);
+		return cnt;
+		
+	}//researchrList() end
 
 	
 	
