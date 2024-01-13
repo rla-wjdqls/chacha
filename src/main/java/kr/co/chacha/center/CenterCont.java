@@ -1,6 +1,7 @@
 package kr.co.chacha.center;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,39 @@ public class CenterCont {
 		return mav;
 	}
 	
-	@GetMapping("/centerForm") //입양가능 동물 목록
-	public ModelAndView centerForm() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("center/centerForm");
-		mav.addObject("form", centerDao.form());
-		return mav;
+	@GetMapping("/centerForm")
+	public ModelAndView centerForm(Integer pageNumber, Integer pageItem) {
+	    int page = 0;
+    	int size = 0;
+    	
+	    if(pageNumber == null && pageItem == null) {
+	    	page = 1;
+	    	size = 4;
+	    }else {
+	    	page = pageNumber;
+	    	size = pageItem;
+	    }
+	    
+	    System.out.println(page);
+	    System.out.println(size);
+	    
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("center/centerForm");
+	    mav.addObject("form", centerDao.form(page, size));
+	    //mav.addObject("list", centerDao.form(page, size));
+	    return mav;
+	}
+	
+	@PostMapping("/centerForm")
+	@ResponseBody
+	public List<CenterDTO> centerList(Integer pageNumber, Integer pageItem) {
+	    int page = pageNumber;
+    	int size = pageItem;    
+	    
+	    System.out.println(page);
+	    System.out.println(size);
+	    
+	    return centerDao.form(page, size);
 	}
 	
 	@GetMapping("/centerWrite") //동물 추가 페이지

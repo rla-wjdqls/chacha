@@ -9,10 +9,12 @@
  	
  	
  	
- 	<select id="form" resultType="java.util.Map">
+ 	<select id="form" resultType="java.util.Map" parameterType="java.util.Map">
  		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
  		FROM animal
  		ORDER BY animal_date desc
+ 		LIMIT #{offset}, #{size};
+ 		
  	</select>
  	
  	<select id="detail" resultType="java.util.Map">

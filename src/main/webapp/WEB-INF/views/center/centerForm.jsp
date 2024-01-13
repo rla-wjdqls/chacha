@@ -4,8 +4,80 @@
 <%@ include file="../header.jsp" %>
 
 <% 
-	String s_mlevel = (String)session.getAttribute("m_mlevel");
+	String s_mlevel = (String)session.getAttribute("s_mlevel");
 %>
+<script>
+let pageNumber = 1;
+let pageItem = 4;
+console.log(pageNumber);
+console.log(pageItem);
+
+window.onscroll = function() {
+	if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+		//스크롤이 페이지 하단에 오면 페이지 +1, 다음 페이지 데이터 요청
+		pageNumber++; 
+        getDate(pageNumber, pageItem);
+	}
+} 
+
+function getDate(pageNumber, pageItem) {
+	console.log(pageNumber);
+	console.log(pageItem);
+	$.ajax({
+	    url: '/center/centerForm',
+	    type: 'post',
+	    data: {'pageNumber': pageNumber, 'pageItem': pageItem},
+	    error: function (error) {
+	        alert(error);
+	    },
+	    success: function (result) {
+	    	console.log(result);	
+	    	$.each(result, function (key, value) {
+	    		//alert(value.aname);
+	    		console.log('<%= s_mlevel %>');
+				console.log(value.adopt_pos);
+				let a = '';
+				if ('<%= s_mlevel %>' === 'a' && (value.adopt_pos === 'N' || value.adopt_pos === 'Y')) {
+				    //alert("관리자");
+				    a += "<div class='card' style='width: 18rem;'>";
+				    if (!value.anipic || value.anipic === '-') {
+				        a += "<img src='/img/noimg.png' class='card-img-top img-fixed img-fluid'>";
+				    } else {
+				        a += "<img src='/storage/" + value.anipic + "' class='card-img-top img-fixed img-fluid'>";
+				    }
+				    a += "<div class='card-body'>";
+				    a += "<h5 class='card-title'>" + value.aname + "</h5>";
+				    a += "<p class='card-text'>" + value.age + "</p>";
+				    a += "<a href='detail?anino=" + value.anino + "' class='btn btn-primary'>보러가기</a>";
+				    a += "</div></div>";
+				    $("#container-fixed").append(a);
+				    
+				} else if ('<%= s_mlevel %>' !== 'a' && value.adopt_pos !== 'N') {
+				    a += "<div class='card' style='width: 18rem;'>";
+				    if (!value.anipic || value.anipic === '-') {
+				        a += "<img src='/img/noimg.png' class='card-img-top img-fixed img-fluid'>";
+				    } else {
+				        a += "<img src='/storage/" + value.anipic + "' class='card-img-top img-fixed img-fluid'>";
+				    }
+				    a += "<div class='card-body'>";
+				    a += "<h5 class='card-title'>" + value.aname + "</h5>";
+				    a += "<p class='card-text'>" + value.age + "</p>";
+				    a += "<a href='detail?anino=" + value.anino + "' class='btn btn-primary'>보러가기</a>";
+				    a += "</div></div>";
+				    $("#container-fixed").append(a);
+				}
+
+	    		//alert(a);
+ 
+			})
+	    
+        }
+    });//ajax end
+}
+
+
+
+</script>
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -44,7 +116,7 @@
 		</nav>
 
 	   
-	<div class="container-fixed row">
+	<div class="container-fixed row" id="container-fixed">
 			<c:forEach items="${form}" var="row" varStatus="vs">
 				<c:choose>
 					<c:when test="${s_mlevel eq 'a' and (row.adopt_pos eq 'N' or row.adopt_pos eq 'Y')}">

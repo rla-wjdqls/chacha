@@ -24,8 +24,14 @@ public class CenterDAO {
 	}//insert() end
 	
 	
-	public List<Map<String, Object>> form(){
-		return sqlSession.selectList("center.form");
+	public List<CenterDTO> form(int page, int size){
+		int offset = (page - 1) * size;
+	    
+	    Map<String, Object> parameterMap = new HashMap<>();
+	    parameterMap.put("offset", offset);
+	    parameterMap.put("size", size);
+	    
+		return sqlSession.selectList("center.form", parameterMap);
 	}
 	
 	public Map<String, Object> detail (String anino){
