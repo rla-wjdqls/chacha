@@ -68,17 +68,6 @@ public class ServiceDAO {
 	}//insert() end
 	
 	//조회수
-	public void incrementCnt(int uid) {
-		   // SQL UPDATE 문을 사용하여 조회수 증가
-        String sql = "UPDATE service SET cnt = cnt + 1 WHERE uid = ?";
-        
-        Statement dataSource = null;
-		try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, uid);
-            statement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace(); // 오류 처리 로직 추가
-        }
-	    }//incrementCnt() end    
+
+
 }//end

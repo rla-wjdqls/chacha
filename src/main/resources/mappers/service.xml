@@ -28,7 +28,7 @@
  </select>
  
 <!-- 조회수 증가 -->
- <update id="incrementCnt">
+ <update id="updateViewCount" parameterType="Long">
     UPDATE service
     SET cnt = cnt + 1
     WHERE uid = #{uid}
@@ -61,6 +61,8 @@
 		INSERT INTO servicea (uid, sno, sadate, astate)
 		VALUES(#{uid}, #{sno}, #{sadate}, 'O')
 </insert>
+
+
  </mapper>
  
  
