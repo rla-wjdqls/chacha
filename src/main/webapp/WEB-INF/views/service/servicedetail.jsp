@@ -20,7 +20,27 @@ function sdelete() {
 }
 </script>
 
+<script>
+    // 페이지 로드 시 조회수 증가 요청을 보내는 함수
+    function increaseViewCount() {
+        var sno = ${serviced.sno}; // 현재 게시물의 번호
 
+        // 서버에 조회수 증가 요청을 보냅니다.
+        fetch('/increaseViewCount/' + sno, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // 페이지 로드 시 함수 실행
+    window.onload = increaseViewCount;
+</script>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
     <ul class="list-inline ml-auto" style="align-items: center;">

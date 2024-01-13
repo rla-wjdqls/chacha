@@ -28,10 +28,10 @@
  </select>
  
 <!-- 조회수 증가 -->
- <update id="updateViewCount" parameterType="Long">
+<update id="increaseViewCount">
     UPDATE service
     SET cnt = cnt + 1
-    WHERE uid = #{uid}
+    WHERE sno = #{sno}
 </update>
  
  <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">

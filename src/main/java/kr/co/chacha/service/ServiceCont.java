@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
@@ -111,13 +113,31 @@ public class ServiceCont {
 
 	// 게시물 상세 페이지로 이동
     @GetMapping("/servicedetail")
-    public ModelAndView serviced(int sno) {
+    public ModelAndView serviced(int sno, HttpServletRequest request) {
     	ModelAndView mav = new ModelAndView();
+    	HttpSession session = request.getSession(); // 세션 객체를 가져옴
     	mav.setViewName("service/servicedetail");
+    	
+    	// 조회수 증가
+	    serviceDAO.increaseViewCount(sno);
+	 // 세션에서 조회한 게시물 ID 목록을 가져옴
+        Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
+        if (viewedPosts == null) {
+            viewedPosts = new HashSet<>();
+        }
+
+        // 게시물을 이전에 조회하지 않았다면 조회수 증가
+        if (!viewedPosts.contains(sno)) {
+            serviceDAO.increaseViewCount(sno);
+            viewedPosts.add(sno);
+            session.setAttribute("viewedPosts", viewedPosts);
+        }
+
+	 // 게시물 정보를 불러와서 모델에 추가
     	mav.addObject("serviced", serviceDAO.detail(sno));
     	return mav;
     }
-    
+
 	// 게시물 수정
 	@GetMapping("/serviceUpdate")
 	public ModelAndView serviceUpdate(int sno) {
@@ -222,7 +242,6 @@ public class ServiceCont {
 	}*/
 	
 
-		
 		
 
 }//end

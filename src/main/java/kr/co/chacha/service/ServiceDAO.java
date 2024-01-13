@@ -68,6 +68,10 @@ public class ServiceDAO {
 	}//insert() end
 	
 	//조회수
-
-
+	public void increaseViewCount(int sno) {
+	    // 게시물 조회수 증가 로직 구현
+	    // 예: 데이터베이스에서 해당 sno의 게시물을 찾아 조회수를 1 증가시키는 쿼리 실행
+		 sqlSession.update("service.increaseViewCount", sno);
+	}
+	
 }//end
