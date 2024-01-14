@@ -77,10 +77,25 @@ public class ResearchDAO {
 		return sqlSession.insert("research.researchrInsert", researchDTO);
 	}//researchrInsert() end
 	
+	//설문조사 참여자 수 구하기
+	public int countUid(String rno){
+		return sqlSession.selectOne("research.countUid", rno);
+	}//countUid() end
+	
+	//설문조사 결과 가져오기
+	public List<ResearchDTO> checkResult(String rno){
+		return sqlSession.selectList("research.checkResult", rno);
+	}//researchrForm() end
 	
 	
 	
 }//class end
+
+
+
+
+
+
 
 
 

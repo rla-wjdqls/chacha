@@ -170,13 +170,26 @@ public class MypageCont {
 	
 	//회원관리(관리자)
 	@GetMapping("/mypage/memList")
-	public ModelAndView memList(HttpSession session) {
+	public ModelAndView memList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/memList");
 		mav.addObject("memberList", mypageDao.memList());
+		mav.addObject("smemberList", mypageDao.smemList());
 		return mav;
 	}//memList() end
 	
+	
+    // Ajax를 통한 mlevel 업데이트 처리
+    @PostMapping("/updateMlevel")
+    public void updateMlevel(HttpServletRequest req) {
+       System.out.println("111");
+    	
+    	
+    }//updateMlevel() end
+	
+	
+	
+
 
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동

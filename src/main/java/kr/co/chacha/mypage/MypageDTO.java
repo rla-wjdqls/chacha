@@ -107,6 +107,11 @@ public class MypageDTO {
     private Date mdate;
     private String mlevel;
     
+    //소셜멤버
+    private String s_email;
+    private String s_uname;
+    private Date s_mdate;
+ 	private String s_mlevel;
     
     
     
@@ -824,14 +829,72 @@ public class MypageDTO {
 	public void setAnimal_date(Date animal_date) {
 		this.animal_date = animal_date;
 	}
+
+
+	public String getS_email() {
+		return s_email;
+	}
+
+
+	public void setS_email(String s_email) {
+		this.s_email = s_email;
+	}
+
+
+	public String getS_uname() {
+		return s_uname;
+	}
+
+
+	public void setS_uname(String s_uname) {
+		this.s_uname = s_uname;
+	}
+
+
+	public Date getS_mdate() {
+		return s_mdate;
+	}
+
+
+	public void setS_mdate(Date s_mdate) {
+		this.s_mdate = s_mdate;
+	}
+
+
+	public String getS_mlevel() {
+		return s_mlevel;
+	}
+
+
+	public void setS_mlevel(String s_mlevel) {
+		this.s_mlevel = s_mlevel;
+	}
+
+
+	@Override
+	public String toString() {
+		return "MypageDTO [myno=" + myno + ", uid=" + uid + ", eduno=" + eduno + ", mycon=" + mycon + ", mydate="
+				+ mydate + ", mystate=" + mystate + ", mycomple=" + mycomple + ", stitle=" + stitle + ", sinfo=" + sinfo
+				+ ", ssdate=" + ssdate + ", sedate=" + sedate + ", time=" + time + ", sp=" + sp + ", splace=" + splace
+				+ ", sstate=" + sstate + ", cnt_service=" + cnt_service + ", sano=" + sano + ", sno=" + sno
+				+ ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", jjimno=" + jjimno + ", anino="
+				+ anino + ", aname=" + aname + ", age=" + age + ", gender=" + gender + ", weight=" + weight + ", genop="
+				+ genop + ", vac=" + vac + ", intro=" + intro + ", anipic=" + anipic + ", adopt=" + adopt + ", cnt="
+				+ cnt + ", adopt_pos=" + adopt_pos + ", animal_date=" + animal_date + ", arno=" + arno + ", artitle="
+				+ artitle + ", arinfo=" + arinfo + ", ardate=" + ardate + ", arimg=" + arimg + ", love=" + love
+				+ ", cnt_adoprv=" + cnt_adoprv + ", comno=" + comno + ", adcm=" + adcm + ", acdate=" + acdate
+				+ ", textno=" + textno + ", texttitle=" + texttitle + ", text=" + text + ", uploaddate=" + uploaddate
+				+ ", helppic=" + helppic + ", cnt_help=" + cnt_help + ", apno=" + apno + ", sub_cont=" + sub_cont
+				+ ", sub_state=" + sub_state + ", sub_date=" + sub_date + ", subpic=" + subpic + ", payno=" + payno
+				+ ", payop=" + payop + ", pdate=" + pdate + ", paymet=" + paymet + ", patamt=" + patamt + ", uname="
+				+ uname + ", email=" + email + ", passwd=" + passwd + ", zipcode=" + zipcode + ", addr1=" + addr1
+				+ ", addr2=" + addr2 + ", tel=" + tel + ", birth=" + birth + ", mdate=" + mdate + ", mlevel=" + mlevel
+				+ ", s_email=" + s_email + ", s_uname=" + s_uname + ", s_mdate=" + s_mdate + ", s_mlevel=" + s_mlevel
+				+ "]";
+	}
 	
 	
-	
-	
-	
-	
-	
-	
+
 	
 
 

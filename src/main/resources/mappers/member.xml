@@ -35,8 +35,8 @@
   </select>
   
  <insert id="naverInsert" parameterType="kr.co.chacha.member.MemberDTO">
-   INSERT INTO s_member(s_email, s_uname)
-   VALUES(#{s_email}, #{s_uname})
+   INSERT INTO s_member(s_email, s_uname, s_mdate)
+   VALUES(#{s_email}, #{s_uname}, NOW())
  </insert>
   
   <select id="kakaoCheck" parameterType="kr.co.chacha.member.MemberDTO" resultType="String">
@@ -46,8 +46,8 @@
   </select>
   
    <insert id="kakaoInsert" parameterType="kr.co.chacha.member.MemberDTO">
-   INSERT INTO s_member(s_email, s_uname)
-   VALUES(#{s_email}, #{s_uname})
+   INSERT INTO s_member(s_email, s_uname, s_mdate)
+   VALUES(#{s_email}, #{s_uname}, NOW())
  </insert>
   
   

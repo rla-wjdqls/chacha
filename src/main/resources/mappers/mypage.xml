@@ -124,6 +124,19 @@
   	ORDER BY mdate DESC
  </select>
  
+ <select id="smemList" resultType="kr.co.chacha.mypage.MypageDTO">
+  	SELECT s_email, s_uname, s_mlevel, s_mdate
+  	FROM s_member
+  	ORDER BY s_mdate DESC
+ </select>
+ 
+ 
+ <update id="updateMlevel"  parameterType="kr.co.chacha.mypage.MypageDTO">
+    UPDATE member
+    SET mlevel = #{mlevel}
+    WHERE uid = #{uid}
+</update>
+ 
  
  <update id="memberWithdraw" parameterType="String">
 	UPDATE member

@@ -119,7 +119,8 @@ function researchrInsert(insertData){
 		 console.log(result);
 		 //마지막 value="제출" 성공했을때만 
          //if(result === 1){ // 댓글 등록 성공
-             //alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
+
+         //    alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
              // 댓글 등록 후 researchList.jsp로 이동
          //}//if end
 		 
