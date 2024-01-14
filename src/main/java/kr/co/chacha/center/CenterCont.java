@@ -76,17 +76,16 @@ public class CenterCont {
 	    return centerDao.form(page, size);
 	}
 	
+	@GetMapping("/indexRandom")
+	@ResponseBody
+	public List<CenterDTO> randomList(){
+		return centerDao.randomList();
+	}
+	
 	@GetMapping("/centerWrite") //동물 추가 페이지
 	public String write() {
 		return "center/centerWrite";
 	}
-	
-//	@GetMapping("/detail")
-//	public ModelAndView detail() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("center/detail");
-//		return mav;
-//	}
 	
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
@@ -203,11 +202,6 @@ public class CenterCont {
 //		
 //		return cnt;
 //		
-//	}
-	
-//	@RequestMapping("centerChat")
-//	public String start() {
-//		return "/center/centerChat";
 //	}
 
 			
