@@ -41,7 +41,11 @@
 		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
 		            </c:if>
 		            <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
+<<<<<<< HEAD
 					  </div>
+=======
+					  	</div>
+>>>>>>> 6293c8d4ebd3617f07d75ea1c3c1bf222f0f3e1c
 				</c:forEach>
 			</div>
 			

@@ -1,44 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ include file="../header.jsp" %>
 
-    
-   
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="/css/login.css">
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script src="/js/jquery-3.7.1.min.js"></script>
-<script src="/js/jquery.cookie.js"></script>
+<!-- 본문 시작 template.jsp -->
 
-
-<style>
-.login-container {
-    display: flex; /* Flexbox 사용 */
-    justify-content: space-between; /* 엘리먼트 사이의 공간을 최대한으로 늘림 */
-    align-items: center; /* 엘리먼트를 세로로 가운데 정렬 */
-}
-
-   #naver_id_login {
-       margin-left: 130px; /* 왼쪽 여백을 최대로 늘림 */
-   }
-
-   #kakao-login-btn {
-       margin-right: 130px; /* 오른쪽 여백을 최대로 늘림 */
-   }
-
-        
-</style>
-
-
-</head>
-
-<body>
-  
 <%
 			Cookie[] cookies = request.getCookies();//사용자 PC에 저장된 모든 쿠키값 가져오기
 			String c_id = "";
@@ -51,12 +17,12 @@
 				}//for end
 			}//if end
 %> 
-  
+
   <div class="login"> 
   
     <div class="login__content">
       <div class="login__logo"><!--추후 로고 추가-->
-		<h1>그냥 데려가개</h1>	
+		<h1></h1>	
       </div>
       
       <div class="login__forms">
@@ -81,8 +47,8 @@
 					<input type="checkbox" id="c_id" name="c_id" value="SAVE" <%if(!c_id.isEmpty()) {out.print("checked");}%>>&nbsp;ID 저장
 				</label>
 			</span> 
-				<a href="/member/findID" class="login__forgot1">아이디찾기</a>
-				<a href="/member/findPasswd" class="login__forgot2">비밀번호 찾기</a>
+				<a href="/member/newfindID" class="login__forgot1">아이디찾기</a>
+				<a href="/member/newfindPasswd" class="login__forgot2">비밀번호 찾기</a>
 			</div>
 			<!-- // 아이디 저장 -->
 					
@@ -95,18 +61,6 @@
 			        <img src="/img/kakao_login.png" alt="kakao_login" name="kakao_id_login" class="kakao_id_login" id="kakao_id_login" width="50" height="50">
 			    </a>
 			</div>
-   			
-<!--  			
-				<div id="naver_id_login"></div>
-				<div class="sns_login_box">
-				<div class="sns_login_item">
-					<img src="/img/naver_login.png" alt="naver_login"  class="naver_id_login" id="naver_id_login"></a>
-				</div>
-				<div class="sns_login_item">
-					<img src="/img/kakao_login.png" alt="kakao_login" class="kakao_id_login" id="kakao_id_login">onclick="javascript:doKakaoLogin()"
-				</div>
-				<a id="kakao-login-btn"></a>
-				</div>  -->
 			<br>
 			<div>
 				<span class="login__account login__account--account">계정이 없으신가요?</span> 
@@ -116,14 +70,14 @@
 		</div>
 		</div>
 		</div>
+		
+<script src="/js/login.js"></script>
 
-
-	<script src="/js/login.js"></script>
 
 <script>
 	 var naver_id_login = new naver_id_login("hT38Ty_ojTPdrxKZegTp", "http://localhost:9095/member/loginForm");
 	 var state = naver_id_login.getUniqState();
-	 naver_id_login.setButton("green", 1,40);
+	 naver_id_login.setButton("green", 1,45);
 	 naver_id_login.setDomain("http://localhost:9095/member/loginForm");
 	 naver_id_login.setState(state);
 	 naver_id_login.init_naver_id_login();
@@ -170,7 +124,6 @@
 	     }
 	   });
 	 }
-	 
 	 
 	 
 	 //카카오 로그인 시작
@@ -244,46 +197,9 @@
 	  	   });
 	  	 }
 	 
-	 
-
-	/*   	function kakaoLogin() {
-	  		
-	  	  	
-	  		
-	  	    const clientId = '7497fed553cee5c17ab37c2bd5304c4d';
-	  	    const redirectUri = encodeURIComponent('http://localhost:9095/member/loginForm');
-	  	    const response_type = 'code';
-	  	    		
-	  	    const url = 'https://kauth.kakao.com/oauth/authorize?client_id=' + clientId + 
-	  	    		    '&redirect_uri=' + redirectUri + '&response_type=' + response_type; 
-
-	  	    window.location.href = url; 
-	  		} */
-
-
 	
 </script>
 	 
-<!-- <img onclick="document.getElementById('kakao-login-btn').click();" src="/resources/img/kakao_login.png" alt="카카오로 로그인" class="img-circle" id="kakaoLogin" />
-<img onclick="document.getElementById('naver_id_login_anchor').click();" src="/resources/img/naver_login.png" alt="네이버로 로그인" class="img-circle" id="naverLogin" /> -->
 
 
-	</body>
-
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<%@ include file="../footer.jsp" %>      
