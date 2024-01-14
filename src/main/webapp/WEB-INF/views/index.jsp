@@ -35,12 +35,57 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     
     <script>
+	    $(document).ready(function() {
+		    // DOM이 준비된 후 실행될 코드
+		    //alert("?");
+		    getRandomPosts();
+		});
+    
+	    function getRandomPosts() {
+	    	//alert("?");
+			$.ajax({
+				url : '/center/indexRandom',
+				type : 'get',
+				error : function (error) {
+					alert(error);
+				},
+				success : function (result) {
+					console.log(result)
+					let a = '';
+					$.each(result, function (key, value) {
+						//alert(value.aname);
+						a += "<div class='col-lg-3 col-md-6 wow fadeInUp' data-wow-delay='0.1s'>" ;
+						a += "<div class='team-item position-relative'>" ;
+						a += "<div class='position-relative'>" ;
+						if(!value.anipic || value.anipic === '-'){
+							a += "<img class='img-fluid' src='/img/noimg.png'>" ;
+						}else{
+							a += "<img class='img-fluid' src='/storage/" + value.anipic + "' >" ;
+						}
+						a += "<div class='team-social text-center'>" ;
+						a += "<a class='btn btn-square btn-outline-primary border-2 m-1' href='center/detail?anino=" + value.anino + "'>글 보러가기</a>" ;
+						a += "</div>" ;
+						a += "</div>" ;
+						a += " <div class='bg-light text-center p-4'>" ;
+						a += "<h5 class='mt-2'>" + value.aname + "</h5>" ;
+						a += "<span>" + value.age + "살</span>" ;
+						a += "</div>" ;
+						a += "</div>" ;
+						a += "</div>" ;
+						
+					});//each end
+					$("#team-items").append(a);
+				}
+			});//ajax end
+		}
 		function logout(){
 			alert("로그아웃 되었습니다");
 		}//logout() end
-    
+    	
+		
     </script>
 
 </head>
@@ -263,63 +308,8 @@
                 <h6 class="text-primary text-uppercase mb-2">입양 가능한 친구들</h6>
                 <h1 class="display-6 mb-4">귀여운 친구들을 소개합니다~^^</h1>
             </div>
-            <div class="row g-0 team-items">
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/dalgu1.jpg" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">달구</h5>
-                            <span>3살</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/coco1.jpg" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">코코</h5>
-                            <span>3살</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/dalgu2.jpg" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">달구</h5>
-                            <span>3살</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <div class="team-item position-relative">
-                        <div class="position-relative">
-                            <img class="img-fluid" src="img/coco2.jpg" alt="">
-                            <div class="team-social text-center">
-                                <a class="btn btn-square btn-outline-primary border-2 m-1" href="">글 보러가기</a>
-                            </div>
-                        </div>
-                        <div class="bg-light text-center p-4">
-                            <h5 class="mt-2">코코</h5>
-                            <span>3살</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="row g-0 team-items" id="team-items">
+                <!-- 동물 랜덤 목록 -->
             </div>
         </div>
     </div>
@@ -389,7 +379,7 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>

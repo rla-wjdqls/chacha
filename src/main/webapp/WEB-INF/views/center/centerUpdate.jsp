@@ -32,10 +32,10 @@
 							<td>성별</td>
 							<td>
 							<label>
-								수컷<input class="form-check-input" type="radio" value="M" name="gender">
+								수컷<input class="form-check-input" type="radio" value="M" name="gender" ${center.gender == 'M' ? 'checked' : ''}>
 							</label>
 							<label>
-								암컷<input class="form-check-input" type="radio" value="F" name="gender">
+								암컷<input class="form-check-input" type="radio" value="F" name="gender" ${center.gender == 'F' ? 'checked' : ''}>
 							</label>
 							</td>
 						</tr>
@@ -47,8 +47,8 @@
 							<td>중성화 여부</td>
 							<td>
 							<label value="${center.genop}">
-								예<input class="form-check-input" type="radio" value="Y" name="genop">
-								아니오<input class="form-check-input" type="radio" value="N" name="genop">
+								예<input class="form-check-input" type="radio" value="Y" name="genop" ${center.genop == 'Y' ? 'checked' : ''}>
+								아니오<input class="form-check-input" type="radio" value="N" name="genop" ${center.genop == 'N' ? 'checked' : ''}>
 							</label>
 							</td>
 						</tr>
@@ -56,41 +56,41 @@
 							<td>접종 여부</td>
 							<td>
 							<label>
-								예<input class="form-check-input" type="radio" value="Y" name="vac">
-								아니오<input class="form-check-input" type="radio" value="N" name="vac">
+								예<input class="form-check-input" type="radio" value="Y" name="vac" ${center.vac == 'Y' ? 'checked' : ''}>
+								아니오<input class="form-check-input" type="radio" value="N" name="vac" ${center.vac == 'N' ? 'checked' : ''}>
 							</label>
 							</td>
 						</tr>
 						<tr>
 							<td>소개</td>
 							<td>
-  								<textarea placeholder="간단한 소개를 작성해 주세요" class="form-control" name="intro" >${center.intro}</textarea>
+  								<textarea placeholder="간단한 소개를 작성해 주세요" class="form-control" name="intro">${center.intro}</textarea>
 							</td>
 						</tr>
 						<tr>
 							<td>사진</td>
 							<td>
-								<input type="file" name="img" value="${center.anipic}" multiple="multiple">
+								<input type="file" name="img" multiple="multiple">
 							</td>
 						</tr>
 						<tr>
 							<td>입양상태</td>
 							<td>
-								<select class="form-select" name="adopt" value="${center.adopt}">
-								  <option selected>선택</option>
-								  <option value="B">보호중</option>
-								  <option value="S">심사중</option>
-								  <option value="O">입양완료</option>
-								  <option value="G">귀가</option>
-								</select>
+							<select class="form-select" name="adopt">
+						        <option ${center.adopt == null ? 'selected' : ''}>선택</option>
+						        <option value="B" ${center.adopt == 'B' ? 'selected' : ''}>보호중</option>
+						        <option value="S" ${center.adopt == 'S' ? 'selected' : ''}>심사중</option>
+						        <option value="O" ${center.adopt == 'O' ? 'selected' : ''}>입양완료</option>
+						        <option value="G" ${center.adopt == 'G' ? 'selected' : ''}>귀가</option>
+						    </select>
 							</td>
 						</tr>
 						<tr>
 							<td>입양가능 여부</td>
 							<td>
 							<label>
-								예<input class="form-check-input" type="radio" value="Y" name="adopt_pos">
-								아니오<input class="form-check-input" type="radio" value="N" name="adopt_pos">
+								예<input class="form-check-input" type="radio" value="Y" name="adopt_pos" ${center.adopt_pos == 'Y' ? 'checked' : ''}>
+								아니오<input class="form-check-input" type="radio" value="N" name="adopt_pos" ${center.adopt_pos == 'N' ? 'checked' : ''}>
 							</label>
 							</td>
 						</tr>

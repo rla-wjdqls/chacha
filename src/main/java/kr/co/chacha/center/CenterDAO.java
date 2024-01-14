@@ -34,6 +34,10 @@ public class CenterDAO {
 		return sqlSession.selectList("center.form", parameterMap);
 	}
 	
+	public List<CenterDTO> randomList(){
+		return sqlSession.selectList("randomList");
+	}
+	
 	public Map<String, Object> detail (String anino){
 		return sqlSession.selectOne("center.detail", anino);
 	}
