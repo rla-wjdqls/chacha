@@ -40,8 +40,8 @@
 		            <c:if test="${list.rstate ne 'E'}">
 		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
 		            </c:if>
-		            <a href="/research/researchForm?rno=${list.rno}" class="btn btn-success">결과보기</a>
-					  	</div>
+		            <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
+					  </div>
 				</c:forEach>
 			</div>
 			

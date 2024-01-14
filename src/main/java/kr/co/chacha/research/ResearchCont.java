@@ -65,10 +65,19 @@ public class ResearchCont {
 	}//researchList() end
 	
 	
+	// 설문조사 결과 페이지
+	@GetMapping("/researchResult")
+	public ModelAndView researchResult(@RequestParam String rno) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("research/researchResult");
+		mav.addObject("researchList2", researchdao.researchList2(rno));
+		return mav;
+	}//researchResult() end
+	
+	
 	// 설문조사 페이지 띄어주기
 	@RequestMapping("/researchForm")
 	public ModelAndView researchForm(@RequestParam String rno) {
-		//System.out.println(rno); //r20240110144825
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchForm");

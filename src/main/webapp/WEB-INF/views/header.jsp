@@ -46,6 +46,8 @@
     
     <script src="/js/jquery-3.7.1.min.js"></script>
 	<script src="/js/jquery.cookie.js"></script>
+	
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     
     <script>
 	function logout(){

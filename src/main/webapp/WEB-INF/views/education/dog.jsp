@@ -53,11 +53,14 @@
                 "10. 입양 후 동물등록신고는 30일 안에 해야 한다.",
             };
             
+            /*
             for (int i = 1; i <= 10; i++) {
                 userAnswers[i - 1] = request.getParameter("qd" + i);
                 if (userAnswers[i - 1] != null && userAnswers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
                     score += 10;
                 }
+                */
+              
         %>
                 <div class="question mb-4" name="qd">
                     <label><c:out value="<%= questions[i - 1] %>"/></label>
