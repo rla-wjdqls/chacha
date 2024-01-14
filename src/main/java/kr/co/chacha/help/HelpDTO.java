@@ -11,7 +11,50 @@ public class HelpDTO {
 	private int love;
 	private int cnt;
 	
+	//페이징
+	private int limit = 10;
+	private int offset = 0;
+	
+	private String type;
+	private String keyword;
+	
 	public HelpDTO() {}
+	
+	
+	public int getLimit() {
+		return limit;
+	}
+
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+
+	public int getOffset() {
+		return offset;
+	}
+
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	public int getTextno() {
 		return textno;

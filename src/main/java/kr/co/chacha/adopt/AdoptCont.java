@@ -1,10 +1,12 @@
 package kr.co.chacha.adopt;
 
 import java.io.File;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.help.HelpDTO;
+import kr.co.chacha.service.ServiceDTO;
 
 @Controller
 @RequestMapping("/adopt")
@@ -29,10 +32,45 @@ public class AdoptCont {
 	private AdoptDAO adoptDAO;
 	
 	@RequestMapping("/adoptReview")
-	public ModelAndView adoptReview() {
+	public ModelAndView adoptReview(
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="type", required=false) String type,
+			@RequestParam(value="keyword", required=false) String keyword
+			) {
 		ModelAndView mav = new ModelAndView();
+		
+		int currentPage = (page != null) ? page: 1;
+		int totalCount = adoptDAO.adoptReviewCnt();
+		int boardLimit = 10; //한 화면에 출력할 게시물 수
+		int naviLimit = 5; //한 화면에 출력할 게시판 페이지 수
+		int maxPage; //게시판의 총 페이지 수 
+		int startNavi; //한 화면에 출력되는 게시판 페이지의 첫번째 번호
+		int endNavi; //한 화면에 출력되는 게시판 페이지의 마지막 번호
+		
+		maxPage = (int)((double)totalCount/boardLimit+0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		endNavi=startNavi+naviLimit-1;
+		
+		if(maxPage<endNavi) {
+			endNavi = maxPage;
+		}
+		
+		AdoptDTO dto = new AdoptDTO();
+		
+		List<AdoptDTO> adoptReview = adoptDAO.adoptReview(currentPage, boardLimit, type, keyword);
+		
+		if(!adoptReview.isEmpty()) {
+			mav.addObject("startNavi",startNavi);
+			mav.addObject("endNavi",endNavi);
+			mav.addObject("maxPage",maxPage);
+			mav.addObject("adoptReview",adoptReview);
+		}
+		
 		mav.setViewName("adopt/adoptReview");
-		mav.addObject("adoptReview", adoptDAO.adoptReview());
+		if(!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+			mav.addObject("type",type);
+			mav.addObject("keyword",keyword);
+		}
 		return mav;
 	}
 	
@@ -78,7 +116,7 @@ public class AdoptCont {
 		adoptDAO.insert(map);
 		return "redirect:/adopt/adoptReview";
 	
-	}
+	}//insert() end
 	
 		//상세 페이지
 		@GetMapping("/adoptDetail")

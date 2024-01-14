@@ -74,8 +74,21 @@
     				
     			</tr>
     		</c:forEach>
- </tbody>
- 	</table>
+    		<tr align="center" height="20">
+  				<td colspan="9">
+  					<c:if test="${startNavi ne 1 && startNavi > 0}">
+  						<a href="/adopt/adoptReview?page=${startNavi-1}">이전</a>
+  					</c:if>
+  					<c:forEach var="p" begin="${startNavi}" end="${endNavi}">
+  						<a href="/adopt/adoptReview?page=${p}">${p}</a>
+  					</c:forEach>
+  					<c:if test="${endNavi ne maxPage}">
+  						<a href="/adopt/adoptReview?page=${endNavi+1}">다음</a>
+  					</c:if>
+  				</td>
+  			</tr>
+ 	</tbody>
+ </table>
  	
  	<!-- 검색 시작 -->
 		
@@ -112,7 +125,7 @@
 		if(uid.length === 0){
 			alert("로그인 후 이용 바랍니다.");
 		}else{
-			window.location.href = '/help/helpForm'; //글쓰기 페이지로 이동
+			window.location.href = '/adopt/adoptForm'; //글쓰기 페이지로 이동
 		}//if end
    }//idPopup() end
 	

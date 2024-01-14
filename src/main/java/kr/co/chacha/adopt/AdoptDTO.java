@@ -14,8 +14,50 @@ public class AdoptDTO {
 	private int comno;		//후기댓글번호
 	private String adcm;	//댓글내용
 	private String acdate;	//댓글날짜
+	
+	//페이징
+	private int limit = 10;
+	private int offset = 0;
+	
+	private String type;
+	private String keyword;
 
 	public AdoptDTO() {}
+	
+	public int getLimit() {
+		return limit;
+	}
+
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+
+	public int getOffset() {
+		return offset;
+	}
+
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 
 	public int getArno() {
 		return arno;

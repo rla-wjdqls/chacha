@@ -2,11 +2,15 @@ package kr.co.chacha.help;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,10 +42,47 @@ public class HelpCont {
 	private HelpDAO helpDAO;
 	
 	@RequestMapping("/helpList")
-	public ModelAndView helpList() {
+	public ModelAndView helpList(
+			@RequestParam(value="page", required=false) Integer page,
+			@RequestParam(value="type", required=false) String type,
+			@RequestParam(value="keyword", required=false) String keyword
+			) {
+		
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("help/helpList");
-		mav.addObject("helpList",helpDAO.helpList());
+		
+		int currentPage = (page != null) ? page: 1;
+		int totalCount = helpDAO.helpListCnt();
+		int boardLimit = 10; //한 화면에 출력할 게시물 수
+		int naviLimit = 5; //한 화면에 출력할 게시판 페이지 수
+		int maxPage; //게시판의 총 페이지 수 
+		int startNavi; //한 화면에 출력되는 게시판 페이지의 첫번째 번호
+		int endNavi; //한 화면에 출력되는 게시판 페이지의 마지막 번호
+		
+		maxPage = (int)((double)totalCount/boardLimit+0.9);
+		startNavi = ((int)((double)currentPage/naviLimit+0.9)-1)*naviLimit+1;
+		endNavi=startNavi+naviLimit-1;
+		
+		if(maxPage<endNavi) {
+			endNavi = maxPage;
+		}
+		
+		HelpDTO dto = new HelpDTO();
+		
+		List<HelpDTO> helpList = helpDAO.helpList(currentPage, boardLimit, type, keyword);
+		
+		if(!helpList.isEmpty()) {
+			mav.addObject("startNavi",startNavi);
+			mav.addObject("endNavi",endNavi);
+			mav.addObject("maxPage",maxPage);
+			mav.addObject("helpList",helpList);
+		}
+		
+		mav.setViewName ("help/helpList");
+		if(!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+			mav.addObject("type",type);
+			mav.addObject("keyword",keyword);
+		}
 		return mav;
 	}
 	
@@ -95,9 +136,26 @@ public class HelpCont {
 	
 	//상세 페이지
 	@GetMapping("/helpDetail")
-    public ModelAndView helpd(int textno) {
+    public ModelAndView helpd(int textno, HttpServletRequest request) {
     	ModelAndView mav = new ModelAndView();
+    	HttpSession session = request.getSession(); // 세션 객체를 가져옴
     	mav.setViewName("help/helpDetail");
+    	
+    	// 조회수 증가
+    	helpDAO.increaseViewCount(textno);
+	    // 세션에서 조회한 게시물 ID 목록을 가져옴
+        Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
+        if (viewedPosts == null) {
+            viewedPosts = new HashSet<>();
+        }
+
+        // 게시물을 이전에 조회하지 않았다면 조회수 증가
+        if (!viewedPosts.contains(textno)) {
+        	helpDAO.increaseViewCount(textno);
+            viewedPosts.add(textno);
+            session.setAttribute("viewedPosts", viewedPosts);
+        }
+
     	mav.addObject("helpd", helpDAO.detail(textno));
     	return mav;
     }
