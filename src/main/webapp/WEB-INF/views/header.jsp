@@ -44,8 +44,15 @@
     <!-- adopt,education,help Stylesheet -->
     <link href="/css/aeh.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="/css/login.css">
+	<!-- <link rel="stylesheet" href="/css/signup.css"> -->
+    
     <script src="/js/jquery-3.7.1.min.js"></script>
 	<script src="/js/jquery.cookie.js"></script>
+	
+	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     
     <script>
 	function logout(){
@@ -61,19 +68,43 @@
 	    align-items: center; /* 엘리먼트를 세로로 가운데 정렬 */
 	}
 	
+	.login__register__1 {
+	  position: absolute;
+	  margin-bottom: 150px;
+	  bottom: -5rem;
+	  width: 460px;
+	  left: 50%;
+	  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
+	  box-sizing: border-box;
+	  background-color: var(--color-lighten);
+	  padding: 30px;
+	  border-radius: 1rem;
+	  text-align: center;
+	  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+	  animation-duration: 0.4s;
+	  animation-name: animateLogin;
+	
+	}
+	
 	   #naver_id_login {
-	       margin-left: 130px; /* 왼쪽 여백을 최대로 늘림 */
+	       margin-left: 120px; /* 왼쪽 여백을 최대로 늘림 */
+	       border-radius: 50%; /* 원형으로 만들기 */
+    	   overflow: hidden; /* 원형으로 만들기 */
 	   }
 	
 	   #kakao-login-btn {
-	       margin-right: 130px; /* 오른쪽 여백을 최대로 늘림 */
+	       margin-right: 120px; /* 오른쪽 여백을 최대로 늘림 */
+	       width: 55px; /* 원하는 너비로 조정 */
+    	   height: 55px; /* 원하는 높이로 조정 */
+	       
+
 	   }
 
 
-    #researchTable th,
-    #researchTable td {
-        text-align: center; /* 텍스트 가운데 정렬 */
-        vertical-align: middle; /* 수직 가운데 정렬 */
+	    #researchTable th,
+	    #researchTable td {
+	        text-align: center; /* 텍스트 가운데 정렬 */
+	        vertical-align: middle; /* 수직 가운데 정렬 */
     }
         
 </style>
@@ -127,7 +158,7 @@
                 </div>
                 &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/signupForm">회원가입</a>  
+                    <a href="/member/newsignupForm">회원가입</a>  
                 </div>
             </c:if>
             </div>

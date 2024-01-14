@@ -85,18 +85,16 @@
             <c:if test="${not empty sessionScope.s_id}">
                 <!-- If logged in, show logout link -->
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="logout" onclick="logout()">로그아웃</a> <!-- Adjust the logout URL accordingly -->
+                    <a href="logout" onclick="logout()">로그아웃</a> 
                 </div>
             </c:if>
-            
-            <!-- If not logged in, show login and sign-up links -->
             <c:if test="${empty sessionScope.s_id}">
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">로그인</a>  
                 </div>
                 &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/signupForm">회원가입</a>  
+                    <a href="/member/newsignupForm">회원가입</a>  
                 </div>
             </c:if>
             </div>

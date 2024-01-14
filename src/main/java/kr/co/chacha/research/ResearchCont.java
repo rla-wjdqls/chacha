@@ -66,7 +66,7 @@ public class ResearchCont {
 	
 	
 	// 설문조사 페이지 띄어주기
-	@RequestMapping("/researchForm")
+	@GetMapping("/researchForm")
 	public ModelAndView researchForm(@RequestParam String rno) {
 		//System.out.println(rno); //r20240110144825
 		
@@ -219,12 +219,58 @@ public class ResearchCont {
 		}//researchInsert() end
 
 		
+		// 설문 결과 페이지 이동
+		@GetMapping("/researchResult")
+		public ModelAndView researchResult(@RequestParam String rno) {
+			
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("research/researchResult");
+			mav.addObject("researchList2", researchdao.researchList2(rno));
+			mav.addObject("cnt", researchdao.countUid(rno));
+			return mav;
+		}//researchResult() end
 		
-		
+		@GetMapping("/resultList")
+		@ResponseBody
+		public List<ResearchDTO> resultList(@RequestParam String rno) {
+			
+			// DB 데이터를 조회하여 List<ResearchDTO>를 반환 
+		    List<ResearchDTO> result = researchdao.checkResult(rno);
+			return result;
+		}//resultList() end
 		
 		
 		
 }//class end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
