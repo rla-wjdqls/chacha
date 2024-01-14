@@ -114,7 +114,40 @@ function hdelete() {
 
 
 
+ 	<h1>댓글 목록</h1>
+	 <!-- 댓글 목록을 표시하는 부분 -->
+    <div id="commentList">
+        <c:forEach var="comment" items="${comments}">
+            <p>${comment}</p>
+        </c:forEach>
+    </div>
 
+    <!-- 댓글 추가 양식 -->
+    <h2>댓글 추가</h2>
+    <form action="AddCommentServlet" method="post">
+        <textarea name="commentText" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="댓글 추가">
+    </form>
+
+
+<%-- comments.jsp --%>
+<form action="AddCommentServlet" method="post" onsubmit="return validateComment()">
+    <textarea name="commentText" id="commentText" rows="4" cols="50"></textarea>
+    <br>
+    <input type="submit" value="댓글 추가">
+</form>
+
+<script>
+    function validateComment() {
+        var commentText = document.getElementById('commentText').value;
+        if (commentText.trim() === '') {
+            alert('댓글 내용을 입력하세요.');
+            return false;
+        }
+        return true;
+    }
+</script>
 
 
 <%@ include file="../footer.jsp" %>      

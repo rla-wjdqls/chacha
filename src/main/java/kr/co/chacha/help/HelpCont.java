@@ -246,7 +246,13 @@ public class HelpCont {
 		        // 로그인 후 리다이렉트 등의 로직 수행
 		        response.sendRedirect("/index"); // 로그인 후 이동할 페이지로 설정
 		    }
-		}
+		}//login end
+		
+		
+		
+		
+		
+		
 		
 	
 }

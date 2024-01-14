@@ -8,8 +8,11 @@ public class HelpDTO {
 	private String text;
 	private String uploaddate;
 	private String helppic;
+	
 	private int love;
 	private int cnt;
+	
+	private String comment;
 	
 	//페이징
 	private int limit = 10;
@@ -55,6 +58,21 @@ public class HelpDTO {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
+		
+	
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	
+	
+	
 
 	public int getTextno() {
 		return textno;
