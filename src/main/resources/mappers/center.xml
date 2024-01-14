@@ -17,6 +17,14 @@
  		
  	</select>
  	
+ 	<select id="randomList" resultType="java.util.Map">
+ 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
+ 		FROM animal
+ 		WHERE adopt_pos = 'Y'
+ 		ORDER BY rand() 
+ 		LIMIT 4
+ 	</select>
+ 	
  	<select id="detail" resultType="java.util.Map">
  		SELECT anino, aname, age, uid, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
  		FROM animal
