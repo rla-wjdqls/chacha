@@ -34,7 +34,6 @@
 				등록일자 :  ${researchList2.rgdate}<br>
 			</div>
 			<br><hr><br>
-
 			참여자 수 : ${cnt} 명 
 			<br><br>
 			<div class="researchResult" name="researchResult" id="researchResult"></div>  
@@ -42,8 +41,7 @@
 		</div>
 	</div>
 	<br><br>
-
-
+	
 <script>
 
 let rno = '${researchList2.rno}'; // 부모글 번호
@@ -65,49 +63,65 @@ function resultList() {
             console.log(error);
         },
         success: function (result) {
-        	//alert('성공~');
+        	
+        	 let questionResults = [];
 
-            let resultHtml = ''; // 결과를 담을 변수
+             let questionMap = new Map();
+             $.each(result, function (key, value) {
+                 let questionKey = value.qcont;
 
-                
-               let questionMap = new Map(); // 질문별로 선택지와 응답 결과를 관리하기 위한 Map
+                 if (!questionMap.has(questionKey)) {
+                     questionMap.set(questionKey, {
+                         choices: [],
+                         replies: []
+                     });
+                 }
 
-               $.each(result, function (key, value) {
-               	let questionKey = value.qcont; // 질문을 key로 사용
+                 questionMap.get(questionKey).choices.push(value.choice);
+                 questionMap.get(questionKey).replies.push(value.reply);
+             });
 
-                   // questionMap에 해당 질문이 없으면 빈 배열을 초기화
-                   if (!questionMap.has(questionKey)) {
-                       questionMap.set(questionKey, {
-                           choices: [],
-                           replies: []
-                       });
-                   }
-                   // 선택지와 응답 결과를 배열에 추가
-                   questionMap.get(questionKey).choices.push(value.choice);
-                   questionMap.get(questionKey).replies.push(value.reply);
-               });
+             questionMap.forEach(function (questionData, questionKey) {
+                 let dataset = {
+                     data: questionData.replies,
+                     backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+                     label: '질문' + (questionResults.length + 1) // 질문 번호
+                 };
 
-               // 각 질문에 대한 결과 출력
-               questionMap.forEach(function (questionData, questionKey) {
-                   resultHtml += '<br><p>질문' + questionNo + ". " + questionKey + '</p>';
+                 questionResults.push({
+                     labels: questionData.choices,
+                     datasets: [dataset],
+                     question: {
+                         number: (questionResults.length + 1), // 질문 번호
+                         content: questionKey // 질문 내용
+                     }
+                 });
+             });
 
-                   // 선택지와 응답 결과 출력
-                   for (let i = 0; i < questionData.choices.length; i++) {
-                       resultHtml += questionData.choices[i] + ': ' + questionData.replies[i] + '명<br>';
-                   }
-                   questionNo++;
-           });//each()end
-            
-        	// 결과를 출력할 영역에 HTML 추가
-           $("#researchResult").html(resultHtml);
-            
+             for (let i = 0; i < questionResults.length; i++) {
+                 let chartId = 'chartQuestion' + (i + 1);
+                 let chartCanvas = '<canvas id="' + chartId + '" width="50" height="50"></canvas><br>';
+                 $("#researchResult").append('<p>질문' + questionResults[i].question.number + ': ' + questionResults[i].question.content + '</p><br>');
+                 $("#researchResult").append(chartCanvas);
+
+                 let ctx = document.getElementById(chartId).getContext('2d');
+                 new Chart(ctx, {
+                     type: 'doughnut',
+                     data: questionResults[i],
+                     options: {
+                         title: {
+                             display: true,
+                             text: '질문' + questionResults[i].question.number + ': ' + questionResults[i].question.content
+                        }
+                    }
+                });
+            }
         }//success end
     });//ajax end
 }//researchrList() end
-
-
-
+        
 </script>
+
 
 
 <%@ include file="../footer.jsp" %>     

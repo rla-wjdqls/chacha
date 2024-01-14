@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
     
 <%@ include file="../header.jsp" %>
+
+<% 
+	String s_mlevel = (String)session.getAttribute("s_mlevel");
+%>
+
 <nav class="navbar navbar-light bg-light" style="height: 42px">
 			 <ul class="list-inline ml-auto" style="align-items: center;">
 				<li class="list-inline-item">
@@ -21,34 +26,44 @@
 <div class="container text-center"> <h3>설문조사</h3>
 	<div class="container">
 		<p>설문조사 페이지 입니다</p>
-		<hr><br><br>
+		<hr><br>
+		<c:choose>
+			<c:when test="${s_mlevel eq 'b'}">
+  			<div>
+  			<a href="/research/researchReg" class="btn btn">설문조사 등록하기</a>
+		    </div>
+		    </c:when>
+		</c:choose>
+		<br><br>
 		<div class="container-line">
 			<h5>여러분의 의견을 들려주세요~</h5>
 			<br>
 			<!--db 불러오기 -->
  			<div class="container-fixed row">
 				<c:forEach items="${researchList}" var="list">
-					  	<div class="col-sm-4 col-md-4">
-					  		<br>
-					    	<h5>${list.rtitle}</h5>
-					    	<p>${list.rdate1} ~ ${list.rdate2}</p>
-					    <c:choose>
-			                <c:when test="${list.rstate eq 'I'}">진행중</c:when>
-			                <c:when test="${list.rstate eq 'E'}">마감</c:when>
-		            	</c:choose>
-		            	<br><br>
+				  	<div class="col-sm-4 col-md-4">
+				  		<br>
+				    	<h5>${list.rtitle}</h5>
+				    	<p>${list.rdate1} ~ ${list.rdate2}</p>
+				    <c:choose>
+		                <c:when test="${list.rstate eq 'I'}">진행중</c:when>
+		                <c:when test="${list.rstate eq 'E'}">마감</c:when>
+	            	</c:choose>
+	            	<br><br>
 		            <c:if test="${list.rstate ne 'E'}">
-		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary">바로가기</a>
+		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary" onclick="return chechkLogin()">바로가기</a>
 		            </c:if>
 		            <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
-					  	</div>
+		            <c:choose>
+					<c:when test="${s_mlevel eq 'b'}">
+		  				<a href="/research/researchModify?rno=${list.rno}" class="btn btn-secondary">수정하기</a>
+				    </c:when>
+					</c:choose>
+					 </div>
 				</c:forEach>
 			</div>
 			
 			</div>
-				<br><br>
-				<a href="/research/researchReg" class="btn btn">설문조사 등록하기</a>
-				<br><br>
 			</div>
 			</div>
 		</div>
@@ -57,6 +72,25 @@
 
 <!-- 본문 끝 -->
 
+<<script>
+
+function chechkLogin(){
+	
+	let s_id = '<%= (String)session.getAttribute("s_id") %>';
+	//alert(s_id);
+	
+	if(uid=="null"){
+		alert("로그인 후 이용해 주세요");
+		return false;
+	}//if end
+	
+	return true;
+}//chechkLogin() end
+
+
+
+
+</script>
 
 
 
