@@ -43,6 +43,12 @@
  		WHERE rno = #{rno}
  	</select>
  	
+ 	<select id="getQuestions" resultType="Int">
+   		SELECT COUNT(qno)
+		FROM researchq
+		WHERE rno = #{rno}
+   	</select>
+ 	
  	
  	<select id="researchrList" resultType="kr.co.chacha.research.ResearchDTO">
 		SELECT rq.rno, rq.qcont, rq.qtype, rc.cno, rc.qno, rc.choice, rq.qty
@@ -75,6 +81,19 @@
     </select>
 
 
+	<update id="researchModify" parameterType="kr.co.chacha.research.ResearchDTO">
+	    UPDATE research
+	    SET rtitle = #{rtitle}, rdate1= #{rdate1}, rdate2 = #{rdate2}, rstate = #{rstate}, rop = #{rop}
+	    WHERE rno = #{rno}
+	</update>
+
+
+	<delete id="researchDelete" parameterType="String">
+	  	DELETE FROM research
+		WHERE rno = #{rno}
+    </delete>
+    
+    
     
 
     

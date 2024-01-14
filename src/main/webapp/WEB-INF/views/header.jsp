@@ -50,13 +50,11 @@
     <script src="/js/jquery-3.7.1.min.js"></script>
 	<script src="/js/jquery.cookie.js"></script>
 	
-
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
-
+	
 	<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
     
     <script>
 	function logout(){
