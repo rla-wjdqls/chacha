@@ -18,15 +18,10 @@
 			</ul>
 		</nav>
 <br>
-<<<<<<< HEAD
-<div class="container text-center"> <h3>설문조사</h3>
-	<div class="container">
-		<p>설문조사에 참여해 주세요</p>
-=======
+
 <div class="container text-center"> <h3>설문조사 결과</h3>
 	<div class="container">
 		<p>설문조사 결과를 확인하세요</p>
->>>>>>> 6293c8d4ebd3617f07d75ea1c3c1bf222f0f3e1c
 		<hr><br><br>
 		 <div class="container-line" id="surveyContainer">
 			<!-- 이 부분에 내용 들어감 질문1 시작-->
@@ -39,35 +34,16 @@
 				등록일자 :  ${researchList2.rgdate}<br>
 			</div>
 			<br><hr><br>
-<<<<<<< HEAD
-			
-		  <!-- 설문폼 시작 -->
-			<div class="researchResult" name="researchResult" id="researchResult"></div>  
-			<br><br><br>
-=======
+
 			참여자 수 : ${cnt} 명 
 			<br><br>
 			<div class="researchResult" name="researchResult" id="researchResult"></div>  
->>>>>>> 6293c8d4ebd3617f07d75ea1c3c1bf222f0f3e1c
         </div>
 		</div>
 	</div>
 	<br><br>
 
 
-<!-- 본문 끝 -->
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-
-=======
 <script>
 
 let rno = '${researchList2.rno}'; // 부모글 번호
@@ -132,7 +108,6 @@ function resultList() {
 
 
 </script>
->>>>>>> 6293c8d4ebd3617f07d75ea1c3c1bf222f0f3e1c
 
 
 <%@ include file="../footer.jsp" %>     
@@ -141,18 +116,7 @@ function resultList() {
 
 
 
-<<<<<<< HEAD
 
-=======
-질문1: 우리 아이가 제일 예쁠때는?
-매일: 1명 항상: 2명 거의: 1명
-
-질문2: 우리 아이가 얄미울때는?
-없다: 0명 그럴리가: 4명
-
-질문3: 이상적인 산책 횟수는?
-1회: 1명 2회: 2명 3회: 1명 4회: 0명
->>>>>>> 6293c8d4ebd3617f07d75ea1c3c1bf222f0f3e1c
 
 
  
