@@ -1,5 +1,7 @@
 <%@page import="kr.co.chacha.servicea.ServiceaDAO"%>
 <%@page import="kr.co.chacha.service.ServiceDTO"%>
+<%@ page import="kr.co.chacha.service.ServiceDAO" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
@@ -16,6 +18,28 @@ function sdelete() {
 		
 	}
 }
+</script>
+
+<script>
+    // 페이지 로드 시 조회수 증가 요청을 보내는 함수
+    function increaseViewCount() {
+        var sno = ${serviced.sno}; // 현재 게시물의 번호
+
+        // 서버에 조회수 증가 요청을 보냅니다.
+        fetch('/increaseViewCount/' + sno, {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // 페이지 로드 시 함수 실행
+    window.onload = increaseViewCount;
 </script>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -126,13 +150,7 @@ function sdelete() {
 	<a href="/service/servicea?sno=${serviced.sno}"><input type="button" value="신청"></a></p>
 </div>
 
-<%
-int sno = Integer.parseInt(request.getParameter("sno"));
-ServiceDTO dto = dao.read(sno);
-if(dto == null) {
-    out.println("해당 글 없음!!");
-} else {
-	    
-		dao.incrementCnt(sno); //조회수 증가}
-%>
+
+
+
 <%@ include file="../footer.jsp" %>      

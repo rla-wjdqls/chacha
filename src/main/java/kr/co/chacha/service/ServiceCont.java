@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonObject;
+import com.oracle.wls.shaded.org.apache.bcel.classfile.Attribute;
 
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
@@ -110,13 +113,31 @@ public class ServiceCont {
 
 	// 게시물 상세 페이지로 이동
     @GetMapping("/servicedetail")
-    public ModelAndView serviced(int sno) {
+    public ModelAndView serviced(int sno, HttpServletRequest request) {
     	ModelAndView mav = new ModelAndView();
+    	HttpSession session = request.getSession(); // 세션 객체를 가져옴
     	mav.setViewName("service/servicedetail");
+    	
+    	// 조회수 증가
+	    serviceDAO.increaseViewCount(sno);
+	 // 세션에서 조회한 게시물 ID 목록을 가져옴
+        Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
+        if (viewedPosts == null) {
+            viewedPosts = new HashSet<>();
+        }
+
+        // 게시물을 이전에 조회하지 않았다면 조회수 증가
+        if (!viewedPosts.contains(sno)) {
+            serviceDAO.increaseViewCount(sno);
+            viewedPosts.add(sno);
+            session.setAttribute("viewedPosts", viewedPosts);
+        }
+
+	 // 게시물 정보를 불러와서 모델에 추가
     	mav.addObject("serviced", serviceDAO.detail(sno));
     	return mav;
     }
-    
+
 	// 게시물 수정
 	@GetMapping("/serviceUpdate")
 	public ModelAndView serviceUpdate(int sno) {
@@ -164,34 +185,35 @@ public class ServiceCont {
 			
 		}//화면전환
 
-		@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
-		@ResponseBody
-		public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
-			
-			JsonObject jsonObject = new JsonObject();
-			
-			String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
-			String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-					
-			String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
-			
-			File targetFile = new File(fileRoot + savedFileName);	
-			
-			try {
-				InputStream fileStream = multipartFile.getInputStream();
-				FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-				jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
-				jsonObject.addProperty("responseCode", "success");
-					
-			} catch (IOException e) {
-				FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
-				jsonObject.addProperty("responseCode", "error");
-				e.printStackTrace();
-			}
-			
-			return jsonObject;
-		}
+		/*
+		 * @PostMapping(value="/uploadSummernoteImageFile", produces =
+		 * "application/json")
+		 * 
+		 * @ResponseBody public JsonObject
+		 * uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile)
+		 * {
+		 * 
+		 * JsonObject jsonObject = new JsonObject();
+		 * 
+		 * String fileRoot = "C:\\summernote_image\\"; //저장될 외부 파일 경로 String
+		 * originalFileName = multipartFile.getOriginalFilename(); //오리지날 파일명 String
+		 * extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+		 * //파일 확장자
+		 * 
+		 * String savedFileName = UUID.randomUUID() + extension; //저장될 파일 명
+		 * 
+		 * File targetFile = new File(fileRoot + savedFileName);
+		 * 
+		 * try { InputStream fileStream = multipartFile.getInputStream();
+		 * FileUtils.copyInputStreamToFile(fileStream, targetFile); //파일 저장
+		 * jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+		 * jsonObject.addProperty("responseCode", "success");
+		 * 
+		 * } catch (IOException e) { FileUtils.deleteQuietly(targetFile); //저장된 파일 삭제
+		 * jsonObject.addProperty("responseCode", "error"); e.printStackTrace(); }
+		 * 
+		 * return jsonObject; }
+		 */
 //	@RestController //
 //	public class ImageController {
 //
@@ -219,21 +241,7 @@ public class ServiceCont {
 		}
 	}*/
 	
-		 @GetMapping("/service/{uid}")
-		    public String viewData(@PathVariable int uid) {
-		        // 해당 데이터 조회
-		        // ...
 
-		        ServiceDAO servicedetail = null;
-				// 조회수 증가
-		        servicedetail.incrementCnt(uid);
-
-		        // 모델에 데이터를 추가하고 뷰 반환
-		        // ...
-
-		        return "redirect:/service/serviceList";
-		    }
-		
 		
 
 }//end

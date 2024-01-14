@@ -28,10 +28,10 @@
  </select>
  
 <!-- 조회수 증가 -->
- <update id="incrementCnt">
+<update id="increaseViewCount">
     UPDATE service
     SET cnt = cnt + 1
-    WHERE uid = #{uid}
+    WHERE sno = #{sno}
 </update>
  
  <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
@@ -61,6 +61,8 @@
 		INSERT INTO servicea (uid, sno, sadate, astate)
 		VALUES(#{uid}, #{sno}, #{sadate}, 'O')
 </insert>
+
+
  </mapper>
  
  

@@ -2,9 +2,9 @@ package kr.co.chacha.education;
 
 public class EduDTO {
 
-	private String eduno;		//교육신청번호
+	private int eduno;		//교육신청번호
 	private String uid;
-	private int eduop;			//강의구분
+	private String eduop;			//강의구분
 	private String edu_date;	//교육신청날짜
 	private int quizno;			//퀴즈번호
 	private String quiz_cont;	//퀴즈내용
@@ -16,11 +16,11 @@ public class EduDTO {
 
 	public EduDTO() {}
 
-	public String getEduno() {
+	public int getEduno() {
 		return eduno;
 	}
 
-	public void setEduno(String eduno) {
+	public void setEduno(int eduno) {
 		this.eduno = eduno;
 	}
 
@@ -32,11 +32,11 @@ public class EduDTO {
 		this.uid = uid;
 	}
 
-	public int getEduop() {
+	public String getEduop() {
 		return eduop;
 	}
 
-	public void setEduop(int eduop) {
+	public void setEduop(String eduop) {
 		this.eduop = eduop;
 	}
 

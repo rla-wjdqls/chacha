@@ -37,6 +37,13 @@
 <div class="container text-center">
     <h2>퀴즈 결과</h2>
     <p>총 점수는 <%= score %>점입니다.</p>
+    <!-- <input type='hidden' name='score' id='score'> -->
+    
+     <form id="scoreForm" action="/saveScore" method="post">
+        <input type="hidden" name="score" value="<%= score %>">
+        <input type="submit" class="btn btn-primary" value="결과 저장">
+    </form>
+    
     <table class="table">
         <thead>
             <tr>
