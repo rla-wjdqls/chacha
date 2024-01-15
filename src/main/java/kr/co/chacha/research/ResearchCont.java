@@ -141,6 +141,24 @@ public class ResearchCont {
 	}//researchrList() end
 	
 	
+	@GetMapping("/checkUser")
+	@ResponseBody
+	public int checkUser(@RequestParam String rno, HttpSession session) {
+		
+		String uid = (String)session.getAttribute("s_id");
+				
+		ResearchDTO researchDTO = new ResearchDTO();
+		
+		researchDTO.setUid(uid);
+		researchDTO.setRno(rno);
+		
+		int cnt = researchdao.checkUser(researchDTO); 
+		
+		return cnt;
+		
+	}//checkUser() end
+	
+	
 	// 설문조사 답변 insert
 	@PostMapping("/researchrInsert")
 	@ResponseBody

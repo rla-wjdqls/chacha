@@ -46,6 +46,10 @@ public class ResearchDAO {
 		return sqlSession.selectOne("research.checkQty", rno);
 	}//checkQty() end
 	
+	public int checkUser(ResearchDTO researchDTO) {		
+		return sqlSession.selectOne("research.checkUser", researchDTO);
+	}//checkQty() end
+	
 	public int getQuestions(String rno) {		
 		return sqlSession.selectOne("research.getQuestions", rno);
 	}//getQuestions() end
