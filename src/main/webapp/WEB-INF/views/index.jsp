@@ -36,12 +36,15 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
+   		
 	    $(document).ready(function() {
 		    // DOM이 준비된 후 실행될 코드
 		    //alert("?");
 		    getRandomPosts();
+		   	chart();
 		});
     
 	    function getRandomPosts() {
@@ -81,6 +84,109 @@
 				}
 			});//ajax end
 		}
+	    
+	    function chart() {
+	    	$.ajax({
+				url : '/center/chart',
+				type : 'get',
+				error : function (error) {
+					alert(error);
+				},
+				success : function (result) {
+					console.log(result);
+					let dataChart = [];
+					let animalType, status, data;
+					
+					dataChart = result[4];
+						
+					
+					console.log(dataChart);
+					chartJs(dataChart);
+				}
+	    	});//ajax end	
+				
+		}
+	    
+	    let totalSum = [];
+	    let dog = [];
+	    let cat = [];
+	    let other = [];
+
+	    function chartJs(dataChart) {
+	        let chart = document.getElementById('myChart');
+
+	        //console.log(dataChart);
+
+	        //필요한 부분만 추출
+	        let total = dataChart.slice(2);
+	        console.log(total);
+
+	        totalSum = total[0];
+	        dog = total.slice(1, 5); // dataChart 인덱스 3번째부터 6번째까지 가져오기
+	        cat = total.slice(5, 9); // dataChart 인덱스 7번째부터 10번째까지 가져오기
+	        other = total.slice(9, 13); // dataChart 인덱스 11번째부터 14번째까지 가져오기
+
+	        console.log(totalSum);
+	        console.log(dog);
+	        console.log(cat);
+	        console.log(other);
+
+	        let labels = ["유기된 동물", "인도(주인)", "입양", "안락사(자연사)"];
+	        let data = {
+	            labels: labels,
+	            datasets: [
+	                {
+	                    label: "전체",
+	                    data: [totalSum], //배열이 아닌 단일 값으로 수정
+	                    borderColor: 'rgb(255, 99, 132)',
+	                    backgroundColor: 'rgba(255, 99, 132, 0.2)'
+	                },
+	                {
+	                    label: "개",
+	                    data: dog,
+	                    borderColor: 'rgb(54, 162, 235)',
+	                    backgroundColor: 'rgba(54, 162, 235, 0.2)'
+	                },
+	                {
+	                    label: "고양이",
+	                    data: cat,
+	                    borderColor: 'rgb(255, 205, 86)',
+	                    backgroundColor: 'rgba(255, 205, 86, 0.2)'
+	                },
+	                {
+	                    label: "기타",
+	                    data: other,
+	                    borderColor: 'rgb(75, 192, 192)',
+	                    backgroundColor: 'rgba(75, 192, 192, 0.2)'
+	                }
+	            ]
+	        };
+
+	        console.log(data);
+
+	        let myChart = new Chart(chart, {
+	            type: 'bar',
+	            data: data,
+	            options: {
+	                indexAxis: 'y',
+	                scales: {
+	                    x: {
+	                        beginAtZero: true,
+	                        min: 0,
+	                        max: 5000,
+	                        ticks: {
+	                            stepSize: 1000
+	                            // x축 최대 값 설정 (원하는 값으로 조정)
+	                        }
+	                    }
+	                }
+	            }
+	        });
+	    }
+		
+	    
+	    
+	    
 		function logout(){
 			alert("로그아웃 되었습니다");
 		}//logout() end
@@ -321,21 +427,9 @@
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h6 class="text-primary text-uppercase mb-2">통계</h6>
                 <h1 class="display-6 mb-4">유기견 현황</h1>
+                <canvas id="myChart" width="400" height="400"></canvas>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-8 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="owl-carousel testimonial-carousel">
-                        <div class="testimonial-item text-center">
-                            <div class="position-relative mb-5">
-                                <img class="img-fluid mx-auto" src="img/통계.png" alt="">
-                               <!-- <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
-                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
-                               		 </div>-->
-                        	</div>
-                       </div>
-                   </div>
-               </div>
-           </div>
+            
         <div style="display: flex">
 	        <div style="float: left">
 				<iframe width="560" height="315" src="https://www.youtube.com/embed/we9qyoE3mcY?si=mCliilmj0KJPsulC" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                            

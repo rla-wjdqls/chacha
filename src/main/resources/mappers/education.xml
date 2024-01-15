@@ -17,6 +17,9 @@
 		ORDER BY edu_date
 	</select>
 	
+	<select id="getLatestResult" parameterType="String" resultType="kr.co.chacha.education.EduDTO">
+    	SELECT * FROM education WHERE uid = #{uid} ORDER BY edu_date DESC LIMIT 1
+	</select>
 	
 	
 </mapper>

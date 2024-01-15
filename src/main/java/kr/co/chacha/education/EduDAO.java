@@ -26,6 +26,9 @@ public class EduDAO {
 	
 	}//insert() end
 	
+	public EduDTO getLatestResult(String uid) {
+        return sqlSession.selectOne("education.getLatestResult", uid);
+    }
 	
 	
 	

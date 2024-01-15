@@ -12,6 +12,7 @@ public class HelpDTO {
 	private int love;
 	private int cnt;
 	
+	//댓글
 	private String comment;
 	
 	//페이징
