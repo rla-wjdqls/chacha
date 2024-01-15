@@ -62,16 +62,16 @@
 		</tr>
 	</thead>
 	<tbody>
-    		<c:forEach items="${helpList}" var="row">
-    			<tr>
-    				<td><a href="helpDetail?textno=${row.textno}">${row.textno}</a></td>
-    				<td><a href="helpDetail?textno=${row.textno}">${row.texttitle}</a></td>
-    				<td>${row.cnt}</td>
-    				<td>${row.uid}</td>
-    				<td>${row.uploaddate}</td>
-    				
-    			</tr>
-    		</c:forEach>
+   		<c:forEach items="${helpList}" var="row">
+   			<tr>
+   				<td><a href="helpDetail?textno=${row.textno}">${row.textno}</a></td>
+   				<td><a href="helpDetail?textno=${row.textno}">${row.texttitle}</a></td>
+   				<td>${row.cnt}</td>
+   				<td>${row.uid}</td>
+   				<td>${row.uploaddate}</td>
+   				
+   			</tr>
+   		</c:forEach>
     		<tr>
   				<td colspan="9">
   					<c:if test="${startNavi ne 1 && startNavi > 0}">

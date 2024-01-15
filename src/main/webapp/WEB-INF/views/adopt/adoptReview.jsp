@@ -56,10 +56,11 @@
 		<tr class="success">
 			<th>후기글번호</th>
 	   <!-- <th>입양동물</th> -->
-			<th>제목</th>		
+			<th>제목</th>	
+			<th>조회수</th>	
 			<th>작성자</th>
 			<th>작성일</th>
-			<th>조회수</th>
+			
 		</tr>
 	</thead>
 	<tbody>
@@ -68,9 +69,10 @@
     				<td><a href="adoptDetail?arno=${row.arno}">${row.arno}</a></td>
     		<!-- 	<td>${row.anino}</td> -->
     				<td><a href="adoptDetail?arno=${row.arno}">${row.artitle}</a></td>
+    				<td>${row.cnt}</td>
     				<td>${row.uid}</td>
     				<td>${row.ardate}</td>
-    				<td>${row.cnt}</td>
+    				
     				
     			</tr>
     		</c:forEach>

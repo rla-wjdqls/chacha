@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -75,6 +76,15 @@ public class HelpDAO {
 	    // 예: 데이터베이스에서 해당 sno의 게시물을 찾아 조회수를 1 증가시키는 쿼리 실행
 		 sqlSession.update("help.increaseViewCount", textno);
 	}
+	
+	//댓글
+	 @Autowired
+	    private SqlSessionTemplate sqlSessionTemplate;
+
+	 public List<HelpDTO> getAllComments() {
+	    return sqlSessionTemplate.selectList("help.getAllComments");
+	    
+	    }
 	
 	/*
 	//댓글 // CommentDAO.java
