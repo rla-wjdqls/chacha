@@ -1,6 +1,9 @@
 package kr.co.chacha.center;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +83,27 @@ public class CenterCont {
 	@ResponseBody
 	public List<CenterDTO> randomList(){
 		return centerDao.randomList();
+	}
+	
+	@GetMapping("/chart")
+	@ResponseBody
+	public List<String[]> readCsv(){
+		List<String[]> data = new ArrayList<>(); //csv파일의 데이터를 담을 리스트
+		
+			//csv 파일 읽어오기
+		try(BufferedReader br = new BufferedReader(new FileReader("src/main/resources/static/chart.csv"))){
+			
+			String line;
+			
+			while((line = br.readLine()) != null) { //line에 저
+				String[] row = line.split(","); //읽은 줄 , 기준으로 배열에 담기
+				data.add(row); //담기
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(data);
+		return data;
 	}
 	
 	@GetMapping("/centerWrite") //동물 추가 페이지
