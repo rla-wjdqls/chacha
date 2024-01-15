@@ -30,6 +30,12 @@
 	  	WHERE rno = #{rno}
     </select>
     
+    <select id="checkUser" parameterType="kr.co.chacha.research.ResearchDTO" resultType="Int">
+	  	SELECT COUNT(*)
+	  	FROM researchr rr JOIN researchq rq
+	  	ON rr.qno = rq.qno
+	  	WHERE rq.rno = #{rno} AND uid = #{uid};
+    </select>
     
     <select id="researchCheck" resultType="kr.co.chacha.research.ResearchDTO">
  		SELECT rno, rtitle, rdate1, rdate2, rstate, rop, rgdate
@@ -93,6 +99,12 @@
 		WHERE rno = #{rno}
     </delete>
     
+    
+    <update id="updateRstate" parameterType="kr.co.chacha.research.ResearchDTO">
+	    UPDATE research
+	    SET rstate = #{rstate}
+	    WHERE rno = #{rno}
+	</update>
     
     
 

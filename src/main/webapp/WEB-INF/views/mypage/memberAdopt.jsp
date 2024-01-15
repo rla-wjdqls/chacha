@@ -19,12 +19,12 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
-            	<!--신청글 제목없음 -->
                 <th>신청번호</th>
                 <th>아이디</th>
                 <th>신청일자</th>
                 <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>첨부파일</th>
+                <th></th>
                 
             </tr>
         </thead>
@@ -34,29 +34,62 @@
                     <td>${memAdopt.apno}</td>
                     <td>${memAdopt.uid}</td>
                     <td><fmt:formatDate value="${memAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
-                    <td>
+                    <td> 
 				        <select name="sub_state"  id="sub_state">
-				          <option value="0">선택하세요.</option>
-				          <option value="S">신청완료</option>
-				          <option value="P" selected>심사중</option>
-				          <option value="W">심사완료</option>
-				          <option value="G">입양가능</option>
-				          <option value="C">책임금결제</option>
-				          <option value="F">입양완료</option>
-				          <option value="X">입양불가능</option>
+				        <c:choose>
+				        	 <c:when test="${memAdopt.sub_state eq 'S'}">
+					        	  <option value="S" selected>신청완료</option>
+						          <option value="P">심사중</option>
+						          <option value="W">심사완료</option>
+						          <option value="C">책임금결제</option>
+						          <option value="F">입양완료</option>
+						          <option value="X">입양불가능</option>
+				        	 </c:when>
+				        	<c:when test="${memAdopt.sub_state eq 'P'}">
+					        	  <option value="S">신청완료</option>
+						          <option value="P" selected>심사중</option>
+						          <option value="W">심사완료</option>
+						          <option value="C">책임금결제</option>
+						          <option value="F">입양완료</option>
+						          <option value="X">입양불가능</option>
+				        	 </c:when>
+				        	 <c:when test="${memAdopt.sub_state eq 'W'}">
+					        	  <option value="S">신청완료</option>
+						          <option value="P">심사중</option>
+						          <option value="W" selected>심사완료</option>
+						          <option value="C">책임금결제</option>
+						          <option value="F">입양완료</option>
+						          <option value="X">입양불가능</option>
+				        	 </c:when>		        	
+				        	 <c:when test="${memAdopt.sub_state eq 'C'}">
+					        	  <option value="S">신청완료</option>
+						          <option value="P">심사중</option>
+						          <option value="W">심사완료</option>
+						          <option value="C" selected>책임금결제</option>
+						          <option value="F">입양완료</option>
+						          <option value="X">입양불가능</option>
+				        	 </c:when>		        	
+				        	 <c:when test="${memAdopt.sub_state eq 'F'}">
+					        	  <option value="S">신청완료</option>
+						          <option value="P">심사중</option>
+						          <option value="W">심사완료</option>
+						          <option value="C">책임금결제</option>
+						          <option value="F" selected>입양완료</option>
+						          <option value="X">입양불가능</option>
+				        	 </c:when>		        	
+				        	 <c:when test="${memAdopt.sub_state eq 'X'}">
+					        	  <option value="S">신청완료</option>
+						          <option value="P">심사중</option>
+						          <option value="W">심사완료</option>
+						          <option value="C">책임금결제</option>
+						          <option value="F">입양완료</option>
+						          <option value="X" selected>입양불가능</option>
+				        	 </c:when>
+				        </c:choose>
 				        </select>
-<%-- 		        <c:choose>
-		                <c:when test="${memAdopt.sub_state eq 'S'}">신청완료</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'P'}">심사중</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'W'}">심사완료</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'G'}">입양가능</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'C'}">책임금결제</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'F'}">입양완료</c:when>
-		                <c:when test="${memAdopt.sub_state eq 'X'}">입양불가능</c:when>
-		            </c:choose>  
---%>
 		        	</td>
                     <td>${memAdopt.subpic}</td>
+                    <td><input type="button" value="수정" class="btn"></td>
                 </tr>
             </c:forEach>
         </tbody>

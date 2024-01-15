@@ -249,7 +249,22 @@ public class HelpCont {
 		}//login end
 		
 		
-		
+		 @PostMapping("/AddComment")
+		    public String addComment(@RequestParam("commentText") String comment, Model model) {
+		        // 여기에서 댓글을 추가하는 로직을 작성하십시오.
+		        // 예를 들어, CommentService를 통해 댓글을 저장할 수 있습니다.
+
+		        // 여기서는 단순히 댓글 내용을 콘솔에 출력하는 예시입니다.
+		        System.out.println("Received comment: " + comment);
+
+		        // 추가된 댓글을 다시 불러오거나 다른 작업이 필요하면 해당 작업을 수행합니다.
+
+		        // 여기서는 간단하게 댓글 목록을 Model에 추가하고, "redirect"를 통해 댓글 목록 페이지로 리다이렉트합니다.
+		        // 실제로는 필요에 따라 다른 뷰나 리다이렉트 주소를 반환하실 수 있습니다.
+		        List<HelpDTO> comments = helpDAO.getAllComments();
+		        model.addAttribute("comments", comments);
+		        return "redirect:/helpList";
+		    }
 		
 		
 		

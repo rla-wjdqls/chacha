@@ -1,5 +1,6 @@
 package kr.co.chacha.mypage;
 
+import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.member.MemberDTO;
+import kr.co.chacha.research.ResearchDTO;
 
 
 @Controller
@@ -76,6 +78,7 @@ public class MypageCont {
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
     	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+    	mav.addObject("myAdoptList1", mypageDao.myAdopt1(s_id));
         return mav; 
 	}//myAdopt() end
 	
@@ -179,17 +182,14 @@ public class MypageCont {
 	}//memList() end
 	
 	
-    // Ajax를 통한 mlevel 업데이트 처리
-    @PostMapping("/updateMlevel")
-    public void updateMlevel(HttpServletRequest req) {
-       System.out.println("111");
-    	
-    	
-    }//updateMlevel() end
-	
-	
-	
-
+	//회원정보 수정(관리자)
+	@PostMapping("/mypage/memListModify")
+	public String memListModify(String uid, String mlevel) {
+		//System.out.println(uid);
+		//System.out.println(mlevel);
+		
+		return "redirect:/mypage/memList";
+	}//memListModify() end
 
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동
@@ -389,7 +389,7 @@ public class MypageCont {
 	    }
 
 	    return response;
-	}
+	}//payValidate() end
 
 	// 이니시스 API를 사용하여 결제된 금액을 조회하는 메서드 (예시)
 	private int getPaymentAmountFromInicis(String imp_uid) {

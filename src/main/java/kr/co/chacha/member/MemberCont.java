@@ -279,10 +279,10 @@ public class MemberCont {
 	
 	
 	// 회원가입 페이지 이동
-	@GetMapping("/signupForm")
+	@GetMapping("/newsignupForm")
 	public ModelAndView signupForm() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/signupForm");
+		mav.setViewName("member/newsignupForm");
 		return mav;
 	}// login() end
 	

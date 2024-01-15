@@ -50,69 +50,58 @@ public class EduCont {
 		
 	}//logout end
 	
-	@GetMapping("/dog")
-	public ModelAndView dog() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("education/dog");
-		return mav;
-	}
+	 @GetMapping("/dog")
+		public ModelAndView dog() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("education/dog");
+			return mav;
+		}
+
+	@GetMapping("/dogResult")
+		public ModelAndView dogResult() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("education/dogResult");
+			return mav;
+		}
+		
+		@PostMapping("/dogResult")
+		public String dogResult(HttpSession session, EduDTO edudto, @RequestParam(value = "score", required = false) Integer score) {
+			
+			// 여기에 퀴즈 결과 데이터를 처리하는 로직을 추가
+		    String uid = (String) session.getAttribute("s_id");  //사용자 아이디
+		    String lectureType = "강아지"; //강의구분
+		    //int totalScore = 20; //세션에서 총점 가져오기
+		    //Integer score = (Integer) session.getAttribute("score");
+
+		    // Controller 또는 Servlet에서 데이터 처리
+		    //Map<String, Object> paramMap = new HashMap<>();
+		    //paramMap.put("uid", uid);
+		    //paramMap.put("eduop", lectureType);
+		    //paramMap.put("score", score);
+		    edudto.setUid(uid);
+		    edudto.setEduop(lectureType);
+		    edudto.setScore(score);
+
+		    eduDao.eduIns(edudto);
+		    
+		    return "redirect:/education/dogResult";
+		}
 	
 	/*
-	@GetMapping("/dogResult")
-	public String dogResult(HttpSession session, EduDTO edudto) {
-		
-		// 여기에 퀴즈 결과 데이터를 처리하는 로직을 추가
-	    String uid = (String) session.getAttribute("s_id");  //사용자 아이디
-	    int applicationNumber = 14;  //신청번호
-	    String lectureType = "강아지"; //강의구분
-	    
-	    //System.out.println(edudto);
-	    //int totalScore = (score); 
-	    int score = (int) session.getAttribute("score");
-		//Integer score = (Integer) session.getAttribute("score");
-		 
-	    
-	    // Controller 또는 Servlet에서 데이터 처리
-	    Map<String, Object> paramMap = new HashMap<>();
-	    paramMap.put("uid", uid);
-	    paramMap.put("eduno", applicationNumber);
-	    paramMap.put("eduop", lectureType);
-	    paramMap.put("score", score);
-		
-	        
-	    // MyBatis를 사용하여 DB에 데이터 삽입
-	    sqlSession.insert("eduIns", paramMap);
-	    //session.setAttribute("score", score);
-	    
-	    // 리다이렉트 경로 반환
-	    return "redirect:/education/dogResult";
-	}
+	// POST 처리 후 리다이렉트될 GET 메서드
+    @GetMapping("/dogResult")
+    public ModelAndView dogResult(HttpSession session) {
+        ModelAndView mav = new ModelAndView();
+        String uid = (String) session.getAttribute("s_id");
+
+        // 데이터베이스에서 해당 사용자의 최신 퀴즈 결과를 조회
+        EduDTO quizResult = eduDao.getLatestResult(uid);
+        mav.addObject("quizResult", quizResult); // 결과 객체를 뷰로 전달
+        mav.setViewName("education/dogResult"); // 결과 페이지
+
+        return mav;
+    }
 	*/
-	
-	
-	@GetMapping("/dogResult")
-	public String dogResult(HttpSession session, EduDTO edudto) {
-		
-		// 여기에 퀴즈 결과 데이터를 처리하는 로직을 추가
-	    String uid = (String) session.getAttribute("s_id");  //사용자 아이디
-	    String lectureType = "강아지"; //강의구분
-	    //int totalScore = 20; //세션에서 총점 가져오기
-	    Integer score = (Integer) session.getAttribute("score");
-
-	    // Controller 또는 Servlet에서 데이터 처리
-	    //Map<String, Object> paramMap = new HashMap<>();
-	    //paramMap.put("uid", uid);
-	    //paramMap.put("eduop", lectureType);
-	    //paramMap.put("score", score);
-	    edudto.setUid(uid);
-	    edudto.setEduop(lectureType);
-	    edudto.setScore(score);
-
-	    eduDao.eduIns(edudto);
-	    
-	    return "redirect:/education/dogResult";
-	}
-	
 	
 	// 현재 날짜를 문자열로 반환하는 메서드
     private String getCurrentDate() {

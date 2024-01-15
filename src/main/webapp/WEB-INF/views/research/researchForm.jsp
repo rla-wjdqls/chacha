@@ -63,6 +63,29 @@ $(document).ready(function () {
     
     $("#btn_research_n").on("click", function () {
     	//alert("설문 조사를 제출합니다.");
+    	  $.ajax({
+	        url: '/research/checkUser',
+	        type: 'get',
+	        data: { 
+	        		'rno' : rno 
+	        },
+	        error: function (error) {
+	            alert('에러!');
+	            console.log(error);
+	        },
+	        success: function (result) {
+	        	//alert('성공~' + result); //2
+	        	if(result !== 0){
+	        		 alert("이미 참여한 설문에는 재참여 하실 수 없습니다.");
+	        		 window.location.href = '/research/researchList';
+	        	}//if end
+	        	
+	        	// 서버 응답이 0인 경우에는 다음 동작을 수행
+	            handleResearchButtonClick();
+	         
+	        }//success end
+	    });//ajax end
+	    	
     	
     	// 체크된 체크박스들을 선택
 	    let checkedCheckbox = $("input[type=checkbox]:checked");
@@ -112,7 +135,7 @@ function updateProgressBar() {
             progressBar.width(progressPercentage + "%");
             progressBar.text(progressPercentage.toFixed(0) + "%");
         }//success end
-    });
+    });//ajax end
 }//updateProgressBar() end
 
 

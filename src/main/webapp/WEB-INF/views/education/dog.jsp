@@ -32,7 +32,7 @@
 
 <div id="quiz" class="container">
     <h2 class="mb-4">강아지 OX Quiz</h2>
-    <form id="dogquizForm" action="./dogResult">
+    <form id="dogquizForm" action="./dogResult" method="post">
     	<input type='hidden' name='score' id='score'>
     	
         <% 
@@ -63,14 +63,13 @@
                 */
               
         %>
-                <div class="question mb-4" name="qd">
-                    <label><c:out value="<%= questions[i - 1] %>"/></label>
-                    <input type="radio" name="qd<%=i%>" value="O"> O
-                    <input type="radio" name="qd<%=i%>" value="X"> X
-                </div>
-        <% 
-            } 
-        %>
+         <% for (int i = 0; i < questions.length; i++) { %>
+	    	<div class="question mb-4" name="qd">
+		        <label><%= questions[i] %></label>
+		        <input type="radio" name="qd<%=i+1%>" value="O"> O
+		        <input type="radio" name="qd<%=i+1%>" value="X"> X
+	    	</div>
+		<% } %>
        
         <button type="submit" class="btn btn-primary mb-4" >퀴즈 제출</button>
     </form>
@@ -110,14 +109,21 @@ quizForm.addEventListener('submit', function (event) {
 
     if (!allQuestionsAnswered) {
         alert('모든 문제에 답해주세요.');
-        event.preventDefault(); // 폼 제출 방지
-  
-    }  else {
+        event.preventDefault(); 
+    } else {
+        // 점수 계산 로직 추가
+        let score = 0;
+        let userAnswers = [];
+        const correctAnswers = ["X", "O", "X", "O", "X", "O", "O", "O", "X", "O"];
 
-    	 
-        // 점수를 감춘 필드에 할당
+        for (let i = 0; i < correctAnswers.length; i++) {
+            const selected = document.querySelector(`input[name="qd${i+1}"]:checked`);
+            if (selected && selected.value === correctAnswers[i]) {
+                score += 10;
+            }
+        }
+     	// 점수를 숨겨진 필드에 설정
         document.getElementById('score').value = score;
-        //$("#score").val(score);
     }
 });
     

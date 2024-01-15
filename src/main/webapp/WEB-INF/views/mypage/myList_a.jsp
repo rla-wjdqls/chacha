@@ -60,72 +60,18 @@
 	            </c:choose>
 	            </td>
 	              <td>
- 				<select name="adopt" id="adopt">
                   <c:choose>
-                      <c:when test="${mylista.adopt eq 'a'}">
-                          <option value="a" selected>신청완료</option>
-                          <option value="b">심사중</option>
-                          <option value="c">입양가능</option>
-                          <option value="b">책임금결제</option>
-                          <option value="c">입양완료</option>
-                          <option value="c">입양불가</option>
-                      </c:when>
-                      <c:when test="${mylista.adopt eq 'a'}">
-                          <option value="a">신청완료</option>
-                          <option value="b" selected>심사중</option>
-                          <option value="c">입양가능</option>
-                          <option value="b">책임금결제</option>
-                          <option value="c">입양완료</option>
-                          <option value="c">입양불가</option>
-                      </c:when>
-                      <c:when test="${mylista.adopt eq 'a'}">
-                          <option value="a">신청완료</option>
-                          <option value="b">심사중</option>
-                          <option value="c" selected>입양가능</option>
-                          <option value="b">책임금결제</option>
-                          <option value="c">입양완료</option>
-                          <option value="c">입양불가</option>
-                      </c:when>
-                      <c:when test="${mylista.adopt eq 'a'}">
-                          <option value="a">신청완료</option>
-                          <option value="b">심사중</option>
-                          <option value="c">입양가능</option>
-                          <option value="b" selected>책임금결제</option>
-                          <option value="c">입양완료</option>
-                          <option value="c">입양불가</option>
-                      </c:when>
-                      <c:when test="${mylista.adopt eq 'a'}">
-                          <option value="a">신청완료</option>
-                          <option value="b">심사중</option>
-                          <option value="c">입양가능</option>
-                          <option value="b">책임금결제</option>
-                          <option value="c" selected>입양완료</option>
-                          <option value="c">입양불가</option>
-                      </c:when>
-                      <c:otherwise>
-                          <option value="a">신청완료</option>
-                          <option value="b">심사중</option>
-                          <option value="c">입양가능</option>
-                          <option value="b">책임금결제</option>
-                          <option value="c">입양완료</option>
-                          <option value="c" selected>입양불가</option>
-                      </c:otherwise>
-                  </c:choose>
-                </select>
+                      <c:when test="${mylista.adopt eq 'B'}">보호중</c:when>
+                      <c:when test="${mylista.adopt eq 'S'}">심사중</c:when>
+                      <c:when test="${mylista.adopt eq 'O'}">입양완료</c:when>
+                      <c:when test="${mylista.adopt eq 'G'}">귀가</c:when>
+                  </c:choose>	    
 		        </td>
 		        <td>
- 				<select name="adopt_pos" id="adop_pos">
-                  <c:choose>
-                      <c:when test="${mylista.adopt_pos eq 'Y'}">
-                          <option value="Y" selected>입양가능</option>
-                          <option value="N">입양불가</option>
-                      </c:when>
-                      <c:when test="${mylista.adopt_pos eq 'N'}">
-                          <option value="Y">입양가능</option>
-                          <option value="N" selected>입양불가</option>
-                      </c:when>
-                  </c:choose>
-                </select>
+		        <c:choose>
+						<c:when test="${mylista.adopt_pos eq 'Y'}">입양가능</c:when>
+						<c:when test="${mylista.adopt_pos eq 'N'}">입양불가</c:when>
+				</c:choose>
 		        </td>
 	            <td><fmt:formatDate value="${mylista.animal_date}" pattern="yyyy-MM-dd" /></td>
 	        </tr>
