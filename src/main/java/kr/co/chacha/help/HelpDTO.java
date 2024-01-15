@@ -8,10 +8,71 @@ public class HelpDTO {
 	private String text;
 	private String uploaddate;
 	private String helppic;
+	
 	private int love;
 	private int cnt;
 	
+	private String comment;
+	
+	//페이징
+	private int limit = 10;
+	private int offset = 0;
+	
+	private String type;
+	private String keyword;
+	
 	public HelpDTO() {}
+	
+	
+	public int getLimit() {
+		return limit;
+	}
+
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+
+	public int getOffset() {
+		return offset;
+	}
+
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+		
+	
+	public String getComment() {
+		return comment;
+	}
+
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	
+	
+	
 
 	public int getTextno() {
 		return textno;

@@ -72,6 +72,19 @@
     				
     			</tr>
     		</c:forEach>
+    		<tr>
+  				<td colspan="9">
+  					<c:if test="${startNavi ne 1 && startNavi > 0}">
+  						<a href="/help/helpList?page=${startNavi-1}">이전</a>
+  					</c:if>
+  					<c:forEach var="p" begin="${startNavi}" end="${endNavi}">
+  						<a href="/help/helpList?page=${p}">${p}</a>
+  					</c:forEach>
+  					<c:if test="${endNavi ne maxPage}">
+  						<a href="/help/helpList?page=${endNavi+1}">다음</a>
+  					</c:if>
+  				</td>
+  			</tr>
  	</tbody>
  	</table>
 

@@ -32,8 +32,11 @@
 				설문 기간 : ${researchList2.rdate1} ~ ${researchList2.rdate2}<br>
 				등록일자 :  ${researchList2.rgdate}<br>
 			</div>
-			<br><hr><br>
-			
+			<br><hr>
+			<div class="progress">
+			    <div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progressBar">0%</div>
+			</div>
+			<br>
 		  <!-- 설문폼 시작 -->
 		  <form name="researchrFrm" id="researchrFrm">
 			<div class="researchrList" name="researchrList" id="researchrList"></div>  
@@ -62,21 +65,56 @@ $(document).ready(function () {
     	//alert("설문 조사를 제출합니다.");
     	
     	// 체크된 체크박스들을 선택
-	    let checkedCheckboxes = $("input[type=checkbox]:checked");
+	    let checkedCheckbox = $("input[type=checkbox]:checked");
 		 
 	 	// 체크된 체크박스가 없을 경우 경고 메시지 띄우고 종료
-	    if (checkedCheckboxes.length === 0) {
+	    if (checkedCheckbox.length === 0) {
 	        alert("적어도 하나 이상의 항목을 선택하세요.");
 	        return;
 	    }//if end
-	    
-	    // 체크된 체크박스가 있는 경우에만 페이지 이동
-        currentQuestionIndex++;
+
+		// 체크된 체크박스가 있는 경우에만 페이지 이동
         researchrList();
         checkHiddenValues();
         researchrInsert();
+     	
+     	// 페이지 이동 전에 프로그레스 바 업데이트
+     	currentQuestionIndex++;
+     	
+	    // 프로그레스 바 업데이트
+        updateProgressBar();	
+
     });
 });//ready() end
+
+
+function updateProgressBar() {
+	// 서버에서 현재 진행 중인 설문의 전체 질문 수 가져오기
+    $.ajax({
+        url: '/research/getTotalQuestions',
+        type: 'get',
+        data: { 'rno': rno },
+        error: function (error) {
+            alert('에러!');
+            console.log(error);
+        },
+        success: function (totalQuestions) {
+        	//alert(totalQuestions); //3
+        	
+            // 진행률 계산(소수점 첫째 자리에서 반올림)
+            let progressPercentage = Math.round((currentQuestionIndex / totalQuestions) * 100);
+        	//alert(progressPercentage); //33.33
+
+            // 프로그레스 바 엘리먼트 가져오기
+            let progressBar = $("#progressBar");
+
+            // 프로그레스 바 업데이트
+            progressBar.width(progressPercentage + "%");
+            progressBar.text(progressPercentage.toFixed(0) + "%");
+        }//success end
+    });
+}//updateProgressBar() end
+
 
 function checkHiddenValues() {
     
@@ -118,10 +156,11 @@ function researchrInsert(insertData){
 		 //alert('성공' +result);
 		 console.log(result);
 		 //마지막 value="제출" 성공했을때만 
-         if(result === 1){ // 댓글 등록 성공
-             alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
+         //if(result === 1){ // 댓글 등록 성공
+
+         //    alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
              // 댓글 등록 후 researchList.jsp로 이동
-         }//if end
+         //}//if end
 		 
 	   }//success end
 	}); //ajax() end	
@@ -161,8 +200,8 @@ function researchrList() {
                     a += '<input type="hidden" name="cno" value="' + value.cno + '">';
                     
                     // 체크박스 및 선택지 출력
-                    a += '<input type="checkbox">';
-                    a += value.choice + ' ';
+                    a += '<input type="checkbox">\n';
+                    a += value.choice + '\n';
                     
                     a += '</label>';
                 }//if end

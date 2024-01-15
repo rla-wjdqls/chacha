@@ -16,23 +16,46 @@
 		ORDER BY textno
 	</select>
 	
+	<!-- 페이징 -->
+	 <select id="helpListCnt" resultType="int">
+	 	SELECT COUNT(*) AS cnt
+		FROM help	
+	 </select>
+ 
+	<!-- 조회수 증가 -->
+	<update id="increaseViewCount">
+	    UPDATE help
+	    SET cnt = cnt + 1
+	    WHERE textno = #{textno}
+	</update>
+	
 	<!--  게시글 상세정보  -->
-<select id="detail" resultType="kr.co.chacha.help.HelpDTO">
-	SELECT textno, texttitle, cnt, uid, helppic, text, uploaddate
-	FROM help
-	WHERE textno = #{textno}
-</select>
+	<select id="detail" resultType="kr.co.chacha.help.HelpDTO">
+		SELECT textno, texttitle, cnt, uid, helppic, text, uploaddate
+		FROM help
+		WHERE textno = #{textno}
+	</select>
 
-<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="int">
     	DELETE FROM help
     	WHERE textno = #{textno}
-</delete>
+	</delete>
 
-<update id="update" parameterType="kr.co.chacha.help.HelpDTO">
-	UPDATE help
-	SET textno = #{textno}, texttitle = #{texttitle}, text = #{text}, helppic = #{helppic}
-	WHERE textno = #{textno}
-</update>
+	<update id="update" parameterType="kr.co.chacha.help.HelpDTO">
+		UPDATE help
+		SET textno = #{textno}, texttitle = #{texttitle}, text = #{text}, helppic = #{helppic}
+		WHERE textno = #{textno}
+	</update>
+
+
+	<!-- 댓글기능 -->
+	<insert id="addComment" parameterType="kr.co.chacha.help.HelpDTO">
+	    INSERT INTO comments (text) VALUES (#{text});
+	</insert>
+	
+	<select id="getAllComments" resultType="kr.co.chacha.help.HelpDTO">
+	    SELECT * FROM help;
+	</select>
  	
  	
  </mapper> 

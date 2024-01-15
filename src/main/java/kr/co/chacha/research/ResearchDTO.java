@@ -170,9 +170,12 @@ public class ResearchDTO {
 
 	@Override
 	public String toString() {
-		return "rno=" + rno + ", qno=" + qno + ", qcont=" + qcont + ", qtype=" + qtype +  ", qty=" + qty 
-				+ ", cno=" + cno + ", reply=" + reply + ", uid=" + uid + ", choice=" + choice;
+		return "rno=" + rno + ", rtitle=" + rtitle + ", rdate1=" + rdate1 + ", rdate2=" + rdate2
+				+ ", rstate=" + rstate + ", rop=" + rop + "]";
 	}
+
+
+
 
 
 	

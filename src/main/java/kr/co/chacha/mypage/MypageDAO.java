@@ -111,6 +111,16 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.memList");
 	}//memList() end
 	
+	//소셜 회원관리
+	public List<MypageDTO> smemList() {
+		return sqlSession.selectList("mypage.smemList");
+	}//smemList() end
+	
+	//회원등급 수정(관리자)
+	public void updateMlevel(MypageDTO mypagedto) {
+		sqlSession.update("mypage.updateMlevel", mypagedto);
+	}//updateMlevel() end
+	
 	//회원정보 수정
 	public void memberModify(MypageDTO mypagedto) {
 		//System.out.println(mypagedto.getPasswd());

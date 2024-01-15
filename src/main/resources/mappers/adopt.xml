@@ -31,5 +31,18 @@
 	WHERE arno = #{arno}
 	</update>	
 	
+	<!-- 페이징 -->
+	 <select id="adoptReviewCnt" resultType="int">
+	 	SELECT COUNT(*) AS cnt
+		FROM adoprv
+	 </select>
+ 
+	<!-- 조회수 증가 -->
+	<update id="increaseViewCount">
+	    UPDATE adoprv
+	    SET cnt = cnt + 1
+	    WHERE arno = #{arno}
+	</update>
+	
 
 </mapper>

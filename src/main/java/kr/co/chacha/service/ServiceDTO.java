@@ -26,9 +26,31 @@ public class ServiceDTO {
 		private int limit = 10;
 		private int offset = 0;
 		
+		//검색
 		private String type;
 		private String keyword;
 		
+		//인원체크
+		private int currentParticipants;
+	    private int maxParticipants;
+	    
+	    
+		public int getCurrentParticipants() {
+			return currentParticipants;
+		}
+
+		public void setCurrentParticipants(int currentParticipants) {
+			this.currentParticipants = currentParticipants;
+		}
+
+		public int getMaxParticipants() {
+			return maxParticipants;
+		}
+
+		public void setMaxParticipants(int maxParticipants) {
+			this.maxParticipants = maxParticipants;
+		}
+
 		public String getType() {
 			return type;
 		}
@@ -187,7 +209,8 @@ public class ServiceDTO {
 					+ ssdate + ", sedate=" + sedate + ", time=" + time + ", sp=" + sp + ", splace=" + splace
 					+ ", sstate=" + sstate + ", cnt=" + cnt + ", sstime=" + sstime + ", setime=" + setime + ", sano="
 					+ sano + ", sadate=" + sadate + ", stime=" + stime + ", astate=" + astate + ", limit=" + limit
-					+ ", offset=" + offset + ", type=" + type + ", keyword=" + keyword + "]";
+					+ ", offset=" + offset + ", type=" + type + ", keyword=" + keyword + ", currentParticipants="
+					+ currentParticipants + ", maxParticipants=" + maxParticipants + "]";
 		}
 	
 	

@@ -43,6 +43,12 @@
  		WHERE rno = #{rno}
  	</select>
  	
+ 	<select id="getQuestions" resultType="Int">
+   		SELECT COUNT(qno)
+		FROM researchq
+		WHERE rno = #{rno}
+   	</select>
+ 	
  	
  	<select id="researchrList" resultType="kr.co.chacha.research.ResearchDTO">
 		SELECT rq.rno, rq.qcont, rq.qtype, rc.cno, rc.qno, rc.choice, rq.qty
@@ -57,18 +63,37 @@
 	    VALUES(#{qno}, #{uid}, #{reply}, NOW())
 	</insert> 
    	
+   	
+   	<select id="countUid" resultType="Int">
+   		SELECT COUNT(DISTINCT rr.uid)
+		FROM researchr rr
+		JOIN researchq rq ON rr.qno = rq.qno
+		WHERE rq.rno = #{rno}
+   	</select>
+   	
+   	<select id="checkResult" resultType="kr.co.chacha.research.ResearchDTO">
+		SELECT rq.qcont, rq.qno, rc.cno, rc.choice, rq.qty, COUNT(rr.reply) AS reply
+		FROM researchq rq
+		JOIN researchc rc ON rq.qno = rc.qno
+		LEFT JOIN researchr rr ON rq.qno = rr.qno AND rc.cno = rr.reply
+		WHERE rq.rno = #{rno}
+		GROUP BY rq.qno, rc.cno
+    </select>
+
+
+	<update id="researchModify" parameterType="kr.co.chacha.research.ResearchDTO">
+	    UPDATE research
+	    SET rtitle = #{rtitle}, rdate1= #{rdate1}, rdate2 = #{rdate2}, rstate = #{rstate}, rop = #{rop}
+	    WHERE rno = #{rno}
+	</update>
+
+
+	<delete id="researchDelete" parameterType="String">
+	  	DELETE FROM research
+		WHERE rno = #{rno}
+    </delete>
     
     
-    <!--qno = {166, 167, 168}  -->
-    <!--reply = {135, 138, 140}  -->
-    
-    <insert id="researchrInsertmul" parameterType="java.util.List">
-	    INSERT INTO researchr(qno, uid, reply, rpdate)
-	    VALUES
-	    <foreach collection="list" item="item" index="index" separator=",">
-	        (#{item.qno}, #{item.uid}, #{item.reply}, NOW())
-	    </foreach>
-	</insert> 
     
 
     

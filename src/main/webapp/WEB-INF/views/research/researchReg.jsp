@@ -211,4 +211,4 @@ function updateQuestionNumbers() {
 
 <!-- 본문 끝 -->		
 
-<%@ include file="../footer.jsp" %>      
+<%@ include file="../footer.jsp" %>

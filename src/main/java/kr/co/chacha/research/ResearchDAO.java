@@ -46,6 +46,10 @@ public class ResearchDAO {
 		return sqlSession.selectOne("research.checkQty", rno);
 	}//checkQty() end
 	
+	public int getQuestions(String rno) {		
+		return sqlSession.selectOne("research.getQuestions", rno);
+	}//getQuestions() end
+	
 	
 	//설문조사 목록
 	public List<ResearchDTO> researchList(){
@@ -77,10 +81,34 @@ public class ResearchDAO {
 		return sqlSession.insert("research.researchrInsert", researchDTO);
 	}//researchrInsert() end
 	
+	//설문조사 참여자 수 구하기
+	public int countUid(String rno){
+		return sqlSession.selectOne("research.countUid", rno);
+	}//countUid() end
 	
+	//설문조사 결과 가져오기
+	public List<ResearchDTO> checkResult(String rno){
+		return sqlSession.selectList("research.checkResult", rno);
+	}//researchrForm() end
+	
+	//설문조사 수정하기
+	public int researchModify(ResearchDTO researchdto) {
+		return sqlSession.update("research.researchModify", researchdto);
+	}//researchModify() end
+	
+	//설문조사 삭제하기
+	public int researchDelete(String rno) {
+		return sqlSession.delete("research.researchDelete", rno);
+	}//researchDelete()end
 	
 	
 }//class end
+
+
+
+
+
+
 
 
 
