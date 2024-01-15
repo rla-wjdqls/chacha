@@ -33,6 +33,12 @@
 <div id="quiz" class="container">
     <h2 class="mb-4">강아지 OX Quiz</h2>
     <form id="dogquizForm" action="./dogResult" method="post">
+    
+    <%-- 각 질문에 대한 답변을 담을 hidden input 필드 --%>
+    <% for (int i = 0; i < 10; i++) { %>
+        <input type="hidden" name="answer<%=i+1%>" id="answer<%=i+1%>">
+    <% } %>
+    
     	<input type='hidden' name='score' id='score'>
     	
         <% 
@@ -86,6 +92,8 @@ document.getElementById('dogedu').addEventListener('ended', function () {
 
 const video = document.getElementById('dogedu');
 const quizForm = document.getElementById('dogquizForm');
+const correctAnswers = ["X", "O", "X", "O", "X", "O", "O", "O", "X", "O"];
+
 
 quizForm.addEventListener('submit', function (event) {
     // 모든 문제에 대한 응답 여부를 확인

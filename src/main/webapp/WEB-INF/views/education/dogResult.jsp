@@ -6,7 +6,7 @@
 
 <%
 	int score = 0;  // 세션에서 총점 가져오기
-    String[] userAnswers = new String[10];
+    String[] answers = new String[10];
     String[] correctAnswers = {"X", "O", "X", "X", "X", "O", "O", "O", "X", "O"};
 
     
@@ -25,8 +25,8 @@
     };
  
     for (int i = 1; i <= 10; i++) {
-        userAnswers[i - 1] = request.getParameter("qd" + i);
-        if (userAnswers[i - 1] != null && userAnswers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
+        answers[i - 1] = request.getParameter("qd" + i);
+        if (answers[i - 1] != null && answers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
             score += 10;
         }
     }
@@ -49,31 +49,22 @@
             </tr>
         </thead>
         <tbody>
-        <!-- 
-        <c:forEach var="item" items="${quizResult.userAnswers}" varStatus="status">
-                <tr>
-                    <td style="text-align:left">${questions[status.index]}</td>
-                    <td>${item}</td>
-                    <td>${correctAnswers[status.index]}</td>
-                </tr>
-            </c:forEach>
-           -->
           
-            <%
+        	<%
+        		
                 for (int i = 0; i < 10; i++) {
             %>
                 <tr>
                     <td style="text-align:left"><%= questions[i] %></td>
-                    <td><%= userAnswers[i] %></td>
+                    <td><%= answers[i] %></td>
                     <td><%= correctAnswers[i] %></td>
                 </tr>
             <%
                 }
             %>
-            
+     
         </tbody>
-        
-       
+      
     </table>
      <input type="button" class="btn btn-primary" onclick="eduList()" value="돌아가기">
 </div>
