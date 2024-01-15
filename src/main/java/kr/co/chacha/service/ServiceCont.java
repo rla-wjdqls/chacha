@@ -119,7 +119,7 @@ public class ServiceCont {
     	mav.setViewName("service/servicedetail");
     	
     	// 조회수 증가
-	    serviceDAO.increaseViewCount(sno);
+	  //  serviceDAO.increaseViewCount(sno);
 	 // 세션에서 조회한 게시물 ID 목록을 가져옴
         Set<Integer> viewedPosts = (Set<Integer>) session.getAttribute("viewedPosts");
         if (viewedPosts == null) {
