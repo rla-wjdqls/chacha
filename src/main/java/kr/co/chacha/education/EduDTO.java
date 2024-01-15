@@ -10,7 +10,7 @@ public class EduDTO {
 	private String quiz_cont;	//퀴즈내용
 	private int ox;				//정답
 	private int subno;   		//퀴즈제출번호
-	private int answer;			//답변
+	private int answers;			//답변
 	private int	score;			//점수
 	private String quiz_date;	//제출날짜
 
@@ -80,12 +80,12 @@ public class EduDTO {
 		this.subno = subno;
 	}
 
-	public int getAnswer() {
-		return answer;
+	public int getAnswers() {
+		return answers;
 	}
 
-	public void setAnswer(int answer) {
-		this.answer = answer;
+	public void setAnswers(int answers) {
+		this.answers = answers;
 	}
 
 	public int getScore() {
@@ -107,7 +107,7 @@ public class EduDTO {
 	@Override
 	public String toString() {
 		return "EduDTO [eduno=" + eduno + ", uid=" + uid + ", eduop=" + eduop + ", edu_date=" + edu_date + ", quizno="
-				+ quizno + ", quiz_cont=" + quiz_cont + ", ox=" + ox + ", subno=" + subno + ", answer=" + answer
+				+ quizno + ", quiz_cont=" + quiz_cont + ", ox=" + ox + ", subno=" + subno + ", answers=" + answers
 				+ ", score=" + score + ", quiz_date=" + quiz_date + "]";
 	}
 	

@@ -22,8 +22,11 @@ public class HelpDTO {
 	private String type;
 	private String keyword;
 	
+	
+	
 	public HelpDTO() {}
 	
+
 	
 	public int getLimit() {
 		return limit;
