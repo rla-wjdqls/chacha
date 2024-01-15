@@ -78,9 +78,14 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myComment", s_id);
 	}//mvsList() end
 	
-	//나의 입양신청 내역
+	//입양신청+결제 내역
 	public List<MypageDTO> myAdopt(String s_id) {		
 		return sqlSession.selectList("mypage.myAdopt", s_id);
+	}//mvsList() end
+	
+	//입양신청 내역 조회
+	public List<MypageDTO> myAdopt1(String s_id) {		
+		return sqlSession.selectList("mypage.myAdopt1", s_id);
 	}//mvsList() end
 	
 	//회원들 입양신청 내역

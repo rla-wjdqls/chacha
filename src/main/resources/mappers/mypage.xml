@@ -48,7 +48,7 @@
  
  
   <select id="memberService" resultType="kr.co.chacha.mypage.MypageDTO">
-  	SELECT sa.sano, sa.stime, sa.sadate, sa.astate, sa.uid, sc.stitle
+  	SELECT sa.sano, sc.time, sa.sadate, sa.astate, sa.uid, sc.stitle
   	FROM servicea sa join service sc
   	ON sa.sno = sc.sno
   	ORDER BY sa.sano DESC
@@ -96,6 +96,13 @@
 	WHERE py.uid = #{uid}
  </select>
  
+ 
+  <select id="myAdopt1" resultType="kr.co.chacha.mypage.MypageDTO">
+    SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date, ap.anino
+    FROM adopt ap
+    JOIN animal an ON ap.anino = an.anino
+    WHERE ap.uid = #{uid}
+ </select>
  
  
  <select id="memAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
@@ -161,13 +168,13 @@
 
 <update id="payUpdate" parameterType="String">
 	UPDATE payment
-	SET payop = 'Y', pdate = NOW()
+	SET payop = 'Y', pdate = NOW(), patamt = '50000'
 	WHERE uid = #{uid}
  </update>
  
  <update id="adoptUpdate" parameterType="String">
 	UPDATE adopt
-	SET sub_state = 'E'
+	SET sub_state = 'F'
 	WHERE uid = #{uid}
  </update>
  

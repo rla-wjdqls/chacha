@@ -94,6 +94,12 @@
     </delete>
     
     
+    <update id="updateRstate" parameterType="kr.co.chacha.research.ResearchDTO">
+	    UPDATE research
+	    SET rstate = #{rstate}
+	    WHERE rno = #{rno}
+	</update>
+    
     
 
     

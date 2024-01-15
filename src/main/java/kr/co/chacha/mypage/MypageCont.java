@@ -76,6 +76,7 @@ public class MypageCont {
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
     	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+    	mav.addObject("myAdoptList1", mypageDao.myAdopt1(s_id));
         return mav; 
 	}//myAdopt() end
 	
@@ -184,12 +185,8 @@ public class MypageCont {
     public void updateMlevel(HttpServletRequest req) {
        System.out.println("111");
     	
-    	
     }//updateMlevel() end
 	
-	
-	
-
 
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동
@@ -389,7 +386,7 @@ public class MypageCont {
 	    }
 
 	    return response;
-	}
+	}//payValidate() end
 
 	// 이니시스 API를 사용하여 결제된 금액을 조회하는 메서드 (예시)
 	private int getPaymentAmountFromInicis(String imp_uid) {
