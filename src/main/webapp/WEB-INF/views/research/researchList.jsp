@@ -1,5 +1,23 @@
+<%@page import="kr.co.chacha.research.ResearchCont"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.time.LocalDate" %>
+
+<%@ page import="java.time.format.DateTimeFormatter" %>
+
+
+<%-- <%
+    // 현재 날짜를 가져오는 메서드
+    LocalDate currentDate = LocalDate.now();
+    
+    // rdate1을 LocalDate로 변환하는 메서드
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate researchDate = LocalDate.parse(researchList.rdate1, formatter);
+
+    // isAfterCurrentDate 호출
+    boolean afterCurrentDate = ResearchCont.isAfterCurrentDate(researchDate);
+%>  --%>
     
 <%@ include file="../header.jsp" %>
 
@@ -45,15 +63,20 @@
 				  		<br>
 				    	<h5>${list.rtitle}</h5>
 				    	<p>${list.rdate1} ~ ${list.rdate2}</p>
+<%-- 				        <c:if test="${fn:trim(list.rstate) eq 'I' && yourController.isAfterCurrentDate(list.rdate1)}">
+				            <c:set target="${list}" property="rstate" value="E" />
+				        </c:if> --%>
 				    <c:choose>
 		                <c:when test="${list.rstate eq 'I'}">진행중</c:when>
 		                <c:when test="${list.rstate eq 'E'}">마감</c:when>
 	            	</c:choose>
+	            	
 	            	<br><br>
+	            	
 		            <c:if test="${list.rstate ne 'E'}">
-		           	 <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary" onclick="return chechkLogin()">바로가기</a>
+		           	 	<a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary" onclick="return chechkLogin()">바로가기</a>
 		            </c:if>
-		            <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
+		           		 <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
 		            <c:choose>
 					<c:when test="${s_mlevel eq 'b'}">
 		  				<a href="/research/researchModify?rno=${list.rno}" class="btn btn-secondary">수정하기</a>

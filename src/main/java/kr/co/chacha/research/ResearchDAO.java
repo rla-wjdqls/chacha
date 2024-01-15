@@ -102,7 +102,20 @@ public class ResearchDAO {
 	}//researchDelete()end
 	
 	
+	//설문기한 종료에 따른 조사 상태 변경
+	public int updateRstate(ResearchDTO researchdto) {
+		return sqlSession.update("research.updateRstate", researchdto);
+	}//researchModify() end
+	
 }//class end
+
+
+
+
+
+
+
+
 
 
 

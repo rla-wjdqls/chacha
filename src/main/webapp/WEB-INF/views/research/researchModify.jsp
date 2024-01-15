@@ -24,9 +24,10 @@
 		<hr><br><br>
 		 <div class="container-line" id="surveyContainer">
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
-            	<div class="row">
+          <div class="row">
 		<div class="col-sm-12">
-		<form name="rmodifyfrm" id="rmodifyfrm" method="post" action="researchfrmModify">
+		<form name="rmodifyfrm" id="rmodifyfrm" method="post" action="researchModify">
+		<input type="hidden" name="rno" id="rno" value="${researchList2.rno}"/>
 		<table class="table">
 	            <tr>
 	                <th>제목</th>
@@ -61,32 +62,27 @@
 	            </tr>
 	    </table>
 		<br><br><br>
-		<form id="researchDelete" name="researchDelete" method="post" action="researchDelete">
-			<input type="hidden" name="rno" id="rno" value="${researchList2.rno}"/>
-		</form> 
-	    <input type="submit" value="수정" class="btn" name="btn_m" id="btn_m">
-	    <input type="button" value="삭제" class="btn" name="btn_d" id="btn_d" onclick="researchDelete()">
+    	<input type="submit" value="수정" class="btn" name="btn_m" id="btn_m">
 		</form>
+		<form id="researchDeletefrm" name="researchDeletefrm" method="post" action="researchDelete">
+			<input type="hidden" name="rno" id="rno" value="${researchList2.rno}"/>
+			<input type="submit" value="삭제" class="btn" name="btn_d" id="btn_d" onclick="researchDel()">
+		</form> 
 		</div>
 		<!-- col end -->
 		</div>
 	        <br>
-	        </div>
-			</div>
+	    </div>
+		</div>
 		</div>
 		<br><br><br>
-</form>
-</div>
 
 <script>
 
-
-function researchDelete(){
+function researchDel(){
 	if(confirm("정말 삭제하겠습니까?")) {
 		$("#researchDelete").submit();
-	} else {
-		
-	}
+	}//if end
 }//researchDelete() end
 
 

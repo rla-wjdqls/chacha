@@ -55,11 +55,31 @@ public class ResearchCont {
 	}//logout end
 		
 	
+	// 설문 진행 여부를 확인하는 메서드
+    private boolean isAfterCurrentDate(String rdate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate researchDate = LocalDate.parse(rdate, formatter);
+        LocalDate currentDate = LocalDate.now();
+        return currentDate.isAfter(researchDate);
+    }//isAfterCurrentDate() end
+	
+    
 	// 설문조사 목록 페이지
 	@GetMapping("/researchList")
 	public ModelAndView researchList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchList");
+		
+//	    // 설문 진행 여부 확인 및 상태 업데이트
+//        List<ResearchDTO> researchList = researchdao.researchList();
+//        for (ResearchDTO researchDTO : researchList) {
+//        if ("I".equals(researchDTO.getRstate()) && isAfterCurrentDate(researchDTO.getRdate2())) {
+//            // 만약 현재 날짜가 종료일 이후라면 상태를 'E'로 업데이트
+//            researchDTO.setRstate("E");
+//            researchdao.updateRstate(researchDTO);
+//            }//if end
+//        }//for end
+
 		mav.addObject("researchList", researchdao.researchList());
 		return mav;
 	}//researchList() end
@@ -272,18 +292,20 @@ public class ResearchCont {
 			return result;
 		}//resultList() end
 		
-		
+		//설문조사 수정
 		@PostMapping("/researchModify")
-		public ModelAndView researchModify() {
+		public String researchModify(ResearchDTO researchDTO) {
+			researchdao.researchModify(researchDTO);
 			
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("research/researchList");
-			return mav;
+			return "redirect:/research/researchList";
 		}//researchResult() end
 		
-		
-		
-		
+		//설문조사 삭제
+		@PostMapping("/researchDelete")
+		public String researchDelete(@RequestParam String rno) {
+			researchdao.researchDelete(rno);
+			return "redirect:/research/researchList";
+		}//researchResult() end
 		
 		
 }//class end
