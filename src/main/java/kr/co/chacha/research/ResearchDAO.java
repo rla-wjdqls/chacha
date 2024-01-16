@@ -46,6 +46,10 @@ public class ResearchDAO {
 		return sqlSession.selectOne("research.checkQty", rno);
 	}//checkQty() end
 	
+	public int checkUser(ResearchDTO researchDTO) {		
+		return sqlSession.selectOne("research.checkUser", researchDTO);
+	}//checkQty() end
+	
 	public int getQuestions(String rno) {		
 		return sqlSession.selectOne("research.getQuestions", rno);
 	}//getQuestions() end
@@ -102,7 +106,20 @@ public class ResearchDAO {
 	}//researchDelete()end
 	
 	
+	//설문기한 종료에 따른 조사 상태 변경
+	public int updateRstate(ResearchDTO researchdto) {
+		return sqlSession.update("research.updateRstate", researchdto);
+	}//researchModify() end
+	
 }//class end
+
+
+
+
+
+
+
+
 
 
 

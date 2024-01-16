@@ -3,10 +3,6 @@
     
 <%@ include file="./mypageHeader.jsp" %>
 
-<!-- 본문 시작 template.jsp -->
-
-
-	<!-- Page content wrapper-->
 	<div id="page-content-wrapper">
 
 	<!-- Page content-->
@@ -23,28 +19,30 @@
                 <th>첨부파일</th>
                 <th>신청상태</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>	  </th>
-                
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myAdoptList}" var="myAdopt" >
+            <c:forEach items="${myAdoptList1}" var="myAdopt1" >
                 <tr>
-                    <td>${myAdopt.apno}</td>
-                    <td><a href="/center/detail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
-                    <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
-                   <td>${myAdopt.subpic}</td>
+                    <td>${myAdopt1.apno}</td>
+                    <td><a href="/center/detail?anino=${myAdopt1.anino}"><img src="/storage/${myAdopt1.anipic}" class="anipic"></a></td>
+                    <td><fmt:formatDate value="${myAdopt1.sub_date}" pattern="yyyy-MM-dd" /></td>
+                   <td>${myAdopt1.subpic}</td>
                     <td>
 		            <c:choose>
-		                <c:when test="${myAdopt.sub_state eq 'S'}">신청완료</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'P'}">심사중</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'W'}">심사완료</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'I'}">입양가능</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'C'}">책임금결제</c:when>
-		                <c:when test="${myAdopt.sub_state eq 'E'}">입양완료</c:when>
-		            </c:choose>
+		                <c:when test="${myAdopt1.sub_state eq 'S'}">신청완료</c:when>
+		                <c:when test="${myAdopt1.sub_state eq 'P'}">심사중</c:when>
+		                <c:when test="${myAdopt1.sub_state eq 'W'}">심사완료</c:when>
+		                <c:when test="${myAdopt1.sub_state eq 'C'}">책임금결제</c:when>
+		                <c:when test="${myAdopt1.sub_state eq 'F'}">입양완료</c:when>
+		                <c:when test="${myAdopt1.sub_state eq 'X'}">입양불가능</c:when>
+		            </c:choose>         
 		        	</td>
-		        	<td></td>
-		        	<!-- <td><input type="button" value="결제" class="btn btn basic"></td> -->
+		        	 <td>
+			            <c:if test="${myAdopt1.sub_state eq 'C'}">
+			                <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()">
+			            </c:if>
+			        </td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -91,7 +89,6 @@
             </c:forEach>
         </tbody>
     </table>
-    <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()" >
     <br><br>
 	</div>
 	</div>

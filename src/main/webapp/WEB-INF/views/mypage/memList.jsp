@@ -29,10 +29,14 @@
                 <th>우편번호</th>
                 <th>주소1</th>
                 <th>주소2</th>
+                <th></th>
             </tr>
         </thead>
   		<tbody>
+  		<form id="memListfrm" name="memListfrm" method="post" action="memListModify">
 		<c:forEach items="${memberList}" var="memlist">
+		<input type="hidden" id="uid" name="uid" value="${memlist.uid}">
+  		<input type="hidden" id="mlevel" name="mlevel" value="${memlist.mlevel}">
 	        <tr>
 	            <td>${memlist.uid}</td>
 	            <td>${memlist.uname}</td>
@@ -41,7 +45,7 @@
 	            <td>${memlist.tel}</td>
 	            <td>${memlist.birth}</td>
 	            <td>
- 				<select name="mlevel" id="mlevel">
+ 				<select name="mlevel" id="mlevel_${memlist.uid}">
                   <c:choose>
                       <c:when test="${memlist.mlevel eq 'a'}">
                           <option value="a" selected>관리자</option>
@@ -65,10 +69,12 @@
 	            <td>${memlist.zipcode}</td>
 	            <td>${memlist.addr1}</td>
 	            <td>${memlist.addr2}</td>
+	            <td><input type="button" value="수정" class="btn btn-update" data-uid="${memlist.uid}" data-mlevel="${memlist.mlevel}"></td>
 	        </tr>
 		</c:forEach>
         </tbody>
     </table>
+    </form>
     <br><hr>
 		<h4>소셜 회원관리</h4>
 		<p>그냥 데려가개 소셜 회원님들의 정보를 확인 할 수 있습니다</p>
@@ -96,34 +102,31 @@
 	</div>
 	</div>
 
-
 <script>
-    $(document).ready(function() {
-        // select 태그 변경 시 이벤트 처리
-        $("select[name='mlevel']").change(function() {
-            // 선택된 값과 사용자 아이디 가져오기
-            var selectedValue = $(this).val();
-            var userId = $(this).closest("tr").find("td:first").text();
 
-            // Ajax 요청
-            $.ajax({
-                type: "POST",
-                url: "/mypage/updateMlevel",
-                data: {
-                    userId: userId,
-                    mlevel: selectedValue
-                },
-                success: function(response) {
-                	alert("성공!");
-                    console.log(response); // 성공 시 로그에 출력
-                },
-                error: function(error) {
-                	alert("에러..");
-                    console.log(error); // 에러 시 로그에 출력
-                }
-            });
-        });
+$(document).ready(function () {
+	// 수정 버튼 클릭 시
+    $(".btn-update").click(function () {
+        // 해당 행의 uid와 mlevel 값을 가져와서 폼에 설정
+        var uid = $(this).data("uid");
+        var mlevel = $(this).data("mlevel");
+        
+        // 기존의 hidden input의 id 속성을 uid와 mlevel로 변경
+        $("#memListfrm #uid").attr("id", "uid_" + uid);
+        $("#memListfrm #mlevel").attr("id", "mlevel_" + uid);
+        
+        // 기존의 hidden input의 name 속성을 uid와 mlevel로 변경
+        $("#memListfrm #uid_" + uid).attr("name", "uid_" + uid);
+        $("#memListfrm #mlevel_" + uid).attr("name", "mlevel_" + uid);
+
+        // 기존의 hidden input의 값을 변경된 id로 설정
+        $("#memListfrm #uid_" + uid).val(uid);
+        $("#memListfrm #mlevel_" + uid).val(mlevel);
+
+        // 폼 제출
+        $("#memListfrm").submit();
     });
+});
 </script>
 
 

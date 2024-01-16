@@ -64,7 +64,7 @@
 			<br>
 			<div>
 				<span class="login__account login__account--account">계정이 없으신가요?</span> 
-				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/signupForm">회원가입</a></span>
+				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/newsignupForm">회원가입</a></span>
 			</div>
 		</form>
 		</div>
