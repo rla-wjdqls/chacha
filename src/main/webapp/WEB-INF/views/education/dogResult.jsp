@@ -5,11 +5,10 @@
 
 
 <%
-	int score = 0;  // 세션에서 총점 가져오기
-    String[] answers = new String[10];
+	
+    int score = 0; 
+    String[] userAnswers = new String[10];
     String[] correctAnswers = {"X", "O", "X", "X", "X", "O", "O", "O", "X", "O"};
-
-    
  	// 질문 배열 추가
     String[] questions = {
         "1. 종합백신(DHPPL) 종류에 광견병이 포함된다.",
@@ -23,10 +22,11 @@
         "9. 강아지 치석은 3개월 이상부터 생긴다.",
         "10. 입양 후 동물등록신고는 30일 안에 해야 한다."
     };
- 
+   
+ 	
     for (int i = 1; i <= 10; i++) {
-        answers[i - 1] = request.getParameter("qd" + i);
-        if (answers[i - 1] != null && answers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
+        userAnswers[i - 1] = request.getParameter("qd" + i);
+        if (userAnswers[i - 1] != null && userAnswers[i - 1].trim().equalsIgnoreCase(correctAnswers[i - 1])) {
             score += 10;
         }
     }
@@ -56,7 +56,7 @@
             %>
                 <tr>
                     <td style="text-align:left"><%= questions[i] %></td>
-                    <td><%= answers[i] %></td>
+                    <td><%= userAnswers[i] %></td>
                     <td><%= correctAnswers[i] %></td>
                 </tr>
             <%
