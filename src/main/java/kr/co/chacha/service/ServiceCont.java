@@ -25,7 +25,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.chat.ChatDTO;
-import kr.co.chacha.servicea.ServiceaDTO;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.*;
 
@@ -185,8 +184,8 @@ public class ServiceCont {
 	// 인원체크 ajax
 	@PostMapping("/checkPerson")
 	@ResponseBody
-	public int checkPerson(@RequestParam int sno) {
-
+	public int checkPerson(int sno) {
+		System.out.println(sno);
 		// 봉사글 시퀀스 받아서 조회하는 쿼리
 		int cnt = serviceDAO.checkPersonCnt(sno);
 		return cnt;
