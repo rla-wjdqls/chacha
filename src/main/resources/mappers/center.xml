@@ -48,6 +48,28 @@
  		WHERE anino = #{anino}
  	</delete>
  	
+ 	<select id="eduCheck" parameterType="kr.co.chacha.center.CenterDTO" resultType="Int">
+ 		SELECT COUNT(eduno)
+ 		FROM education 
+ 		WHERE uid = #{uid} AND score >= 60 AND eduop LIKE CONCAT('%', #{anino}, '%')
+ 	</select>
+ 	
+ 	<select id="check" parameterType="kr.co.chacha.center.CenterDTO" resultType="Int">
+ 		SELECT COUNT(*) 
+ 		FROM adopt
+    	WHERE DATE_FORMAT(sub_date, '%y%m%d') = DATE_FORMAT(NOW(), '%y%m%d')
+ 	</select>
+ 	
+ 	<select id="apnoChack" parameterType="kr.co.chacha.center.CenterDTO" resultType="Int">
+ 		SELECT COUNT(*) 
+ 		FROM adopt
+    	WHERE uid = #{uid} AND anino = #{anino}
+ 	</select>
+ 	
+ 	<insert id="adoptInsert" parameterType="kr.co.chacha.center.CenterDTO">
+ 		INSERT INTO adopt (uid, anino, apno, sub_cont, sub_state, sub_date, subpic)
+ 		VALUES (#{uid}, #{anino}, #{apno}, #{sub_cont}, DEFAULT, now(), #{subpic})
+ 	</insert>
  	<!-- <select id="check" parameterType="java.util.Map" resultType="int">
  		SELECT count(SUM(score))
 		FROM select uid

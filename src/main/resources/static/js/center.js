@@ -57,6 +57,11 @@
 			let bb = document.getElementById("bb").value;
 			let da = document.getElementById("da").value;
 			let sub_cont = document.getElementById("sub_cont").value;
+			let formData = new FormData(document.getElementById("aniRefrm"));
+			let newPath = '/mypage/myAdopt';
+
+			
+			//formData.append("sub_cont", sub_cont);
 			//alert(gg);
 			//alert(bb);
 			//alert(da);
@@ -65,26 +70,37 @@
 			if(gg==1 || bb!=2 || da==1 || sub_cont.length === 0){
 				alert("신청불가");
 			}else{
-				alert("신청가능");
-				eduCheck();
+				//alert("신청가능");
+				if(confirm("신청하시겠습니까?")){
+					$.ajax({
+						url : '/center/adoptInsert',
+						type : 'post',
+						data: formData,
+						processData: false,  // 필수: FormData가 문자열로 변환되지 않도록 설정
+                		contentType: false,  // 필수: 서버로 전송 시에 Content-Type 헤더가 multipart/form-data로 설정되도록 함
+						error : function (error){
+							alert(error);
+						},
+						success : function(result){
+							if(result > 0){
+								alert("신청이 완료되었습니다");
+								window.location.href = newPath;
+							}else if(result === 0){
+								alert("이미 신청된 동물입니다");
+								window.location.href = newPath;
+								
+							}else if(result === -1){
+								alert("점수가 60점 미만인 경우 신청불가합니다");
+							}
+							
+						}	
+					});//ajax end
+				}//if end
 			}//if end
+		}
 			
-			function eduCheck(){
-				$.ajax({
-					url : 'eduCheck' ,
-				    type : 'post' ,
-				    data : { 'anino' : anino } ,
-				    error : function (error){
-						alert(error);
-					},
-					success : function(result){
-						if(result === 0)
-						alert("아");
-							//aniInsert();
-					}	
-				   
-				});//ajax end
-			}//eduCheck() end
-		}//adopt() end	
+			
+		
+		
 		
 		
