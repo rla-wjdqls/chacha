@@ -450,6 +450,9 @@
     text-align: center;
 }
 
+#surveyContainer {    
+	padding: 170px 170px; /* 또는 다른 값으로 설정 */}
+
 .box_btm.box_whtie .regi_complete {
     border: 1px solid #ddd;
     background-color: #fff;

@@ -1,35 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-   
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="/css/login.css">
-    
-<title>findID.jsp</title>
-
-</head>
+<%@ include file="../header.jsp" %>
 
 <!-- 아이디 찾기 성공 시, 결과창으로 이동-->
 <!-- 폼 제출 -> 이름, 이메일, 생일 DB 데이터와 일치하는지 확인 -> 아이디 가져오기 -->
 
 <!-- 아이디 찾기 실패 시, alert창 으로 알림 -->
 
-<body>
-
-  <div class="login"> 
+<div class="login"> 
   
     <div class="login__content">
       <div class="login__logo"><!--추후 로고 추가-->
-		<h1>그냥 데려가개</h1>	
+		<h1></h1>	
       </div>
-      
+      <br><br><br>
       <div class="login__forms">
 		<!--login form -->
-		<form class="login__register" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
+		<form class="login__register" id="login-in" action="newfindIDResult" method="post" onsubmit="return findIDCheck()" >
 			<h1 class="login__title">아이디 찾기</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
@@ -58,17 +46,8 @@
 			</div>
 		</form>
 	</div>
-
-
-
-
-<script src="/js/login.js"></script> 
+	<br><br><br>
 	
-	</body>
-	
-</html>
+	<script src="/js/login.js"></script> 
 
-
-
-
-
+<%@ include file="../footer.jsp" %>      
