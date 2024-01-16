@@ -78,37 +78,39 @@ $(document).ready(function () {
 	        	if(result !== 0){
 	        		 alert("이미 참여한 설문에는 재참여 하실 수 없습니다.");
 	        		 window.location.href = '/research/researchList';
-	        	}//if end
-	        	
-	        	// 서버 응답이 0인 경우에는 다음 동작을 수행
-	            handleResearchButtonClick();
-	         
-	        }//success end
-	    });//ajax end
-	    	
-    	
-    	// 체크된 체크박스들을 선택
-	    let checkedCheckbox = $("input[type=checkbox]:checked");
-		 
-	 	// 체크된 체크박스가 없을 경우 경고 메시지 띄우고 종료
-	    if (checkedCheckbox.length === 0) {
-	        alert("적어도 하나 이상의 항목을 선택하세요.");
-	        return;
-	    }//if end
-
-		// 체크된 체크박스가 있는 경우에만 페이지 이동
-        researchrList();
-        checkHiddenValues();
-        researchrInsert();
-     	
-     	// 페이지 이동 전에 프로그레스 바 업데이트
-     	currentQuestionIndex++;
-     	
-	    // 프로그레스 바 업데이트
-        updateProgressBar();	
-
+	            } else {
+                    // 참여하지 않은 경우에만 페이지 이동
+                    handleResearchButtonClick();
+                }
+            }
+        });
     });
-});//ready() end
+});
+
+
+
+
+function handleResearchButtonClick() {
+    // 체크된 체크박스들을 선택
+    let checkedCheckbox = $("input[type=checkbox]:checked");
+
+    // 체크된 체크박스가 없을 경우 경고 메시지 띄우고 종료
+    if (checkedCheckbox.length === 0) {
+        alert("적어도 하나 이상의 항목을 선택하세요.");
+        return;
+    }
+
+    // 체크된 체크박스가 있는 경우에만 페이지 이동
+    researchrList();
+    checkHiddenValues();
+    researchrInsert();
+
+    // 페이지 이동 전에 프로그레스 바 업데이트
+    currentQuestionIndex++;
+
+    // 프로그레스 바 업데이트
+    updateProgressBar();
+}//handleResearchButtonClick() end
 
 
 function updateProgressBar() {

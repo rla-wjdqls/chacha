@@ -107,6 +107,7 @@
                 <th>결제수단</th>
                 <th>결제여부</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>결제일자</th>
+                <th></th>
             </tr>
         </thead>
   		<tbody>
@@ -129,19 +130,65 @@
 		            </c:choose>
 		        	</td>
                     <td><fmt:formatDate value="${memAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
+                    <td>
+                        <c:if test="${memAdopt.sub_state eq 'F'}">
+			               <input type="button" value="환불하기" class="btn btn" id="btn_refund" name="btn_refund" onclick="refundProc()">
+			            </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
     <br><br>
-    
 	</div>
 	</div>
 	
+ <script>
+ 
+ function refundProc() {
+		
+		if(!confirm("환불을 진행하시겠습니까?")){
+			return false;
+		}
+		
+		/*
+		let u_id = $("#uid").text();
+		let order_no = $("#orderno").text();
+		let order_class = $("#orderclass a").text();
+		let order_total = $("#ordertotal").text();
+		let order_status = $("#orderstatus").text();
+		$.ajax({
+			url : "/payment/cancelPay",
+			type : "POST",
+			dataType: "json",
+			data : {
+				u_id: u_id,
+				order_no: order_no,
+				order_class: order_class,
+				order_total: order_total,
+				order_status: order_status,
+			}, // 전달되는 데이터
+	        success: function (rsp) {
+	            // 서버 응답에 대한 처리 로직을 여기에 추가
+	            if(rsp.cnt == 1){
+					alert(rsp.msg);
+					$("#orderstatus").text(rsp.status);
+				} else {
+					alert(rsp.msg);
+					$("#orderstatus").text(rsp.status);
+				}
+	        },
+	        error: function () {
+	            console.log("서버 오류");
+	        }
+		})
+		*/
+ }//refundProc() end
+	 
+ </script>
 
 
 
-<!-- 본문 끝 -->
 
 
 <%@ include file="./mypageFooter.jsp" %>      
