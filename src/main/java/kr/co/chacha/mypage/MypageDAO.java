@@ -73,7 +73,6 @@ SqlSession sqlSession;
 		return sqlSession.delete("mypage.jjimDelete", mypagedto);
 	}
 	
-	
 	public List<MypageDTO> myComment(String s_id) {		
 		return sqlSession.selectList("mypage.myComment", s_id);
 	}//mvsList() end
@@ -128,7 +127,6 @@ SqlSession sqlSession;
 	
 	//회원정보 수정
 	public void memberModify(MypageDTO mypagedto) {
-		//System.out.println(mypagedto.getPasswd());
 		sqlSession.update("mypage.memberModify", mypagedto);
 	}//memberWithdra() end
 	

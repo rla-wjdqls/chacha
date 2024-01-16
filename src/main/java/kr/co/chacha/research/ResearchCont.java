@@ -92,7 +92,6 @@ public class ResearchCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchForm");
 		mav.addObject("researchList2", researchdao.researchList2(rno));
-		//mav.addObject("researchrForm", researchdao.researchrForm(rno));
 		return mav;
 	}//researchForm() end
 	
@@ -102,7 +101,6 @@ public class ResearchCont {
 	@ResponseBody
 	public int getTotalQuestions(@RequestParam String rno) {
 		int cnt = researchdao.getQuestions(rno);		
-		//System.out.println(cnt); //3
 		return cnt;
 	}//getTotalQuestions() end
 	
@@ -116,13 +114,13 @@ public class ResearchCont {
 		return mav;
 	}//researchModify() end
 	
-	
+	//설문조사 수정
 	@PostMapping("/researcfrmhModify")
 	public ModelAndView researchfrmModify(@RequestParam ResearchDTO researchdto) {
 		
-		System.out.println(researchdto);
+		//System.out.println(researchdto);
 		int cnt = researchdao.researchModify(researchdto);
-		System.out.println(cnt);
+		//System.out.println(cnt);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchList");
@@ -141,6 +139,7 @@ public class ResearchCont {
 	}//researchrList() end
 	
 	
+	//사용자 확인하여 설문조사 한번만 참여 가능
 	@GetMapping("/checkUser")
 	@ResponseBody
 	public int checkUser(@RequestParam String rno, HttpSession session) {

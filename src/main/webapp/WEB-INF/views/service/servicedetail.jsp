@@ -58,7 +58,7 @@ function sdelete() {
    </ul>
 </nav>
 
-
+ 
 <div style="text-align: right; height: 50px;">
 	<p><a href="/service/serviceList" class="nav-item nav-link"><input type="button" value="글목록"></a></p>	
 </div>

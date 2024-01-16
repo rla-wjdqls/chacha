@@ -1,40 +1,69 @@
 package kr.co.chacha.mypage;
 
+import java.awt.PageAttributes.MediaType;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.iamport.iamportCont;
 import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.member.MemberDTO;
 import kr.co.chacha.research.ResearchDTO;
 
-
 @Controller
 //@RequestMapping("/mypage")
 public class MypageCont {
-
+	
 	public MypageCont() {
 		System.out.println("----MypageCont()객체 생성됨");
 	}//end
 	 
 	@Autowired
 	MypageDAO mypageDao;
+	
+	@Autowired
+	iamportCont iamportcont;
+	
+	private RestTemplate restTemplate=new RestTemplate();
+    private HttpHeaders headers=new HttpHeaders();
+    private JSONObject body=new JSONObject();
 	
 	
 	//내글목록(관리자)
@@ -354,51 +383,32 @@ public class MypageCont {
     return response;
 	
 	}//payNum() end
+
 	
-	
-	//검증 유저가 결제한 금액과 DB에서 가져온 금액만 비교하면 된다 (50,000)
-	@PostMapping("/mypage/payValidate")
+	@PostMapping("/mypage/payUpdate")
 	@ResponseBody
-	public Map<String, String> payValidate(@RequestBody Map<String, String> params, HttpSession session) {
-	    Map<String, String> response = new HashMap<>();
+	public Map<String, String> payUpdate(HttpSession session) throws IOException {
 	    String s_id = (String) session.getAttribute("s_id");
-
-	    // params 값을 콘솔에 출력
-	    //System.out.println("Received params: " + params);
-	    //{imp_uid=imp_873665469821, merchant_uid=p20240103212425}
-
-	    // 이후 로직은 여기에 추가
-	    try {
-	        String imp_uid = params.get("imp_uid");
-
-	        // 여기에서 이니시스 API를 호출하여 결제 정보를 검증하는 로직을 구현
-	        // 예시로 결제된 금액이 100원이 맞는지 확인
-	        int paymentAmount = getPaymentAmountFromInicis(imp_uid);
-	        //System.out.println(paymentAmount); //100
-	        if (paymentAmount == 100) {
-	            response.put("result", "success");
-	            //payment, adopt 테이블 update
-	            mypageDao.payUpdate(s_id);
-	            mypageDao.adoptUpdate(s_id);
-	        } else {
-	            response.put("result", "failure");
-	        }
-	    } catch (Exception e) {
-	        response.put("result", "error");
-	        response.put("message", e.getMessage());
-	    }
-
+	    
+	    //String access_token = iamportcont.getToken();
+	    //System.out.println(access_token);
+	    //{access_token=a310ccc9b621b9d4c343ae2667cd3fc313c0dce1, now=1.70539304E9, expired_at=1.705393384E9}
+	    
+	    //payment, adopt 테이블 update
+        mypageDao.payUpdate(s_id);
+        mypageDao.adoptUpdate(s_id);
+   
+        Map<String, String> response = new HashMap<>();
+        response.put("result", "success");
+        
 	    return response;
+	    
 	}//payValidate() end
-
-	// 이니시스 API를 사용하여 결제된 금액을 조회하는 메서드 (예시)
-	private int getPaymentAmountFromInicis(String imp_uid) {
-	    // 여기에서 이니시스 API를 호출하여 결제 정보를 조회하는 로직을 구현
-	    // 실제로는 HTTPS 통신 및 OAuth 인증 등을 통해 안전한 방법으로 조회해야 합니다.
-	    // 조회된 결제 정보에서 결제된 금액을 반환합니다. (예시로 100원 반환)
-	    return 100;
-	}
+	
+	
 }
+	
+
 
 
 	

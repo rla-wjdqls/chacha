@@ -90,7 +90,7 @@
 
 <!-- 본문 끝 -->
 
-<<script>
+<script>
 
 function chechkLogin(){
 	
