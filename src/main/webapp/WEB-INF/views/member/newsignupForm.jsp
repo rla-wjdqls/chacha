@@ -333,6 +333,8 @@
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="/js/signup.js"></script>
 	<script>
+
+	
 		//6)해당 페이지가 로딩되었을 떄 아이디 중복확인과 관련된 쿠키변수 삭제
 		$(function(){
 			$.removeCookie("checkID");
@@ -390,7 +392,8 @@
 			if(count==0){
 				$("#panel2").css("color", "blue");
 				$("#panel2").text("사용 가능한 아이디 입니다");
-				$.cookie("checkID", "PASS1"); //아이디중복확인을 했다는 증거. "PASS" 변경 가능
+				$.cookie("checkID", "PASS1"); //아이디중복확인을 했다는 증거. "PASS" 변경 가능 확인안됨
+				console.log($.cookie("checkID"));
 			}else{
 				$("#panel2").css("color", "red");
 				$("#panel2").text("중복된 아이디 입니다");
@@ -412,6 +415,113 @@
 				$("#email").focus(); //커서생성
 			}//if end
 		}//checkEmail() end
+		
+		
+		function checkSignup() {
+			
+			 //1) 이름 두글자 이상 인지?
+		     let uname = document.getElementById("uname").value;
+			 uname=uname.trim();
+			 
+			 if(uname.length<2 || !isNaN(uname)){
+				 document.getElementById("panel1").innerHTML = "이름 2글자 이상 입력해주세요";
+				 document.getElementById("uame").focus();
+				 return false;
+			 }//if end
+			 
+			 
+			//2)아이디 5~10글자 이내인지 검사
+			 	let uid = document.getElementById("uid").value;
+			 	uid = uid.trim();
+			 	
+			 	if(!(uid.length>=5 && uid.length<=10)){
+					 document.getElementById("panel2").innerHTML = "아이디 5~10글자 이내로 입력해 주세요!";
+					 document.getElementById("uid").focus();
+					 return false;
+				 }//if end
+
+
+		    //3)이메일 5글자 이고 '@' 포함하고 있는지?
+			 let email = document.getElementById("email").value;
+			 email=email.trim();
+			 
+			 if(email.length<5 || !email.includes("@")){
+				 document.getElementById("panel3").innerHTML = "이메일 5글자 이상 형식에 맞게 입력해주세요";
+				 document.getElementById("email").focus();
+			     return false;
+			 }//if end
+			
+			
+		    //4)비밀번호 5~10글자 이면 문자,숫자,기호를 포함할 것 얘) dhfdg852@
+		     let passwd = document.getElementById("passwd").value;
+			 passwd=passwd.trim();
+			 
+			 if(passwd.length<5 || passwd.length>10){
+				 document.getElementById("panel4").innerHTML = "비밀번호 5~10글자로 입력해주세요";
+				 document.getElementById("passwd").focus();
+				 return false;
+			 }//if end
+			
+			
+		    //5)비밀번호와 비밀번호확인이 서로 일치하는지?
+		     let repasswd = document.getElementById("repasswd").value;
+			 repasswd=repasswd.trim();
+			 
+			 if((passwd !==repasswd)){
+				 document.getElementById("panel5").innerHTML = "비밀번호 확인이 일치하지 않습니다";
+				 document.getElementById("repasswd").focus();
+				 return false;
+			 }//if end
+		    
+		    
+		     //6)전화번호 11자리 입력했는지 확인
+		     let tel = document.getElementById("tel").value;
+			 tel=tel.trim();
+			 
+			 if(tel.length!==13){
+				 document.getElementById("panel6").innerHTML = "전화번호 11자리 입력해주세요";
+				 document.getElementById("tel").focus();
+				 return false;
+			 }//if end
+		    
+		    
+		     //7)생년월일 8자리 입력했는지 확인
+		     let birth = document.getElementById("birth").value;
+			 birth=birth.trim();
+			 
+			 if(birth.length!==10){
+				 document.getElementById("panel7").innerHTML = "생년월일 8자리 입력해주세요";
+				 document.getElementById("birth").focus();
+				 return false;
+			 }//if end
+		    
+			 
+			//아이디,이메일 중복확인 했는지?
+			let checkID = $.cookie("checkID"); //쿠키변수 값 가져오기
+			let checkEmail = $.cookie("checkEmail"); 
+			
+			if(checkID=="PASS1" && checkEmail=="PASS2"){
+			    return true;
+			}//if end 
+
+			if(checkID!="PASS1"){
+			    $("#panel2").css("color", "green");
+			    $("#panel2").text("아이디 중복 확인 해주세요");
+			    $("#userid").focus();
+			    return false;
+			}//if end
+
+			if(checkEmail!="PASS2"){
+			    $("#panel3").css("color", "green");
+			    $("#panel3").text("이메일 중복 확인 해주세요");
+			    $("#useri3").focus();
+			    return false;
+			}//if end
+		    
+				
+		}//checkSignup() end
+		
+		
 		
 		
 				
