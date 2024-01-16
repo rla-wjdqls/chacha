@@ -71,7 +71,7 @@
 
 <script>
 document.getElementById('dogedu').addEventListener('ended', function () {
-    // 동영상 종료 후 퀴즈 표시
+	alert('동영상이 끝났습니다. 이제 퀴즈를 풀어주세요.');// 동영상 종료 후 퀴즈 표시
     document.getElementById('dogedu').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
     document.querySelector('h3').style.display = 'none';
