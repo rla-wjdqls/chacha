@@ -1,69 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴-->
- 
- <!--mypage.xml-->
- <mapper namespace="service">
- 	
- <select id="serviceList" parameterType="kr.co.chacha.service.ServiceDTO" resultType="kr.co.chacha.service.ServiceDTO">
- 	SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace, sstate, cnt
-	FROM service
-	WHERE 1=1
-	<if test='type!=null and type.equals("title")'>
-		AND stitle like CONCAT('%',#{keyword},'%')
-	</if>
-	<if test='type!=null and type.equals("id")'>
-		AND uid = #{keyword}
-	</if>
-	<if test='type!=null and type.equals("titleId")'>
-		AND ((uid = #{keyword}) OR (stitle like CONCAT('%',#{keyword},'%')))
-	</if>
-	ORDER BY sno		
- </select>
- 
- <!-- 페이징 -->
- <select id="serviceListCnt" resultType="int">
- 	SELECT COUNT(*) AS cnt
-	FROM service	
- </select>
- 
-<!-- 조회수 증가 -->
-<update id="increaseViewCount">
-    UPDATE service
-    SET cnt = cnt + 1
-    WHERE sno = #{sno}
-</update>
- 
- <insert id="insert" parameterType="kr.co.chacha.service.ServiceDTO">
-		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate)
-		VALUES(#{uid}, #{stitle}, #{sinfo}, #{ssdate}, #{sedate}, #{sstime}, #{etime}, #{time}, #{sp}, #{splace}, #{sstate})
-</insert>
+<!--mapper에서 사용하는 커스텀태그가 정의되어 있는 곳 임포트 시킴 -->
 
- <!--  게시글 상세정보  -->
-<select id="detail" resultType="kr.co.chacha.service.ServiceDTO">
-	SELECT sno, uid, stitle, sinfo, ssdate, sedate, sstime, etime, time, sp, splace, sstate, cnt
-	FROM service
-	WHERE sno = #{sno}
-</select>
+<!--mypage.xml -->
+<mapper namespace="service">
 
-<delete id="delete" parameterType="int">
-    	DELETE FROM service
-    	WHERE sno = #{sno}
-</delete>
-    
-<update id="update" parameterType="kr.co.chacha.service.ServiceDTO">
-	UPDATE service 
-	SET sno = #{sno}, uid = #{uid}, stitle = #{stitle}, sinfo = #{sinfo}, ssdate = #{ssdate}, sedate = #{sedate}, sstime = #{sstime}, etime = #{etime}, time = #{time}, sp = #{sp}, splace = #{splace}, sstate = #{sstate}
-	WHERE sno = #{sno}		
-</update>
+	<select id="serviceList"
+		parameterType="kr.co.chacha.service.ServiceDTO"
+		resultType="kr.co.chacha.service.ServiceDTO">
+		SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace,
+		sstate, cnt
+		FROM service
+		WHERE 1=1
+		<if test='type!=null and type.equals("title")'>
+			AND stitle like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test='type!=null and type.equals("id")'>
+			AND uid = #{keyword}
+		</if>
+		<if test='type!=null and type.equals("titleId")'>
+			AND ((uid = #{keyword}) OR (stitle like
+			CONCAT('%',#{keyword},'%')))
+		</if>
+		ORDER BY sno
+	</select>
 
- <insert id="insertServicea" parameterType="kr.co.chacha.service.ServiceDTO">
+	<!-- 페이징 -->
+	<select id="serviceListCnt" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM service
+	</select>
+
+	<!-- 조회수 증가 -->
+	<update id="increaseViewCount">
+		UPDATE service
+		SET cnt = cnt + 1
+		WHERE sno = #{sno}
+	</update>
+
+	<insert id="insert"
+		parameterType="kr.co.chacha.service.ServiceDTO">
+		INSERT INTO service(uid, stitle, sinfo, ssdate, sedate,
+		sstime, etime, time, sp, splace, sstate)
+		VALUES(#{uid}, #{stitle},
+		#{sinfo}, #{ssdate}, #{sedate}, #{sstime}, #{etime}, #{time}, #{sp},
+		#{splace}, #{sstate})
+	</insert>
+
+	<!-- 게시글 상세정보 -->
+	<select id="detail" resultType="kr.co.chacha.service.ServiceDTO">
+		SELECT sno, uid, stitle, sinfo,
+		ssdate, sedate, sstime, etime, time, sp,
+		splace, sstate, cnt
+		FROM
+		service
+		WHERE sno = #{sno}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM service
+		WHERE sno =
+		#{sno}
+	</delete>
+
+	<update id="update"
+		parameterType="kr.co.chacha.service.ServiceDTO">
+		UPDATE service
+		SET sno = #{sno}, uid = #{uid}, stitle =
+		#{stitle}, sinfo = #{sinfo},
+		ssdate = #{ssdate}, sedate = #{sedate},
+		sstime = #{sstime}, etime =
+		#{etime}, time = #{time}, sp = #{sp},
+		splace = #{splace}, sstate =
+		#{sstate}
+		WHERE sno = #{sno}
+	</update>
+
+	<insert id="insertServicea"
+		parameterType="kr.co.chacha.service.ServiceDTO">
 		INSERT INTO servicea (uid, sno, sadate, astate)
 		VALUES(#{uid}, #{sno}, #{sadate}, 'O')
-</insert>
+	</insert>
+	<!-- 현재 모집 인원 체크 -->
+	<select id="checkCurrentParticipants" parameterType="int"
+		resultType="kr.co.chacha.service.ServiceDTO">
+		SELECT sno, currentparticipants, maxparticipants
+		FROM
+		service
+		WHERE sno = #{sno}
+	</select>
 
-
- </mapper>
+	<!-- 모집인원체크 -->
+	<select id="checkPersonCnt" parameterType="int" resultType="int">
+		SELECT COUNT(*) cnt FROM servicea
+		WHERE sno = #{sno}
+	</select>
+</mapper>
  
  
  
