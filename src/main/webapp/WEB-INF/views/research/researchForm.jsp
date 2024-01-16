@@ -63,6 +63,8 @@ $(document).ready(function () {
     
     $("#btn_research_n").on("click", function () {
     	//alert("설문 조사를 제출합니다.");
+    	 handleResearchButtonClick();
+    	/*
     	  $.ajax({
 	        url: '/research/checkUser',
 	        type: 'get',
@@ -83,7 +85,8 @@ $(document).ready(function () {
                     handleResearchButtonClick();
                 }
             }
-        });
+	        
+        });*/
     });
 });
 

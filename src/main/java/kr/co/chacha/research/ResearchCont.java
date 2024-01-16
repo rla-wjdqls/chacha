@@ -53,6 +53,41 @@ public class ResearchCont {
 		
 		return "redirect:/";
 	}//logout end
+	
+	
+	//진행중이고 공개된 가장 최신 설문번호 가져오기
+	@GetMapping("/checkMaxrno")
+	@ResponseBody
+	public String checkMaxrno() {
+		String rno = researchdao.checkMaxrno();
+		return rno;
+	}//checkMaxrno end
+	
+	
+	//설문조사 결과 리스트로 가져오기
+	@GetMapping("/resultList")
+	@ResponseBody
+	public List<ResearchDTO> resultList(@RequestParam String rno) {
+		
+		// DB 데이터를 조회하여 List<ResearchDTO>를 반환 
+	    List<ResearchDTO> result = researchdao.checkResult(rno);
+
+		return result;
+	}//resultList() end
+	
+	
+	
+	
+	// 설문조사 내용 가져와 보여주기
+	@GetMapping("/researchrList")
+	@ResponseBody
+	public List<ResearchDTO> researchrList(@RequestParam String rno) {
+		
+		List<ResearchDTO> list = researchdao.researchrList(rno);
+		return list;
+		
+	}//researchrList() end
+	
 		
 	
 	// 설문 진행 여부를 확인하는 메서드
@@ -69,17 +104,6 @@ public class ResearchCont {
 	public ModelAndView researchList() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("research/researchList");
-		
-//	    // 설문 진행 여부 확인 및 상태 업데이트
-//        List<ResearchDTO> researchList = researchdao.researchList();
-//        for (ResearchDTO researchDTO : researchList) {
-//        if ("I".equals(researchDTO.getRstate()) && isAfterCurrentDate(researchDTO.getRdate2())) {
-//            // 만약 현재 날짜가 종료일 이후라면 상태를 'E'로 업데이트
-//            researchDTO.setRstate("E");
-//            researchdao.updateRstate(researchDTO);
-//            }//if end
-//        }//for end
-
 		mav.addObject("researchList", researchdao.researchList());
 		return mav;
 	}//researchList() end
@@ -126,18 +150,6 @@ public class ResearchCont {
 		mav.setViewName("research/researchList");
 		return mav;
 	}//researchModify() end
-	
-	
-	// 설문조사 내용 가져와 보여주기
-	@GetMapping("/researchrList")
-	@ResponseBody
-	public List<ResearchDTO> researchrList(@RequestParam String rno) {
-		
-		List<ResearchDTO> list = researchdao.researchrList(rno);
-		return list;
-		
-	}//researchrList() end
-	
 	
 	//사용자 확인하여 설문조사 한번만 참여 가능
 	@GetMapping("/checkUser")
@@ -298,16 +310,6 @@ public class ResearchCont {
 			mav.addObject("cnt", researchdao.countUid(rno));
 			return mav;
 		}//researchResult() end
-		
-		//설문조사 결과 리스트로 가져오기
-		@GetMapping("/resultList")
-		@ResponseBody
-		public List<ResearchDTO> resultList(@RequestParam String rno) {
-			// DB 데이터를 조회하여 List<ResearchDTO>를 반환 
-		    List<ResearchDTO> result = researchdao.checkResult(rno);
-		    
-			return result;
-		}//resultList() end
 		
 		//설문조사 수정
 		@PostMapping("/researchModify")

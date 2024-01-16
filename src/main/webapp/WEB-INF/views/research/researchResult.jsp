@@ -65,7 +65,6 @@ function resultList() {
         success: function (result) {
         	
         	 let questionResults = [];
-
              let questionMap = new Map();
              $.each(result, function (key, value) {
                  let questionKey = value.qcont;
@@ -101,7 +100,7 @@ function resultList() {
              for (let i = 0; i < questionResults.length; i++) {
                  let chartId = 'chartQuestion' + (i + 1);
                  let chartCanvas = '<canvas id="' + chartId + '" width="50" height="50"></canvas><br>';
-                 $("#researchResult").append('<p>질문' + questionResults[i].question.number + ': ' + questionResults[i].question.content + '</p><br>');
+                 $("#researchResult").append('<br><p>질문' + questionResults[i].question.number + ': ' + questionResults[i].question.content + '</p><br>');
                  $("#researchResult").append(chartCanvas);
 
                  let ctx = document.getElementById(chartId).getContext('2d');

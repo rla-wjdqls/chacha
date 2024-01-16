@@ -6,18 +6,6 @@
 
 <%@ page import="java.time.format.DateTimeFormatter" %>
 
-
-<%-- <%
-    // 현재 날짜를 가져오는 메서드
-    LocalDate currentDate = LocalDate.now();
-    
-    // rdate1을 LocalDate로 변환하는 메서드
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate researchDate = LocalDate.parse(researchList.rdate1, formatter);
-
-    // isAfterCurrentDate 호출
-    boolean afterCurrentDate = ResearchCont.isAfterCurrentDate(researchDate);
-%>  --%>
     
 <%@ include file="../header.jsp" %>
 
