@@ -353,9 +353,7 @@ public class MypageCont {
 	public Map<String, String> payNum(HttpSession session) {
 	
 	Map<String, String> response = new HashMap<>();
-		
 	String s_id = (String)session.getAttribute("s_id");
-		
 	mypageDao.myInfoCheck(s_id); //이메일,이름,전화번호
 	
 	//MypageDTO mypagedto = new MypageDTO(); null값 출력
@@ -403,10 +401,10 @@ public class MypageCont {
         
 	    return response;
 	    
-	}//payValidate() end
+	}//payUpdate() end
 	
 	
-}
+}//class end
 	
 
 

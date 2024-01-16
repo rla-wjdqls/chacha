@@ -203,17 +203,17 @@ public class MemberCont {
     
     
 	// 아이디 찾기 페이지 이동
-	@GetMapping("/newfindID")
+	@GetMapping("/findID")
 	public ModelAndView findID() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/newfindID");
+		mav.setViewName("member/findID");
 		return mav;
 	}// findID() end
 	
 	
 	// 입력한 정보가 db 데이터와 일치 할 경우, 아이디 확인 페이지 이동 
 	// 입력한 정보가 db 데이터와 불일치 할 경우, 아이디  
-	@PostMapping("/newfindIDResult")
+	@PostMapping("/findIDResult")
 	public ModelAndView findIDResult(HttpServletRequest req) {
 		
 	    String uname = req.getParameter("uname").trim();
@@ -235,23 +235,23 @@ public class MemberCont {
 		// uid를 ModelAndView에 추가
 	    mav.addObject("uid", uid);
 		
-		mav.setViewName("member/newfindIDResult");
+		mav.setViewName("member/findIDResult");
 		return mav;
 	}// findIDResult() end
 	
 	
 
 	// 비밀번호 찾기 페이지 이동
-	@GetMapping("/newfindPasswd")
+	@GetMapping("/findPasswd")
 	public ModelAndView findPasswd() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/newfindPasswd");
+		mav.setViewName("member/findPasswd");
 		return mav;
 	}// findPasswd() end
 
 	
 	// 비밀번호 확인 페이지 이동
-	@PostMapping("/newfindPasswdResult")
+	@PostMapping("/findPasswdResult")
 	public ModelAndView findPasswdResult(HttpServletRequest req) {
 		
 	    String uid = req.getParameter("uid").trim();
@@ -273,16 +273,16 @@ public class MemberCont {
 		// uid를 ModelAndView에 추가
 	    mav.addObject("passwd", passwd);
 		
-		mav.setViewName("member/newfindPasswdResult");
+		mav.setViewName("member/findPasswdResult");
 		return mav;
 	}// findPasswdResult() end
 	
 	
 	// 회원가입 페이지 이동
-	@GetMapping("/newsignupForm")
+	@GetMapping("/signupForm")
 	public ModelAndView signupForm() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("member/newsignupForm");
+		mav.setViewName("member/signupForm");
 		return mav;
 	}// login() end
 	
