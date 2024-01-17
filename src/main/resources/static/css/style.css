@@ -451,7 +451,25 @@
 }
 
 #surveyContainer {    
-	padding: 170px 170px; /* 또는 다른 값으로 설정 */}
+	padding: 50px 50px;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+	width:800px;
+	margin: 0 auto; /* 가로 가운데 정렬을 위한 설정 */
+}
+
+.container-rr{
+	display: flex;
+    justify-content: center; /* body의 기본 margin 제거 */
+}
+
+.container-frm{
+    padding: 50px 0;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+}
 
 .box_btm.box_whtie .regi_complete {
     border: 1px solid #ddd;

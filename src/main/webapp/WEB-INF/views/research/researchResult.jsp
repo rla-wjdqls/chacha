@@ -27,7 +27,7 @@
 			<!-- 이 부분에 내용 들어감 질문1 시작-->
 			<div id="panel"></div>
 
-			<div class="container-fixed row">
+			<div class="container-rr">
 				설문번호 :  ${researchList2.rno}<br>
 				제목 :  	  ${researchList2.rtitle}<br>
 				설문 기간 : ${researchList2.rdate1} ~ ${researchList2.rdate2}<br>
