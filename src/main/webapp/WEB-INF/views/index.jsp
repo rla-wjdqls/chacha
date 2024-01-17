@@ -509,8 +509,8 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h6 class="text-primary text-uppercase mb-2">통계</h6>
-                <h1 class="display-6 mb-4">유기견 현황</h1>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <h1 class="display-6 mb-4">서울시 유기견 현황</h1>
+                <canvas id="myChart" width="500" height="500"></canvas>
             </div>
             <br><br>
              <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">

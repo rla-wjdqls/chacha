@@ -1,5 +1,7 @@
 package kr.co.chacha.center;
 
+import java.util.Date;
+
 public class CenterDTO {
 	
 	//동물 (글)
@@ -16,6 +18,13 @@ public class CenterDTO {
     private String adopt; 
     private int cnt;
     private String adopt_pos;
+    
+    //입양신청
+    private String apno; //신청번
+    private String sub_cont; //신청내용
+    private String sub_state; //신청상태
+    private Date sub_date; //신청날짜
+    private String subpic; //신청파일
     
     //생성자 함수 
     public CenterDTO() {}
@@ -125,15 +134,65 @@ public class CenterDTO {
 	public void setAdopt_pos(String adopt_pos) {
 		this.adopt_pos = adopt_pos;
 	}
+	
+	
+	public String getApno() {
+		return apno;
+	}
+
+
+	public void setApno(String apno) {
+		this.apno = apno;
+	}
+
+
+	public String getSub_cont() {
+		return sub_cont;
+	}
+
+
+	public void setSub_cont(String sub_cont) {
+		this.sub_cont = sub_cont;
+	}
+
+
+	public String getSub_state() {
+		return sub_state;
+	}
+
+
+	public void setSub_state(String sub_state) {
+		this.sub_state = sub_state;
+	}
+
+
+	public Date getSub_date() {
+		return sub_date;
+	}
+
+
+	public void setSub_date(Date sub_date) {
+		this.sub_date = sub_date;
+	}
+
+
+	public String getSubpic() {
+		return subpic;
+	}
+
+
+	public void setSubpic(String subpic) {
+		this.subpic = subpic;
+	}
 
 	//toString()
 	@Override
 	public String toString() {
 		return "CenterDTO [anino=" + anino + ", uid=" + uid + ", aname=" + aname + ", age=" + age + ", gender=" + gender
 				+ ", weight=" + weight + ", genop=" + genop + ", vac=" + vac + ", intro=" + intro + ", anipic=" + anipic
-				+ ", adopt=" + adopt + ", cnt=" + cnt + ", adopt_pos=" + adopt_pos + "]";
+				+ ", adopt=" + adopt + ", cnt=" + cnt + ", adopt_pos=" + adopt_pos + ", apno=" + apno + ", sub_cont="
+				+ sub_cont + ", sub_state=" + sub_state + ", sub_date=" + sub_date + ", subpic=" + subpic + "]";
 	}
-	  
-	
+
 
 }

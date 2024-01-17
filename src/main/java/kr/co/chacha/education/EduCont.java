@@ -77,7 +77,7 @@ public class EduCont {
 		
 
 	    String uid = (String) session.getAttribute("s_id");
-	    String lectureType = "강아지";
+	    String lectureType = "dog";
 
 	    EduDTO edudto = new EduDTO();
 	    edudto.setUid(uid);
@@ -123,7 +123,7 @@ public class EduCont {
 	public String catResult(HttpSession session, HttpServletRequest req, @RequestParam("score") int score) {
 	
     String uid = (String) session.getAttribute("s_id");
-    String lectureType = "고양이";
+    String lectureType = "cat";
 
     EduDTO edudto = new EduDTO();
     edudto.setUid(uid);
