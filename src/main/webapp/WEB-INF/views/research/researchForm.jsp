@@ -22,11 +22,11 @@
 	<div class="container">
 		<p>설문조사에 참여해 주세요</p>
 		<hr><br><br>
-		 <div class="container-line" id="surveyContainer">
+		 <div class="container-frm" id="container-frm">
 			<!-- 이 부분에 내용 들어감 질문1 시작-->
 			<div id="panel"></div>
 
-			<div class="container-fixed row">
+			<div class="container-rr">
 				설문번호 :  ${researchList2.rno}<br>
 				제목 :  	  ${researchList2.rtitle}<br>
 				설문 기간 : ${researchList2.rdate1} ~ ${researchList2.rdate2}<br>
@@ -38,11 +38,15 @@
 			</div>
 			<br>
 		  <!-- 설문폼 시작 -->
+		  <div class="container-c">
 		  <form name="researchrFrm" id="researchrFrm">
 			<div class="researchrList" name="researchrList" id="researchrList"></div>  
 			<br><br><br>
             <input type="button" value="다음" class="btn btn" name="btn_research_n" id="btn_research_n">
+	        <!-- 결과 보러가기 버튼 추가 -->
+	  		<input type="button" value="결과보기" class="btn btn" name="btn_result" id="btn_result" style="display: none;">
           </form>
+          </div>
         </div>
 		</div>
 	</div>
@@ -63,6 +67,8 @@ $(document).ready(function () {
     
     $("#btn_research_n").on("click", function () {
     	//alert("설문 조사를 제출합니다.");
+    	 handleResearchButtonClick();
+    	/*
     	  $.ajax({
 	        url: '/research/checkUser',
 	        type: 'get',
@@ -83,19 +89,30 @@ $(document).ready(function () {
                     handleResearchButtonClick();
                 }
             }
-        });
+	        
+        });*/
     });
 });
 
 
+$("#btn_result").on("click", function () {
+
+    // 결과 페이지 URL 생성
+    let resultPageUrl = '/research/researchResult?rno=' + rno;
+
+    // 결과 페이지로 이동
+    window.location.href = resultPageUrl;
+});//click end
 
 
 function handleResearchButtonClick() {
-    // 체크된 체크박스들을 선택
+	// 체크된 체크박스, 라디오버튼, 선택된 드롭다운을 선택
     let checkedCheckbox = $("input[type=checkbox]:checked");
+    let checkedRadio = $("input[type=radio]:checked");
 
-    // 체크된 체크박스가 없을 경우 경고 메시지 띄우고 종료
-    if (checkedCheckbox.length === 0) {
+
+    // 체크된 모든 항목이 없을 경우 경고 메시지 띄우고 종료
+    if (checkedCheckbox.length === 0 && checkedRadio.length === 0) {
         alert("적어도 하나 이상의 항목을 선택하세요.");
         return;
     }
@@ -136,6 +153,19 @@ function updateProgressBar() {
             // 프로그레스 바 업데이트
             progressBar.width(progressPercentage + "%");
             progressBar.text(progressPercentage.toFixed(0) + "%");
+            
+            // 프로그레스 바가 100%일 때만 "결과 보러가기" 버튼 보이기
+            if (progressPercentage === 100) {
+                $("#btn_result").show();
+                // 마지막 페이지인 경우 "제출" 버튼 숨기기
+                $("#btn_research_n").hide();
+            } else {
+                // 마지막 페이지가 아닌 경우 "다음" 버튼 보이고, "제출" 버튼 숨기기
+                $("#btn_research_n").show();
+                $("#btn_research_n").val("다음");
+            }
+            
+            
         }//success end
     });//ajax end
 }//updateProgressBar() end
@@ -143,26 +173,37 @@ function updateProgressBar() {
 
 function checkHiddenValues() {
     
-let checkedCheckbox = $("input[type=checkbox]:checked");
-    
- 	// 체크된 첫 번째 체크박스의 qno 및 cno 값을 가져오기
-    let qnoValue = checkedCheckbox.siblings("input[name='qno']").val();
-    let cnoValue = checkedCheckbox.siblings("input[name='cno']").val();
+	 let checkedInput = $("input[type=checkbox]:checked, input[type=radio]:checked");
+	 
+	 console.log("checkedInput:", checkedInput);
 
-    // 가져온 값 출력 또는 다른 작업 수행
-    console.log("QNO Values:", qnoValue);
-    console.log("CNO Values:", cnoValue);
-    
-    // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
-    let insertData = {
-        qno: qnoValue, //168
-        cno: cnoValue //140
-    };
-    
- 	// researchrInsert 함수 호출 시 insertData 전달
-    researchrInsert(insertData);
+	    if (checkedInput.length === 0) {
+	        alert("적어도 하나 이상의 항목을 선택하세요.");
+	        return;
+	    }
+	
+	    let qnoValue, cnoValue;
+	
+	    if (checkedInput.length > 0) {
+	        // 체크된 첫 번째 체크박스 또는 라디오버튼의 qno 및 cno 값을 가져오기
+	        qnoValue = checkedInput.siblings("input[name='qno']").val();
+	        cnoValue = checkedInput.siblings("input[name='cno']").val();
+	    } 
+	    // 가져온 값 출력 또는 다른 작업 수행
+	    console.log("QNO Values:", qnoValue);
+	    console.log("CNO Values:", cnoValue);
+	
+	    // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
+	    let insertData = {
+	        qno: qnoValue,
+	        cno: cnoValue
+	    };
+	
+	    // researchrInsert 함수 호출 시 insertData 전달
+	    researchrInsert(insertData);
     
 }//checkHiddenValues() end
+
 
 
 function researchrInsert(insertData){
@@ -179,14 +220,7 @@ function researchrInsert(insertData){
 	   }//error end
 	   ,success: function(result){
 		 //alert('성공' +result);
-		 console.log(result);
-		 //마지막 value="제출" 성공했을때만 
-         //if(result === 1){ // 댓글 등록 성공
-
-         //    alert("설문 제출이 완료되었습니다! 결과를 확인해 보세요");
-             // 댓글 등록 후 researchList.jsp로 이동
-         //}//if end
-		 
+		 //console.log(result);
 	   }//success end
 	}); //ajax() end	
     
@@ -224,10 +258,26 @@ function researchrList() {
                     a += '<input type="hidden" name="qno" value="' + value.qno + '">';
                     a += '<input type="hidden" name="cno" value="' + value.cno + '">';
                     
-                    // 체크박스 및 선택지 출력
-                    a += '<input type="checkbox">\n';
-                    a += value.choice + '\n';
                     
+                    // 체크박스 및 선택지 출력
+                    //a += '<input type="checkbox">\n';
+                    
+                    // qtype에 따라 다른 형태의 입력 필드 생성
+                    if (value.qtype === 'gg') {
+                        // 체크박스
+                        a += '<input type="checkbox">\n';
+                    } else if (value.qtype === 'gd') {
+                        // 드롭다운
+                        a += '<select>';
+                        // 드롭다운 옵션 추가 (value.choice를 이용하거나 별도의 데이터를 가져와야 함)
+                        a += '<option value="option1">' + value.choice + '</option>';
+                        a += '</select>';
+                    } else if (value.qtype === 'gb') {
+                        // 라디오버튼
+                        a += '<input type="radio" name="radioGroup">\n';
+                    }
+                    
+                    a += value.choice + '\n';
                     a += '</label>';
                 }//if end
 
@@ -238,15 +288,6 @@ function researchrList() {
             // 마지막 질문 처리
             if (prevQuestion !== '') {
                 $(".researchrList").html(a);
-
-                // 마지막 페이지인 경우 "다음" 버튼을 "제출" 버튼으로 변경
-                if (currentQuestionIndex < questionNo - 1) {
-                    $("#btn_research_n").show();
-                    $("#btn_research_n").val("다음");
-                } else {
-                	 $("#btn_research_n").show();
-                     $("#btn_research_n").val("제출");
-                }//if end
             }//if end
             
         }//success end

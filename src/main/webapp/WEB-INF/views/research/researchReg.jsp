@@ -22,7 +22,7 @@
 	<div class="container">
 		<p>설문조사를 등록해 주세요</p>
 		<hr><br><br>
-		 <div class="container-line" id="surveyContainer">
+		 <div class="surveyContainer" id="surveyContainer">
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
             	<div class="row">
 		<div class="col-sm-12">
@@ -107,7 +107,6 @@ function addTableBody() {
         '<select name="qtype" id="qtype' + questionCount + '" onchange="modifyChoice(' + questionCount + ')">' +
         '    <option value="gg">객관식(중복불가)</option>' +
         '    <option value="gb">객관식(중복허용)</option>' +
-        '    <option value="gd">객관식(드롭다운)</option>' +
         '</select>' +
         '</td>' +
         '<td><input type="text" placeholder="질문을 입력해주세요" id="qcont' + questionCount + '" name="qcont"></td>' +

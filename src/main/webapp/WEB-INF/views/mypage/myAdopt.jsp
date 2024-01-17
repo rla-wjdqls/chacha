@@ -114,7 +114,7 @@ function requestPay() {
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: merchant_uid, // p202401021120
+                merchan4t_uid: merchant_uid, // p202401021120
                 name: "그냥데려가개 입양 책임금",
                 amount: 100,
                 buyer_email: buyer_email, // kim9595@gmail.com
@@ -126,7 +126,7 @@ function requestPay() {
                         url: "/payment/verify/" + rsp.imp_uid,
                         type: "POST",
                     }).done(function(data) {
-                        // 결제 검증 : 결제 성공 시의 금액(rsp.paid_amount)과 검증한 금액(data.response.amount) 비교 
+                        // 결제 금액과 검증 금액 확인 
                         if(rsp.paid_amount == data.response.amount){
                         	
                             var msg = '결제가 완료되었습니다.';
@@ -154,7 +154,6 @@ function requestPay() {
         }
     });
 }
-
 
 function succeedPay(){
 	//alert("succedpay" + params);

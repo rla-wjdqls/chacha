@@ -50,6 +50,10 @@ public class ResearchDAO {
 		return sqlSession.selectOne("research.checkUser", researchDTO);
 	}//checkQty() end
 	
+	public String checkMaxrno() {		
+		return sqlSession.selectOne("research.checkMaxrno");
+	}//checkMaxrno() end
+	
 	public int getQuestions(String rno) {		
 		return sqlSession.selectOne("research.getQuestions", rno);
 	}//getQuestions() end

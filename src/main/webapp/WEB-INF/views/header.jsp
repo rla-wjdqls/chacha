@@ -64,6 +64,12 @@
     </script>
     
 <style>
+
+#surveyContainer {
+    overflow: visible; /* 또는 다른 값으로 설정 */
+}
+
+
 	.login-container {
 	    display: flex; /* Flexbox 사용 */
 	    justify-content: space-between; /* 엘리먼트 사이의 공간을 최대한으로 늘림 */
@@ -160,7 +166,7 @@
                 </div>
                 &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/newsignupForm">회원가입</a>  
+                    <a href="/member/signupForm">회원가입</a>  
                 </div>
             </c:if>
             </div>

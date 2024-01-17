@@ -6,18 +6,6 @@
 
 <%@ page import="java.time.format.DateTimeFormatter" %>
 
-
-<%-- <%
-    // 현재 날짜를 가져오는 메서드
-    LocalDate currentDate = LocalDate.now();
-    
-    // rdate1을 LocalDate로 변환하는 메서드
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    LocalDate researchDate = LocalDate.parse(researchList.rdate1, formatter);
-
-    // isAfterCurrentDate 호출
-    boolean afterCurrentDate = ResearchCont.isAfterCurrentDate(researchDate);
-%>  --%>
     
 <%@ include file="../header.jsp" %>
 
@@ -71,7 +59,8 @@
                     </c:choose>
                     <br><br>
                     <c:if test="${list.rstate ne 'E'}">
-                        <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary" onclick="return chechkLogin()">바로가기</a>
+                         <a href="javascript:void(0);" class="btn btn-primary" onclick="checkAndRedirect('${list.rno}')">바로가기</a>
+                        <%-- <a href="/research/researchForm?rno=${list.rno}" class="btn btn-primary" onclick="return chechkLogin()">바로가기</a> --%>
                     </c:if>
                     <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success">결과보기</a>
                     <c:choose>
@@ -92,21 +81,40 @@
 
 <script>
 
-function chechkLogin(){
-	
-	let s_id = '<%= (String)session.getAttribute("s_id") %>';
-	//alert(s_id);
-	
- 	if (s_id !== "null") {
+function chechkLogin() {
+    let s_id = '<%= (String)session.getAttribute("s_id") %>';
+    //alert(s_id);
+
+    if (s_id !== "null") {
         // 로그인된 경우 설문조사 페이지로 이동
         return true;
     } else {
         alert("로그인 후 이용해 주세요");
         // 로그인되지 않은 경우 경고창만 띄우고 이동하지 않음
         return false;
-    }//if end 
-	
-}//chechkLogin() end
+    }//if end
+}
+
+function checkAndRedirect(rno) {
+    if (chechkLogin()) {
+        $.ajax({
+            url: '/research/checkUser',
+            type: 'get',
+            data: { 'rno': rno },
+            error: function (error) {
+                alert('에러!');
+                console.log(error);
+            },
+            success: function (result) {
+                if (result !== 0) {
+                    alert("이미 참여한 설문에는 재참여 하실 수 없습니다.");
+                } else {
+                    window.location.href = '/research/researchForm?rno=' + rno;
+                }
+            }
+        });
+    }
+}
 
 
 
