@@ -7,74 +7,69 @@
 	String s_mlevel = (String)session.getAttribute("s_mlevel");
 %>
 <script>
-let pageNumber = 1;
-let pageItem = 4;
-console.log(pageNumber);
-console.log(pageItem);
+let pageNo = 1;
+
+let apiUrl = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&pageNo=" + pageNo + "&numOfRows=1000&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+//초기 로딩 시에만 apiUrl을 생성하도록 수정
+$(document).ready(function () {
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("api 실패");
+            }
+            return response.json(); //json 형태로 파싱
+        })
+        .then(data => {
+            let animalDate = data.response.body.items.item;
+            console.log(animalDate);
+            animalList(animalDate);
+        })
+        .catch(error => {
+            console.error("에러", error);
+        });
+});
 
 window.onscroll = function() {
-	if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
-		//스크롤이 페이지 하단에 오면 페이지 +1, 다음 페이지 데이터 요청
-		pageNumber++; 
-        getDate(pageNumber, pageItem);
-	}
-} 
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        // 스크롤이 페이지 하단에 오면 페이지 +1, 다음 페이지 데이터 요청
+        pageNo++;
+        getDate();
+    }
+};
 
-function getDate(pageNumber, pageItem) {
-	console.log(pageNumber);
-	console.log(pageItem);
-	$.ajax({
-	    url: '/center/centerForm',
-	    type: 'post',
-	    data: {'pageNumber': pageNumber, 'pageItem': pageItem},
-	    error: function (error) {
-	        alert(error);
-	    },
-	    success: function (result) {
-	    	console.log(result);	
-	    	$.each(result, function (key, value) {
-	    		//alert(value.aname);
-	    		console.log('<%= s_mlevel %>');
-				console.log(value.adopt_pos);
-				let a = '';
-				if ('<%= s_mlevel %>' === 'a' && (value.adopt_pos === 'N' || value.adopt_pos === 'Y')) {
-				    //alert("관리자");
-				    a += "<div class='card' style='width: 18rem;'>";
-				    if (!value.anipic || value.anipic === '-') {
-				        a += "<img src='/img/noimg.png' class='card-img-top img-fixed img-fluid'>";
-				    } else {
-				        a += "<img src='/storage/" + value.anipic + "' class='card-img-top img-fixed img-fluid'>";
-				    }
-				    a += "<div class='card-body'>";
-				    a += "<h5 class='card-title'>" + value.aname + "</h5>";
-				    a += "<p class='card-text'>" + value.age + "</p>";
-				    a += "<a href='detail?anino=" + value.anino + "' class='btn btn-primary'>보러가기</a>";
-				    a += "</div></div>";
-				    $("#container-fixed").append(a);
-				    
-				} else if ('<%= s_mlevel %>' !== 'a' && value.adopt_pos !== 'N') {
-				    a += "<div class='card' style='width: 18rem;'>";
-				    if (!value.anipic || value.anipic === '-') {
-				        a += "<img src='/img/noimg.png' class='card-img-top img-fixed img-fluid'>";
-				    } else {
-				        a += "<img src='/storage/" + value.anipic + "' class='card-img-top img-fixed img-fluid'>";
-				    }
-				    a += "<div class='card-body'>";
-				    a += "<h5 class='card-title'>" + value.aname + "</h5>";
-				    a += "<p class='card-text'>" + value.age + "</p>";
-				    a += "<a href='detail?anino=" + value.anino + "' class='btn btn-primary'>보러가기</a>";
-				    a += "</div></div>";
-				    $("#container-fixed").append(a);
-				}
-
-	    		//alert(a);
- 
-			})
-	    
+function getDate() {
+	apiUrl = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&pageNo=" + pageNo + "&numOfRows=" + numOfRows + "&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+    console.log(apiUrl);
+    $.ajax({
+        url: apiUrl,
+        type: 'get',
+        error: function (error) {
+            alert(error);
+        },
+        success: function (result) {
+            console.log(result);
+            let animalDate = result.response.body.items.item;
+            animalList(animalDate);
         }
-    });//ajax end
+    });
 }
 
+
+
+function animalList(animalDate) {
+    $.each(animalDate, function (key, value) {
+    	let anino = value.desertionNo;
+        let a = '';
+        a += "<div class='card' style='width: 18rem;'>";
+        a += "<div class='card-body'>";
+        a += "<img src='" + value.popfile + "' class='card-img-top img-fixed img-fluid'>";
+        a += "<h5 class='card-title'>" + value.kindCd + "</h5>";
+        a += "<p class='card-text'>" + value.age + "</p>";
+        a += "<a href='detail?anino=" + anino + "' class='btn btn-primary'>보러가기</a>";
+        a += "</div></div>";
+        $("#container-fixed").append(a);
+    })
+}
 
 
 </script>
@@ -117,44 +112,7 @@ function getDate(pageNumber, pageItem) {
 
 	   
 	<div class="container-fixed row" id="container-fixed">
-			<c:forEach items="${form}" var="row" varStatus="vs">
-				<c:choose>
-					<c:when test="${s_mlevel eq 'a' and (row.adopt_pos eq 'N' or row.adopt_pos eq 'Y')}">
-					<div class="card" style="width: 18rem;">
-						<c:choose>
-							<c:when test="${row.anipic == '-' || empty row.anipic}">
-							  	<img src="/img/noimg.png" class="card-img-top img-fixed img-fluid">
-							</c:when>
-				  			<c:otherwise>
-				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid">
-				  			</c:otherwise>
-				  		</c:choose>
-				  	<div class="card-body">
-				    	<h5 class="card-title">${row.aname}</h5>
-				    	<p class="card-text">${row.age}</p>
-				    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
-				  	</div>
-			   		</div>
-					</c:when>
-					<c:when test="${s_mlevel ne 'a' and row.adopt_pos ne 'N' }">
-						<div class="card" style="width: 18rem;">
-						<c:choose>
-							<c:when test="${row.anipic == '-' || empty row.anipic}">
-							  	<img src="/img/noimg.png" class="card-img-top img-fixed img-fluid">
-							</c:when>
-				  			<c:otherwise>
-				  				<img src="/storage/${row.anipic}" class="card-img-top img-fixed img-fluid">
-				  			</c:otherwise>
-				  		</c:choose>
-				  	<div class="card-body">
-				    	<h5 class="card-title">${row.aname}</h5>
-				    	<p class="card-text">${row.age}</p>
-				    	<a href="detail?anino=${row.anino}" class="btn btn-primary">보러가기</a>
-				  	</div>
-			   		</div>
-					</c:when>
-				</c:choose>
-			</c:forEach>
+			
 		   
 	</div>
 </div>

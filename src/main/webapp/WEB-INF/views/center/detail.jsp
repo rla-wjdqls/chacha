@@ -7,7 +7,10 @@
 	String s_mlevel = (String)session.getAttribute("s_mlevel");
 %>
 <c:set var="writer" value="${center.uid}" />
-<c:set var="anino" value="${center.anino}" />
+<script>
+
+
+</script>
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
 	<nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -26,104 +29,25 @@
 		</ul>
 	</nav>
 
-<div class="container-fluid">
-	<h3 style="text-align: center">${center.aname}</h3>
-		<form name="centerfrm" id="centerftm" method="post" enctype="multipart/form-data">
-			<input type="hidden" value="${center.anino}" name="anino" class="anino">
-		<nav class="navbar navbar-light i-nav">
-			<c:choose>
-			<c:when test="${s_mlevel eq 'a'}">
-  			<div class="input-container" style="display: inline-block;">
-				   <input type="button" value="수정" class="btn btn-warning rotate-text" onclick="center_Update()">
-				   <input type="button" value="삭제" class="btn btn-danger rotate-text" onclick="center_delete()">
-		    </div>
-		    </c:when>
-		    </c:choose>
-		</nav>
+<div class="container-fluid" id="container-fluid">
+	<%-- <h3 style="text-align: center">${center.aname}</h3> --%>
+	<div class="container"id="container-1">
 	
-
-		<div class="container">
-			<div class="container">
-			<c:choose>
-				<c:when test="${center.anipic == '-' || empty center.anipic}">
-				  	<img src="/img/noimg.png" style="float: left; margin-right: 20px;" width="270px" alt="기본 이미지">
-				</c:when>
-				<c:otherwise>
-				  	<img src="/storage/${center.anipic}" style="float: left; margin-right: 20px;" width="270px" alt="이미지">
-				</c:otherwise>
-			</c:choose>
-			</div>
-			
-			
-			<div class="container-1 rotate-text"> 
-				<dl class="anidl" style="float: left">
-					<dt class="anidt">나이</dt>
-					<dd class="anidd" id="anidd">${center.age}살</dd>
-				</dl>
-				<dl class="anidl">
-					<dt class="anidt">성별</dt>
-					<c:choose>
-						<c:when test="${center.gender eq 'M'}">
-							<dd class="anidd">남자</dd>
-						</c:when>
-						<c:when test="${center.gender eq 'F'}">
-							<dd class="anidd">여자</dd>
-						</c:when>
-					</c:choose>
-				</dl>
-				<dl class="anidl">
-					<dt class="anidt">몸무게</dt>
-					<dd class="anidd">${center.weight}</dd>
-				</dl>
-				<dl class="anidl" >
-					<dt class="anidt" >중성화여부</dt>
-					<c:choose>
-						<c:when test="${center.genop eq 'Y'}">
-							<dd class="anidd">완료</dd>
-						</c:when>
-						<c:when test="${center.genop eq 'N'}">
-							<dd class="anidd">미완료</dd>
-						</c:when>
-					</c:choose>
-				</dl>
-				<dl class="anidl">
-					<dt class="anidt">예방접종여부</dt>
-					<c:choose>
-						<c:when test="${center.vac eq 'Y'}">
-							<dd class="anidd">완료</dd>
-						</c:when>
-						<c:when test="${center.vac eq 'N'}">
-							<dd class="anidd">미완료</dd>
-						</c:when>
-					</c:choose>
-				</dl>
-				<dl class="anidl" >
-					<dt class="anidt">입양가능여부</dt>
-					<c:choose>
-						<c:when test="${center.adopt_pos eq 'Y'}">
-							<dd class="anidd">가능</dd>
-						</c:when>
-						<c:when test="${center.adopt_pos eq 'N'}">
-							<dd class="anidd">불가능</dd>
-						</c:when>
-					</c:choose>
-				</dl>
-			</div>
-		</div>
-			</form>
-		
+	
+	</div>
+	
 		<c:choose>
 		<c:when test="${s_mlevel ne 'A'}">
 		<div class="container">
 			<div class="jjimStart">
 			<form name="jjimfrm" id="jjimfrm">
 			<!-- 동물 글 번호 -->
-			<input type="hidden" name="anino" id="anino" value="${center.anino}">
+			<input type="hidden" name="anino" id="anino" value="">
 			<c:choose>
 				<%--로그인 상태에 찜 클릭 --%>
 				<c:when test="${not empty sessionScope.s_id}">
 							<div class="icon-heart" id="jjimInsertContainer"> 
-								<i class="bi bi-heart" id="jjimInsert"></i>
+								<i class="bi bi-heart" id="jjimInsert" ></i>
 							</div>	
 							<div class="icon-heart" id="jjimDeleteContainer">
 									<i class="bi bi-heart-fill" id="jjimDelete"></i>
@@ -139,7 +63,7 @@
 			</div>
 			
 			<form name="chatfrm" id="chatfrm" method="post" action="/chat">
-			<input type="hidden" name="anino" id="anino" value="${center.anino}">
+			<input type="hidden" name="anino" id="anino_" value="">
 			<input type="hidden" name="writer" id="writer" value="${center.uid}">
 			<div class="icon-heart">
 				<i class="bi bi-chat-left-dots-fill" onclick="chat_popup()"></i>
@@ -156,7 +80,7 @@
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
 			      <form name="aniRefrm" id="aniRefrm" method="post" enctype="multipart/form-data">
-			      <input type="hidden" value="${center.anino}" name="anino" class="anino">
+			      <input type="hidden" value="" name="anino" class="anino">
 				      <div class="modal-body">
 				     	* 사전질문 * <br>
 				     	* 모든 항목을 선택하셔야 입양 신청이 가능합니다 * <hr>
@@ -192,27 +116,19 @@
 			    </div>
 			  </div>
 			</div>
+			</div>
 			</c:when>
 			</c:choose>
 			<hr>
-			<div>
-				<p style="text-align: center">
-				${center.intro}
-				</p>
-			</div>		
+				
 		</div>
-	</div>	
+	
 		<script>
-			//찜 관련 스크립트 
-			let anino = '${center.anino}'; //동물글 번호 
-			//alert(anino);
 			
-			$(document).ready(function () {
-			    let jjimState; // 찜 상태 저
-
-			    jjimSelect(); // 페이지 로딩되면 해당 함수 먼저 호출
-
+			let jjimState;
 			    function jjimSelect() {
+			    	anino = $('#anino').val();
+			    	alert(anino);
 			        $.ajax({
 			            url: '/jjim/select',
 			            type: 'post',
@@ -259,7 +175,7 @@
 			            }
 			        });
 			    }
-			});
+			
 	
 			function chat_popup(){ 
 				let uid = '<%= (String)session.getAttribute("s_id") %>';
