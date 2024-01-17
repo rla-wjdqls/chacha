@@ -50,6 +50,21 @@ CREATE TABLE `payment` (
     `patamt` VARCHAR(6) NOT NULL DEFAULT '50,000'	--결제금액
 );
 
+CREATE TABLE education (
+    ->  `eduno` INT(5)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  `uid`   VARCHAR(20)     NOT NULL,
+    ->  `eduop`  VARCHAR(5) NOT NULL,
+    ->  `edu_date` DATETIME NOT NULL,
+    ->  `score` INT(3)  NOT NULL
+    -> )ENGINE=MyISAM DEFAULT CHARSET="utf8";
+
+CREATE TABLE education (
+    eduno INT(5)  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    uid   VARCHAR(20)     NOT NULL,
+    eduop  VARCHAR(5) NOT NULL,
+    edu_date DATETIME NOT NULL,
+    score INT(3)  NOT NULL
+    );
 
 --교육신청
 CREATE TABLE `education` (
@@ -79,3 +94,13 @@ CREATE TABLE `quiz_sub` (
 	`score`	INT(3)	NOT NULL,							  --점수
 	`quiz_date` DATETIME NOT NULL						  --제출날짜
 );
+
+
+--댓글
+CREATE TABLE comment (
+    commentNo INT(20) AUTO_INCREMENT PRIMARY KEY,  	-댓글번호
+    content VARCHAR(200) NOT NULL,				 	-내용
+    uid VARCHAR(20) NOT NULL,						-아이디
+    commentDate DATETIME NOT NULL,					-등록날짜
+    textno INT(5) NOT NULL							-게시글
+    );
