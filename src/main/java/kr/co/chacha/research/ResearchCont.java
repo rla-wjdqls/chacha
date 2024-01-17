@@ -74,9 +74,7 @@ public class ResearchCont {
 
 		return result;
 	}//resultList() end
-	
-	
-	
+
 	
 	// 설문조사 내용 가져와 보여주기
 	@GetMapping("/researchrList")
@@ -87,7 +85,6 @@ public class ResearchCont {
 		return list;
 		
 	}//researchrList() end
-	
 		
 	
 	// 설문 진행 여부를 확인하는 메서드
@@ -151,6 +148,7 @@ public class ResearchCont {
 		return mav;
 	}//researchModify() end
 	
+	
 	//사용자 확인하여 설문조사 한번만 참여 가능
 	@GetMapping("/checkUser")
 	@ResponseBody
@@ -159,7 +157,6 @@ public class ResearchCont {
 		String uid = (String)session.getAttribute("s_id");
 				
 		ResearchDTO researchDTO = new ResearchDTO();
-		
 		researchDTO.setUid(uid);
 		researchDTO.setRno(rno);
 		
@@ -169,6 +166,54 @@ public class ResearchCont {
 		
 	}//checkUser() end
 	
+	
+	
+	//설문조사 답변 Insert (체크박스, 라디오버튼)
+	@PostMapping("/researchrcInsert")
+	@ResponseBody
+	public void researchrcInsert(@RequestBody Map<String, Object> insertData, HttpSession session) {
+		
+		String uid = (String)session.getAttribute("s_id");
+		
+		List<Integer> qnoValues = (List<Integer>)insertData.get("qno");
+		List<Integer> cnoValues = (List<Integer>)insertData.get("cno");
+		
+		List<ResearchDTO> researchrcList = new ArrayList<>();
+		
+		for (int i = 0; i < qnoValues.size(); i++) {
+		    ResearchDTO researchDTO = new ResearchDTO();
+		    researchDTO.setQno(qnoValues.get(i));
+		    researchDTO.setReply(cnoValues.get(i)); //reply에서 선택한 값 확인하기 위해 cnoValues 넣어줌 
+		    researchDTO.setUid(uid);
+		    // 다른 필요한 속성들도 설정 가능
+		    researchrcList.add(researchDTO);
+		}
+		
+		//System.out.println(researchrcList);
+		//qno=176, uid=aaaaa,reply=155, 
+		//qno=176, uid=aaaaa, reply=156]
+		
+		//qno=177, uid=aaaaa,reply=158, 
+		//qno=177, uid=aaaaa,reply=159, 
+		//qno=177, uid=aaaaa, reply=160]
+		
+		//qno=178, uid=aaaaa, reply=162]
+				
+		int cnt = researchdao.researchrcInsert(researchrcList);
+		//System.out.println(cnt);
+
+		/*
+	    // 받은 데이터 확인
+	    for (int i = 0; i < qnoValues.size(); i++) {
+	        System.out.println("QNO: " + qnoValues.get(i)); //166,166,167,168
+	        System.out.println("CNO: " + cnoValues.get(i)); //136,137,138,142
+
+	        // 여기에 데이터 처리 로직 추가...
+	    }
+	    */    
+		
+	}//researchInsert() end
+
 	
 	// 설문조사 답변 insert
 	@PostMapping("/researchrInsert")
@@ -197,6 +242,23 @@ public class ResearchCont {
 		return cnt;
 		
 	}//researchrList() end
+	
+	/*
+	 // researchc 테이블 insert
+	    String[] choiceArray = researchDTO.getChoice().split(",");
+	    List<ResearchDTO> researchcList = new ArrayList<>();
+
+	    for (int i = 0; i < resultQnoArray.length; i++) {
+	        ResearchDTO newResearchDTO = new ResearchDTO();
+	        newResearchDTO.setQno(resultQnoArray[i]);
+	        newResearchDTO.setChoice(choiceArray[i]);
+	        researchcList.add(newResearchDTO);
+	    }
+
+	    int cnt3 = researchdao.researchcInsert(researchcList);
+ 
+	  
+	*/
 	
 
 	// 설문 등록 페이지 이동

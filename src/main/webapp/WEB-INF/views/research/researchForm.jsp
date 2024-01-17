@@ -68,38 +68,13 @@ $(document).ready(function () {
     $("#btn_research_n").on("click", function () {
     	//alert("설문 조사를 제출합니다.");
     	 handleResearchButtonClick();
-    	/*
-    	  $.ajax({
-	        url: '/research/checkUser',
-	        type: 'get',
-	        data: { 
-	        		'rno' : rno 
-	        },
-	        error: function (error) {
-	            alert('에러!');
-	            console.log(error);
-	        },
-	        success: function (result) {
-	        	//alert('성공~' + result); //2
-	        	if(result !== 0){
-	        		 alert("이미 참여한 설문에는 재참여 하실 수 없습니다.");
-	        		 window.location.href = '/research/researchList';
-	            } else {
-                    // 참여하지 않은 경우에만 페이지 이동
-                    handleResearchButtonClick();
-                }
-            }
-	        
-        });*/
     });
 });
 
 
 $("#btn_result").on("click", function () {
-
     // 결과 페이지 URL 생성
     let resultPageUrl = '/research/researchResult?rno=' + rno;
-
     // 결과 페이지로 이동
     window.location.href = resultPageUrl;
 });//click end
@@ -107,12 +82,12 @@ $("#btn_result").on("click", function () {
 
 function handleResearchButtonClick() {
 	// 체크된 체크박스, 라디오버튼, 선택된 드롭다운을 선택
-    let checkedCheckbox = $("input[type=checkbox]:checked");
+    let checkedCheckboxs = $("input[type=checkbox]:checked");
     let checkedRadio = $("input[type=radio]:checked");
 
 
     // 체크된 모든 항목이 없을 경우 경고 메시지 띄우고 종료
-    if (checkedCheckbox.length === 0 && checkedRadio.length === 0) {
+    if (checkedCheckboxs.length === 0 && checkedRadio.length === 0) {
         alert("적어도 하나 이상의 항목을 선택하세요.");
         return;
     }
@@ -164,53 +139,60 @@ function updateProgressBar() {
                 $("#btn_research_n").show();
                 $("#btn_research_n").val("다음");
             }
-            
-            
         }//success end
     });//ajax end
 }//updateProgressBar() end
 
 
 function checkHiddenValues() {
-    
-	 let checkedInput = $("input[type=checkbox]:checked, input[type=radio]:checked");
-	 
-	 console.log("checkedInput:", checkedInput);
+    let checkedCheckboxes = $("input[type=checkbox]:checked");
+    let checkedRadios = $("input[type=radio]:checked");
 
-	    if (checkedInput.length === 0) {
-	        alert("적어도 하나 이상의 항목을 선택하세요.");
-	        return;
-	    }
-	
-	    let qnoValue, cnoValue;
-	
-	    if (checkedInput.length > 0) {
-	        // 체크된 첫 번째 체크박스 또는 라디오버튼의 qno 및 cno 값을 가져오기
-	        qnoValue = checkedInput.siblings("input[name='qno']").val();
-	        cnoValue = checkedInput.siblings("input[name='cno']").val();
-	    } 
-	    // 가져온 값 출력 또는 다른 작업 수행
-	    console.log("QNO Values:", qnoValue);
-	    console.log("CNO Values:", cnoValue);
-	
-	    // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
-	    let insertData = {
-	        qno: qnoValue,
-	        cno: cnoValue
-	    };
-	
-	    // researchrInsert 함수 호출 시 insertData 전달
-	    researchrInsert(insertData);
-    
+    console.log("checkedCheckboxes:", checkedCheckboxes);
+    console.log("checkedRadios:", checkedRadios);
+
+    if (checkedCheckboxes.length === 0 && checkedRadios.length === 0) {
+        alert("적어도 하나 이상의 항목을 선택하세요.");
+        return;
+    }
+
+    let qnoValues = [];
+    let cnoValues = [];
+
+    if (checkedCheckboxes.length > 0) {
+        // 체크된 체크박스들의 qno 및 cno 값을 가져오기
+        checkedCheckboxes.each(function () {
+            let qnoValue = $(this).siblings("input[name='qno']").val();
+            let cnoValue = $(this).siblings("input[name='cno']").val();
+
+            qnoValues.push(qnoValue);
+            cnoValues.push(cnoValue);
+        });
+    } else if (checkedRadios.length > 0) {
+        // 체크된 라디오버튼의 qno 및 cno 값을 가져오기
+        qnoValues.push(checkedRadios.siblings("input[name='qno']").val());
+        cnoValues.push(checkedRadios.siblings("input[name='cno']").val());
+    }
+
+    console.log("QNO Values:", qnoValues);
+    console.log("CNO Values:", cnoValues);
+
+    // AJAX 요청에 전송할 데이터에 qno 및 cno 값을 추가
+    let insertData = {
+  		  qno: qnoValues.map(Number),
+  		  cno: cnoValues.map(Number)
+    };
+
+    // researchrInsert 함수 호출 시 insertData 전달
+    researchrInsert(insertData);
 }//checkHiddenValues() end
-
 
 
 function researchrInsert(insertData){
 	//alert("답변 insert");
 	
 	$.ajax({
-		url : '/research/researchrInsert' //요청명령어
+		url : '/research/researchrcInsert' //요청명령어
 	   ,type: 'post'
 	   ,contentType: 'application/json'
 	   ,data: JSON.stringify(insertData) //전달값
