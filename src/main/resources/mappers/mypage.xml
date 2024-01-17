@@ -5,12 +5,19 @@
  <!--mypage.xml-->
  <mapper namespace="mypage">
  	
- 	
+ <!-- 	
  <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
  	SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
 	FROM myeducation
 	WHERE uid = #{uid}
 	ORDER BY myno		
+ </select> -->
+ 
+ <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
+ 	SELECT myno, uid, eduop, eduno, score, edu_date
+	FROM myeducation
+	WHERE uid = #{uid}
+	ORDER BY edu_date		
  </select>
  
  
