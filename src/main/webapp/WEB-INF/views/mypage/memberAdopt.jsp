@@ -89,7 +89,7 @@
 				        </select>
 		        	</td>
                     <td>${memAdopt.subpic}</td>
-                    <td><input type="button" value="수정" class="btn"></td>
+                    <td><input type="button" value="수정" class="btn" name="btn_adUpdate" id="btn_adUpdate"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -144,6 +144,14 @@
 	</div>
 	
  <script>
+ 
+ 
+ $("#btn_adUpdate").click(function(){
+	 alert();
+	 
+ })//click end
+ 
+ 
  
  function refundProc() {
 		

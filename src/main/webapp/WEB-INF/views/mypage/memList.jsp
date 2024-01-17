@@ -69,7 +69,7 @@
 	            <td>${memlist.zipcode}</td>
 	            <td>${memlist.addr1}</td>
 	            <td>${memlist.addr2}</td>
-	            <td><input type="button" value="수정" class="btn btn-update" data-uid="${memlist.uid}" data-mlevel="${memlist.mlevel}"></td>
+	            <td><input type="button" value="수정" class="btn btn-update"></td>
 	        </tr>
 		</c:forEach>
         </tbody>
