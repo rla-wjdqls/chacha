@@ -8,7 +8,96 @@
 %>
 <c:set var="writer" value="${center.uid}" />
 <script>
+//let anino = ""; //동물글 번호 
+//alert(anino);
 
+let urlParams = new URL(location.href).searchParams;
+let desertionNo = urlParams.get('anino');
+let anino_ = '';
+
+let apiUrl = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&numOfRows=500&desertionNo=" + desertionNo + "&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+$(document).ready(function () {
+	//console.log(desertionNo);
+	fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("api 실패");
+        }
+        return response.json(); //json 형태로 파싱
+    })
+    .then(data => {
+    	if (data.response.body.items.item && Array.isArray(data.response.body.items.item)) { //동물 정보가 포함된 item 속성 존재 여부 및 배열 여부
+    	    let matchingAnimal = data.response.body.items.item.find(item => item.desertionNo === desertionNo); //배열에서 desertionNo가 일치하는 동물
+    	    if (matchingAnimal) {
+    	        console.log(matchingAnimal);
+    	        detail(matchingAnimal);
+    	        
+    	    } else {
+    	        console.log("일치하는 동물 번호가 없음");
+    	    }
+    	} else {
+    	    console.log("API 응답 구조 다름");
+    	}
+    })
+    .catch(error => {
+        console.error("에러", error);
+    });
+});
+
+function detail(matchingAnimal) {
+    let a = '';
+    
+    if(matchingAnimal.kindCd.startsWith('[개')){
+    	console.log(matchingAnimal.kindCd)
+    	anino = "d" +matchingAnimal.desertionNo ;
+    	console.log(anino);
+    }else if(matchingAnimal.kindCd.startsWith('[고')){
+    	console.log(matchingAnimal.kindCd)
+    	anino = "c" +matchingAnimal.desertionNo ;
+    	console.log(anino);
+    }else if(matchingAnimal.kindCd.startsWith('[기타')){
+    	console.log(matchingAnimal.kindCd)
+    	anino = "a" +matchingAnimal.desertionNo ;
+    	console.log(anino);
+    }
+    let aninoField = document.getElementById('anino_');
+    aninoField.setAttribute('value', anino);
+    
+    let aninoField2= document.getElementById('anino_?');
+    aninoField2.setAttribute('value', anino);
+    
+    console.log(anino);
+    
+    //a += "<div class='container-1'>";
+    a += "<h3 style='text-align: center'>" + matchingAnimal.kindCd + "</h3>" ;
+	a += "<div class='container-1'> ";
+	a += "<img src="+ matchingAnimal.popfile +" style='float: left; margin-right: 20px;' width='270px' alt='이미지'>";
+	a += "<table class='table table-borderless'>" ;
+	a += "<tr>" ;
+	a += "<th style='display: flex; align-items: center;'>나이</th>";
+	a += "<td style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.age + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>성별</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.sexCd + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>몸무게</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.weight + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>중성화여부</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.neuterYn + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>공고기간</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.noticeSdt + " ~ " + matchingAnimal.noticeEdt + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>발견장소</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.happenPlace + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>보호센터</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.careNm + "(Tel : " + matchingAnimal.careTel + " )" + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>색상</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.colorCd + "</td>";
+	a += "<th scope='row' style='display: flex; align-items: center;'>특징</th>";
+	a += "<td class='anidd' style='display: flex; align-items: center; justify-content: flex-start;'>" + matchingAnimal.specialMark + "</td>";
+	a += "</tr>";
+	a +="</table>";
+	a +="</div>";
+   
+    $("#container-1").append(a);
+}
 
 </script>
 <!-- 본문 시작 template.jsp -->
@@ -80,7 +169,7 @@
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
 			      <form name="aniRefrm" id="aniRefrm" method="post" enctype="multipart/form-data">
-			      <input type="hidden" value="" name="anino" class="anino">
+			      <input type="hidden" value="" name="anino" id="anino_?" class="anino">
 				      <div class="modal-body">
 				     	* 사전질문 * <br>
 				     	* 모든 항목을 선택하셔야 입양 신청이 가능합니다 * <hr>
@@ -124,10 +213,16 @@
 		</div>
 	
 		<script>
+			//찜 관련 스크립트 
+			let anino = anino_; //동물글 번호 
+			//alert(anino);
 			
-			let jjimState;
+			$(document).ready(function () {
+			    let jjimState; // 찜 상태 저
+
+			    jjimSelect()// 페이지 로딩되면 해당 함수 먼저 호출
+
 			    function jjimSelect() {
-			    	anino = $('#anino').val();
 			    	alert(anino);
 			        $.ajax({
 			            url: '/jjim/select',
@@ -175,7 +270,7 @@
 			            }
 			        });
 			    }
-			
+			});
 	
 			function chat_popup(){ 
 				let uid = '<%= (String)session.getAttribute("s_id") %>';

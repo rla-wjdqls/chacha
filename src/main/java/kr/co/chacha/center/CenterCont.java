@@ -240,6 +240,7 @@ public class CenterCont {
 						   HttpServletRequest req,
 						   HttpSession session) {
 		String uid=(String)session.getAttribute("s_id");
+		System.out.println(anino);
 		String aniStr = anino.substring(0, 1);
 		
 		//System.out.println(uid);
