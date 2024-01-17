@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -45,7 +47,22 @@ public class CommentCont {
 		return cnt;
 
 	}// mCommentServiceInsert() end
+	
+	/*
+	@GetMapping("/commentInsertForm")
+	public String showCommentInsertForm(Model model, @RequestParam("textno") int textno) {
+		// 이전 페이지 정보를 모델에 추가
+	   // CommentDTO commentDto = new CommentDTO();
+	    //int cnt = commentDao.commentInsert(commentDto);
 
+	    // 업데이트된 댓글 목록을 가져와서 모델에 추가
+	    List<CommentDTO> updatedComments = commentDao.commentList(textno);
+	    model.addAttribute("comments", updatedComments);
+
+	    return "commentInsertForm";
+    }
+	*/
+	
 	@GetMapping("/list")
 	@ResponseBody
 	public List<CommentDTO> mCommentServiceList(int textno) throws Exception {
@@ -72,4 +89,6 @@ public class CommentCont {
 		return cnt;
 	}// mCommentServiceDelete() end
 
+	
+	
 }

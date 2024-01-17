@@ -128,14 +128,14 @@ td {
 <br>
 
 
-<div class="container">
+<div class="container" id=commentList>
 	<h5 style="text-align:left; display: inline;"><img src="/img/commentlogo.png" alt="logo" style="width: 30px; height: 30px;  display: inline;"> 댓글</h5>
 	<!-- 댓글 목록을 표시하는 부분 -->
 	<!-- 댓글 시작 -->
 	<div class="row">
 		<div class="col-sm-12">
 			<!-- 댓글 등록 -->
-			<form action="commentInsertForm" id="commentInsertForm">
+			<form action="/comment/commentInsertForm" id="commentInsertForm">
 				<!-- 부모글 번호 -->
 				<input type="hidden" name="textno" id="textno" value="${helpd.textno}">
 				<table class="table table-borderless">
