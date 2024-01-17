@@ -45,7 +45,7 @@
 	            <td>${memlist.tel}</td>
 	            <td>${memlist.birth}</td>
 	            <td>
- 				<select name="mlevel" id="mlevel_${memlist.uid}">
+ 				<select name="mlevel" id="mlevel_${memlist.uid}" class="mlevel" >
                   <c:choose>
                       <c:when test="${memlist.mlevel eq 'a'}">
                           <option value="a" selected>관리자</option>
@@ -69,7 +69,7 @@
 	            <td>${memlist.zipcode}</td>
 	            <td>${memlist.addr1}</td>
 	            <td>${memlist.addr2}</td>
-	            <td><input type="button" value="수정" class="btn btn-update"></td>
+	            <td><input type="button" value="수정" class="btn btn-update" data-uid="${memlist.uid}" data-mlevel="${memlist.mlevel}"></td>
 	        </tr>
 		</c:forEach>
         </tbody>
@@ -104,29 +104,36 @@
 
 <script>
 
-$(document).ready(function () {
 	// 수정 버튼 클릭 시
     $(".btn-update").click(function () {
         // 해당 행의 uid와 mlevel 값을 가져와서 폼에 설정
-        var uid = $(this).data("uid");
-        var mlevel = $(this).data("mlevel");
+        let uid = $(this).data("uid");
+        let mlevelSelect = $(this).closest("tr").find(".mlevel");
+        let mlevel = mlevelSelect.val();
+        //alert(uid);    //kim9595
+        //alert(mlevel); //c
         
-        // 기존의 hidden input의 id 속성을 uid와 mlevel로 변경
-        $("#memListfrm #uid").attr("id", "uid_" + uid);
-        $("#memListfrm #mlevel").attr("id", "mlevel_" + uid);
+	   $.ajax({
+        url: '/mypage/memListModify',
+        type: 'get',
+        //dataType: 'json',
+        data: { 'uid': uid, 'mlevel': mlevel },
+        error: function (error) {
+            alert('에러!');
+            console.log(error);
+        },
+        success: function (result) {
+        	if (result === 'success') {
+                alert('회원등급이 성공적으로 변경되었습니다');
+                //console.log(result);
+            } else {
+                alert('서버에서 성공 메시지를 올바르게 반환하지 않았습니다.');
+            }
+        }//success end
+    });//ajax end
         
-        // 기존의 hidden input의 name 속성을 uid와 mlevel로 변경
-        $("#memListfrm #uid_" + uid).attr("name", "uid_" + uid);
-        $("#memListfrm #mlevel_" + uid).attr("name", "mlevel_" + uid);
-
-        // 기존의 hidden input의 값을 변경된 id로 설정
-        $("#memListfrm #uid_" + uid).val(uid);
-        $("#memListfrm #mlevel_" + uid).val(mlevel);
-
-        // 폼 제출
-        $("#memListfrm").submit();
     });
-});
+	
 </script>
 
 

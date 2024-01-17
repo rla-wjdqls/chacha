@@ -130,6 +130,7 @@
   	FROM member
   	ORDER BY mdate DESC
  </select>
+
  
  <select id="smemList" resultType="kr.co.chacha.mypage.MypageDTO">
   	SELECT s_email, s_uname, s_mlevel, s_mdate
@@ -138,12 +139,19 @@
  </select>
  
  
- <update id="updateMlevel"  parameterType="kr.co.chacha.mypage.MypageDTO">
+ <update id="updateSubstate" parameterType="kr.co.chacha.mypage.MypageDTO">
+    UPDATE adopt
+    SET sub_state = #{sub_state}
+    WHERE uid = #{uid}
+</update>
+ 
+ 
+ <update id="updateMlevel" parameterType="kr.co.chacha.mypage.MypageDTO">
     UPDATE member
     SET mlevel = #{mlevel}
     WHERE uid = #{uid}
 </update>
- 
+
  
  <update id="memberWithdraw" parameterType="String">
 	UPDATE member

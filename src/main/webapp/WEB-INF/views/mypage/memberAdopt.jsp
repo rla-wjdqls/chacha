@@ -35,7 +35,7 @@
                     <td>${memAdopt.uid}</td>
                     <td><fmt:formatDate value="${memAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
                     <td> 
-				        <select name="sub_state"  id="sub_state">
+				        <select name="sub_state"  id="sub_state" class="sub_state">
 				        <c:choose>
 				        	 <c:when test="${memAdopt.sub_state eq 'S'}">
 					        	  <option value="S" selected>신청완료</option>
@@ -89,7 +89,7 @@
 				        </select>
 		        	</td>
                     <td>${memAdopt.subpic}</td>
-                    <td><input type="button" value="수정" class="btn" name="btn_adUpdate" id="btn_adUpdate"></td>
+                    <td><input type="button" value="수정" class="btn" name="btn_adUpdate" id="btn_adUpdate" data-uid="${memAdopt.uid}" data-sub_state="${memAdopt.sub_state}"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -147,7 +147,35 @@
  
  
  $("#btn_adUpdate").click(function(){
-	 alert();
+	 //alert();
+	 
+	let uid = $(this).data("uid");
+    let subStateSelect = $(this).closest("tr").find(".sub_state");
+    let sub_state = subStateSelect.val();
+    //alert(uid); 	  //kim9595
+    //alert(sub_state); //F
+    
+	   $.ajax({
+        url: '/mypage/memAdoptModify',
+        type: 'get',
+        //dataType: 'json',
+        data: { 'uid': uid, 'sub_state': sub_state },
+        error: function (error) {
+            alert('에러!');
+            console.log(error);
+        },
+        success: function (result) {
+        	if (result === 'success') {
+                alert('입양상태가 성공적으로 변경되었습니다');
+                console.log(result);
+            } else {
+                alert('서버에서 성공 메시지를 올바르게 반환하지 않았습니다.');
+            }
+        }//success end
+    });//ajax end
+    
+	 
+	 
 	 
  })//click end
  

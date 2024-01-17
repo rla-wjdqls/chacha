@@ -100,7 +100,6 @@ public class MypageCont {
 	}//myList_c() end
 	
 	
-	
 	@GetMapping("/mypage/myAdopt")
 	public ModelAndView myAdopt(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
@@ -212,14 +211,38 @@ public class MypageCont {
 	
 	
 	//회원정보 수정(관리자)
-	@PostMapping("/mypage/memListModify")
+	@GetMapping("/mypage/memListModify")
+	@ResponseBody
 	public String memListModify(String uid, String mlevel) {
-		//System.out.println(uid);
-		//System.out.println(mlevel);
+		//System.out.println(uid);	//kim9595
+		//System.out.println(mlevel); //c
 		
-		return "redirect:/mypage/memList";
+		MypageDTO mypageDTO = new MypageDTO();
+		mypageDTO.setUid(uid);
+		mypageDTO.setMlevel(mlevel);
+		
+		mypageDao.updateMlevel(mypageDTO);
+		
+		return "success";
 	}//memListModify() end
 
+	
+	//입양신청내역 수정(관리자)
+	@GetMapping("/mypage/memAdoptModify")
+	@ResponseBody
+	public String memAdotModify(String uid, String sub_state) {
+		//System.out.println(uid);       //kim9595
+		//System.out.println(sub_state); //F
+		
+		MypageDTO mypageDTO = new MypageDTO();
+		mypageDTO.setUid(uid);
+		mypageDTO.setSub_state(sub_state);
+		
+		mypageDao.updateSubstate(mypageDTO);
+		
+		return "success";
+	}//memAdotModify() end
+	
 	
 	// 비밀번호 일치하면 회원정보 수정 페이지로 이동
 	@PostMapping("/mypage/myInfoModify")

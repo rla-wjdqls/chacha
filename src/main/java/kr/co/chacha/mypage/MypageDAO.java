@@ -92,6 +92,20 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.memAdopt");
 	}//mvsList() end
 	
+	//회원등급 변경(관리자)
+	public void updateMlevel(MypageDTO mypagedto) {
+		//System.out.println(mypagedto.getUid());    //kim9595
+		//System.out.println(mypagedto.getMlevel()); //c
+		sqlSession.update("mypage.updateMlevel", mypagedto);
+	}//updateMlevel() end
+	
+	//회원 입양신청상태 변경(관리자)
+	public void updateSubstate(MypageDTO mypagedto) {
+		//System.out.println(mypagedto.getSub_state()); //C
+		//System.out.println(mypagedto);
+		sqlSession.update("mypage.updateSubstate", mypagedto);
+	}//updateSubstate() end
+	
 	//비밀번호 확인
 	public int checkPasswd(String passwd) {
 		return sqlSession.selectOne("mypage.checkPasswd", passwd);
@@ -119,11 +133,7 @@ SqlSession sqlSession;
 	public List<MypageDTO> smemList() {
 		return sqlSession.selectList("mypage.smemList");
 	}//smemList() end
-	
-	//회원등급 수정(관리자)
-	public void updateMlevel(MypageDTO mypagedto) {
-		sqlSession.update("mypage.updateMlevel", mypagedto);
-	}//updateMlevel() end
+
 	
 	//회원정보 수정
 	public void memberModify(MypageDTO mypagedto) {
