@@ -40,12 +40,98 @@
 
     <script>
    		
+   		let rno;
+    
 	    $(document).ready(function() {
 		    // DOM이 준비된 후 실행될 코드
 		    //alert("?");
 		    getRandomPosts();
 		   	chart();
-		});
+		   	
+		    // 설문번호 가져오기
+		     $.ajax({
+	            url: '/research/checkMaxrno',
+	            type: 'get',
+	            error: function (error) {
+	                alert('에러!');
+	                console.log(error);
+	            },
+	            success: function (rno) {
+	   				//alert("성공! " + rno);
+	            	resultList(rno);
+	            }//success end
+	        });//ajax end
+		});//ready end
+	    
+	    function resultList(rno) { //rno를 담아 보내서 차트 내용 가져오기
+	        $.ajax({
+	            url: '/research/resultList',
+	            type: 'get',
+	            dataType: 'json',
+	            data: { 'rno': rno },
+	            error: function (error) {
+	                alert('에러!');
+	                //console.log(error);
+	            },
+	            success: function (result) {
+	            	//alert('성공!');
+	            	console.log(result);
+
+	                let questionResults = [];
+
+	                let questionMap = new Map();
+	                $.each(result, function (key, value) {
+	                    let questionKey = value.qcont;
+
+	                    if (!questionMap.has(questionKey)) {
+	                        questionMap.set(questionKey, {
+	                            choices: [],
+	                            replies: []
+	                        });
+	                    }
+
+	                    questionMap.get(questionKey).choices.push(value.choice);
+	                    questionMap.get(questionKey).replies.push(value.reply);
+	                });
+
+	                let firstQuestion = Array.from(questionMap.keys())[0];
+	                let firstData = questionMap.get(firstQuestion);
+
+	                let dataset = {
+	                    data: firstData.replies,
+	                    backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0"],
+	                    label: '첫 번째 질문 결과'
+	                };
+
+	                questionResults.push({
+	                    labels: firstData.choices,
+	                    datasets: [dataset],
+	                    question: {
+	                        content: firstQuestion // 질문 내용
+	                    }
+	                });
+
+	                let chartId = 'firstQuestionChart';
+	                let chartCanvas = '<canvas id="' + chartId + '" width="200" height="200"></canvas><br>';
+	                $("#surveyResult").append('<p>질문 : ' + questionResults[0].question.content + '</p><br>');
+	                $("#surveyResult").append(chartCanvas);
+
+	                let ctx = document.getElementById(chartId).getContext('2d');
+	                new Chart(ctx, {
+	                    type: 'doughnut',
+	                    data: questionResults[0],
+	                    options: {
+	                        title: {
+	                            display: true,
+	                            text: '첫 번째 질문 결과: ' + questionResults[0].question.content
+	                        }
+	                    }
+	                });
+	            	
+	            }//success end
+	        });//ajax end
+	    }//researchrList() end
+	    
     
 	    function getRandomPosts() {
 	    	//alert("?");
@@ -184,9 +270,6 @@
 	        });
 	    }
 		
-	    
-	    
-	    
 		function logout(){
 			alert("로그아웃 되었습니다");
 		}//logout() end
@@ -245,7 +328,7 @@
                 </div>
                 &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
-                    <a href="/member/newsignupForm">회원가입</a>  
+                    <a href="/member/signupForm">회원가입</a>  
                 </div>
             </c:if>
             </div>
@@ -301,15 +384,23 @@
 			                    </div>
 			                </c:when>
 			                <c:when test="${s_mlevel eq 'c'}">
-			                    <div class="nav-item dropdown">
-			                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
-			                        <div class="dropdown-menu bg-light m-0">
-			                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
-			                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-			                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
-			                        </div>
-			                    </div>
-			                </c:when>
+						    <div class="nav-item dropdown">
+						        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+						        <div class="dropdown-menu bg-light m-0">
+						            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+						            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+						            <c:choose>
+						                <c:when test="${s_id.contains('@')}">
+						                    <a href="/mypage/s_myInfoWithdraw" class="dropdown-item">회원정보</a>
+						                </c:when>
+						                <c:otherwise>
+						                    <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+						                </c:otherwise>
+						            </c:choose>
+						        </div>
+						    </div>
+						</c:when>
+
 			                <c:otherwise>
 			                    <div class="nav-item dropdown">
 			                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
@@ -426,8 +517,14 @@
         <div class="container">
             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
                 <h6 class="text-primary text-uppercase mb-2">통계</h6>
-                <h1 class="display-6 mb-4">유기견 현황</h1>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                <h1 class="display-6 mb-4">서울시 유기견 현황</h1>
+                <canvas id="myChart" width="500" height="500"></canvas>
+            </div>
+            <br><br>
+             <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <h6 class="text-primary text-uppercase mb-2"><a href="/research/researchList">설문조사 하러가기</a></h6>
+                <h1 class="display-6 mb-4"></h1>
+                <div id="surveyResult" name="surveyResult" id="surveyResult"></div>
             </div>
             
         <div style="display: flex">
@@ -441,6 +538,10 @@
      	</div>
        </div>
     </div>
+    
+    
+    
+  
     
     <!-- Testimonial End -->
 

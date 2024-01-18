@@ -54,6 +54,20 @@ public class CenterDAO {
 		sqlSession.delete("center.delete", anino);
 	}
 	
+	public int eduCheck(CenterDTO centerdto) {
+		return sqlSession.selectOne("center.eduCheck", centerdto);
+	}
+	
+	public int check(CenterDTO centerdto) {
+		return sqlSession.selectOne("center.check", centerdto);
+	}
+	public int apnoChack(CenterDTO centerdto) {
+		return sqlSession.selectOne("center.apnoChack", centerdto);
+	}
+	
+	public int adoptInsert(CenterDTO centerdto) {
+		return sqlSession.insert("center.adoptInsert", centerdto);
+	}
 //	public int check(String uid, String str) {
 //		Map<String, Object> params = new HashMap<>();
 //	    params.put("uid", uid);

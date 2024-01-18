@@ -3,9 +3,12 @@ package kr.co.chacha.center;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import kr.co.chacha.adopt.AdoptDTO;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -57,8 +61,8 @@ public class CenterCont {
 	    	size = pageItem;
 	    }
 	    
-	    System.out.println(page);
-	    System.out.println(size);
+	    //System.out.println(page);
+	    //System.out.println(size);
 	    
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("center/centerForm");
@@ -73,8 +77,8 @@ public class CenterCont {
 	    int page = pageNumber;
     	int size = pageItem;    
 	    
-	    System.out.println(page);
-	    System.out.println(size);
+	    //System.out.println(page);
+	    //System.out.println(size);
 	    
 	    return centerDao.form(page, size);
 	}
@@ -102,7 +106,7 @@ public class CenterCont {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(data);
+		//System.out.println(data);
 		return data;
 	}
 	
@@ -227,6 +231,72 @@ public class CenterCont {
 //		return cnt;
 //		
 //	}
+	
+	private int sequenceNumber = 1;//신청번호의 시작 순차 번호
+	@PostMapping("/adoptInsert")
+	@ResponseBody
+	public int adoptInsert(@RequestParam("sub_cont") String subCont, String anino,
+						   @RequestParam(name="img") MultipartFile img,
+						   HttpServletRequest req,
+						   HttpSession session) {
+		String uid=(String)session.getAttribute("s_id");
+		String aniStr = anino.substring(0, 1);
+		
+		//System.out.println(uid);
+		//System.out.println(aniStr);
+		CenterDTO centerDto = new CenterDTO();
+		centerDto.setUid(uid);
+		centerDto.setAnino(aniStr);
+		int cnt = centerDao.eduCheck(centerDto);
+		if(cnt != 0) {
+			System.out.print("60점 이상");
+			centerDto.setUid(uid);
+			centerDto.setAnino(anino);
+			centerDto.setSub_cont(subCont);
+			String subpic="-";
+			//System.out.println(img);
+			//System.out.println(anipic);
+			//System.out.println(img.getOriginalFilename());
+			if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
+				subpic=img.getOriginalFilename();
+				try {
+					ServletContext application = req.getSession().getServletContext();
+					String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
+					img.transferTo(new File(path + File.separator + subpic)); //파일저장
+				}catch(Exception e) {
+					System.out.println(e);
+				}//try end
+			}//if end
+			
+			int check = centerDao.apnoChack(centerDto);
+			if(check == 0) {
+				centerDto.setSubpic(subpic);
+				int count = centerDao.check(centerDto);
+				SimpleDateFormat sd = new SimpleDateFormat("yyMMdd");
+				String date = sd.format(new Date());
+				
+				//순차 번호 증가
+				String apno = "s" + date + String.format("%02d", count +1);
+				
+				System.out.println(subpic);
+				System.out.println(subCont);
+				System.out.println(apno);
+				centerDto.setApno(apno);
+				cnt = centerDao.adoptInsert(centerDto);
+				if(cnt > 0) {
+					System.out.println("신청 완료");
+				}
+			}else {
+				cnt=0;
+			}
+			
+		}else {
+			cnt=-1; //60점 미만
+		}
+		
+		
+		return cnt;
+	}
 
 			
 }

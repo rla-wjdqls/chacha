@@ -50,6 +50,10 @@ public class ResearchDAO {
 		return sqlSession.selectOne("research.checkUser", researchDTO);
 	}//checkQty() end
 	
+	public String checkMaxrno() {		
+		return sqlSession.selectOne("research.checkMaxrno");
+	}//checkMaxrno() end
+	
 	public int getQuestions(String rno) {		
 		return sqlSession.selectOne("research.getQuestions", rno);
 	}//getQuestions() end
@@ -84,6 +88,13 @@ public class ResearchDAO {
 	public int researchrInsert(ResearchDTO researchDTO){
 		return sqlSession.insert("research.researchrInsert", researchDTO);
 	}//researchrInsert() end
+	
+	
+	//설문조사 다중답변 insert
+	public int researchrcInsert(List<ResearchDTO> researchList) {		
+		return sqlSession.insert("research.researchrcInsert", researchList);
+	}//researchrcInsert() end
+	
 	
 	//설문조사 참여자 수 구하기
 	public int countUid(String rno){

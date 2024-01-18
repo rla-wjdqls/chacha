@@ -18,12 +18,12 @@
 		<h4>회원정보 수정</h4><br>
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
 		<br><hr><br>
-		<div class="container-line">
+		<div class="container-myinfo1">
 			<h5>회원정보를 수정하시려면 비밀번호를 입력하셔야 합니다.<h5>
 			<br>
 			<form class="modifycheck" id="modifycheck" action="myInfoModify" method="post" onsubmit="return checkModify()" >
 				<input type="password" placeholder="비밀번호를 입력해주세요" name="passwd" id="passwd">
-				<input type="submit" value="확인" class="login__button">
+				<input type="submit" value="확인" class="btn">
 			</form>
 		</div>
 		</div>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ 
+ <!-- comment.xml -->
+ 
+ <mapper namespace="comment">
+ 	
+	<insert id="insert" parameterType="kr.co.chacha.comment.CommentDTO">
+		INSERT INTO comment(commentNo, textno, content, uid, commentDate)
+		VALUES (#{commentNo}, #{textno}, #{content}, #{uid}, NOW())
+	</insert>
+	
+	<select id="list" parameterType="int" resultType="kr.co.chacha.comment.CommentDTO">
+		SELECT commentNo, textno, content, uid, commentDate
+		FROM comment
+		WHERE textno=#{textno}
+		ORDER BY commentDate
+	</select>
+	
+	<update id="update" parameterType="kr.co.chacha.comment.CommentDTO">
+		UPDATE comment
+		SET content=#{content}
+		WHERE commentDate=#{commentDate}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM comment
+		WHERE commentNo=#{commentNo}
+	</delete>
+	
+ </mapper>

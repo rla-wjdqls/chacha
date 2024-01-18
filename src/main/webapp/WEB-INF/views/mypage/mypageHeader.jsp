@@ -251,16 +251,24 @@
 	                        </div>
 	                    </div>
 	                </c:when>
-	                <c:when test="${s_mlevel eq 'c'}">
-	                    <div class="nav-item dropdown">
-	                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
-	                        <div class="dropdown-menu bg-light m-0">
-	                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
-	                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-	                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
-	                        </div>
-	                    </div>
-	                </c:when>
+	               <c:when test="${s_mlevel eq 'c'}">
+				    <div class="nav-item dropdown">
+				        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+				        <div class="dropdown-menu bg-light m-0">
+				            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+				            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+				            <c:choose>
+				                <c:when test="${s_id.contains('@')}">
+				                    <a href="/mypage/s_myInfoWithdraw" class="dropdown-item">회원정보</a>
+				                </c:when>
+				                <c:otherwise>
+				                    <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+				                </c:otherwise>
+				            </c:choose>
+				        </div>
+				    </div>
+				</c:when>
+
 	            </c:choose>
 	        </div>
 	    </c:when>
@@ -354,22 +362,30 @@
 	                </div>
 	                </c:when>
 	                <c:when test="${s_mlevel eq 'c'}">
-	                <div class="border-end bg-white" id="sidebar-wrapper">
-	                <div class="list-group list-group-flush">
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList_c">-글목록</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
-	                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
-	                </div>
-	            	</div>
-	                </c:when>
+				    <div class="border-end bg-white" id="sidebar-wrapper">
+				        <div class="list-group list-group-flush">
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/jjimList">-찜목록</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myList_c">-글목록</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myComment">-댓글목록</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">신청내역</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
+				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
+				            <c:choose>
+				                <c:when test="${not s_id.contains('@')}">
+				               		<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
+				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
+				                </c:when>
+				                <c:otherwise>
+				               		<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/s_myInfoWithdraw">-회원탈퇴</a>
+				                </c:otherwise>
+				            </c:choose>
+				        </div>
+				    </div>
+				</c:when>
 	            </c:choose>
 	        </div>
 	    </c:when>

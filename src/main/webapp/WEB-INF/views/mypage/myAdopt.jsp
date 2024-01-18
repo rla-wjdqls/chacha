@@ -82,6 +82,7 @@
 		            <c:choose>
 		                <c:when test="${myAdopt.payop eq 'Y'}">결제완료</c:when>
 		                <c:when test="${myAdopt.payop eq 'N'}">결제대기</c:when>
+		                <c:when test="${memAdopt.payop eq 'H'}">환불완료</c:when>
 		            </c:choose>
 		        	</td>
                     <td><fmt:formatDate value="${myAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
@@ -114,7 +115,7 @@ function requestPay() {
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: merchant_uid, // p202401021120
+                merchan4t_uid: merchant_uid, // p202401021120
                 name: "그냥데려가개 입양 책임금",
                 amount: 100,
                 buyer_email: buyer_email, // kim9595@gmail.com
@@ -126,7 +127,10 @@ function requestPay() {
                         url: "/payment/verify/" + rsp.imp_uid,
                         type: "POST",
                     }).done(function(data) {
-                        // 결제 검증 : 결제 성공 시의 금액(rsp.paid_amount)과 검증한 금액(data.response.amount) 비교 
+                    	alert(rsp.imp_uid);  //imp_620437863810
+                    	//alert(merchant_uid); //p20240117225037
+                    	
+                        // 결제 금액과 검증 금액 확인 
                         if(rsp.paid_amount == data.response.amount){
                         	
                             var msg = '결제가 완료되었습니다.';
@@ -136,7 +140,7 @@ function requestPay() {
                             msg += '\n결제 금액: ' + rsp.paid_amount + '원';
                             
                             alert(msg);
-                            succeedPay();
+                            succeedPay(rsp.imp_uid);
                             
                         } else {
                             alert("결제 검증 실패");
@@ -155,13 +159,14 @@ function requestPay() {
     });
 }
 
-
-function succeedPay(){
+function succeedPay(imp_uid){
 	//alert("succedpay" + params);
+	//alert(imp_uid);
     $.ajax({
         url: '/mypage/payUpdate',
         type: 'POST',
-        //async: true,
+        //contentType: 'application/json',  // Set the content type to JSON
+        //data: JSON.stringify({ 'imp_uid': imp_uid }), 
         success: function(response){
             if(response.result == "success"){
                 let msg = "결제 및 검증이 완료되었습니다."

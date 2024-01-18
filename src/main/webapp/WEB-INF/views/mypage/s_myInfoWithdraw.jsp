@@ -59,10 +59,11 @@
 		
 	
 		
-		<form action="memberWithdraw" method="get">
+		<form action="s_memberWithdraw" method="post">
 			<div class="btn_center">
 				<button type="button" class="btn" id="btn_cancel">취소</button>
 				<button type="submit" class="btn btn_em" id="btn_tt">탈퇴</button>
+				<!-- <input type="submit" class="btn btn_em" id="btn_tt" id="btn_tt" onclick="javascript:dbcheck()">탈퇴 -->
 			</div>	
 		</form>
 	</div>

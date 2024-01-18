@@ -24,6 +24,27 @@
 	    </foreach>
 	</insert> 
 	
+	
+	<insert id="researchrInsert" parameterType="kr.co.chacha.research.ResearchDTO">
+	    INSERT INTO researchr(qno, uid, reply, rpdate)
+	    VALUES(#{qno}, #{uid}, #{reply}, NOW())
+	</insert> 
+	
+	<insert id="researchrcInsert" parameterType="java.util.List">
+	    INSERT INTO researchr(qno, uid, reply, rpdate)
+	    VALUES
+	    <foreach collection="list" item="item" index="index" separator=",">
+	        (#{item.qno}, #{item.uid}, #{item.reply}, NOW())
+	    </foreach>
+	</insert> 
+	
+	
+	<select id="checkMaxrno" resultType="String">
+		SELECT max(rno)
+		FROM research
+		WHERE rop = 'Y' AND rstate = 'I';
+    </select>
+	
 	<select id="checkQno" parameterType="String" resultType="kr.co.chacha.research.ResearchDTO">
 	  	SELECT qno
 	  	FROM researchq
@@ -63,13 +84,6 @@
 		WHERE rq.rno = #{rno}
  	</select>
     
-    
-    <insert id="researchrInsert" parameterType="kr.co.chacha.research.ResearchDTO">
-	    INSERT INTO researchr(qno, uid, reply, rpdate)
-	    VALUES(#{qno}, #{uid}, #{reply}, NOW())
-	</insert> 
-   	
-   	
    	<select id="countUid" resultType="Int">
    		SELECT COUNT(DISTINCT rr.uid)
 		FROM researchr rr

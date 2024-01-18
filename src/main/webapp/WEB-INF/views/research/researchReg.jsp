@@ -22,26 +22,27 @@
 	<div class="container">
 		<p>설문조사를 등록해 주세요</p>
 		<hr><br><br>
-		 <div class="container-line" id="surveyContainer">
+		 <div class="surveyRegContainer" id="surveyRegContainer">
             <!-- 설문조사 내용이 여기에 동적으로 추가될 것입니다. -->
             	<div class="row">
 		<div class="col-sm-12">
 		<form name="researchfrm" id="researchfrm" method="post" action="researchInsert">
 		<table class="table">
+		<br>
 	            <tr>
-	                <th>제목</th>
+	                <th class="regth">제목</th>
 					<td><input type="text" name="rtitle" id="rtitle" placeholder="제목 입력해 주세요"></td>
 	            </tr>
  	 	        <tr>
-					<th>시작일자</th>
+					<th class="regth">시작일자</th>
 					<td><input type="date" name="rdate1" id="rdate1" class="form-control"></td>
 	            </tr>
 	           <tr>
-					<th>종료일자</th>
+					<th class="regth">종료일자</th>
 					<td><input type="date" name="rdate2" id="rdate2" class="form-control"></td>
 	            </tr>  
 	         <tr>
-	                <th>진행상태</th>
+	                <th class="regth">진행상태</th>
 					<td>
 						<select name="rstate" id="rstate">
 							<option value="I">진행중</option>
@@ -50,7 +51,7 @@
 					</td>
 	            </tr>
 	            <tr>
-	                <th>공개여부</th>
+	                <th class="regth">공개여부</th>
 					<td>
 						<select name="rop" id="rop">
 							<option value="Y">공개</option>
@@ -64,10 +65,10 @@
 	        <thead id="researchInto" name="researchInfo">
 	            <tr>
 	                <th></th>
-	                <th>질문번호</th>
-	                <th>질문유형</th>
-	                <th>질문내용</th>
-	                <th>선택지</th>
+	                <th class="regth">질문번호</th>
+	                <th class="regth">질문유형</th>
+	                <th class="regth">질문내용</th>
+	                <th class="regth">선택지</th>
 	            </tr>
 	        </thead>
 	  		<tbody id="researchTable" name="researchTable">
@@ -107,7 +108,6 @@ function addTableBody() {
         '<select name="qtype" id="qtype' + questionCount + '" onchange="modifyChoice(' + questionCount + ')">' +
         '    <option value="gg">객관식(중복불가)</option>' +
         '    <option value="gb">객관식(중복허용)</option>' +
-        '    <option value="gd">객관식(드롭다운)</option>' +
         '</select>' +
         '</td>' +
         '<td><input type="text" placeholder="질문을 입력해주세요" id="qcont' + questionCount + '" name="qcont"></td>' +

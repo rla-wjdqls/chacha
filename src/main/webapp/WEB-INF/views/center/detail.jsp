@@ -155,7 +155,8 @@
 			        <h1 class="modal-title fs-5" id="aniRequest">입양 신청서</h1>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			      </div>
-			      <form name="aniRefrm" id="aniRefrm">
+			      <form name="aniRefrm" id="aniRefrm" method="post" enctype="multipart/form-data">
+			      <input type="hidden" value="${center.anino}" name="anino" class="anino">
 				      <div class="modal-body">
 				     	* 사전질문 * <br>
 				     	* 모든 항목을 선택하셔야 입양 신청이 가능합니다 * <hr>
@@ -286,6 +287,7 @@
 				}
 				
 			}
+			
 			
 </script>
 <!-- 본문 끝 -->

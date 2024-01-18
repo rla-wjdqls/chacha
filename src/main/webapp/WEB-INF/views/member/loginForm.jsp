@@ -47,8 +47,8 @@
 					<input type="checkbox" id="c_id" name="c_id" value="SAVE" <%if(!c_id.isEmpty()) {out.print("checked");}%>>&nbsp;ID 저장
 				</label>
 			</span> 
-				<a href="/member/newfindID" class="login__forgot1">아이디찾기</a>
-				<a href="/member/newfindPasswd" class="login__forgot2">비밀번호 찾기</a>
+				<a href="/member/findID" class="login__forgot1">아이디찾기</a>
+				<a href="/member/findPasswd" class="login__forgot2">비밀번호 찾기</a>
 			</div>
 			<!-- // 아이디 저장 -->
 					
@@ -64,7 +64,7 @@
 			<br>
 			<div>
 				<span class="login__account login__account--account">계정이 없으신가요?</span> 
-				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/newsignupForm">회원가입</a></span>
+				<span class="login__signin login__signin--signup" id="signup"> <a href="/member/signupForm">회원가입</a></span>
 			</div>
 		</form>
 		</div>
