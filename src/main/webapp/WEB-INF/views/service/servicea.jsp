@@ -42,26 +42,26 @@
 </style>
 
 <script>
-	function checkPerson() {
+	function checkDuplicationPerson(applyDate) {
+		
+		var result = '';
 		// 서버에 현재 인원 수를 확인하는 AJAX 요청을 보냅니다.
-		var url = '/service/checkPerson';
+		var url = '/service/checkDuplicationPerson';
 		$.ajax({
 			url : url, // 서버의 URL을 지정하세요.
 			method : 'POST',
-			data : {
-				// sno: $("#sno").val() // 필요한 경우 다른 데이터와 함께 전송
+			async : false,
+			data : {				
 				sno : $("#sno").val()
+				,uid : "${loggedInUserId}"
+				,applyDate: applyDate
 			},
 			success : function(response) {
-				//제한인원
-				var maxPerson = "${servicea.sp}";
-				//현재 신청인원
-				var currentPerson = response;
-				if (Number(maxPerson) <= Number(currentPerson)) {
-					alert("더 이상 신청이 불가합니다");
-					return false;
+				if(Number(response) > 0) {
+					alert("해당 아이디로 신청자가 있습니다");	
+					result = false;
 				} else {
-					$("#calendarForm").submit();
+					result = true;
 				}
 			},
 			error : function() {
@@ -69,6 +69,7 @@
 				alert('신청 처리 중 오류가 발생했습니다.');
 			}
 		});
+		return result;
 	}
 </script>
 </head>
@@ -132,7 +133,7 @@
 		// },
 
 		function apply() {
-			checkPerson();
+			$("#calendarForm").submit();
 		}
 		// 여기에 JavaScript 코드를 작성하세요.
 
@@ -214,10 +215,14 @@
 											&& _applyDate < _lastEndDate) {
 										//원래 기본조건 맞고 거기에다가 오늘날짜 기준 선택을 조건 하나 더 추가해줘야함. 같이 하니까 로직이 헷갈려서  위에꺼는 통과그리고 그 다음조건에서 비교
 										if (_applyDate >= _currentDate) {
-											$('#inputTitle').val('');
-											$('#eventModalLabel').text(
-													'신청하시겠습니까?');
-											$('#eventModal').modal('show');
+											
+											//여기에 체크로직 추가 날짜안에 되었어도 신청이 안되게
+											if(checkDuplicationPerson(applyDate)) {
+												$('#inputTitle').val('');
+												$('#eventModalLabel').text(
+														'신청하시겠습니까?');
+												$('#eventModal').modal('show');	
+											}
 										} else {
 											alert('선택된 날짜는 기간이 지나서 신청이 안됩니다.');
 										}
