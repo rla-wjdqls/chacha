@@ -94,9 +94,11 @@ public class AdoptCont {
 	
 	@PostMapping("/insert")
 	public String insert(@RequestParam Map<String, Object> map,
-						 @RequestParam(name="arimg") MultipartFile img,
+						 @RequestParam(name="img") MultipartFile img,
 						 HttpServletRequest req,
 						 HttpSession session) {
+		//System.out.println(map);
+		
 		String arimg="-";
 		if(img != null && !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
 			arimg=img.getOriginalFilename();

@@ -42,6 +42,9 @@
 			            <c:if test="${myAdopt1.sub_state eq 'C'}">
 			                <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()">
 			            </c:if>
+			            <c:if test="${myAdopt1.sub_state eq 'F'}">
+			                <input type="button" value="후기작성하기" class="btn btn" id="btn_review" name="btn_review" onclick="adoptReview('${myAdopt1.anino}')">
+			            </c:if>
 			        </td>
                 </tr>
             </c:forEach>
@@ -185,7 +188,11 @@ function succeedPay(imp_uid){
     }); // ajax ends 
 } // succeedPay() ends
 
-
+function adoptReview(anino) {
+	//alert(anino);
+	sessionStorage.setItem('anino', anino);
+	window.location.href = '/adopt/adoptForm'; //동물글번호 가지고 글쓰기로 이
+}
 </script>
 
 

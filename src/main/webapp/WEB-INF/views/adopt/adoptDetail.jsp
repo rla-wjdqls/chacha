@@ -91,8 +91,14 @@ function adelete() {
 	  
 	  <tr>
 		  <th>첨부파일</th>
-		  <td colspan="3">
-		  <img src="../storage/${adoptd.arimg}" width="400"></td>
+		  <c:if test="${adoptd.arimg != '-'}">
+			  <td colspan="3">
+			  <img src="../storage/${adoptd.arimg}" width="400"></td>
+		  </c:if>
+		   <c:if test="${adoptd.arimg == '-'}">
+			  <td colspan="3">
+			  <span>첨부파일이 없습니다.</span>
+		  </c:if>
 	  </tr>
 	  
 	  <tr>

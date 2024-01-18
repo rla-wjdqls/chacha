@@ -39,7 +39,7 @@
 			</ul>
 		</nav>
 <div class="container text-center"> <h3>입양 후기 게시판</h3>
-<input type="button" class="btnn yellow right mb-3" onclick="idPopup()" value="[글쓰기]">
+<!-- <input type="button" class="btnn yellow right mb-3" onclick="idPopup()" value="[글쓰기]"> -->
 <!-- <p><a href="/adopt/adoptForm" onclick="idPopup()" value="[글쓰기]"></a></p> -->
 
 
