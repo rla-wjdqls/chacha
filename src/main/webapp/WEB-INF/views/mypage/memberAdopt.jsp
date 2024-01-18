@@ -88,7 +88,7 @@
 				        </c:choose>
 				        </select>
 		        	</td>
-                    <td>${memAdopt.subpic}</td>
+                    <td><a href="/storage/${memAdopt.subpic}.jpg">${memAdopt.subpic}</a></td>
                     <td><input type="button" value="수정" class="btn" name="btn_adUpdate" id="btn_adUpdate" data-uid="${memAdopt.uid}" data-sub_state="${memAdopt.sub_state}"></td>
                 </tr>
             </c:forEach>
@@ -188,8 +188,9 @@
 		}//if end
 		
 		var params = {
-			    imp_uid: imp_uid,
-			    amount: 100
+			    imp_uid: "imp_uid",
+			    amount: 100,
+			    uid: uid // uid를 추가
 			};
 
 			$.ajax({
@@ -204,15 +205,17 @@
 	                alert("환불이 성공적으로 처리되었습니다.");
 	                // 환불 성공에 따른 추가 동작 수행
 	                //결제 상태 환불 완료로 바꿔줌
-	                /*
+	                
 	                $.ajax({
 				    url: "/mypage/updatePayop",
 				    type: "get",
 				    data: {uid: uid},
 				    success: function (rsp) {
 	                	alert("결제 상태 변경 성공");
-				    }
-				    */
+	                	// 결제 상태 변경 성공 후 페이지 이동
+                        window.location.href = "/mypage/memberAdopt";
+				    }//success end
+	                });//ajax end
 	            } else {
 	                alert("환불 처리에 실패했습니다. 에러 메시지: " + rsp.message);
 	            }//if end	

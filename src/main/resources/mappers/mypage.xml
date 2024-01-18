@@ -40,6 +40,13 @@
 	WHERE uid = #{uid}
  </select>
  
+ <select id="myListc" resultType="kr.co.chacha.mypage.MypageDTO">
+ 	SELECT hp.textno, hp.texttitle, hp.uploaddate, hp.cnt, ar.arno, ar.artitle, ar.ardate, ar.cnt as cnt_ar, ar.uid, hp.cnt as cnt_hp 
+	FROM help hp JOIN adoprv ar
+	ON hp.uid = ar.uid
+	WHERE ar.uid = #{uid} 
+ </select>
+ 
  <select id="myService" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT sno, stitle, stitle, cnt, uid
 	FROM service
@@ -229,39 +236,21 @@
  </update>
  
  
-<!--  <select id="searchList"
-		parameterType="kr.co.chacha.mypage.MypageDTO"
-		resultType="kr.co.chacha.mypage.MypageDTO">
-		SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace,
-		sstate, cnt
-		FROM service
-		WHERE 1=1
+ 	<select id="searchList" parameterType="kr.co.chacha.mypage.MypageDTO" resultType="kr.co.chacha.mypage.MypageDTO">
+		SELECT hp.textno, hp.texttitle, hp.uploaddate, ar.arno, ar.artitle, ar.ardate, ar.uid
+		FROM help hp JOIN adoprv ar
+		ON hp.uid = ar.uid
+		WHERE ar.uid = #{uid} 
 		<if test='type!=null and type.equals("title")'>
-			AND stitle like CONCAT('%',#{keyword},'%')
+			AND hp.texttitle like CONCAT('%',#{keyword},'%')
 		</if>
-		<if test='type!=null and type.equals("id")'>
-			AND uid = #{keyword}
-		</if>
-		<if test='type!=null and type.equals("titleId")'>
-			AND ((uid = #{keyword}) OR (stitle like
-			CONCAT('%',#{keyword},'%')))
-		</if>
-		ORDER BY sno
 	</select>
 
-	페이징
-	<select id="searchListCnt" resultType="int">
-		SELECT COUNT(*) AS cnt
-		FROM service
-	</select>
-  -->
  	
  </mapper>
  
  
- 
 
- 
 
  
  

@@ -110,6 +110,7 @@ public class MypageCont {
 		mav.setViewName("mypage/myList_c");
 		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
 		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
+		//mav.addObject("myListc", mypageDao.myListc(s_id));
 		mav.addObject("totalPost", totalPost);
 		return mav;
 	}//myList_c() end
@@ -533,33 +534,36 @@ public class MypageCont {
 	    
 		} // cancelPay() ends 
 
- 	/*
+ 	
  	//결제상태 변경
  	@GetMapping("/mypage/updatePayop")
+ 	public String updatePayop(@RequestParam("uid") String uid) {
+ 	// 전달받은 데이터 확인
+ 	//System.out.println(uid); //kim9595
+ 		
+ 	mypageDao.updatePayop(uid);
+ 		
+ 		
+ 	return "success";
  	
- 	public String updatePayop() {
- 		
- 		
- 		//mypageDao.updatePayop(uid);
- 		
- 		
- 		return "success";
  	}//updatePayop() end
- 	*/
  	
  	
  	
-	/*
+	
 	//페이징+검색
 	@RequestMapping("/searchList")
-	public ModelAndView serviceList(@RequestParam(value = "page", required = false) Integer page,
+	public ModelAndView searchList(@RequestParam(value = "page", required = false) Integer page,
 			@RequestParam(value = "type", required = false) String type,
-			@RequestParam(value = "keyword", required = false) String keyword) {
+			@RequestParam(value = "keyword", required = false) String keyword, HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
 		
 		ModelAndView mav = new ModelAndView();
 
 		int currentPage = (page != null) ? page : 1;
-		int totalCount = mypageDao.searchListCnt();
+		int helpPost = mypageDao.helpPost(s_id);	
+		int adoprvPost = mypageDao.adoprvPost(s_id);	
+		int totalCount = helpPost + adoprvPost;
 		int boardLimit = 10; // 한 화면에 출력할 게시물 수
 		int naviLimit = 5; // 한 화면에 출력할 게시판 페이지 수
 		int maxPage; // 게시판의 총 페이지 수
@@ -576,7 +580,7 @@ public class MypageCont {
 
 		MypageDTO mypageDTO = new MypageDTO();
 
-		List<MypageDTO> searchList = mypageDao.searchList(currentPage, boardLimit, type, keyword);
+		List<MypageDTO> searchList = mypageDao.searchList(currentPage, boardLimit, type, keyword, session);
 
 		if (!searchList.isEmpty()) {
 			mav.addObject("startNavi", startNavi);
@@ -592,7 +596,7 @@ public class MypageCont {
 		}
 		return mav;
 	}// searchList() end
-	*/
+	
 	
 }//class end
 	
