@@ -10,13 +10,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.xml.stream.events.Comment;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -124,18 +128,6 @@ public class HelpCont {
 	
 	}//insert() end
 
-	/*
-	@PostMapping("/helpForm")
-	public ModelAndView helpIns(HelpDTO helpdto, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		String sid = session.getAttribute("s_id").toString();
-		//System.out.println("세션값 확인 : " + sid); 세션값 가져오는 거 확인되고 로그 찌겪혀으니까 확실한거 확인
-		helpdto.setUid(sid);
-		helpDAO.insert(helpdto);
-		mav.setViewName("redirect:/help/helpList");		
-		return mav;
-	} */
 	
 	//상세 페이지
 	@GetMapping("/helpDetail")
@@ -323,8 +315,17 @@ public class HelpCont {
 		        return "redirect:/helpList";
 		    }
 		
-		
-		
+		 /*
+		 //댓글
+		 @PostMapping("/helpDetail")
+		    public ResponseEntity<?> addComment(@RequestBody Map<String, String> payload) {
+		        String commentText = payload.get("commentText");
+		        Comment newComment = new Comment();
+		        newComment.setText(commentText);
+		        helpDAO.(newComment);
+		        return ResponseEntity.ok("댓글이 추가되었습니다.");
+		    }
+		*/
 		
 	
 }

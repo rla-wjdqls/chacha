@@ -164,7 +164,7 @@
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/loginForm">로그인</a>  
                 </div>
-                &nbsp; &nbsp;
+                &nbsp; &nbsp; &nbsp;
                 <div class="h-100 d-inline-flex mx-n2">
                     <a href="/member/signupForm">회원가입</a>  
                 </div>

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -98,63 +99,9 @@ public class HelpDAO {
 	    
 	    }
 	
-	/*
-	//댓글 // CommentDAO.java
-	// HelpDAO.java
-	public interface HelpDAO {
-	    List<HelpDTO> getAllComments();
-	    void addComment(HelpDTO comment);
-	}
-
-	// HelpDAOImpl.java
-	public class HelpDAOImpl implements HelpDAO {
-	    private SqlSession sqlSession;
-
-	    public HelpDAOImpl(SqlSession sqlSession) {
-	        this.sqlSession = sqlSession;
-	    }
-
-	    @Override
-	    public List<HelpDTO> getAllComments() {
-	        return sqlSession.selectList("help.helpDetail");
-	    }
-
-	    @Override
-	    public void addComment(HelpDTO comment) {
-	        sqlSession.insert("help.addComment", comment);
-	    }
-	}
-
-	// CommentService.java
-	public interface CommentService {
-	    List<HelpDTO> getAllComments();
-	    void addComment(String comment);
-	}
-
-	// CommentServiceImpl.java
-	public class CommentServiceImpl implements CommentService {
-	    private HelpDAO helpDAO;
-
-	 // 생성자를 통한 의존성 주입
-	    public CommentServiceImpl(HelpDAO helpDAO) {
-	        this.helpDAO = helpDAO;
-	    }
-
-	    // 게터, 세터 등 필요한 메소드 추가
-
-	    @Override
-	    public List<HelpDTO> getAllComments() {
-	        return helpDAO.getAllComments();
-	    }
-
-	    @Override
-	    public void addComment(String commentText) {
-	        HelpDTO comment = new HelpDTO();
-	        comment.setComment(commentText);
-	        helpDAO.addComment(comment);
-	    }
-	}
-	*/	
+	 /* 안된다...
+	 public interface CommentRepository extends JpaRepository<Comment, Long> {
+	 }*/
 		
 		
 

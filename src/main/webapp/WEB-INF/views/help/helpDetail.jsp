@@ -228,7 +228,7 @@ td {
 									function(key, value) {
 										a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom:15px; text-align: left;">';
 										a += '	<div class="commentInfo' + value.commentNo + '" >';
-										a += '  ' + value.uid + ' ' + ' <span class="commentDate" style="font-size: 14px; color: #808080;">(' + value.commentDate + ')</span>';
+										a += '  ' + value.uid + ' ' + ' <span class="commentDate" style="font-size: 14px; color: #808080; padding-right: 10px;">(' + value.commentDate + ')</span>';
 										a += '	<a href="javascript:commentUpdate(' + value.commentNo + ',\'' + value.content + '\')">[수정]</a>';
 										a += '		<a href="javascript:commentDelete(' + value.commentNo + ')">[삭제]</a>';
 										a += '	</div>';
