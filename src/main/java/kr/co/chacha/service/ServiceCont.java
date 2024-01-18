@@ -3,6 +3,8 @@ package kr.co.chacha.service;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -163,10 +165,15 @@ public class ServiceCont {
 
 	// 봉사신청
 	@GetMapping("/servicea")
-	public ModelAndView servicea(int sno) {
+	public ModelAndView servicea(int sno, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
+		
+		String loggedInUserId = (String) session.getAttribute("s_id");
+		mav.addObject("loggedInUserId", loggedInUserId);
 		mav.setViewName("service/servicea");
 		mav.addObject("servicea", serviceDAO.detail(sno));
+		
 		return mav;
 
 	}// 화면전환
@@ -195,9 +202,8 @@ public class ServiceCont {
 	
 	//소셜추가
 	 @PostMapping("/servicea")
-	    public ModelAndView servicea(ServiceDTO servicedto, HttpServletRequest request) {
+	    public ModelAndView servicea(ServiceDTO servicedto, HttpServletRequest request, HttpSession session) {
 	        ModelAndView mav = new ModelAndView();
-	        HttpSession session = request.getSession();
 	        
 	        // 기존 세션에서 로그인한 사용자의 아이디를 가져옵니다.
 	        String loggedInUserId = (String) session.getAttribute("s_id");
@@ -234,9 +240,22 @@ public class ServiceCont {
 	@PostMapping("/checkPerson")
 	@ResponseBody
 	public int checkPerson(int sno) {
-		System.out.println(sno);
 		// 봉사글 시퀀스 받아서 조회하는 쿼리
 		int cnt = serviceDAO.checkPersonCnt(sno);
+		return cnt;
+	}
+	
+	// 중복 인원체크 ajax
+	@PostMapping("/checkDuplicationPerson")
+	@ResponseBody
+	public int checkDuplicationPerson(int sno, String uid, String applyDate) throws ParseException {
+		
+		ServiceDTO dto = new ServiceDTO();
+		dto.setSno(sno);
+		dto.setUid(uid);
+		dto.setApplyDate(applyDate);
+		// 봉사글 시퀀스 받아서 조회하는 쿼리
+		int cnt = serviceDAO.checkDuplicationPersonCnt(dto);
 		return cnt;
 	}
 

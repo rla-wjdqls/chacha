@@ -1,16 +1,13 @@
 <%@page import="kr.co.chacha.servicea.ServiceaDAO"%>
 <%@page import="kr.co.chacha.service.ServiceDTO"%>
 <%@ page import="kr.co.chacha.service.ServiceDAO" %>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
-    
 <%@ include file="../header.jsp" %>
-
-
-
 <script>
+//페이지 로드 시 함수 실행
+window.onload = increaseViewCount;
+
 function sdelete() {
 	if(confirm("삭제하겠습니까?")) {//자바스크립트 내장함수
 		$("#serviceDelete").submit();
@@ -18,28 +15,58 @@ function sdelete() {
 		
 	}
 }
-</script>
 
-<script>
-    // 페이지 로드 시 조회수 증가 요청을 보내는 함수
-    function increaseViewCount() {
-        var sno = ${serviced.sno}; // 현재 게시물의 번호
+//페이지 로드 시 조회수 증가 요청을 보내는 함수
+function increaseViewCount() {
+    var sno = ${serviced.sno}; // 현재 게시물의 번호
 
-        // 서버에 조회수 증가 요청을 보냅니다.
-        fetch('/increaseViewCount/' + sno, {
-            method: 'POST'
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-    }
+    // 서버에 조회수 증가 요청을 보냅니다.
+    fetch('/increaseViewCount/' + sno, {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
 
-    // 페이지 로드 시 함수 실행
-    window.onload = increaseViewCount;
+//신청하기 버튼
+function apply() {
+	checkPerson();
+}
+
+//인원체크
+function checkPerson() {
+	// 서버에 현재 인원 수를 확인하는 AJAX 요청을 보냅니다.
+	var url = '/service/checkPerson';
+	$.ajax({
+		url : url, // 서버의 URL을 지정하세요.
+		method : 'POST',
+		data : {
+			// sno: $("#sno").val() // 필요한 경우 다른 데이터와 함께 전송
+			sno : "${serviced.sno}"
+		},
+		success : function(response) {
+			//제한인원
+			var maxPerson = "${serviced.sp}";
+			//현재 신청인원
+			var currentPerson = response;			
+			if (Number(maxPerson) <= Number(currentPerson)) {
+				alert("더 이상 신청이 불가합니다");
+				return false;
+			} else {
+				location.href = "/service/servicea?sno=${serviced.sno}";				
+			}
+		},
+		error : function() {
+			// 오류 처리
+			alert('신청 처리 중 오류가 발생했습니다.');
+		}
+	});
+}
 </script>
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -151,7 +178,7 @@ function sdelete() {
 	<p><a href="/service/serviceUpdate?sno=${serviced.sno}">
 	<input type="button" value="수정"></a> &nbsp;
 	<input type="button" onclick="sdelete();" value="삭제"> &nbsp;
-	<a href="/service/servicea?sno=${serviced.sno}"><input type="button" value="신청"></a></p>
+	<a href="#" onclick="apply(); return false;"><input type="button" value="신청"></a></p>
 </div>
 
 

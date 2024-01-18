@@ -34,7 +34,16 @@ public class ServiceDTO {
 		private int currentParticipants;
 	    private int maxParticipants;
 	    
+	    private String applyDate;
 	    
+		public String getApplyDate() {
+			return applyDate;
+		}
+
+		public void setApplyDate(String applyDate) {
+			this.applyDate = applyDate;
+		}
+
 		public int getCurrentParticipants() {
 			return currentParticipants;
 		}
