@@ -4,6 +4,32 @@
         width: 150px; /* 원하는 폭으로 설정 */
     }
 
+td {
+    text-align: center; 
+    vertical-align: middle;
+}
+
+
+.error_msg {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: -.4px;
+    color: #ff003e;
+    vertical-align: middle;
+}
+
+
+.panel1, .panel2, .panel3, .panel4, .panel5, .panel6, .panel7, .panel8 {
+    display: inline-block;
+    font-size: 13px;
+    line-height: 15px;
+    letter-spacing: -.4px;
+    color: #ff003e;
+    vertical-align: middle;
+}
+
+
 :root {
     --primary: #F3BD00;
     --secondary: #757575;
@@ -480,8 +506,20 @@
     text-align: center;
 	width:800px;
 	margin: 0 auto;
-	
 }
+
+
+#surveyContainResult{
+    padding: 150px 150px;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+	width:800px;
+	margin: 0 auto;
+}
+
+
+
 
 .container-rr{
 	display: flex;

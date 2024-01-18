@@ -363,7 +363,7 @@ public class CenterCont {
 				
 				//System.out.println(subpic);
 				//System.out.println(subCont);
-				//System.out.println(apno);
+				System.out.println(apno);
 				centerDto.setApno(apno);
 				cnt = centerDao.adoptInsert(centerDto);
 				if(cnt > 0) {
@@ -380,11 +380,12 @@ public class CenterCont {
 					
 					//System.out.println(centerDto.getApno()); 
 					//System.out.println(centerDto.getUid());
-					//System.out.println(centerDto.getPayno()); p20240118235246
+					//System.out.println(centerDto.getPayno()); //p20240118235246
 					
 					int cnt2 = centerDao.paymentInsert(centerDto);
 					//System.out.println(cnt2);
 					System.out.println("결제 테이블 insert 완료");
+					
 				}
 			}else {
 				cnt=0;

@@ -361,7 +361,7 @@
 	                </div>
 	                </div>
 	                </c:when>
-	                <c:when test="${s_mlevel eq 'c'}">
+	              <c:when test="${s_mlevel eq 'c'}">
 				    <div class="border-end bg-white" id="sidebar-wrapper">
 				        <div class="list-group list-group-flush">
 				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">내 활동</a>
@@ -372,14 +372,15 @@
 				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myClass">-내 강의실</a>
 				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myAdopt">-입양신청내역</a>
 				            <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myService">-봉사신청내역</a>
+				
 				            <c:choose>
 				                <c:when test="${not s_id.contains('@')}">
-				               		<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
 				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo1">-회원정보 수정</a>
 				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/myInfo2">-회원탈퇴</a>
 				                </c:when>
 				                <c:otherwise>
-				               		<a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
+				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="#!" style="font-weight:bold">회원정보</a>
 				                    <a class="list-group-item list-group-item-action list-group-item-light p-3" onclick="makeActive(this)" href="/mypage/s_myInfoWithdraw">-회원탈퇴</a>
 				                </c:otherwise>
 				            </c:choose>
@@ -422,8 +423,4 @@
 	
             
             
-
-            
-            
-     
-  
+            			

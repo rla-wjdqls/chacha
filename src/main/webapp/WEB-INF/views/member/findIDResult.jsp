@@ -18,7 +18,7 @@
 		<form class="login__register__1" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
 			<h1 class="login__title">아이디 확인</h1>
           <div class="login__box">
-			<p class="findID__input" name="uname" id="uname"> 
+			<p class="login__input__1" name="uname" id="uname">
 			<!-- 입력한 정보에 해당하는 아이디값 찾아와서 조건에 따라 결과 확인 -->
 			<c:set var="uid" value="${uid}" />
 			<c:choose>

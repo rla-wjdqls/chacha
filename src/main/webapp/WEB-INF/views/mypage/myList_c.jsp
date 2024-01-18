@@ -17,7 +17,7 @@
 	<div class="container">
 	<br><br>
 		<h4>글목록</h4>
-		<p>내가 쓴 글목록을 확인 할 수 있습니다</p>
+		<p>내가 쓴 글목록을 확인 할 수 있습니다</p><hr><br>
 		<p>총 게시물 : ${totalPost} 개</p><br>
 	
 <!-- 	<input type="button" value="전체선택" class="btn btn default" onclick="toggleAllCheckboxes()">
@@ -26,10 +26,10 @@
 	<table class="table table-condensed">
         <thead>
             <tr>
-                <th>글번호</th>
+                <th width="100px">글번호</th>
                 <th>제목</th>
-                <!-- <th>조회수</th> -->
-                <th>작성일</th>
+                <th width="100px">조회수</th>
+                <th width="300px">작성일</th>
             </tr>
         </thead>
   		<tbody>
@@ -39,8 +39,8 @@
 	        <tr>
 	            <td>${myhelp.textno}</td>
 	            <td><a href="/help/helpDetail?textno=${myhelp.textno}">${myhelp.texttitle}</a></td>
-	            <%-- <td>${myhelp.cnt_help}</td> --%>
-	            <td><fmt:formatDate value="${myhelp.uploaddate}" pattern="yyyy-MM-dd" /></td>
+	            <td>${myhelp.cnt}</td>
+	            <td ><fmt:formatDate value="${myhelp.uploaddate}" pattern="yyyy-MM-dd" /></td>
 	        </tr>
 	    </c:if>
 		</c:forEach>
@@ -50,29 +50,13 @@
 	        <tr>
 	            <td>${myadoprv.arno}</td>
 	            <td><a href="/adopt/adoptDetail?arno=${myadoprv.arno}">${myadoprv.artitle}</td>
-	            <%-- <td>${myadoprv.cnt_adoprv}</td> --%>
+	            <td>${myadoprv.cnt}</td>
 	            <td><fmt:formatDate value="${myadoprv.ardate}" pattern="yyyy-MM-dd" /></td>
 	        </tr>
 	    </c:if>
 		</c:forEach>
         </tbody>
     </table>
-
-  
-    <div class="text-center">
-	<form id="searchFrm" name="searchFrm" action="searchList" method="get">
-		<select name="type" id="type">
-			<option value="title" <c:if test="${type eq 'title'}">selected</c:if>>제목</option>
-			<option value="content" <c:if test="${type eq 'content'}">selected</c:if>>내용</option>
-			<option value="titlect"
-				<c:if test="${type eq 'titlect'}">selected</c:if>>제목+내용</option>
-		</select> 
-		<input class="inputId" type="text" name="keyword"
-			placeholder="검색어 입력해주세요" value="${keyword}" />
-		<button class="btn" type="submit">검색</button>
-	</form>
-	
-</div>
 
 		</div>
 	</div>

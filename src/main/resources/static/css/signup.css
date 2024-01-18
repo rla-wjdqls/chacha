@@ -4,8 +4,8 @@
 .login__create {
   position: relative;
   bottom: 1rem;
-  width: 560px;
-  height: 850px;
+  width: 600px;
+  height: 860px;
   left: 50%;
   top: 50px;
   transform: translateX(-50%); /* ÃªÂ°â‚¬Ã«Â¡Å“ Ã«Â°Â©Ã­â€“Â¥Ã¬Å“Â¼Ã«Â¡Å“ -50%Ã«Â§Å’Ã­ÂÂ¼ Ã¬ÂÂ´Ã«Ââ„¢Ã­â€¢Â´Ã¬â€žÅ“ ÃªÂ°â‚¬Ã¬Å¡Â´Ã«ÂÂ° Ã¬Â â€¢Ã«Â Â¬ */
@@ -24,8 +24,8 @@
 
 .login__box {
   column-gap: 0.7rem;
-  width: 450px;
-  height: 40px;
+  width: 475px;
+  height: 41px;
   top: rem;
   margin-right: 0px;
   border-radius: 1rem;
@@ -38,8 +38,8 @@ display: grid;
 
 .login__register .btn_js {
     position: absolute;
-	right: 20px;
-	top: 20px;
+	right: 25px;
+	top: 30px;
     display: inline-block; 
     margin-top: 525px;
 	margin-right: -7px;
@@ -48,14 +48,14 @@ display: grid;
     background-color: #fff;
     width: 55px;
     height: 30px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 300;
     color: #23004d; 
 }
 
 .login__register .btn_js_1 {
     position: absolute;
-	right: 20px;
+	right: 25px;
 	top: 20px;
     display: inline-block; 
     margin-top: 145px;
@@ -65,16 +65,16 @@ display: grid;
     background-color: #fff;
     width: 55px;
     height: 30px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 300;
     color: #23004d; 
 }
 
  
 .login__register .btn_js_2 {
     position: absolute;
-	right: 20px;
-	top: 20px;
+	right: 25px;
+	top: 21px;
     display: inline-block; 
     margin-top: 210px;
 	margin-right:-7px;
@@ -83,8 +83,8 @@ display: grid;
     background-color: #fff;
     width: 55px;
     height: 30px;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 300;
     color: #23004d; 
 }
 
@@ -111,8 +111,8 @@ display: grid;
   text-align: center;
   border-radius: 0.5rem;
   transition: 0.3s;
-  width: 180px;
-  height: 40px;
+  width: 220px;
+  height: 45px;
   border: none;
 
   &:hover {

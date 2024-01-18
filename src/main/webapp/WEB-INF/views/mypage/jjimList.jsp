@@ -3,15 +3,8 @@
     
 <%@ include file="./mypageHeader.jsp" %>
 
-<!-- 본문 시작 template.jsp -->
 
-
-	<!-- Page content wrapper-->
 	<div id="page-content-wrapper">
-
-	<!-- Page content-->
-
-
 
 	<div class="container" id=jjimReload>
 	<br><br>
@@ -37,7 +30,7 @@
             	let anino =  "${jjim.anino}";
             </script>
                 <tr>
-                   <td>
+                   <td width="50px">
 		            <c:choose>
 					<c:when test="${not empty sessionScope.s_id}">
 						<div class="icon-heart" id="jjimDeleteContainer">
@@ -46,23 +39,25 @@
 					</c:when>	
 					</c:choose>	
 		           </td>
-                   <td><a href="/center/jdetail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a></td>
-                   <td>${jjim.aname}</td>
-                   <td>
-		            <c:choose>
-		                <c:when test="${jjim.gender eq 'M'}">남자</c:when>
-		                <c:when test="${jjim.gender eq 'F'}">여자</c:when>
-		            </c:choose>
-		       	   </td>
-                   <td>${jjim.age}</td>
-                   <td>${jjim.weight}</td>
-                   <td>
-                   <c:choose>
-		                <c:when test="${jjim.genop eq 'Y'}">완료</c:when>
-		                <c:when test="${jjim.genop eq 'N'}">미완료</c:when>
-		                <c:when test="${jjim.genop eq 'U'}">미상</c:when>
-		           </c:choose>
-		           </td>
+				    <td>
+				    <a href="/center/jdetail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a>
+				</td>
+				<td>${jjim.aname}</td>
+				<td>
+				    <c:choose>
+				        <c:when test="${jjim.gender eq 'M'}">남자</c:when>
+				        <c:when test="${jjim.gender eq 'F'}">여자</c:when>
+				    </c:choose>
+				</td>
+				<td width="200px">${jjim.age}</td>
+				<td width="50px">${jjim.weight}</td>
+				<td>
+				    <c:choose >
+				        <c:when test="${jjim.genop eq 'Y'}">완료</c:when>
+				        <c:when test="${jjim.genop eq 'N'}">미완료</c:when>
+				        <c:when test="${jjim.genop eq 'U'}">미상</c:when>
+				    </c:choose>
+				</td>
                 </tr>
             </c:forEach>
         </tbody>

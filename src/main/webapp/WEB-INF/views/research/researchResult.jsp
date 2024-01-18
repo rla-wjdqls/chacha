@@ -23,7 +23,7 @@
 	<div class="container">
 		<p>설문조사 결과를 확인하세요</p>
 		<hr><br><br>
-		 <div class="container-line" id="surveyContainer">
+		 <div class="container-line" id="surveyContainResult">
 			<!-- 이 부분에 내용 들어감 질문1 시작-->
 			<div id="panel"></div>
 
@@ -34,7 +34,7 @@
 				등록일자 :  ${researchList2.rgdate}<br>
 			</div>
 			<br><hr><br>
-			참여자 수 : ${cnt} 명 
+			<h6>참여자 수 : ${cnt} 명 </h6>
 			<br><br>
 			<div class="researchResult" name="researchResult" id="researchResult"></div>  
         </div>
@@ -100,7 +100,7 @@ function resultList() {
              for (let i = 0; i < questionResults.length; i++) {
                  let chartId = 'chartQuestion' + (i + 1);
                  let chartCanvas = '<canvas id="' + chartId + '" width="50" height="50"></canvas><br>';
-                 $("#researchResult").append('<br><p>질문' + questionResults[i].question.number + ': ' + questionResults[i].question.content + '</p><br>');
+                 $("#researchResult").append('<br><h5>질문' + questionResults[i].question.number + '</h5>' + questionResults[i].question.content + '</p><br>');
                  $("#researchResult").append(chartCanvas);
 
                  let ctx = document.getElementById(chartId).getContext('2d');

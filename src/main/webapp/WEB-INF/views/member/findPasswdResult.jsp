@@ -17,7 +17,7 @@
 			<h1 class="login__title">비밀번호 확인</h1>
           <div class="login__box">
           <!--값 있으면 비밀번호 띄어주고 null 혹은 빈 값이면 실패 메시지 띄어줌 -->
-			<p class="login__input" name="uname" id="uname">
+			<p class="login__input__1" name="uname" id="uname">
 			<!-- 입력한 정보에 해당하는 아이디값 찾아와서 조건에 따라 결과 확인 -->
 			<c:set var="passwd" value="${passwd}" />
 			<c:choose>

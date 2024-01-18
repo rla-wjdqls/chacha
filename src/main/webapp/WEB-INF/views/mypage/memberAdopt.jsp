@@ -89,7 +89,7 @@
 				        </select>
 		        	</td>
                     <td><a href="/storage/${memAdopt.subpic}">${memAdopt.subpic}</a></td>
-                    <td><input type="button" value="수정" class="btn btn_adUpdate" data-uid="${memAdopt.uid}" data-apno="${memAdopt.apno}" data-sub_state="${memAdopt.sub_state}"></td>
+                    <td><input type="button" value="수정" class="btn btn_adUpdate btn-sm" data-uid="${memAdopt.uid}" data-apno="${memAdopt.apno}" data-sub_state="${memAdopt.sub_state}"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -107,7 +107,7 @@
                 <th>결제수단</th>
                 <th>결제여부</th> <!--사용자에게는 value 값으로 보여줄 것-->
                 <th>결제일자</th>
-                <th></th>
+                <th width="10px"></th>
             </tr>
         </thead>
   		<tbody>
@@ -133,7 +133,7 @@
                     <td><fmt:formatDate value="${memAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
                     <td>
                         <c:if test="${memAdopt.sub_state eq 'F'}">
-			               <input type="button" value="환불하기" class="btn btn" id="btn_refund" name="btn_refund" onclick="cancelPay('${memAdopt.uid}')">
+			               <input type="button" value="환불하기" class="btn btn btn-sm" id="btn_refund" name="btn_refund" data-uid="${memAdopt.uid}" data-apno="${memAdopt.apno}">
 			            </c:if>
                     </td>
                 </tr>
@@ -150,14 +150,13 @@
  
  $(".btn_adUpdate").click(function(){
 	 //alert();
-	 
 	let uid = $(this).data("uid");
 	let apno = $(this).data("apno");
     let subStateSelect = $(this).closest("tr").find(".sub_state");
     let sub_state = subStateSelect.val();
     //alert(uid); 	  //kim9595
-    //alert(sub_state); //F
-    
+    //alert(apno); 
+	 
 	   $.ajax({
         url: '/mypage/memAdoptModify',
         type: 'get',
@@ -179,9 +178,12 @@
  })//click end
  
  
- 
- function cancelPay(uid) {
+ $("#btn_refund").click(function(){
 	 //alert("Uid 값: " + uid); //kim9595
+	 let uid = $(this).data("uid");
+	 let apno = $(this).data("apno");
+	  //alert(uid); 	  //kim9595
+      //alert(apno); //F
 	 
 		if(!confirm("환불을 진행하시겠습니까?")){
 			return false;
@@ -209,11 +211,12 @@
 	                $.ajax({
 				    url: "/mypage/updatePayop",
 				    type: "get",
-				    data: {uid: uid},
+				    data: {'uid': uid, 'apno': apno},
 				    success: function (rsp) {
 	                	alert("결제 상태 변경 성공");
 	                	// 결제 상태 변경 성공 후 페이지 이동
-                        window.location.href = "/mypage/memberAdopt";
+	                	location.reload();
+                        //window.location.href = "/mypage/memberAdopt";
 				    }//success end
 	                });//ajax end
 	            } else {
@@ -225,7 +228,9 @@
 			    }
 			}); //ajax end
 		
- }//caencelPay() end
+		
+ })//click end
+ 
 	 
  </script>
 

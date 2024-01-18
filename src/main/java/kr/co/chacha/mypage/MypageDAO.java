@@ -68,7 +68,6 @@ SqlSession sqlSession;
 		return sqlSession.delete("mypage.srvDelete", mypagedto);
 	}
 	
-	
 	//입양글 목록(관리자)
 	public List<MypageDTO> myLista(String s_id) {		
 		return sqlSession.selectList("mypage.myLista", s_id);
@@ -83,6 +82,11 @@ SqlSession sqlSession;
 	public int adoprvPost(String s_id) {
 		return sqlSession.selectOne("mypage.adoprvPost", s_id);
 	}//adoprvPost() end
+
+	//내가 쓴 봉사글 수(파트너) 
+	public int serviceCnt(String s_id) {
+		return sqlSession.selectOne("mypage.serviceCnt", s_id);
+	}//commentCnt() end
 	
 	//내가 쓴 댓글수 
 	public int commentCnt(String s_id) {
@@ -183,22 +187,19 @@ SqlSession sqlSession;
 	}//memberWithdra() end
 	
 	//결제 테이블 업데이트 
-	public void payUpdate(String s_id) {
-		sqlSession.update("mypage.payUpdate", s_id);
+	public void payUpdate(MypageDTO mypageDTO) {
+		sqlSession.update("mypage.payUpdate", mypageDTO);
 	}//memberWithdra() end
 	
-//	public void payUpdate(MypageDTO mypageDTO) {
-//		sqlSession.update("mypage.payUpdate", mypageDTO);
-//	}//memberWithdra() end
 	
 	//결제상태 환불로 변경
-	public void updatePayop(String uid) {
-		sqlSession.update("mypage.updatePayop", uid);
+	public void updatePayop(MypageDTO mypageDTO) {
+		sqlSession.update("mypage.updatePayop", mypageDTO);
 	}//updatePayop() end
 	
 	//입양신청 상태 업데이트 
-	public void adoptUpdate(String s_id) {
-		sqlSession.update("mypage.adoptUpdate", s_id);
+	public void adoptUpdate(MypageDTO mypageDTO) {
+		sqlSession.update("mypage.adoptUpdate", mypageDTO);
 	}//memberWithdra() end
 	
 	

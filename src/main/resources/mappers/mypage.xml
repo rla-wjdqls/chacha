@@ -4,14 +4,6 @@
  
  <!--mypage.xml-->
  <mapper namespace="mypage">
- 	
- <!-- 	
- <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
-	FROM myeducation
-	WHERE uid = #{uid}
-	ORDER BY myno		
- </select> -->
  
  <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
  	SELECT uid, eduop, eduno, score, edu_date
@@ -22,26 +14,26 @@
  
  
  <select id="memeduList" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT myno, uid, eduno, mycon, mydate, mystate, mycomple
+ 	SELECT myno, uid, eduno, eduno, score, edu_date
 	FROM myeducation
-	ORDER BY mydate DESC
+	ORDER BY edu_date DESC
  </select>
  
  
   <select id="myHelp" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT textno, texttitle, uploaddate, cnt_help, uid
+	SELECT textno, texttitle, uploaddate, cnt, uid
 	FROM help
 	WHERE uid = #{uid}		
  </select>
  
   <select id="myAdoprv" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT arno, artitle, ardate, cnt_adoprv, uid
+	SELECT arno, artitle, ardate, cnt, uid
 	FROM adoprv
 	WHERE uid = #{uid}
  </select>
  
  <select id="myListc" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT hp.textno, hp.texttitle, hp.uploaddate, ar.arno, ar.artitle, ar.ardate, ar.cnt_adoprv, ar.uid, hp.help
+ 	SELECT hp.textno, hp.texttitle, hp.uploaddate, ar.arno, ar.artitle, ar.ardate, ar.cnt, ar.uid, hp.help
 	FROM help hp JOIN adoprv ar
 	ON hp.uid = ar.uid
 	WHERE ar.uid = #{uid} 
@@ -94,6 +86,12 @@
   	WHERE uid = #{uid};
  </select>
  
+   <select id="serviceCnt" resultType="Int">
+  	SELECT COUNT(*)
+  	FROM service
+  	WHERE uid = #{uid};
+ </select>
+ 
   <select id="commentCnt" resultType="Int">
   	SELECT COUNT(*)
   	FROM comment
@@ -115,7 +113,7 @@
 	
  
  <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT cm.commentNo, cm.content, hp.texttitle, cm.commentDate
+	SELECT cm.commentNo, cm.content, hp.texttitle, cm.commentDate, hp.textno
 	FROM comment cm JOIN help hp
 	ON cm.textno = hp.textno
 	WHERE cm.uid = #{uid}
@@ -219,8 +217,8 @@
 
 <update id="payUpdate" parameterType="String">
 	UPDATE payment
-	SET payop = 'Y', pdate = NOW(), patamt = '50000'
-	WHERE uid = #{uid}
+	SET payop = 'Y', pdate = NOW(), patamt = '100'
+	WHERE uid = #{uid} AND apno = #{apno}
  </update>
 
 <!-- <update id="payUpdate" parameterType="kr.co.chacha.mypage.MypageDTO">
@@ -232,13 +230,13 @@
   <update id="updatePayop" parameterType="String">
     UPDATE payment
     SET payop = 'H'
-    WHERE uid = #{uid}
+    WHERE uid = #{uid} AND apno = #{apno}
 </update>
  
  <update id="adoptUpdate" parameterType="String">
 	UPDATE adopt
 	SET sub_state = 'F'
-	WHERE uid = #{uid}
+	WHERE uid = #{uid} AND apno = #{apno}
  </update>
  
  

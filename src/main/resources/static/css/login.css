@@ -68,6 +68,23 @@
 }
 
 
+.login__register__1 {
+  position: absolute;
+  bottom: -5rem;
+  width: 460px;
+  height: 420px;
+  left: 50%;
+  transform: translateX(-50%); /* 가로 방향으로 -50%만큼 이동해서 가운데 정렬 */
+  box-sizing: border-box;
+  background-color: var(--color-lighten);
+  padding: 30px;
+  border-radius: 1rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(35, 0, 77, 0.2);
+  animation-duration: 0.4s;
+  animation-name: animateLogin;
+}
+
 
 .sns_login_box {
     text-align: center;
@@ -203,6 +220,22 @@ img {
   }
 }
 
+
+.login__input__1 {
+  border: none;
+  outline: none;
+  font-size: var(--normal-font-size);
+  font-weight: 700;
+  color: var(--color-dark);
+  width: 100%;
+  margin:15px 15px;
+
+  &::placeholder {
+    font-size: var(--normal-font-size);
+    font-family: var(--font);
+    color: var(--color-light);
+  }
+}
 
 
 .login__forgot1, .login__forgot3 {

@@ -134,6 +134,9 @@ function updateProgressBar() {
                 $("#btn_result").show();
                 // 마지막 페이지인 경우 "제출" 버튼 숨기기
                 $("#btn_research_n").hide();
+                
+            	 // 결과 문구 보이기
+                $(".researchrList").html('<br><h5>설문에 참여해 주셔서 감사합니다~</h5>');
             } else {
                 // 마지막 페이지가 아닌 경우 "다음" 버튼 보이고, "제출" 버튼 숨기기
                 $("#btn_research_n").show();
@@ -228,7 +231,7 @@ function researchrList() {
                 if (value.qcont !== prevQuestion) {
                     questionNo++;
                     if (questionNo === currentQuestionIndex + 1) {
-                        a += '질문' + questionNo + ':' + value.qcont + '<br><br>';
+                        a += '<h5>질문' + questionNo + '</h5><br><h6>' + value.qcont + '</h6><br><br>';
                     }//if end
                 }//if end
 

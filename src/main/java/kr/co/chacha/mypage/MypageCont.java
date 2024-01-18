@@ -91,6 +91,7 @@ public class MypageCont {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_b");
 		mav.addObject("myServiceList", mypageDao.myService(s_id));
+		mav.addObject("totalPost", mypageDao.serviceCnt(s_id));
 		return mav;
 	}//myList_b() end
 	
@@ -121,8 +122,8 @@ public class MypageCont {
 		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
-    	mav.addObject("myAdoptListp", mypageDao.myAdoptp(s_id));
     	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
+    	mav.addObject("myAdoptListp", mypageDao.myAdoptp(s_id));
         return mav; 
 	}//myAdopt() end
 	
@@ -482,17 +483,20 @@ public class MypageCont {
 	
 	@PostMapping("/mypage/payUpdate")
 	@ResponseBody
-	public Map<String, String> payUpdate(HttpSession session){
+	public Map<String, String> payUpdate(HttpSession session, String imp_uid, String apno){
 		
 		//String imp_uid = requestBody.get("imp_uid");
 	    //System.out.println(imp_uid);
 	    
 	    String s_id = (String) session.getAttribute("s_id");
-	    //MypageDTO mypageDTO = new MypageDTO();
+	   
+	    MypageDTO mypageDTO = new MypageDTO();
+	    mypageDTO.setUid(s_id);
+	    mypageDTO.setApno(apno);
 	    
 	    //payment, adopt 테이블 update
-        mypageDao.payUpdate(s_id);
-        mypageDao.adoptUpdate(s_id);
+        mypageDao.payUpdate(mypageDTO);
+        mypageDao.adoptUpdate(mypageDTO);
    
         Map<String, String> response = new HashMap<>();
         response.put("result", "success");
@@ -558,11 +562,16 @@ public class MypageCont {
  	
  	//결제상태 변경
  	@GetMapping("/mypage/updatePayop")
- 	public String updatePayop(@RequestParam("uid") String uid) {
+ 	@ResponseBody
+ 	public String updatePayop(String uid, String apno) {
  	// 전달받은 데이터 확인
  	//System.out.println(uid); //kim9595
  		
- 	mypageDao.updatePayop(uid);
+ 	MypageDTO mypagedto = new MypageDTO();
+ 	mypagedto.setUid(uid);
+ 	mypagedto.setApno(apno);
+ 		
+ 	mypageDao.updatePayop(mypagedto);
  		
  		
  	return "success";
@@ -571,51 +580,6 @@ public class MypageCont {
  	
  	
 	
-	//페이징+검색
-	@RequestMapping("/searchList")
-	public ModelAndView searchList(@RequestParam(value = "page", required = false) Integer page,
-			@RequestParam(value = "type", required = false) String type,
-			@RequestParam(value = "keyword", required = false) String keyword, HttpSession session) {
-		String s_id = (String)session.getAttribute("s_id");
-		
-		ModelAndView mav = new ModelAndView();
-
-		int currentPage = (page != null) ? page : 1;
-		int helpPost = mypageDao.helpPost(s_id);	
-		int adoprvPost = mypageDao.adoprvPost(s_id);	
-		int totalCount = helpPost + adoprvPost;
-		int boardLimit = 10; // 한 화면에 출력할 게시물 수
-		int naviLimit = 5; // 한 화면에 출력할 게시판 페이지 수
-		int maxPage; // 게시판의 총 페이지 수
-		int startNavi; // 한 화면에 출력되는 게시판 페이지의 첫번째 번호
-		int endNavi; // 한 화면에 출력되는 게시판 페이지의 마지막 번호
-
-		maxPage = (int) ((double) totalCount / boardLimit + 0.9);
-		startNavi = ((int) ((double) currentPage / naviLimit + 0.9) - 1) * naviLimit + 1;
-		endNavi = startNavi + naviLimit - 1;
-
-		if (maxPage < endNavi) {
-			endNavi = maxPage;
-		}
-
-		MypageDTO mypageDTO = new MypageDTO();
-
-		List<MypageDTO> searchList = mypageDao.searchList(currentPage, boardLimit, type, keyword, session);
-
-		if (!searchList.isEmpty()) {
-			mav.addObject("startNavi", startNavi);
-			mav.addObject("endNavi", endNavi);
-			mav.addObject("maxPage", maxPage);
-			mav.addObject("searchList", searchList);
-		}
-
-		mav.setViewName("mypage/myList_c");
-		if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
-			mav.addObject("type", type);
-			mav.addObject("keyword", keyword);
-		}
-		return mav;
-	}// searchList() end
 	
 	
 }//class end

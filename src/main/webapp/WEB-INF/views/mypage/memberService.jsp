@@ -36,7 +36,7 @@
                     <td>${memservice.uid}</td>
                     <td><a href="/service/servicedetail?sno=${memservice.sno}">${memservice.stitle}</a></td>
                     <td><fmt:formatDate value="${memservice.sadate}" pattern="yyyy-MM-dd" /></td>
-                    <td>${memservice.stime}</td>
+                    <td>${memservice.time}</td>
                     <td>
 		            <c:choose>
 		                <c:when test="${memservice.astate eq 'o'}">신청완료</c:when>

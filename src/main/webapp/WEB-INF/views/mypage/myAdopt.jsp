@@ -30,7 +30,6 @@
                    <td>${myAdopt.subpic}</td>
                     <td>
 		            <c:choose>
-<<<<<<< HEAD
 		                <c:when test="${myAdopt.sub_state eq 'S'}">신청완료</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'P'}">심사중</c:when>
 		                <c:when test="${myAdopt.sub_state eq 'W'}">심사완료</c:when>
@@ -39,23 +38,13 @@
 		                <br>
             			<a href="/adopt/adoptForm" class="btn btn-primary"></c:when>
 		                <c:when test="${myAdopt.sub_state eq 'X'}">입양불가능</c:when>
-=======
-		                <c:when test="${myAdopt1.sub_state eq 'S'}">신청완료</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'P'}">심사중</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'W'}">심사완료</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'C'}">책임금결제</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'F'}">입양완료
-		                <br>
-            			<a href="/adopt/adoptForm" class="btn btn-primary"></c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'X'}">입양불가능</c:when>
->>>>>>> eb2734475f3865358f8167497593d09428a737df
 		            </c:choose>         
 		        	</td>
 		        	 <td>
 			            <c:if test="${myAdopt.sub_state eq 'C'}">
-			                <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()">
+			                <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" data-apno="${myAdopt.apno}" onclick="requestPay()">
 			            </c:if>
-			            <c:if test="${myAdopt1.sub_state eq 'F'}">
+			            <c:if test="${myAdopt.sub_state eq 'F'}">
 			                <input type="button" value="후기작성하기" class="btn btn" id="btn_review" name="btn_review" onclick="adoptReview('${myAdopt1.anino}')">
 			            </c:if>
 			        </td>
@@ -178,11 +167,14 @@ function requestPay() {
 function succeedPay(imp_uid){
 	//alert("succedpay" + params);
 	//alert(imp_uid);
+	let apno = $(this).data("apno");
+	alert(apno);
+	
     $.ajax({
         url: '/mypage/payUpdate',
         type: 'POST',
         //contentType: 'application/json',  // Set the content type to JSON
-        //data: JSON.stringify({ 'imp_uid': imp_uid }), 
+        data: { 'imp_uid': imp_uid, 'apno': apno }, 
         success: function(response){
             if(response.result == "success"){
                 let msg = "결제 및 검증이 완료되었습니다."

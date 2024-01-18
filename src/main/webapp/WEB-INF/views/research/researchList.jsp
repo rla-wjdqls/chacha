@@ -46,32 +46,33 @@
 <h5>여러분의 의견을 들려주세요~</h5>
 <br>
 <div class="row">
-    <c:forEach items="${researchList}" var="list">
-        <c:choose>
-            <c:when test="${list.rop eq 'Y' || (list.rop eq 'N' && s_mlevel eq 'b')}">
-                <div class="col-sm-4">
-                    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;" width:300px;>
-                        <h5>${list.rtitle}</h5>
-                        <p>${list.rdate1} ~<br> ${list.rdate2}</p>
-                        <c:choose>
-                            <c:when test="${list.rstate eq 'I'}">진행중</c:when>
-                            <c:when test="${list.rstate eq 'E'}">마감</c:when>
-                        </c:choose>
-                        <br><hr>
-                        <c:if test="${list.rstate ne 'E'}">
-                            <a href="javascript:void(0);" class="btn btn-primary btn-sm" onclick="checkAndRedirect('${list.rno}')">바로가기</a>
-                        </c:if>
-                        <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success btn-sm">결과보기</a>
-                        <c:choose>
-                            <c:when test="${s_mlevel eq 'b'}">
-                                <a href="/research/researchModify?rno=${list.rno}" class="btn btn-secondary btn-sm">수정하기</a>
-                            </c:when>
-                        </c:choose>
-                    </div>
+   <c:forEach items="${researchList}" var="list">
+    <c:choose>
+        <c:when test="${list.rop eq 'Y' || (list.rop eq 'N' && s_mlevel eq 'b')}">
+            <div class="col-sm-4">
+                <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;">
+                    <h5>${list.rtitle}</h5>
+                    <p>${list.rdate1} ~<br> ${list.rdate2}</p>
+                    <c:choose>
+                        <c:when test="${list.rstate eq 'I'}">진행중</c:when>
+                        <c:when test="${list.rstate eq 'E'}">마감</c:when>
+                    </c:choose>
+                    <br><hr>
+                    <c:if test="${list.rstate ne 'E'}">
+                        <a href="javascript:void(0);" class="btn btn-primary btn-sm" onclick="checkAndRedirect('${list.rno}')">바로가기</a>
+                    </c:if>
+                    <a href="/research/researchResult?rno=${list.rno}" class="btn btn-success btn-sm">결과보기</a>
+                    <c:choose>
+                        <c:when test="${s_mlevel eq 'b'}">
+                            <a href="/research/researchModify?rno=${list.rno}" class="btn btn-secondary btn-sm">수정하기</a>
+                        </c:when>
+                    </c:choose>
                 </div>
-            </c:when>
-        </c:choose>
-    </c:forEach>
+            </div>
+        </c:when>
+    </c:choose>
+</c:forEach>
+
 </div>
 </div>
 </div>
