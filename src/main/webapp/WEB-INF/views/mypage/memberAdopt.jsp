@@ -88,8 +88,8 @@
 				        </c:choose>
 				        </select>
 		        	</td>
-                    <td><a href="/storage/${memAdopt.subpic}.jpg">${memAdopt.subpic}</a></td>
-                    <td><input type="button" value="수정" class="btn" name="btn_adUpdate" id="btn_adUpdate" data-uid="${memAdopt.uid}" data-sub_state="${memAdopt.sub_state}"></td>
+                    <td><a href="/storage/${memAdopt.subpic}">${memAdopt.subpic}</a></td>
+                    <td><input type="button" value="수정" class="btn btn_adUpdate" data-uid="${memAdopt.uid}" data-apno="${memAdopt.apno}" data-sub_state="${memAdopt.sub_state}"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -148,19 +148,21 @@
  
  
  
- $("#btn_adUpdate").click(function(){
+ $(".btn_adUpdate").click(function(){
 	 //alert();
 	 
 	let uid = $(this).data("uid");
+	let apno = $(this).data("apno");
     let subStateSelect = $(this).closest("tr").find(".sub_state");
     let sub_state = subStateSelect.val();
     //alert(uid); 	  //kim9595
     //alert(sub_state); //F
+    
 	   $.ajax({
         url: '/mypage/memAdoptModify',
         type: 'get',
         //dataType: 'json',
-        data: { 'uid': uid, 'sub_state': sub_state },
+        data: { 'uid': uid, 'sub_state': sub_state, 'apno': apno },
         error: function (error) {
             alert('에러!');
             console.log(error);

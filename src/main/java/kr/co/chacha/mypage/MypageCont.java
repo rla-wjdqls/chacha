@@ -273,13 +273,14 @@ public class MypageCont {
 	//입양신청내역 수정(관리자)
 	@GetMapping("/mypage/memAdoptModify")
 	@ResponseBody
-	public String memAdotModify(String uid, String sub_state) {
+	public String memAdotModify(String uid, String sub_state, String apno) {
 		//System.out.println(uid);       //kim9595
 		//System.out.println(sub_state); //F
 		
 		MypageDTO mypageDTO = new MypageDTO();
 		mypageDTO.setUid(uid);
 		mypageDTO.setSub_state(sub_state);
+		mypageDTO.setApno(apno);
 		
 		mypageDao.updateSubstate(mypageDTO);
 		

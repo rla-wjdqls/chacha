@@ -179,14 +179,14 @@
  <update id="updateSubstate" parameterType="kr.co.chacha.mypage.MypageDTO">
     UPDATE adopt
     SET sub_state = #{sub_state}
-    WHERE uid = #{uid}
+    WHERE uid = #{uid} AND apno = #{apno}
 </update>
  
  
  <update id="updateMlevel" parameterType="kr.co.chacha.mypage.MypageDTO">
     UPDATE member
     SET mlevel = #{mlevel}
-    WHERE uid = #{uid}
+    WHERE uid = #{uid} 
 </update>
 
  
