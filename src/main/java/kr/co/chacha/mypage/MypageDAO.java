@@ -4,13 +4,18 @@ import static org.hamcrest.CoreMatchers.nullValue;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
+
+import com.oracle.wls.shaded.org.apache.xml.dtm.ref.CustomStringPool;
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDTO;
+import kr.co.chacha.service.ServiceDTO;
 
 @Repository
 public class MypageDAO {
@@ -57,6 +62,20 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myLista", s_id);
 	}//mvsLista() end
 	
+	//내가 쓴 글수 - 목격제보
+	public int helpPost(String s_id) {
+		return sqlSession.selectOne("mypage.helpPost", s_id);
+	}//helpPost() end
+	
+	//내가 쓴 글수 - 입양후기
+	public int adoprvPost(String s_id) {
+		return sqlSession.selectOne("mypage.adoprvPost", s_id);
+	}//adoprvPost() end
+	
+	//내가 쓴 댓글수 
+	public int commentCnt(String s_id) {
+		return sqlSession.selectOne("mypage.commentCnt", s_id);
+	}//commentCnt() end
 	
 	//회원 봉사신청내역(파트너)
 	public List<MypageDTO> memserviceList() {		
@@ -112,9 +131,14 @@ SqlSession sqlSession;
 	}//findID() end
 	
 	
-	//비밀번호 확인 후 탈퇴
+	//일반회원 탈퇴
 	public void memberWithdraw(String s_id) {
-		sqlSession.selectOne("mypage.memberWithdraw", s_id);
+		sqlSession.update("mypage.memberWithdraw", s_id);
+	}//memberWithdra() end
+	
+	//소셜로그인 멤버 탈퇴
+	public void smemberWithdraw(String s_id) {
+		sqlSession.update("mypage.smemberWithdraw", s_id);
 	}//memberWithdra() end
 	
 	
@@ -146,18 +170,43 @@ SqlSession sqlSession;
 		sqlSession.delete("mypage.jjimDelete", anino);
 	}//memberWithdra() end
 	
-	
 	//결제 테이블 업데이트 
 	public void payUpdate(String s_id) {
 		sqlSession.update("mypage.payUpdate", s_id);
 	}//memberWithdra() end
+	
+//	public void payUpdate(MypageDTO mypageDTO) {
+//		sqlSession.update("mypage.payUpdate", mypageDTO);
+//	}//memberWithdra() end
+	
+	//결제상태 환불로 변경
+	public void updatePayop(String uid) {
+		sqlSession.update("mypage.updatePayop", uid);
+	}//updatePayop() end
 	
 	//입양신청 상태 업데이트 
 	public void adoptUpdate(String s_id) {
 		sqlSession.update("mypage.adoptUpdate", s_id);
 	}//memberWithdra() end
 	
-	
+	/*
+	// 페이징,검색
+		public List<MypageDTO> searchList(int currentPage, int limit, String type, String keyword) {
+			int offset = (currentPage - 1) * limit;
+			RowBounds rowBounds = new RowBounds(offset, limit);
+
+			MypageDTO mypagedto = new MypageDTO();
+			if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+				mypagedto.setType(type);
+				mypagedto.setKeyword(keyword);
+			}
+			return sqlSession.selectList("service.searchList", mypagedto, rowBounds);
+		}
+
+		public int searchListCnt() {
+			return sqlSession.selectOne("service.searchListCnt");
+		}
+		*/
 	
 }//end
 

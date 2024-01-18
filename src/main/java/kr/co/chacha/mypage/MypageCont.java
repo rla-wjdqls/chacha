@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,12 +22,17 @@ import javax.net.ssl.HttpsURLConnection;
 
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,6 +52,7 @@ import kr.co.chacha.jjim.JjimDTO;
 import kr.co.chacha.member.MemberDAO;
 import kr.co.chacha.member.MemberDTO;
 import kr.co.chacha.research.ResearchDTO;
+import kr.co.chacha.service.ServiceDTO;
 
 @Controller
 //@RequestMapping("/mypage")
@@ -92,10 +99,18 @@ public class MypageCont {
 	@GetMapping("/mypage/myList_c")
 	public ModelAndView myList_c(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
+		
+		int helpPost = mypageDao.helpPost(s_id);	
+		int adoprvPost = mypageDao.adoprvPost(s_id);	
+		
+		int totalPost = helpPost + adoprvPost;
+		String totlaPost = String.valueOf(totalPost);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("mypage/myList_c");
 		mav.addObject("myHelpList", mypageDao.myHelp(s_id));
 		mav.addObject("myAdoprvList", mypageDao.myAdoprv(s_id));
+		mav.addObject("totalPost", totalPost);
 		return mav;
 	}//myList_c() end
 	
@@ -123,9 +138,14 @@ public class MypageCont {
 	@GetMapping("/mypage/myComment")
 	public ModelAndView myComment(HttpSession session) {
 		String s_id = (String)session.getAttribute("s_id");
+		
+		int comment = mypageDao.commentCnt(s_id);
+		String totalComment = String.valueOf(comment);
+		
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myComment");
     	mav.addObject("myCommentList", mypageDao.myComment(s_id));
+    	mav.addObject("totalComment", totalComment);
         return mav; 
 	}//myComment() end
 	
@@ -313,6 +333,7 @@ public class MypageCont {
 		
 		ModelAndView mav = new ModelAndView();
 		
+		
 		if(s_passwd.equals(passwd)) {
 			mav.setViewName("mypage/myInfoWithdraw"); //비밀번호 일치 시 수정 페이지로 이동
 		} else {
@@ -323,12 +344,42 @@ public class MypageCont {
 	}// myinfoWithdraw() end
 	
 	
-	//회원 탈퇴
+	// 소셜로그인 회원탈퇴 페이지로 이동
+	@GetMapping("/mypage/s_myInfoWithdraw")
+	public ModelAndView s_myinfoWithdraw() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("mypage/s_myInfoWithdraw"); //비밀번호 일치 시 수정 페이지로 이동
+		
+		return mav;
+	}//s_myinfoWithdraw() end
+	
+	
+	
+	//일반 회원 탈퇴
 	@GetMapping("/mypage/memberWithdraw")
 	public ModelAndView memberWithdraw(HttpSession session) {
 		
 	    String s_id = (String) session.getAttribute("s_id");
-	    mypageDao.memberWithdraw(s_id); // 실제 회원 탈퇴 메서드 호출 등
+	    mypageDao.memberWithdraw(s_id); 
+
+	    // 세션 초기화
+	    session.invalidate();
+		
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("redirect:/");
+    	
+        return mav; 
+	}//memberWithdraw() end
+	
+	
+	
+	//소셜로그인 회원 탈퇴
+	@PostMapping("/mypage/s_memberWithdraw")
+	public ModelAndView smemberWithdraw(HttpSession session) {
+		
+	    String s_id = (String) session.getAttribute("s_id");
+	    
+	    mypageDao.smemberWithdraw(s_id);	
 
 	    // 세션 초기화
 	    session.invalidate();
@@ -339,8 +390,7 @@ public class MypageCont {
     	
         return mav; 
 		
-	}//memberWithdraw() end
-	
+	}//smemberWithdraw() end
 	
 		
 	//로그아웃 클릭시 세션 만료
@@ -408,12 +458,15 @@ public class MypageCont {
 	
 	@PostMapping("/mypage/payUpdate")
 	@ResponseBody
-	public Map<String, String> payUpdate(HttpSession session) throws IOException {
+	public Map<String, String> payUpdate(HttpSession session){
+		
+		//System.out.println("111");
+		//String imp_uid = requestBody.get("imp_uid");
+	    //System.out.println(imp_uid);
+	    
 	    String s_id = (String) session.getAttribute("s_id");
 	    
-	    //String access_token = iamportcont.getToken();
-	    //System.out.println(access_token);
-	    //{access_token=a310ccc9b621b9d4c343ae2667cd3fc313c0dce1, now=1.70539304E9, expired_at=1.705393384E9}
+	    //MypageDTO mypageDTO = new MypageDTO();
 	    
 	    //payment, adopt 테이블 update
         mypageDao.payUpdate(s_id);
@@ -426,6 +479,120 @@ public class MypageCont {
 	    
 	}//payUpdate() end
 	
+	
+	// 환불 
+ 	@PostMapping("/mypage/cancelPay")
+	@ResponseBody
+	public Map<String, Object> cancelPay(@RequestBody Map<String, Object> params) throws IOException {
+ 	    // 전달받은 데이터 확인
+ 	    String imp_uid = (String) params.get("imp_uid"); 
+ 	    int amount = (int) params.get("amount");		 
+ 	    
+ 	    //System.out.println(imp_uid); //imp_620437863810
+ 	    //System.out.println(amount);  //100
+ 		
+	    // 액세스 토큰 얻기
+	    String access_token = iamportcont.getToken();
+	    //System.out.println(access_token);
+	    //{access_token=7ea99df1f09e16a5bd5c864c90aa9e00e2c54091, now=1.705501237E9, expired_at=1.705503037E9}
+	    
+	    Map<String, Object> responseMap = new HashMap<>();
+		
+	    try {
+	    	if(access_token == null) {
+	    		throw new Exception();
+	    	}
+	    	
+	    	headers.clear();
+	    	headers.add("Authorization", access_token);
+	    	body.clear();
+	    	body.put("imp_uid", imp_uid);
+	    	body.put("checksum", amount);
+	    	body.put("amount", amount);
+
+	    	HttpEntity<JSONObject> entity = new HttpEntity<>(body, headers);
+	        
+	        ResponseEntity<Map> responseEntity = restTemplate.postForEntity("https://api.iamport.kr/payments/cancel", entity, Map.class);
+	        
+	        HttpStatus statusCode = (HttpStatus) responseEntity.getStatusCode();
+	        
+	        if (statusCode.is2xxSuccessful()) {
+	            responseMap.put("status", "success");
+	            responseMap.put("message", "환불 성공");
+	        } else {
+	            responseMap.put("status", "error");
+	            responseMap.put("message", "환불 실패");
+	        }
+	    } catch (Exception e) {
+	        responseMap.put("status", "error");
+	        responseMap.put("message", e.getMessage());
+	        e.printStackTrace();
+	    }
+	    
+	    return responseMap;
+	    
+		} // cancelPay() ends 
+
+ 	/*
+ 	//결제상태 변경
+ 	@GetMapping("/mypage/updatePayop")
+ 	
+ 	public String updatePayop() {
+ 		
+ 		
+ 		//mypageDao.updatePayop(uid);
+ 		
+ 		
+ 		return "success";
+ 	}//updatePayop() end
+ 	*/
+ 	
+ 	
+ 	
+	/*
+	//페이징+검색
+	@RequestMapping("/searchList")
+	public ModelAndView serviceList(@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "type", required = false) String type,
+			@RequestParam(value = "keyword", required = false) String keyword) {
+		
+		ModelAndView mav = new ModelAndView();
+
+		int currentPage = (page != null) ? page : 1;
+		int totalCount = mypageDao.searchListCnt();
+		int boardLimit = 10; // 한 화면에 출력할 게시물 수
+		int naviLimit = 5; // 한 화면에 출력할 게시판 페이지 수
+		int maxPage; // 게시판의 총 페이지 수
+		int startNavi; // 한 화면에 출력되는 게시판 페이지의 첫번째 번호
+		int endNavi; // 한 화면에 출력되는 게시판 페이지의 마지막 번호
+
+		maxPage = (int) ((double) totalCount / boardLimit + 0.9);
+		startNavi = ((int) ((double) currentPage / naviLimit + 0.9) - 1) * naviLimit + 1;
+		endNavi = startNavi + naviLimit - 1;
+
+		if (maxPage < endNavi) {
+			endNavi = maxPage;
+		}
+
+		MypageDTO mypageDTO = new MypageDTO();
+
+		List<MypageDTO> searchList = mypageDao.searchList(currentPage, boardLimit, type, keyword);
+
+		if (!searchList.isEmpty()) {
+			mav.addObject("startNavi", startNavi);
+			mav.addObject("endNavi", endNavi);
+			mav.addObject("maxPage", maxPage);
+			mav.addObject("searchList", searchList);
+		}
+
+		mav.setViewName("mypage/myList_c");
+		if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+			mav.addObject("type", type);
+			mav.addObject("keyword", keyword);
+		}
+		return mav;
+	}// searchList() end
+	*/
 	
 }//class end
 	

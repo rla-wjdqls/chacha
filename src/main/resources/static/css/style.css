@@ -1,5 +1,8 @@
 /********** Template CSS **********/
 
+    .regth {
+        width: 150px; /* 원하는 폭으로 설정 */
+    }
 
 :root {
     --primary: #F3BD00;
@@ -450,6 +453,22 @@
     text-align: center;
 }
 
+.container-myinfo1{
+    padding: 50px 50px;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+	height: 250px;
+}
+
+.container-myinfo2{
+    padding: 50px 50px;
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+	height: 250px;
+}
+
 #surveyContainer {    
 	padding: 160px 160px;
     border-top: 1px solid #222;
@@ -457,6 +476,15 @@
     text-align: center;
 	width:800px;
 	margin: 0 auto; /* 가로 가운데 정렬을 위한 설정 */
+}
+
+#surveyRegContainer{
+    border-top: 1px solid #222;
+    background-color: #f8f8f8;
+    text-align: center;
+	width:800px;
+	margin: 0 auto;
+	
 }
 
 .container-rr{

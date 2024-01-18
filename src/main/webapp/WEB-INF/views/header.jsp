@@ -223,16 +223,23 @@
 		                        </div>
 		                    </div>
 		                </c:when>
-		                <c:when test="${s_mlevel eq 'c'}">
-		                    <div class="nav-item dropdown">
-		                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
-		                        <div class="dropdown-menu bg-light m-0">
-		                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
-		                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-		                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
-		                        </div>
-		                    </div>
-		                </c:when>
+						<c:when test="${s_mlevel eq 'c'}">
+					    <div class="nav-item dropdown">
+					        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+					        <div class="dropdown-menu bg-light m-0">
+					            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+					            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+					            <c:choose>
+					                <c:when test="${s_id.contains('@')}">
+					                    <a href="/mypage/s_myInfoWithdraw" class="dropdown-item">회원정보</a>
+					                </c:when>
+					                <c:otherwise>
+					                    <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+					                </c:otherwise>
+					            </c:choose>
+					        </div>
+					    </div>
+					</c:when>
 		                <c:otherwise>
 		                    <div class="nav-item dropdown">
 		                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>

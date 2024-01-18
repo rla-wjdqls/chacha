@@ -17,6 +17,7 @@
 	<br><br>
 		<h4>글목록</h4>
 		<p>내가 쓴 글목록을 확인 할 수 있습니다</p>
+		<p>총 게시물 : ${totalPost} 개</p><br>
 	<br>
 	<input type="button" value="전체선택" class="btn btn default" id="btn-select-all">
 	<input type="button" value="삭제" class="btn btn default" id="btn-delete">

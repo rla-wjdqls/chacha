@@ -188,19 +188,8 @@ public class ResearchCont {
 		    // 다른 필요한 속성들도 설정 가능
 		    researchrcList.add(researchDTO);
 		}
-		
-		//System.out.println(researchrcList);
-		//qno=176, uid=aaaaa,reply=155, 
-		//qno=176, uid=aaaaa, reply=156]
-		
-		//qno=177, uid=aaaaa,reply=158, 
-		//qno=177, uid=aaaaa,reply=159, 
-		//qno=177, uid=aaaaa, reply=160]
-		
-		//qno=178, uid=aaaaa, reply=162]
 				
-		int cnt = researchdao.researchrcInsert(researchrcList);
-		//System.out.println(cnt);
+		researchdao.researchrcInsert(researchrcList);
 
 		/*
 	    // 받은 데이터 확인

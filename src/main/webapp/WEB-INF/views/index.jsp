@@ -384,15 +384,23 @@
 			                    </div>
 			                </c:when>
 			                <c:when test="${s_mlevel eq 'c'}">
-			                    <div class="nav-item dropdown">
-			                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
-			                        <div class="dropdown-menu bg-light m-0">
-			                            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
-			                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
-			                            <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
-			                        </div>
-			                    </div>
-			                </c:when>
+						    <div class="nav-item dropdown">
+						        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
+						        <div class="dropdown-menu bg-light m-0">
+						            <a href="/mypage/jjimList" class="dropdown-item">내 활동</a>
+						            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
+						            <c:choose>
+						                <c:when test="${s_id.contains('@')}">
+						                    <a href="/mypage/s_myInfoWithdraw" class="dropdown-item">회원정보</a>
+						                </c:when>
+						                <c:otherwise>
+						                    <a href="/mypage/myInfo1" class="dropdown-item">회원정보</a>
+						                </c:otherwise>
+						            </c:choose>
+						        </div>
+						    </div>
+						</c:when>
+
 			                <c:otherwise>
 			                    <div class="nav-item dropdown">
 			                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">마이페이지</a>
@@ -514,7 +522,7 @@
             </div>
             <br><br>
              <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
-                <h6 class="text-primary text-uppercase mb-2">설문조사</h6>
+                <h6 class="text-primary text-uppercase mb-2"><a href="/research/researchList">설문조사 하러가기</a></h6>
                 <h1 class="display-6 mb-4"></h1>
                 <div id="surveyResult" name="surveyResult" id="surveyResult"></div>
             </div>

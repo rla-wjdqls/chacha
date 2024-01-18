@@ -62,6 +62,24 @@
  </select>
  
  
+  <select id="helpPost" resultType="Int">
+  	SELECT COUNT(*)
+  	FROM help 
+  	WHERE uid = #{uid};
+ </select>
+ 
+  <select id="adoprvPost" resultType="Int">
+  	SELECT COUNT(*)
+  	FROM adoprv
+  	WHERE uid = #{uid};
+ </select>
+ 
+  <select id="commentCnt" resultType="Int">
+  	SELECT COUNT(*)
+  	FROM adopcm
+  	WHERE uid = #{uid};
+ </select>
+ 
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
 	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino, jj.jjimno
 	FROM jjim jj join animal ani
@@ -106,7 +124,7 @@
  
  
  <select id="memAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid
+	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid, py.imp_uid
 	FROM payment py
 	JOIN (
 			 SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date
@@ -116,7 +134,6 @@
 	ON py.apno = AA.apno
  </select>
   
- 
  
   <select id="checkPasswd" parameterType="String" resultType="Int">
  	SELECT COUNT(*)
@@ -159,6 +176,12 @@
 	WHERE uid = #{uid}
  </update>
  
+  <update id="smemberWithdraw" parameterType="String">
+	UPDATE s_member
+	SET s_mlevel = 'D'
+	WHERE s_email = #{uid}
+ </update>
+ 
  
  <select id="myInfoCheck" resultType="kr.co.chacha.mypage.MypageDTO" parameterType="String">
 	SELECT uname, uid, email, passwd, tel, birth, zipcode, addr1, addr2
@@ -179,6 +202,18 @@
 	SET payop = 'Y', pdate = NOW(), patamt = '50000'
 	WHERE uid = #{uid}
  </update>
+
+<!-- <update id="payUpdate" parameterType="kr.co.chacha.mypage.MypageDTO">
+	UPDATE payment
+	SET payop = 'Y', pdate = NOW(), patamt = '50000', imp_uid = #{imp_uid}
+	WHERE uid = #{uid}
+ </update> -->
+ 
+  <update id="updatePayop" parameterType="String">
+    UPDATE payment
+    SET payop = 'H'
+    WHERE uid = #{uid}
+</update>
  
  <update id="adoptUpdate" parameterType="String">
 	UPDATE adopt
@@ -186,6 +221,33 @@
 	WHERE uid = #{uid}
  </update>
  
+ 
+<!--  <select id="searchList"
+		parameterType="kr.co.chacha.mypage.MypageDTO"
+		resultType="kr.co.chacha.mypage.MypageDTO">
+		SELECT sno, uid, stitle, sinfo, ssdate, sedate, time, sp, splace,
+		sstate, cnt
+		FROM service
+		WHERE 1=1
+		<if test='type!=null and type.equals("title")'>
+			AND stitle like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test='type!=null and type.equals("id")'>
+			AND uid = #{keyword}
+		</if>
+		<if test='type!=null and type.equals("titleId")'>
+			AND ((uid = #{keyword}) OR (stitle like
+			CONCAT('%',#{keyword},'%')))
+		</if>
+		ORDER BY sno
+	</select>
+
+	페이징
+	<select id="searchListCnt" resultType="int">
+		SELECT COUNT(*) AS cnt
+		FROM service
+	</select>
+  -->
  	
  </mapper>
  

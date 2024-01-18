@@ -30,11 +30,6 @@
 	    VALUES(#{qno}, #{uid}, #{reply}, NOW())
 	</insert> 
 	
-	<!--qno = {166, 166}  -->
-	<!--cno = {  1,   2}  -->
-	<!--uid = {kim9595, kim9595}  -->
-	
-	
 	<insert id="researchrcInsert" parameterType="java.util.List">
 	    INSERT INTO researchr(qno, uid, reply, rpdate)
 	    VALUES

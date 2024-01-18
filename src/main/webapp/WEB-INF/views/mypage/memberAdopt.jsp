@@ -127,12 +127,13 @@
 		            <c:choose>
 		                <c:when test="${memAdopt.payop eq 'Y'}">결제완료</c:when>
 		                <c:when test="${memAdopt.payop eq 'N'}">결제대기</c:when>
+		                <c:when test="${memAdopt.payop eq 'H'}">환불완료</c:when>
 		            </c:choose>
 		        	</td>
                     <td><fmt:formatDate value="${memAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
                     <td>
                         <c:if test="${memAdopt.sub_state eq 'F'}">
-			               <input type="button" value="환불하기" class="btn btn" id="btn_refund" name="btn_refund" onclick="refundProc()">
+			               <input type="button" value="환불하기" class="btn btn" id="btn_refund" name="btn_refund" onclick="cancelPay('${memAdopt.uid}')">
 			            </c:if>
                     </td>
                 </tr>
@@ -144,6 +145,7 @@
 	</div>
 	
  <script>
+ 
  
  
  $("#btn_adUpdate").click(function(){
@@ -173,53 +175,54 @@
             }
         }//success end
     });//ajax end
-    
-	 
-	 
-	 
  })//click end
  
  
  
- function refundProc() {
-		
+ function cancelPay(uid) {
+	 
+	 //alert("Uid 값: " + uid); //kim9595
+	 
 		if(!confirm("환불을 진행하시겠습니까?")){
 			return false;
-		}
+		}//if end
 		
-		/*
-		let u_id = $("#uid").text();
-		let order_no = $("#orderno").text();
-		let order_class = $("#orderclass a").text();
-		let order_total = $("#ordertotal").text();
-		let order_status = $("#orderstatus").text();
-		$.ajax({
-			url : "/payment/cancelPay",
-			type : "POST",
-			dataType: "json",
-			data : {
-				u_id: u_id,
-				order_no: order_no,
-				order_class: order_class,
-				order_total: order_total,
-				order_status: order_status,
-			}, // 전달되는 데이터
-	        success: function (rsp) {
-	            // 서버 응답에 대한 처리 로직을 여기에 추가
-	            if(rsp.cnt == 1){
-					alert(rsp.msg);
-					$("#orderstatus").text(rsp.status);
-				} else {
-					alert(rsp.msg);
-					$("#orderstatus").text(rsp.status);
-				}
-	        },
-	        error: function () {
-	            console.log("서버 오류");
-	        }
-		})
-		*/
- }//refundProc() end
+		var params = {
+			    imp_uid: imp_uid,
+			    amount: 100
+			};
+
+			$.ajax({
+			    url: "/mypage/cancelPay",
+			    type: "POST",
+			    contentType: "application/json; charset=utf-8",
+			    data: JSON.stringify(params),
+			    dataType: "json",
+			    success: function (rsp) {
+		        // 서버 응답을 확인하고 적절한 동작 수행
+	            if (rsp.status === "success") {
+	                alert("환불이 성공적으로 처리되었습니다.");
+	                // 환불 성공에 따른 추가 동작 수행
+	                //결제 상태 환불 완료로 바꿔줌
+	                /*
+	                $.ajax({
+				    url: "/mypage/updatePayop",
+				    type: "get",
+				    data: {uid: uid},
+				    success: function (rsp) {
+	                	alert("결제 상태 변경 성공");
+				    }
+				    */
+	            } else {
+	                alert("환불 처리에 실패했습니다. 에러 메시지: " + rsp.message);
+	            }//if end	
+			    },
+			    error: function (error) {
+			        console.log(error);
+			    }
+			}); //ajax end
+		
+ }//caencelPay() end
 	 
  </script>
 

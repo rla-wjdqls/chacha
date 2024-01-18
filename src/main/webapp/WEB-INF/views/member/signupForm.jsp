@@ -228,7 +228,7 @@
       
 		<!-- signupform -->
         <form class="login__register" id="login-in" method="post" action="insert" onsubmit="return checkSignup()">
-          <h1 class="login__title">회원가입</h1>
+          <h1 class="login__title">회원가입</h1><br>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
             <input type="text" placeholder="이름" class="login__input" name="uname" id="uname" required>

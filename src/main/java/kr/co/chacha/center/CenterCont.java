@@ -106,7 +106,7 @@ public class CenterCont {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(data);
+		//System.out.println(data);
 		return data;
 	}
 	

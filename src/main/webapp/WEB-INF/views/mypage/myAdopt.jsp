@@ -82,6 +82,7 @@
 		            <c:choose>
 		                <c:when test="${myAdopt.payop eq 'Y'}">결제완료</c:when>
 		                <c:when test="${myAdopt.payop eq 'N'}">결제대기</c:when>
+		                <c:when test="${memAdopt.payop eq 'H'}">환불완료</c:when>
 		            </c:choose>
 		        	</td>
                     <td><fmt:formatDate value="${myAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
@@ -126,6 +127,9 @@ function requestPay() {
                         url: "/payment/verify/" + rsp.imp_uid,
                         type: "POST",
                     }).done(function(data) {
+                    	alert(rsp.imp_uid);  //imp_620437863810
+                    	//alert(merchant_uid); //p20240117225037
+                    	
                         // 결제 금액과 검증 금액 확인 
                         if(rsp.paid_amount == data.response.amount){
                         	
@@ -136,7 +140,7 @@ function requestPay() {
                             msg += '\n결제 금액: ' + rsp.paid_amount + '원';
                             
                             alert(msg);
-                            succeedPay();
+                            succeedPay(rsp.imp_uid);
                             
                         } else {
                             alert("결제 검증 실패");
@@ -155,12 +159,14 @@ function requestPay() {
     });
 }
 
-function succeedPay(){
+function succeedPay(imp_uid){
 	//alert("succedpay" + params);
+	//alert(imp_uid);
     $.ajax({
         url: '/mypage/payUpdate',
         type: 'POST',
-        //async: true,
+        //contentType: 'application/json',  // Set the content type to JSON
+        //data: JSON.stringify({ 'imp_uid': imp_uid }), 
         success: function(response){
             if(response.result == "success"){
                 let msg = "결제 및 검증이 완료되었습니다."

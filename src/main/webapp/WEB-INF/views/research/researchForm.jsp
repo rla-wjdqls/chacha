@@ -206,7 +206,6 @@ function researchrInsert(insertData){
 	   }//success end
 	}); //ajax() end	
     
-    
 }//researchrInsert() end
 
 

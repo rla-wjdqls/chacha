@@ -18,12 +18,12 @@
 		<h4>회원탈퇴</h4><br>
 		<p>회원님의 소중한 정보를 안전하게 관리하세요.</p>
 		<br><hr><br>
-		<div class="container-line">
+		<div class="container-myinfo1">
 			<h5>회원 탈퇴 하시려면 비밀번호를 입력하셔야 합니다.<h5>
 			<br>
 			<form class="withcheck" id="withwcheck" action="myInfoWithdraw" method="POST" onsubmit="return checkWithdraw()" >
 				<input type="password" placeholder="비밀번호를 입력해주세요" name="passwd" id="passwd">
-				<input type="submit" value="확인" class="login__button">
+				<input type="submit" value="확인" class="btn" >
 			</form>
 		</div>
 		</div>

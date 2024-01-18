@@ -17,7 +17,7 @@
       <br><br><br>
       <div class="login__forms">
 		<!--login form -->
-		<form class="login__register" id="login-in" action="newfindIDResult" method="post" onsubmit="return findIDCheck()" >
+		<form class="login__register" id="login-in" action="findIDResult" method="post" onsubmit="return findIDCheck()" >
 			<h1 class="login__title">아이디 찾기</h1>
           <div class="login__box">
             <i class='bx bx-user login__icon'></i>
