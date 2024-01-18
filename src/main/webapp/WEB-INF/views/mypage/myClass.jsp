@@ -28,10 +28,28 @@
 	        <tbody>
 	            <c:forEach items="${myClassList}" var="myedu" >
 	                <tr>
-	                    <td>${myedu.eduop}</td>
+	                    <td>
+	                    <c:choose>
+				                <c:when test="${myedu.eduop != dog}">
+				                    고양이 교육 강의
+				                </c:when>
+				                <c:otherwise>
+				                    강아지 교육 강의
+				                </c:otherwise>
+				            </c:choose>
+				            </td>
 	                    <td>${myedu.eduno}</td>
-			            <td th:text="${myedu.score >= 60 ? '수료완료' : '미수료'}"></td>		       	   		
-	                    <td><fmt:formatDate value="${myedu.edu_date}" pattern="yyyy-MM-dd" /></td>
+			            <td>
+				            <c:choose>
+				                <c:when test="${myedu.score >= 60}">
+				                    수료완료
+				                </c:when>
+				                <c:otherwise>
+				                    미수료
+				                </c:otherwise>
+				            </c:choose>
+			        	</td>		       	   		
+	                    <td>${myedu.edu_date}</td>
 	                </tr>
 	            </c:forEach>
 	        </tbody>

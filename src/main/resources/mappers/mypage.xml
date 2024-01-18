@@ -14,10 +14,10 @@
  </select> -->
  
  <select id="myeduList" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT myno, uid, eduop, eduno, score, edu_date
-	FROM myeducation
+ 	SELECT uid, eduop, eduno, score, edu_date
+	FROM education
 	WHERE uid = #{uid}
-	ORDER BY edu_date		
+	ORDER BY edu_date	
  </select>
  
  
