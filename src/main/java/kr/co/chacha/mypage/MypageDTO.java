@@ -3,7 +3,8 @@ package kr.co.chacha.mypage;
 import java.util.Date;
 
 public class MypageDTO {
-
+	
+	/*
 	//내 강의실
     private int myno;
     private String uid;
@@ -12,7 +13,15 @@ public class MypageDTO {
     private Date mydate;
     private String mystate;
     private Date mycomple;
-    
+    */
+	
+	//내 강의실
+    private int myno;
+    private String uid;
+    private String eduop;
+    private int eduno;
+    private int score;
+    private String edu_date;
     
     //봉사글
     private String stitle;
@@ -223,53 +232,43 @@ public class MypageDTO {
 	}
 
 
-	public String getEduno() {
+	public String getEduop() {
+		return eduop;
+	}
+
+
+	public void setEduop(String eduop) {
+		this.eduop = eduop;
+	}
+
+
+	public int getEduno() {
 		return eduno;
 	}
 
 
-	public void setEduno(String eduno) {
+	public void setEduno(int eduno) {
 		this.eduno = eduno;
 	}
 
 
-	public String getMycon() {
-		return mycon;
+	public int getScore() {
+		return score;
 	}
 
 
-	public void setMycon(String mycon) {
-		this.mycon = mycon;
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 
-	public Date getMydate() {
-		return mydate;
+	public String getEdu_date() {
+		return edu_date;
 	}
 
 
-	public void setMydate(Date mydate) {
-		this.mydate = mydate;
-	}
-
-
-	public String getMystate() {
-		return mystate;
-	}
-
-
-	public void setMystate(String mystate) {
-		this.mystate = mystate;
-	}
-
-
-	public Date getMycomple() {
-		return mycomple;
-	}
-
-
-	public void setMycomple(Date mycomple) {
-		this.mycomple = mycomple;
+	public void setEdu_date(String edu_date) {
+		this.edu_date = edu_date;
 	}
 
 

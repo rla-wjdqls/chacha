@@ -11,6 +11,16 @@ CREATE TABLE `myeducation` (
     `mycomple` DATETIME NULL
 );
 
+--내강의실 테이블
+CREATE TABLE `myeducation` (
+    `myno` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `uid` VARCHAR(20) NOT NULL,
+    `eduop`  VARCHAR(5) NOT NULL,
+    `eduno` INT(5) NOT NULL,
+    `score` INT(3)  NOT NULL,
+    `edu_date` DATETIME NOT NULL
+)ENGINE=MyISAM DEFAULT CHARSET="utf8";
+
 --봉사신청내역 테이블 
 CREATE TABLE `servicea` (
     `sano` INT(5) NOT NULL AUTO_INCREMENT PRIMARY KEY,
