@@ -30,7 +30,7 @@
 	                <tr>
 	                    <td>
 	                    <c:choose>
-				                <c:when test="${myedu.eduop != dog}">
+				                <c:when test="${myedu.eduop != 'dog'}">
 				                    고양이 교육 강의
 				                </c:when>
 				                <c:otherwise>
