@@ -359,21 +359,10 @@
 
 .container-1 {
   width: 100%;
-  display: flex;
+  display: table-cell;
   align-items: center;
-  /* justify-content: space-around; */
+  justify-content: space-around;
 }
-
-.container-1 img {
-  max-width: 50%;
-  height: auto;
-  margin-right: 20px; /* 이미지와 텍스트 사이 여백 조절 */
-}
-
-.container-1 table {
-  width: 50%;
-}
-
 
 
 .anidt {
@@ -381,7 +370,7 @@
     background-image: linear-gradient(to top, #f2f2f2, #ffffff);
     padding: 5px 10px; 
     float: left;
-    width: 50%;
+    width: 36%;
     height: 44px;
     line-height: 34px; 
     clear: left;
@@ -391,7 +380,7 @@
     font-size: 16px;
     border: 1px solid #e4e4e4;
     float: left;
-    width: 50%;
+    width: 64%;
     height: 44px;
     line-height: 44px;
     border-left: 0px solid transparent;

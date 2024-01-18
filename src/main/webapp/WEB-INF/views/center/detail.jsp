@@ -139,7 +139,7 @@ function detail(matchingAnimal) {
              <img src="/storage/${detail.anipic}" style="float: left; margin-right: 20px;" width="270px" alt="이미지">
  		 </div>
  		 <div class="container-1 rotate-text">
- 		 <dl class="anidl" style="float: left">
+ 		 <dl class="anidl">
                <dt class="anidt">나이</dt>
                <dd class="anidd" id="anidd">${detail.age}살</dd>
          </dl>
@@ -185,8 +185,8 @@ function detail(matchingAnimal) {
                <dd class="anidd">${detail.happenPlace}</dd>
           </dl>
           <dl class="anidl" >
-               <dt class="anidt">보호센터</dt>
-               <dd class="anidd">${detail.careNm} (Tel : ${detail.careTel}  )</dd>
+               <dt class="anidt">특징</dt>
+               <dd class="anidd">${detail.intro}</dd>
           </dl>
 		</div>
 	</form>
@@ -276,7 +276,7 @@ function detail(matchingAnimal) {
 			<hr>
 	         	<div>
 	            <p style="text-align: center">
-	            	${detail.intro}
+	            	문의사항은 채팅을 이용해주세요.
 	            </p>
 	            </div>
 	 </div>
