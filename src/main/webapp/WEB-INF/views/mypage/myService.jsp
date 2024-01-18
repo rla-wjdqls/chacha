@@ -3,6 +3,7 @@
     
 <%@ include file="./mypageHeader.jsp" %>
 
+
 <!-- 본문 시작 template.jsp -->
 
 
@@ -26,6 +27,7 @@
                 <th>신청날짜</th>
                 <th>신청시간</th>
                 <th>신청상태</th>
+                <th></th>
             </tr>
         </thead>
   		<tbody>
@@ -41,6 +43,7 @@
 		                <c:when test="${myservice.astate eq 'X'}">신청취소</c:when>
 		            </c:choose>
 		        	</td>
+		        	 <td><input type="button" value="신청취소" class="btn" name="btn_sc" id="btn_sc" data-uid="${myservice.uid}" data-sano="${myservice.sano}"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -50,6 +53,57 @@
 
 
 <!-- 본문 끝 -->
+
+
+<script>
+
+
+$("#btn_sc").click(function(){
+	 //alert();
+	 
+	if(!confirm("정말 봉사 취소 하시겠습니까?")){
+		return false;
+	}//if end
+	 
+   let uid = $(this).data("uid");
+   let sano = $(this).data("sano");
+   //alert(uid); 	  //kim9595
+   //alert(sano); 	  //kim9595
+	   $.ajax({
+       url: '/mypage/srvDelete',
+       type: 'post',
+       //dataType: 'json',
+       data: { 'uid': uid, 'sano': sano},
+       error: function (error) {
+           alert('에러!');
+           console.log(error);
+       },
+       success: function (result) {
+       	if (result === 'success') {
+               alert('선택하신 봉사활동이 취소 되었습니다');
+               console.log(result);
+           } else {
+               alert('서버에서 성공 메시지를 올바르게 반환하지 않았습니다.');
+           }
+       }//success end
+       
+   });//ajax end  
+	     
+   
+})//click end
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
 
 
 <%@ include file="./mypageFooter.jsp" %>      

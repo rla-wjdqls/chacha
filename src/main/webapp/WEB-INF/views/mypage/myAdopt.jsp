@@ -52,7 +52,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    신청상태 : 신청완료 -> 심사중 -> 심사완료 -> 입양가능 -> 책임금결제 -> 입양완료
+    신청상태 : 신청완료 -> 심사중 -> 심사완료 -> 책임금결제 -> 입양완료
     <br><hr><br><br>
     	<h4>책임금 결제 내역</h4>
 		<p>나의 책임금 결제 내역을 확인 할 수 있습니다</p>
@@ -82,7 +82,7 @@
 		            <c:choose>
 		                <c:when test="${myAdopt.payop eq 'Y'}">결제완료</c:when>
 		                <c:when test="${myAdopt.payop eq 'N'}">결제대기</c:when>
-		                <c:when test="${memAdopt.payop eq 'H'}">환불완료</c:when>
+		                <c:when test="${myAdopt.payop eq 'H'}">환불완료</c:when>
 		            </c:choose>
 		        	</td>
                     <td><fmt:formatDate value="${myAdopt.pdate}" pattern="yyyy-MM-dd" /></td>

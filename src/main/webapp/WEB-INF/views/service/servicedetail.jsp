@@ -130,9 +130,13 @@ function sdelete() {
 	  
 	  <tr>
 		<th>상태</th>
-		<td>${serviced.sstate}</td>
+	  	<td class="myservice_state">
+	 		 <c:choose>
+				<c:when test="${serviced.sstate eq 'I'}">모집중</c:when>
+				<c:when test="${serviced.sstate eq 'E'}">모집마감</c:when>
+			</c:choose>
+		</td>
 	  </tr>
-	  
 	  <tr>
 		<th>조회수</th>
 		<td>${serviced.cnt}</td>

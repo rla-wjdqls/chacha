@@ -200,6 +200,28 @@ public class MypageCont {
     }//myClassList() end
     
     
+    //봉사취소 
+  	@PostMapping("/mypage/srvDelete")
+  	@ResponseBody
+  	public String srvDelete(String uid, int sano) {
+  		
+  		//int sano_i = Integer.valueOf(sano); 
+  		
+  		//System.out.println(uid);       //kim9595
+  		//System.out.println(sano);      //1
+  		
+  		MypageDTO mypageDTO = new MypageDTO();
+  		mypageDTO.setUid(uid);
+  		mypageDTO.setSano(sano);
+  		
+  		mypageDao.srvDelete(mypageDTO);
+  		
+  		return "success";
+  	}//srvDelete() end
+    
+  
+    
+    
     //봉사신청내역(파트너)
     @RequestMapping("/mypage/memberService")
     public ModelAndView serviceList(HttpSession session) {
@@ -461,12 +483,10 @@ public class MypageCont {
 	@ResponseBody
 	public Map<String, String> payUpdate(HttpSession session){
 		
-		//System.out.println("111");
 		//String imp_uid = requestBody.get("imp_uid");
 	    //System.out.println(imp_uid);
 	    
 	    String s_id = (String) session.getAttribute("s_id");
-	    
 	    //MypageDTO mypageDTO = new MypageDTO();
 	    
 	    //payment, adopt 테이블 update
@@ -547,7 +567,6 @@ public class MypageCont {
  	return "success";
  	
  	}//updatePayop() end
- 	
  	
  	
 	

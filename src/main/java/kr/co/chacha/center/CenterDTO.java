@@ -30,14 +30,31 @@ public class CenterDTO {
     private Date sub_date; //신청날짜
     private String subpic; //신청파일
     
+    //결제 
+    private String payno; //결제번호
+    
     //생성자 함수 
     public CenterDTO() {}
 
     
     //getter/setter
+    
+    
+    
+    
 	public String getAnino() {
 		return anino;
 	}
+
+	public String getPayno() {
+		return payno;
+	}
+
+
+	public void setPayno(String payno) {
+		this.payno = payno;
+	}
+
 
 	public void setAnino(String anino) {
 		this.anino = anino;

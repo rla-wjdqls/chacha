@@ -156,7 +156,6 @@
     let sub_state = subStateSelect.val();
     //alert(uid); 	  //kim9595
     //alert(sub_state); //F
-    
 	   $.ajax({
         url: '/mypage/memAdoptModify',
         type: 'get',
@@ -180,7 +179,6 @@
  
  
  function cancelPay(uid) {
-	 
 	 //alert("Uid 값: " + uid); //kim9595
 	 
 		if(!confirm("환불을 진행하시겠습니까?")){

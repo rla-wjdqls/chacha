@@ -54,11 +54,17 @@
  </select>
  	
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT sa.sano, sa.sadate, sc.time, sa.astate , sc.stitle, sa.sno
+	SELECT sa.sano, sa.sadate, sc.time, sa.astate , sc.stitle, sa.sno, sa.uid
 	FROM servicea sa JOIN service sc
 	ON sa.sno = sc.sno
 	WHERE sa.uid = #{uid}	
  </select>
+ 
+ 
+  <delete id="srvDelete" parameterType="kr.co.chacha.mypage.MypageDTO">
+  	DELETE FROM servicea
+	WHERE uid = #{uid} AND sano = #{sano}
+ </delete>
  
  
   <select id="memberService" resultType="kr.co.chacha.mypage.MypageDTO">
@@ -90,7 +96,7 @@
  
   <select id="commentCnt" resultType="Int">
   	SELECT COUNT(*)
-  	FROM adopcm
+  	FROM comment
   	WHERE uid = #{uid};
  </select>
  
@@ -109,10 +115,10 @@
 	
  
  <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
-	FROM adopcm ac join adoprv ar
-	ON ac.arno = ar.arno
-	WHERE ac.uid = #{uid}
+	SELECT cm.commentNo, cm.content, ar.artitle, cm.commentDate
+	FROM comment cm join adoprv ar
+	ON cm.uid = ar.uid
+	WHERE cm.uid = #{uid}
  </select>
  
  
@@ -138,7 +144,7 @@
  
  
  <select id="memAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid, py.imp_uid
+	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid
 	FROM payment py
 	JOIN (
 			 SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date
