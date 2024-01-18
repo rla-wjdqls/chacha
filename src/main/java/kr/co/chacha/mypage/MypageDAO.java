@@ -62,6 +62,13 @@ SqlSession sqlSession;
 		return sqlSession.selectList("mypage.myService", s_id);
 	}//mvsList() end
 	
+	
+	//봉사취소 
+	public int srvDelete(MypageDTO mypagedto) {
+		return sqlSession.delete("mypage.srvDelete", mypagedto);
+	}
+	
+	
 	//입양글 목록(관리자)
 	public List<MypageDTO> myLista(String s_id) {		
 		return sqlSession.selectList("mypage.myLista", s_id);

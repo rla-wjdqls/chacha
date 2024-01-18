@@ -54,11 +54,17 @@
  </select>
  	
   <select id="mysvList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT sa.sano, sa.sadate, sc.time, sa.astate , sc.stitle, sa.sno
+	SELECT sa.sano, sa.sadate, sc.time, sa.astate , sc.stitle, sa.sno, sa.uid
 	FROM servicea sa JOIN service sc
 	ON sa.sno = sc.sno
 	WHERE sa.uid = #{uid}	
  </select>
+ 
+ 
+  <delete id="srvDelete" parameterType="kr.co.chacha.mypage.MypageDTO">
+  	DELETE FROM servicea
+	WHERE uid = #{uid} AND sano = #{sano}
+ </delete>
  
  
   <select id="memberService" resultType="kr.co.chacha.mypage.MypageDTO">

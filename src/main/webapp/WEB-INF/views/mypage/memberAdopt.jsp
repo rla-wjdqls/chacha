@@ -180,7 +180,6 @@
  
  
  function cancelPay(uid) {
-	 
 	 //alert("Uid 값: " + uid); //kim9595
 	 
 		if(!confirm("환불을 진행하시겠습니까?")){

@@ -200,6 +200,28 @@ public class MypageCont {
     }//myClassList() end
     
     
+    //봉사취소 
+  	@GetMapping("/mypage/srvDelete")
+  	@ResponseBody
+  	public String srvDelete(String uid, String sano) {
+  		
+  		int sano_i = Integer.valueOf(sano); 
+  		
+  		System.out.println(uid);       //kim9595
+  		System.out.println(sano_i); //F
+  		
+  		MypageDTO mypageDTO = new MypageDTO();
+  		mypageDTO.setUid(uid);
+  		mypageDTO.setSano(sano_i);
+  		
+  		//mypageDao.srvDelete(mypageDTO);
+  		
+  		return "success";
+  	}//srvDelete() end
+    
+  
+    
+    
     //봉사신청내역(파트너)
     @RequestMapping("/mypage/memberService")
     public ModelAndView serviceList(HttpSession session) {
@@ -547,7 +569,6 @@ public class MypageCont {
  	return "success";
  	
  	}//updatePayop() end
- 	
  	
  	
 	
