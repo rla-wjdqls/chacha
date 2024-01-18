@@ -144,7 +144,7 @@
  
  
  <select id="memAdopt" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid, py.imp_uid
+	SELECT AA.apno, AA.anipic, AA.sub_cont, AA.sub_state, AA.subpic, py.payno, py.payop, py.pdate, py.paymet, py.patamt, AA.sub_date, py.uid
 	FROM payment py
 	JOIN (
 			 SELECT ap.apno, an.anipic, ap.sub_cont, ap.sub_state, ap.subpic, ap.sub_date

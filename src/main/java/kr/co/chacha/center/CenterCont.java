@@ -139,7 +139,7 @@ public class CenterCont {
 	@PostMapping("/saveAnimal")
 	@ResponseBody
 	public String animalInsert(@RequestBody Map<String, List<Map<String, Object>>> requestMap,  HttpServletRequest req) {
-			System.out.println(requestMap);
+			//System.out.println(requestMap);
 			List<Map<String, Object>> animals = requestMap.get("animals");
 			
 			for (Map<String, Object> animal : animals) {
@@ -198,7 +198,7 @@ public class CenterCont {
 						}//if end
 						
 						centerDto.setAnipic(anipic);
-						System.out.println("아" +centerDto.getAnino());
+						//System.out.println("아" +centerDto.getAnino());
 					    centerDao.insert(centerDto);	
 					}
 				    
@@ -224,7 +224,7 @@ public class CenterCont {
 			anino_ = "a" +anino;
 		}
 		
-		System.out.println(anino_);
+		//System.out.println(anino_);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/detail");
@@ -313,16 +313,6 @@ public class CenterCont {
 		
 	}//logout end
 	
-//	@PostMapping("eduCheck")
-//	@ResponseBody
-//	public int eduCheck(String anino, HttpSession session) {
-//		String uid = (String)session.getAttribute("s_id");
-//		String str = anino.substring(0, 1);
-//		int cnt = centerDao.check(uid, str);
-//		
-//		return cnt;
-//		
-//	}
 	
 	private int sequenceNumber = 1;//신청번호의 시작 순차 번호
 	@PostMapping("/adoptInsert")
