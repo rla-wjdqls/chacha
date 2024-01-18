@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../header.jsp"%>
 
+<% 
+	String s_mlevel = (String)session.getAttribute("s_mlevel");
+%>
 
 
 <nav class="navbar navbar-light bg-light" style="height: 42px">
@@ -30,9 +33,13 @@
 </div>
 
 <div style="text-align: right; height: 50px;">
-	<p>
-		<input type="button" onclick="idPopup()" value="글쓰기">
-	</p>
+		<c:choose>
+			<c:when test="${s_mlevel eq 'b'}">
+				<p>
+					<input type="button" onclick="idPopup()" value="글쓰기">
+				</p>		
+		    </c:when>
+		</c:choose>
 </div>
 <%
 // 세션에서 로그인 여부 확인

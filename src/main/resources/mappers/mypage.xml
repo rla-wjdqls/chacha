@@ -29,19 +29,19 @@
  
  
   <select id="myHelp" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT textno, texttitle, uploaddate, cnt, uid
+	SELECT textno, texttitle, uploaddate, cnt_help, uid
 	FROM help
 	WHERE uid = #{uid}		
  </select>
  
   <select id="myAdoprv" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT arno, artitle, ardate, cnt, uid
+	SELECT arno, artitle, ardate, cnt_adoprv, uid
 	FROM adoprv
 	WHERE uid = #{uid}
  </select>
  
  <select id="myListc" resultType="kr.co.chacha.mypage.MypageDTO">
- 	SELECT hp.textno, hp.texttitle, hp.uploaddate, hp.cnt, ar.arno, ar.artitle, ar.ardate, ar.cnt as cnt_ar, ar.uid, hp.cnt as cnt_hp 
+ 	SELECT hp.textno, hp.texttitle, hp.uploaddate, ar.arno, ar.artitle, ar.ardate, ar.cnt_adoprv, ar.uid, hp.help
 	FROM help hp JOIN adoprv ar
 	ON hp.uid = ar.uid
 	WHERE ar.uid = #{uid} 
@@ -115,9 +115,9 @@
 	
  
  <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT cm.commentNo, cm.content, ar.artitle, cm.commentDate
-	FROM comment cm join adoprv ar
-	ON cm.uid = ar.uid
+	SELECT cm.commentNo, cm.content, hp.texttitle, cm.commentDate
+	FROM comment cm JOIN help hp
+	ON cm.textno = hp.textno
 	WHERE cm.uid = #{uid}
  </select>
  

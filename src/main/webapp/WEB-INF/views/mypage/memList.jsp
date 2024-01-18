@@ -125,7 +125,7 @@
         success: function (result) {
         	if (result === 'success') {
                 alert('회원등급이 성공적으로 변경되었습니다');
-                //console.log(result);
+                location.reload();
             } else {
                 alert('서버에서 성공 메시지를 올바르게 반환하지 않았습니다.');
             }

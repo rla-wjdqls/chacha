@@ -3,6 +3,11 @@
 <%@ page import="kr.co.chacha.service.ServiceDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<% 
+	String s_mlevel = (String)session.getAttribute("s_mlevel");
+%>    
+    
 <%@ include file="../header.jsp" %>
 <script>
 //페이지 로드 시 함수 실행
@@ -175,13 +180,35 @@ function checkPerson() {
 </form>              
 
 <div style="text-align:center; height: 50px; padding-top: 15px;">
-	<p><a href="/service/serviceUpdate?sno=${serviced.sno}">
-	<input type="button" value="수정"></a> &nbsp;
-	<input type="button" onclick="sdelete();" value="삭제"> &nbsp;
-	<a href="#" onclick="apply(); return false;"><input type="button" value="신청"></a></p>
+	<c:choose>
+			<c:when test="${s_mlevel eq 'b'}">
+				<p>
+				<a href="/service/serviceUpdate?sno=${serviced.sno}">
+				<input type="button" value="수정"></a> &nbsp;
+				<input type="button" onclick="sdelete();" value="삭제">
+				</p>		
+		    </c:when>
+		</c:choose>
+		<c:choose>
+			<c:when test="${s_mlevel eq 'c'}">
+				<p>
+					<a href="#" onclick="apply(); return false;"><input type="button" value="신청"></a>
+				</p>		
+		    </c:when>
+		</c:choose>
 </div>
 
 
 
 
 <%@ include file="../footer.jsp" %>      
+
+
+
+
+
+
+
+
+
+
