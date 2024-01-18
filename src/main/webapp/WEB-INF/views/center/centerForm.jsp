@@ -29,12 +29,17 @@ $(document).ready(function () {
         });
 });
 
+let scroll = true;
+//스크롤 이벤트 핸들러 함수
 window.onscroll = function() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        // 스크롤이 페이지 하단에 오면 페이지 +1, 다음 페이지 데이터 요청
-        pageNo++;
-        getDate();
-    }
+	if(scroll){
+		if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+	        // 스크롤이 페이지 하단에 오면 페이지 +1, 다음 페이지 데이터 요청
+	        pageNo++;
+	        getDate();
+	    }
+	}
+    
 };
 
 function getDate() {
@@ -90,7 +95,78 @@ function animalList(animalData) {
     })
 }
 
+let dogUrl = "";
+function dogApi() {
+		dogUrl = "http://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&numOfRows=50&upkind=417000&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+		console.log("개 api" + dogUrl)
+	    fetch(dogUrl)
+	        .then(response => {
+	            if (!response.ok) {
+	                throw new Error("api 실패");
+	            }
+	            return response.json(); //json 형태로 파싱
+	        })
+	        .then(data => {
+	        	let animalData = data.response.body.items.item;
+	            console.log(animalData);
+	            saveDB(animalData);
+	            $("#container-fixed").empty();
+	            animalList(animalData);
+	            scroll = false;
+	        })
+	        .catch(error => {
+	            console.error("에러", error);
+	        });
 
+}
+
+let catUrl = "";
+function catApi() {
+	catUrl = "https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&numOfRows=50&upkind=422400&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+		console.log("고양 api" + catUrl)
+	    fetch(catUrl)
+	        .then(response => {
+	            if (!response.ok) {
+	                throw new Error("api 실패");
+	            }
+	            return response.json(); //json 형태로 파싱
+	        })
+	        .then(data => {
+	        	let animalData = data.response.body.items.item;
+	            console.log(animalData);
+	            saveDB(animalData);
+	            $("#container-fixed").empty();
+	            animalList(animalData);
+	            scroll = false;
+	        })
+	        .catch(error => {
+	            console.error("에러", error);
+	        });
+}
+
+let othersUrl = "";
+function others() {
+	othersUrl = "https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?_type=json&numOfRows=50&upkind=429900&serviceKey=2Yq147AHzw7RELqQbw8mBFIO24qYRSmJDPNo6U6tbgdKEZbEG5Jeo14JXirYpgzfN6n7%2Bf0NO016YigMyNSTWQ%3D%3D";
+		console.log("기타 api" + othersUrl)
+	    fetch(othersUrl)
+	        .then(response => {
+	            if (!response.ok) {
+	                throw new Error("api 실패");
+	            }
+	            return response.json(); //json 형태로 파싱
+	        })
+	        .then(data => {
+	        	let animalData = data.response.body.items.item;
+	            console.log(animalData);
+	            saveDB(animalData);
+	            $("#container-fixed").empty();
+	            animalList(animalData);
+	            scroll = false;
+	        })
+	        .catch(error => {
+	            console.error("에러", error);
+	        });
+}
 </script>
 <!-- 본문 시작 template.jsp -->
 <hr style="margin-bottom: 0">
@@ -115,15 +191,10 @@ function animalList(animalData) {
 		<nav class="navbar navbar-light i-nav">
   			<div class="input-container" style="display: inline-block;">
 		      <form class="d-flex">
-		        <input class="form-control me-2" type="text" placeholder="Search" style="width: 300px" >
-		        <c:choose>
-		        <c:when test="${s_mlevel eq 'c' or empty s_mlevel}">
-		        <button class="btn btn-success rotate-text" type="submit">검색</button>
-		        </c:when>
-		        <c:otherwise>
-		        <button class="btn btn-warning rotate-text" type="button" onclick="location.href='centerWrite'">동물 추가</button>
-		        </c:otherwise>
-		        </c:choose>
+		        <button class="btn btn-outline-warning" type="button" onclick="window.location.reload()">전체</button>&nbsp; &nbsp;
+		        <button class="btn btn-outline-warning" type="button" onclick="dogApi()">강아지</button>&nbsp; &nbsp;
+		        <button class="btn btn-outline-warning" type="button" onclick="catApi()">고양이</button>&nbsp; &nbsp;
+		        <button class="btn btn-outline-warning" type="button" onclick="others()">기타</button>
 		      </form>
 		      
 		    </div>
