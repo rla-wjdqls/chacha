@@ -3,6 +3,7 @@
     
 <%@ include file="../header.jsp" %>
 
+
 <!-- 본문 시작 template.jsp -->
 <div class="container mt-2">
 
@@ -12,7 +13,7 @@
       <div class="row">
 		<div class="col-sm-12">
 			<form name="adoptfrm" id="adoptfrm" method="post" action="insert" enctype="multipart/form-data">
-				<!-- <input type="hidden" name="textno" id="textno" value="${helpup.textno}"/> 동물 부모글번호-->	
+				<input type="hidden" name="anino" id="anino" value=""/>
 				<table class="table table-hover">
 					<tr>
 						<td>제목</td>
@@ -33,15 +34,19 @@
 						<input type="submit" value="완료" class="btn btn-success"></td>
 					</tr>
 
-					
 					</tbody>
 				</table>
 			</form>
 		</div>
 	</div>
 </div>
-	
 
+<script>
+   let anino = sessionStorage.getItem('anino');
+   console.log(anino);
+   $("#anino").val(anino);
+   
+</script>
 <!-- 본문 끝 -->
 
 

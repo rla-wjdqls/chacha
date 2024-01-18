@@ -4,8 +4,8 @@
 <mapper namespace="adopt">
 	
 	<insert id="insert" parameterType="kr.co.chacha.adopt.AdoptDTO">
-		INSERT INTO adoprv(uid, artitle, arinfo, ardate, arimg)
-		VALUES(#{uid},#{artitle},#{arinfo},NOW(),#{arimg})
+		INSERT INTO adoprv(anino, uid, artitle, arinfo, ardate, arimg)
+		VALUES(#{anino}, #{uid}, #{artitle}, #{arinfo}, NOW(), #{arimg})
 	</insert>
 
 	<select id="adoptReview" resultType="kr.co.chacha.adopt.AdoptDTO">
