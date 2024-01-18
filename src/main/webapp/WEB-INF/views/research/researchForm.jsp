@@ -228,7 +228,7 @@ function researchrList() {
                 if (value.qcont !== prevQuestion) {
                     questionNo++;
                     if (questionNo === currentQuestionIndex + 1) {
-                        a += '질문' + questionNo + ': ' + value.qcont + '<br><br>';
+                        a += '질문' + questionNo + ':' + value.qcont + '<br><br>';
                     }//if end
                 }//if end
 

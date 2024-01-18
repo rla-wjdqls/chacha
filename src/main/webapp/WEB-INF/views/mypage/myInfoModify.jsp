@@ -74,7 +74,7 @@
           </div>
           
           <!--추후 클릭 시 버튼 변경 추   -->
-          <input type="button" value="주소찾기" class="btn btn" onclick="DaumPostcode()">
+          <input type="button" value="주소찾기" class="btn btn_jscg" onclick="DaumPostcode()">
 		  <button type="submit" class="btn btn_em" id="btn_sj">수정</button>
 		</form>
 		<br>

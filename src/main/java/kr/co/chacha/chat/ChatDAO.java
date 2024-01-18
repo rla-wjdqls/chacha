@@ -17,6 +17,9 @@ public class ChatDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
+	public String selectAmem() {
+		return sqlSession.selectOne("chat.selectAmem");
+	}
 	public Integer selectChatRoom(ChatDTO chatDto){
 		Integer result = sqlSession.selectOne("chat.selectChatRoom", chatDto);
 		if(result == null) {

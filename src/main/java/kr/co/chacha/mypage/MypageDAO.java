@@ -46,6 +46,11 @@ SqlSession sqlSession;
 	public List<MypageDTO> myAdoprv(String s_id) {		
 		return sqlSession.selectList("mypage.myAdoprv", s_id);
 	}//myAdoprvList() end
+	
+	public List<MypageDTO> myListc(String s_id) {		
+		return sqlSession.selectList("mypage.myListc", s_id);
+	}//myListc() end
+	
 
 	//봉사신청내역
 	public List<MypageDTO> mysvList(String s_id) {		
@@ -189,24 +194,35 @@ SqlSession sqlSession;
 		sqlSession.update("mypage.adoptUpdate", s_id);
 	}//memberWithdra() end
 	
-	/*
+	
 	// 페이징,검색
-		public List<MypageDTO> searchList(int currentPage, int limit, String type, String keyword) {
-			int offset = (currentPage - 1) * limit;
-			RowBounds rowBounds = new RowBounds(offset, limit);
+	public List<MypageDTO> searchList(int currentPage, int limit, String type, String keyword, HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
+		
+	    int offset = (currentPage - 1) * limit;
+	    RowBounds rowBounds = new RowBounds(offset, limit);
 
-			MypageDTO mypagedto = new MypageDTO();
-			if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
-				mypagedto.setType(type);
-				mypagedto.setKeyword(keyword);
-			}
-			return sqlSession.selectList("service.searchList", mypagedto, rowBounds);
-		}
+	    MypageDTO mypagedto = new MypageDTO();
+	    mypagedto.setUid(s_id); 
 
-		public int searchListCnt() {
-			return sqlSession.selectOne("service.searchListCnt");
-		}
-		*/
+	    if (!StringUtils.isEmpty(type) && !StringUtils.isEmpty(keyword)) {
+	        mypagedto.setType(type);
+	        mypagedto.setKeyword(keyword);
+	    }
+
+	    return sqlSession.selectList("mypage.searchList", mypagedto, rowBounds);
+	}
+
+	public int searchListCnt(String uid, String type, String keyword, HttpSession session) {
+		String s_id = (String)session.getAttribute("s_id");
+		
+	    MypageDTO mypagedto = new MypageDTO();
+	    mypagedto.setUid(s_id);
+
+	    return sqlSession.selectOne("mypage.searchListCnt", mypagedto);
+	}
+
+	
 	
 }//end
 

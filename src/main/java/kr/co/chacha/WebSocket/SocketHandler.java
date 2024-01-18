@@ -99,7 +99,8 @@ public class SocketHandler extends TextWebSocketHandler {
 				    roomno = 0; // 예외 처리 또는 기본값 설정
 				}
 
-				String receiver_id = (String) obj.get("receiver_id");
+				String receiver_id = chatDao.selectAmem();
+//				String receiver_id = (String) obj.get("receiver_id");
 				String sender_id = (String) obj.get("uid");
 				String mcontent = (String) obj.get("content");
 				

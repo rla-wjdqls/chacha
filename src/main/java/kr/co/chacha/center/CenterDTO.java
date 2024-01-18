@@ -5,18 +5,22 @@ import java.util.Date;
 public class CenterDTO {
 	
 	//동물 (글)
-	private String anino;
-    private String uid;
-    private String aname;
-    private int age;
-    private String gender;
-    private String weight;
-    private String genop;
-    private String vac;
-    private String intro;
-    private String anipic;
-    private String adopt; 
-    private int cnt;
+	private String anino; //동물번호
+    private String uid;	  //회원번
+    private String aname; //종류
+    private String age;		//나이 
+    private String gender;  //성별
+    private String weight;	//몸무
+    private String genop;	//중성화여부
+    private String intro;	//특징
+    private String anipic;	//사진
+    private String noticeSdt; // 공고 시작
+    private String noticeEdt; // 공고 끝
+    private String happenPlace; // 발견장소
+    private String careNm; // 보호센터
+    private String careTel; // 전화번호
+    private String colorCd; // 색상
+    private String adopt; //상태
     private String adopt_pos;
     
     //입양신청
@@ -55,11 +59,11 @@ public class CenterDTO {
 		this.aname = aname;
 	}
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 
@@ -87,14 +91,6 @@ public class CenterDTO {
 		this.genop = genop;
 	}
 
-	public String getVac() {
-		return vac;
-	}
-
-	public void setVac(String vac) {
-		this.vac = vac;
-	}
-
 	public String getIntro() {
 		return intro;
 	}
@@ -109,22 +105,6 @@ public class CenterDTO {
 
 	public void setAnipic(String anipic) {
 		this.anipic = anipic;
-	}
-
-	public String getAdopt() {
-		return adopt;
-	}
-
-	public void setAdopt(String adopt) {
-		this.adopt = adopt;
-	}
-
-	public int getCnt() {
-		return cnt;
-	}
-
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
 	}
 
 	public String getAdopt_pos() {
@@ -180,19 +160,96 @@ public class CenterDTO {
 		return subpic;
 	}
 
-
 	public void setSubpic(String subpic) {
 		this.subpic = subpic;
 	}
 
-	//toString()
+	public String getNoticeSdt() {
+		return noticeSdt;
+	}
+
+
+	public void setNoticeSdt(String noticeSdt) {
+		this.noticeSdt = noticeSdt;
+	}
+
+
+	public String getNoticeEdt() {
+		return noticeEdt;
+	}
+
+
+	public void setNoticeEdt(String noticeEdt) {
+		this.noticeEdt = noticeEdt;
+	}
+
+
+	public String getHappenPlace() {
+		return happenPlace;
+	}
+
+
+	public void setHappenPlace(String happenPlace) {
+		this.happenPlace = happenPlace;
+	}
+
+
+	public String getCareNm() {
+		return careNm;
+	}
+
+
+	public void setCareNm(String careNm) {
+		this.careNm = careNm;
+	}
+
+
+	public String getCareTel() {
+		return careTel;
+	}
+
+
+	public void setCareTel(String careTel) {
+		this.careTel = careTel;
+	}
+
+
+	public String getColorCd() {
+		return colorCd;
+	}
+
+
+	public void setColorCd(String colorCd) {
+		this.colorCd = colorCd;
+	}
+
+	
+
+	public String getAdopt() {
+		return adopt;
+	}
+
+
+	public void setAdopt(String adopt) {
+		this.adopt = adopt;
+	}
+
+
 	@Override
 	public String toString() {
 		return "CenterDTO [anino=" + anino + ", uid=" + uid + ", aname=" + aname + ", age=" + age + ", gender=" + gender
-				+ ", weight=" + weight + ", genop=" + genop + ", vac=" + vac + ", intro=" + intro + ", anipic=" + anipic
-				+ ", adopt=" + adopt + ", cnt=" + cnt + ", adopt_pos=" + adopt_pos + ", apno=" + apno + ", sub_cont="
-				+ sub_cont + ", sub_state=" + sub_state + ", sub_date=" + sub_date + ", subpic=" + subpic + "]";
+				+ ", weight=" + weight + ", genop=" + genop + ", intro=" + intro + ", anipic=" + anipic + ", noticeSdt="
+				+ noticeSdt + ", noticeEdt=" + noticeEdt + ", happenPlace=" + happenPlace + ", careNm=" + careNm
+				+ ", careTel=" + careTel + ", colorCd=" + colorCd + ", adopt=" + adopt + ", adopt_pos=" + adopt_pos
+				+ ", apno=" + apno + ", sub_cont=" + sub_cont + ", sub_state=" + sub_state + ", sub_date=" + sub_date
+				+ ", subpic=" + subpic + "]";
 	}
+
+
+	
+
+
+	
 
 
 }

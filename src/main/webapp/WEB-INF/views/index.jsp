@@ -133,6 +133,8 @@
 	    }//researchrList() end
 	    
     
+	    
+	    
 	    function getRandomPosts() {
 	    	//alert("?");
 			$.ajax({
@@ -155,7 +157,7 @@
 							a += "<img class='img-fluid' src='/storage/" + value.anipic + "' >" ;
 						}
 						a += "<div class='team-social text-center'>" ;
-						a += "<a class='btn btn-square btn-outline-primary border-2 m-1' href='center/detail?anino=" + value.anino + "'>글 보러가기</a>" ;
+						a += "<a class='btn btn-square btn-outline-primary border-2 m-1' href='center/jdetail?anino=" + value.anino + "'>글 보러가기</a>" ;
 						a += "</div>" ;
 						a += "</div>" ;
 						a += " <div class='bg-light text-center p-4'>" ;
@@ -538,11 +540,7 @@
      	</div>
        </div>
     </div>
-    
-    
-    
-  
-    
+      
     <!-- Testimonial End -->
 
 

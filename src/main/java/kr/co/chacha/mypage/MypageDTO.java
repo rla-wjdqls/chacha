@@ -40,7 +40,7 @@ public class MypageDTO {
     //입양동물
     private String anino;
     private String aname;
-    private int age;
+    private String age;
     private String gender;
     private String weight;
     private String genop;
@@ -113,6 +113,13 @@ public class MypageDTO {
     private Date s_mdate;
  	private String s_mlevel;
     
+	//페이징
+	private int limit = 10;
+	private int offset = 0;
+	
+	//검색
+	private String type;
+	private String keyword;
  	
     
     
@@ -122,8 +129,51 @@ public class MypageDTO {
 
 
 	//getter, setter
+	
+	
+	
 	public int getMyno() {
 		return myno;
+	}
+
+
+	public int getLimit() {
+		return limit;
+	}
+
+
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
+
+
+	public int getOffset() {
+		return offset;
+	}
+
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 
 
@@ -272,12 +322,12 @@ public class MypageDTO {
 	}
 
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

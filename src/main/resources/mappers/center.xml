@@ -2,15 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="center">
- 	<insert id="insert" parameterType="java.util.Map">
-	 	INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos, animal_date)
-		VALUES (#{anino}, #{uid}, #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{vac}, #{intro}, #{anipic}, #{adopt}, #{adopt_pos}, NOW())
+ 	<insert id="insert" parameterType="kr.co.chacha.center.CenterDTO">
+	 	<!-- INSERT INTO animal (anino, uid, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos, animal_date)
+		VALUES (#{anino}, #{uid}, #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{vac}, #{intro}, #{anipic}, #{adopt}, #{adopt_pos}, NOW()) -->
+ 		
+ 		INSERT INTO animal (anino, aname, age, gender, weight, genop, intro, anipic, noticeSdt, noticeEdt, happenPlace, careNm, careTel, colorCd, adopt, animal_date)
+ 		VALUES (#{anino}, #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{intro}, #{anipic}, #{noticeSdt}, #{noticeEdt}, #{happenPlace}, #{careNm}, #{careTel}, #{colorCd}, #{adopt}, NOW())
+ 	
+ 	
  	</insert>
  	
- 	
+ 	<select id="selectAnino" parameterType="java.util.Map" resultType="Int">
+ 		SELECT COUNT(anino)
+ 		FROM animal
+ 		WHERE anino = #{desertionNo}
+ 	</select>
  	
  	<select id="form" resultType="java.util.Map" parameterType="java.util.Map">
- 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
+ 		SELECT anino, aname, age, gender, weight, genop, intro, anipic, adopt, cnt, adopt_pos, animal_date
  		FROM animal
  		ORDER BY animal_date desc
  		LIMIT #{offset}, #{size};
@@ -18,15 +27,15 @@
  	</select>
  	
  	<select id="randomList" resultType="java.util.Map">
- 		SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos, animal_date
+ 		SELECT anino, aname, age, gender, gender, weight, genop, intro, anipic, adopt, animal_date, noticeSdt, noticeEdt, happenPlace, careNm, careTel, colorCd
  		FROM animal
- 		WHERE adopt_pos = 'Y'
- 		ORDER BY rand() 
- 		LIMIT 4
+		WHERE DATE(noticeEdt) >= CURDATE()
+		ORDER BY DATE(noticeEdt) ASC
+		LIMIT 4;
  	</select>
  	
  	<select id="detail" resultType="java.util.Map">
- 		SELECT anino, aname, age, uid, gender, weight, genop, vac, intro, anipic, adopt, cnt, adopt_pos
+ 		SELECT anino, aname, age, gender, gender, weight, genop, intro, anipic, adopt, animal_date, noticeSdt, noticeEdt, happenPlace, careNm, careTel, colorCd
  		FROM animal
  		WHERE anino = #{anino}
  	</select>

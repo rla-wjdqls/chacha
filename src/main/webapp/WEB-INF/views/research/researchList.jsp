@@ -30,7 +30,8 @@
 		</nav>
 <br>
 <div class="container text-center"> <h3>설문조사</h3>
-	<div class="container">
+
+<div class="container">
 		<p>설문조사 페이지 입니다</p>
 		<hr><br>
 		<c:choose>
@@ -40,19 +41,18 @@
 		    </div>
 		    </c:when>
 		</c:choose>
-		<br><br>
-		<div class="container-line">
-			<h5>여러분의 의견을 들려주세요~</h5>
-			<br>
-			<!--db 불러오기 -->
+<br><br>
+<div class="container-line" id="surveyContainer">
+<h5>여러분의 의견을 들려주세요~</h5>
+<br>
 <div class="row">
     <c:forEach items="${researchList}" var="list">
         <c:choose>
             <c:when test="${list.rop eq 'Y' || (list.rop eq 'N' && s_mlevel eq 'b')}">
                 <div class="col-sm-4">
-                    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;">
+                    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px;" width:300px;>
                         <h5>${list.rtitle}</h5>
-                        <p>${list.rdate1} ~ ${list.rdate2}</p>
+                        <p>${list.rdate1} ~<br> ${list.rdate2}</p>
                         <c:choose>
                             <c:when test="${list.rstate eq 'I'}">진행중</c:when>
                             <c:when test="${list.rstate eq 'E'}">마감</c:when>
@@ -73,7 +73,10 @@
         </c:choose>
     </c:forEach>
 </div>
+</div>
+</div>
 
+</div>
 
 	<br><br><br>
 
