@@ -171,16 +171,65 @@ public class ServiceCont {
 
 	}// 화면전환
 
-	@PostMapping("/servicea")
-	public ModelAndView servicea(ServiceDTO servicedto) {
-		ModelAndView mav = new ModelAndView();
-		serviceDAO.insertServicea(servicedto);
-		// 인서트하고 나서 모집인원과 신청인원 계산해서 기존글에 모집마감 업데이트 여기에 로직 추가
-		mav.setViewName("redirect:/service/serviceList");
-		return mav;
+	//로그인한 ID가 봉사신청
+	/*
+	 * @PostMapping("/servicea") public ModelAndView servicea(ServiceDTO servicedto,
+	 * HttpServletRequest request) {
+	 * 
+	 * ModelAndView mav = new ModelAndView(); // 세션에서 로그인한 사용자의 아이디 가져오기 HttpSession
+	 * session = request.getSession(); String loggedInUserId = (String)
+	 * session.getAttribute("s_id"); // 세션에서 사용자 아이디 가져오기
+	 * 
+	 * if (loggedInUserId != null) { // 로그인한 사용자의 아이디를 ServiceDTO 객체에 설정
+	 * servicedto.setUid(loggedInUserId);
+	 * 
+	 * // 봉사 신청 정보를 데이터베이스에 저장 serviceDAO.insertServicea(servicedto);
+	 * 
+	 * // 추가 로직 (모집인원과 신청인원 계산 등) // ...
+	 * 
+	 * // 리다이렉트 설정 mav.setViewName("redirect:/service/serviceList"); } else { //
+	 * 로그인하지 않은 경우, 로그인 페이지 또는 적절한 페이지로 리다이렉트 mav.setViewName("redirect:/login"); }
+	 * 
+	 * return mav; }
+	 */
+	
+	//소셜추가
+	 @PostMapping("/servicea")
+	    public ModelAndView servicea(ServiceDTO servicedto, HttpServletRequest request) {
+	        ModelAndView mav = new ModelAndView();
+	        HttpSession session = request.getSession();
+	        
+	        // 기존 세션에서 로그인한 사용자의 아이디를 가져옵니다.
+	        String loggedInUserId = (String) session.getAttribute("s_id");
 
-	}// 화면전환
+	        // 소셜 미디어 로그인 정보를 세션에서 가져옵니다. (예: 소셜 미디어에서 제공하는 사용자 고유 ID)
+	        String socialUserId = (String) session.getAttribute("social_user_id");
 
+	        // 소셜 미디어 로그인이 되어있거나 일반 로그인이 되어있는 경우
+	        if (loggedInUserId != null || socialUserId != null) {
+	            // 로그인한 사용자의 아이디를 ServiceDTO 객체에 설정
+	            servicedto.setUid(loggedInUserId != null ? loggedInUserId : socialUserId);
+
+	            // 봉사 신청 정보를 데이터베이스에 저장
+	            serviceDAO.insertServicea(servicedto);
+
+	            // 추가 로직 (모집인원과 신청인원 계산 등)
+	            // ...
+
+	            mav.setViewName("redirect:/service/serviceList");
+	        } else {
+	            // 로그인하지 않은 경우, 로그인 페이지 또는 적절한 페이지로 리다이렉트
+	            mav.setViewName("redirect:/login");
+	        }
+
+	        return mav;
+	    }
+
+	    // ... 기존 메소드들 ...
+
+
+
+	
 	// 인원체크 ajax
 	@PostMapping("/checkPerson")
 	@ResponseBody
