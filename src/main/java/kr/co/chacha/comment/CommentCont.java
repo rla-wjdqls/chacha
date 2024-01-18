@@ -36,12 +36,9 @@ public class CommentCont {
 		CommentDTO commentDto = new CommentDTO();
 		commentDto.setTextno(textno);
 		commentDto.setContent(content);
-		//String uid=(String)session.getAttribute("s_id");
-		//commentDto.setUid(uid);
-	//로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 된다
-	//->예)session.getAttribute("s_id") 활용
-	//->여기서는 따로 폼을 구현하지 않았기 때문에 임시로 "test"라 한다
-
+		
+		String uid=(String)session.getAttribute("s_id");
+		commentDto.setUid(uid);
 		int cnt = commentDao.commentInsert(commentDto);
 
 		return cnt;
