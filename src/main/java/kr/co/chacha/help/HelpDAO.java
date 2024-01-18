@@ -63,21 +63,10 @@ public class HelpDAO {
 		return sqlSession.selectOne("help.detail", textno);
 	}
 	
-	public HelpDTO update(HelpDTO helpdto){
-		return sqlSession.selectOne("help.update", helpdto);
+	public int update(Map<String, Object> map){
+		return sqlSession.update("help.update", map);
 	}
-	
-	 public HelpDTO update(Map<String, Object> map) {
-	        // HelpDTO 객체 생성
-	        HelpDTO helpDTO = new HelpDTO();
-	        
-	        // map에서 필요한 데이터를 HelpDTO에 매핑
-	        //helpDTO.setSomeProperty(map.get("someProperty"));
-	        // 나머지 매핑 작업 수행
-	        
-	        // 이미 있는 update 메서드 호출
-	        return update(helpDTO);
-	    }
+
 	 
 	public HelpDTO delete(int textno){
 		return sqlSession.selectOne("help.delete", textno);

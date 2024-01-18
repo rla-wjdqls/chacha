@@ -9,7 +9,7 @@
 	<div class="text-center"><h2>목격/제보글 수정</h2></div>
 	
 		
-			<form name="helpfrm" id="helpfrm" method="post" action="/help/helpUpdate" enctype="multipart/form-data">	
+			<form name="helpfrm" id="helpfrm" method="post" action="update" enctype="multipart/form-data">	
 			<input type="hidden" name="textno" id="textno" value="${helpup.textno}"/>
 				<div class="col-sm-12">
 				<table class="table">
