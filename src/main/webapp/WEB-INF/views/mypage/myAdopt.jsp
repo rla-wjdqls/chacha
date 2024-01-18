@@ -22,26 +22,26 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myAdoptList1}" var="myAdopt1" >
+            <c:forEach items="${myAdoptList}" var="myAdopt" >
                 <tr>
-                    <td>${myAdopt1.apno}</td>
-                    <td><a href="/center/jdetail?anino=${myAdopt1.anino}"><img src="/storage/${myAdopt1.anipic}" class="anipic"></a></td>
-                    <td><fmt:formatDate value="${myAdopt1.sub_date}" pattern="yyyy-MM-dd" /></td>
-                   <td>${myAdopt1.subpic}</td>
+                    <td>${myAdopt.apno}</td>
+                    <td><a href="/center/jdetail?anino=${myAdopt.anino}"><img src="/storage/${myAdopt.anipic}" class="anipic"></a></td>
+                    <td><fmt:formatDate value="${myAdopt.sub_date}" pattern="yyyy-MM-dd" /></td>
+                   <td>${myAdopt.subpic}</td>
                     <td>
 		            <c:choose>
-		                <c:when test="${myAdopt1.sub_state eq 'S'}">신청완료</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'P'}">심사중</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'W'}">심사완료</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'C'}">책임금결제</c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'F'}">입양완료
+		                <c:when test="${myAdopt.sub_state eq 'S'}">신청완료</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'P'}">심사중</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'W'}">심사완료</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'C'}">책임금결제</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'F'}">입양완료
 		                <br>
             			<a href="/adopt/adoptForm" class="btn btn-primary"></c:when>
-		                <c:when test="${myAdopt1.sub_state eq 'X'}">입양불가능</c:when>
+		                <c:when test="${myAdopt.sub_state eq 'X'}">입양불가능</c:when>
 		            </c:choose>         
 		        	</td>
 		        	 <td>
-			            <c:if test="${myAdopt1.sub_state eq 'C'}">
+			            <c:if test="${myAdopt.sub_state eq 'C'}">
 			                <input type="button" value="결제하기" class="btn btn" id="btn_payment" name="btn_payment" onclick="requestPay()">
 			            </c:if>
 			        </td>
@@ -70,24 +70,24 @@
             </tr>
         </thead>
   		<tbody>
-            <c:forEach items="${myAdoptList}" var="myAdopt" >
+            <c:forEach items="${myAdoptListp}" var="myAdoptp" >
                 <tr>
-                    <td>${myAdopt.payno}</td>
-                    <td>${myAdopt.apno}</td>
-                    <td><fmt:formatNumber value="${myAdopt.patamt}" pattern="##,###"/></td>
+                    <td>${myAdoptp.payno}</td>
+                    <td>${myAdoptp.apno}</td>
+                    <td><fmt:formatNumber value="${myAdoptp.patamt}" pattern="##,###"/></td>
                     <td>
 		            <c:choose>
-		                <c:when test="${myAdopt.paymet eq 'cd'}">카드</c:when>
+		                <c:when test="${myAdoptp.paymet eq 'cd'}">카드</c:when>
 		            </c:choose>
 		        	</td>
                     <td>
 		            <c:choose>
-		                <c:when test="${myAdopt.payop eq 'Y'}">결제완료</c:when>
-		                <c:when test="${myAdopt.payop eq 'N'}">결제대기</c:when>
-		                <c:when test="${myAdopt.payop eq 'H'}">환불완료</c:when>
+		                <c:when test="${myAdoptp.payop eq 'Y'}">결제완료</c:when>
+		                <c:when test="${myAdoptp.payop eq 'N'}">결제대기</c:when>
+		                <c:when test="${myAdoptp.payop eq 'H'}">환불완료</c:when>
 		            </c:choose>
 		        	</td>
-                    <td><fmt:formatDate value="${myAdopt.pdate}" pattern="yyyy-MM-dd" /></td>
+                    <td><fmt:formatDate value="${myAdoptp.pdate}" pattern="yyyy-MM-dd" /></td>
                 </tr>
             </c:forEach>
         </tbody>

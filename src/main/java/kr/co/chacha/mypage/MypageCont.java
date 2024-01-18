@@ -121,8 +121,8 @@ public class MypageCont {
 		String s_id = (String)session.getAttribute("s_id");
     	ModelAndView mav = new ModelAndView();
     	mav.setViewName("mypage/myAdopt");
+    	mav.addObject("myAdoptListp", mypageDao.myAdoptp(s_id));
     	mav.addObject("myAdoptList", mypageDao.myAdopt(s_id));
-    	mav.addObject("myAdoptList1", mypageDao.myAdopt1(s_id));
         return mav; 
 	}//myAdopt() end
 	

@@ -8,8 +8,6 @@
  		
  		INSERT INTO animal (anino, aname, age, gender, weight, genop, intro, anipic, noticeSdt, noticeEdt, happenPlace, careNm, careTel, colorCd, adopt, animal_date)
  		VALUES (#{anino}, #{aname}, #{age}, #{gender}, #{weight}, #{genop}, #{intro}, #{anipic}, #{noticeSdt}, #{noticeEdt}, #{happenPlace}, #{careNm}, #{careTel}, #{colorCd}, #{adopt}, NOW())
- 	
- 	
  	</insert>
  	
  	<select id="selectAnino" parameterType="java.util.Map" resultType="Int">
@@ -81,10 +79,10 @@
  	</insert>
  	
  	<insert id="paymentInsert" parameterType="kr.co.chacha.center.CenterDTO">
- 		INSERT INTO payment (uid, payno, apno)
- 		VALUES (#{uid}, #{payno}, #{apno})
+ 		INSERT INTO payment (uid, apno, payno)
+ 		VALUES (#{uid}, #{apno}, #{payno})
  	</insert>
- 	
+
  	
  	<!-- <select id="check" parameterType="java.util.Map" resultType="int">
  		SELECT count(SUM(score))
