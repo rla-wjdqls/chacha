@@ -3,6 +3,11 @@ package kr.co.chacha.center;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,21 +71,9 @@ public class CenterCont {
 	    
 	    ModelAndView mav = new ModelAndView();
 	    mav.setViewName("center/centerForm");
-	    mav.addObject("form", centerDao.form(page, size));
+	    //mav.addObject("form", centerDao.form(page, size));
 	    //mav.addObject("list", centerDao.form(page, size));
 	    return mav;
-	}
-	
-	@PostMapping("/centerForm")
-	@ResponseBody
-	public List<CenterDTO> centerList(Integer pageNumber, Integer pageItem) {
-	    int page = pageNumber;
-    	int size = pageItem;    
-	    
-	    //System.out.println(page);
-	    //System.out.println(size);
-	    
-	    return centerDao.form(page, size);
 	}
 	
 	@GetMapping("/indexRandom")
@@ -115,39 +108,138 @@ public class CenterCont {
 		return "center/centerWrite";
 	}
 	
-	@PostMapping("/insert")
-	public String insert(@RequestParam Map<String, Object> map,
-						 @RequestParam(name="img") MultipartFile img,
-						 HttpServletRequest req,
-						 HttpSession session) {
-		String anipic="-";
-		//System.out.println(img);
-		//System.out.println(anipic);
-		//System.out.println(img.getOriginalFilename());
-		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
-			anipic=img.getOriginalFilename();
-			try {
-				ServletContext application = req.getSession().getServletContext();
-				String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
-				img.transferTo(new File(path + File.separator + anipic)); //파일저장
-			}catch(Exception e) {
-				System.out.println(e);
-			}//try end
-		}//if end
-		
-		map.put("anipic", anipic);
-		String uid=(String)session.getAttribute("s_id");
-		map.put("uid", uid);
-		
-		centerDao.insert(map);
-		return "redirect:/center/centerForm";
+//	@PostMapping("/insert")
+//	public String insert(@RequestParam Map<String, Object> map,
+//						 @RequestParam(name="img") MultipartFile img,
+//						 HttpServletRequest req,
+//						 HttpSession session) {
+//		String anipic="-";
+//		//System.out.println(img);
+//		//System.out.println(anipic);
+//		//System.out.println(img.getOriginalFilename());
+//		if(img != null || !img.isEmpty()) { //파일이 존재한다면 (없지 않다면)
+//			anipic=img.getOriginalFilename();
+//			try {
+//				ServletContext application = req.getSession().getServletContext();
+//				String path = application.getRealPath("/storage"); //실제 파일은 이곳에 저장
+//				img.transferTo(new File(path + File.separator + anipic)); //파일저장
+//			}catch(Exception e) {
+//				System.out.println(e);
+//			}//try end
+//		}//if end
+//		
+//		map.put("anipic", anipic);
+//		String uid=(String)session.getAttribute("s_id");
+//		map.put("uid", uid);
+//		
+//		centerDao.insert(map);
+//		return "redirect:/center/centerForm";
+//	}
+	
+	@PostMapping("/saveAnimal")
+	@ResponseBody
+	public String animalInsert(@RequestBody Map<String, List<Map<String, Object>>> requestMap,  HttpServletRequest req) {
+			System.out.println(requestMap);
+			List<Map<String, Object>> animals = requestMap.get("animals");
+			
+			for (Map<String, Object> animal : animals) {
+				CenterDTO centerDto = new CenterDTO();
+				
+				String kindCd = (String) animal.get("kindCd");
+				String desertionNo = null;
+				if (kindCd.startsWith("[개]"))  {
+					desertionNo = "d" +(String) animal.get("desertionNo");
+				}else if(kindCd.startsWith("[고양이]")){
+					desertionNo = "c" +(String) animal.get("desertionNo");
+					
+				}else if(kindCd.startsWith("[기타]")){
+					desertionNo = "a" +(String) animal.get("desertionNo");
+					
+				}
+				
+				if(desertionNo != null) {
+					int cnt = centerDao.selectAnino(desertionNo);
+				    if(cnt == 0) {
+						centerDto.setAnino(desertionNo);
+						centerDto.setAname((String) animal.get("kindCd"));
+						centerDto.setAge((String) animal.get("age"));
+						centerDto.setGender((String) animal.get("sexCd"));
+						centerDto.setWeight((String) animal.get("weight"));
+						centerDto.setGenop((String) animal.get("neuterYn"));
+						centerDto.setIntro((String) animal.get("specialMark"));
+						centerDto.setNoticeSdt((String) animal.get("noticeSdt"));
+						centerDto.setNoticeEdt((String) animal.get("noticeEdt"));
+						centerDto.setHappenPlace((String) animal.get("happenPlace"));
+						centerDto.setCareNm((String) animal.get("careNm"));
+						centerDto.setCareTel((String) animal.get("careTel"));
+						centerDto.setColorCd((String) animal.get("colorCd"));
+						centerDto.setAdopt((String) animal.get("processState"));
+						centerDto.setAge((String) animal.get("age"));
+						//System.out.println(aname);
+						String anipic = "-";
+						if (animal.get("popfile") != null) {
+						    String popfileUrl = (String) animal.get("popfile");
+
+						    // 이미지 다운로드 및 저장 로직
+						    try (InputStream in = new URL(popfileUrl).openStream()) {
+						        ServletContext application = req.getSession().getServletContext();
+						        String path = application.getRealPath("/storage"); // 실제 파일은 이곳에 저장
+
+						        // 파일명 추출 (URL에서 마지막 슬래시 뒤의 부분을 파일명으로 사용)
+						        String fileName = popfileUrl.substring(popfileUrl.lastIndexOf('/') + 1);
+
+						        // 파일 저장
+						        Files.copy(in, Paths.get(path, fileName), StandardCopyOption.REPLACE_EXISTING);
+
+						        anipic = fileName;
+						    } catch (Exception e) {
+						        System.out.println(e);
+						    }
+						}//if end
+						
+						centerDto.setAnipic(anipic);
+						System.out.println("아" +centerDto.getAnino());
+					    centerDao.insert(centerDto);	
+					}
+				    
+				}
+				}
+
+		return "성공";
 	}
 	
 	@GetMapping("/detail")
-	public ModelAndView detail(String anino) {
+	@ResponseBody
+	public ModelAndView detail(String anino, String kindCd) {
+		System.out.println(anino);
+		System.out.println(kindCd);
+		String anino_ = "";
+		
+		if (kindCd.startsWith("[개]"))  {
+			anino_ = "d" + anino;
+		}else if(kindCd.startsWith("[고양이]")){
+			anino_ = "c" + anino;
+			
+		}else if(kindCd.startsWith("[기타]")){
+			anino_ = "a" +anino;
+		}
+		
+		System.out.println(anino_);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("center/detail");
-		mav.addObject("center", centerDao.detail(anino));
+		mav.addObject("detail", centerDao.detail(anino_));
+		return mav;
+		
+	}
+	
+	@GetMapping("/jdetail")
+	public ModelAndView detail(String anino) {
+		System.out.println(anino);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("center/detail");
+		mav.addObject("detail", centerDao.detail(anino));
 		return mav;
 		
 	}

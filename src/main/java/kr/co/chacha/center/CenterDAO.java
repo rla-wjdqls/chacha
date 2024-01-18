@@ -19,10 +19,13 @@ public class CenterDAO {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public void insert(Map<String, Object> map) {
-		sqlSession.insert("center.insert", map);
-	}//insert() end
+//	public void insert(Map<String, Object> map) {
+//		sqlSession.insert("center.insert", map);
+//	}//insert() end
 	
+	public void insert(CenterDTO centerDto) {
+		 sqlSession.insert("center.insert",centerDto);
+	}
 	
 	public List<CenterDTO> form(int page, int size){
 		int offset = (page - 1) * size;
@@ -32,6 +35,10 @@ public class CenterDAO {
 	    parameterMap.put("size", size);
 	    
 		return sqlSession.selectList("center.form", parameterMap);
+	}
+	
+	public int selectAnino(String desertionNo) {
+		return sqlSession.selectOne("center.selectAnino", desertionNo);
 	}
 	
 	public List<CenterDTO> randomList(){

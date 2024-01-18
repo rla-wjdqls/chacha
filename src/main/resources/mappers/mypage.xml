@@ -55,7 +55,7 @@
  </select>
  
  <select id="myLista" resultType="kr.co.chacha.mypage.MypageDTO">
-  	SELECT anino, aname, age, gender, weight, genop, vac, intro, anipic, adopt, adopt_pos, animal_date
+  	SELECT anino, aname, age, gender, weight, genop, intro, anipic, adopt, animal_date
   	FROM animal
   	WHERE uid = #{uid}
   	ORDER BY animal_date DESC
@@ -63,7 +63,7 @@
  
  
  <select id="jjimList" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, ani.vac, jj.anino, jj.jjimno
+	SELECT ani.anipic, ani.aname, ani.gender, ani.age, ani.weight, ani.genop, jj.anino, jj.jjimno
 	FROM jjim jj join animal ani
 	ON jj.anino = ani.anino
 	WHERE jj.uid = #{uid}

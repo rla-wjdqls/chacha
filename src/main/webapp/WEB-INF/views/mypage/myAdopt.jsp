@@ -25,7 +25,7 @@
             <c:forEach items="${myAdoptList1}" var="myAdopt1" >
                 <tr>
                     <td>${myAdopt1.apno}</td>
-                    <td><a href="/center/detail?anino=${myAdopt1.anino}"><img src="/storage/${myAdopt1.anipic}" class="anipic"></a></td>
+                    <td><a href="/center/jdetail?anino=${myAdopt1.anino}"><img src="/storage/${myAdopt1.anipic}" class="anipic"></a></td>
                     <td><fmt:formatDate value="${myAdopt1.sub_date}" pattern="yyyy-MM-dd" /></td>
                    <td>${myAdopt1.subpic}</td>
                     <td>
