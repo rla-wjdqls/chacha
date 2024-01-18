@@ -95,6 +95,16 @@
 		SELECT COUNT(*) cnt FROM servicea
 		WHERE sno = #{sno}
 	</select>
+	
+	<!-- 인원 중복체크 -->
+	<select id="checkDuplicationPersonCnt" parameterType="kr.co.chacha.service.ServiceDTO" resultType="int">
+		SELECT COUNT(*) CNT FROM servicea
+		WHERE 1=1
+		AND uid= #{uid}
+		AND sno= #{sno}
+		AND DATE_FORMAT(sadate, '%Y-%m-%d') = DATE_FORMAT(#{applyDate}, '%Y-%m-%d')
+		AND astate = 'O'
+	</select>
 </mapper>
  
  

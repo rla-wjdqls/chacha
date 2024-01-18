@@ -76,5 +76,9 @@ public class ServiceDAO {
 	public int checkPersonCnt(int sno) {
 		return sqlSession.selectOne("service.checkPersonCnt", sno);
 	}
+	
+	public int checkDuplicationPersonCnt(ServiceDTO dto) {
+		return sqlSession.selectOne("service.checkDuplicationPersonCnt", dto);
+	}
 
 }// end
