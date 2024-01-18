@@ -23,7 +23,7 @@ public class ChatCont {
 	@PostMapping("/chat")
 	public ModelAndView chat(HttpServletRequest req, HttpSession session) {
 		String anino = req.getParameter("anino");
-		String uid2 = req.getParameter("writer");
+		String uid2 = chatDao.selectAmem();
 		String uid = (String)session.getAttribute("s_id");
 		//System.out.println(anino);	//동물글번호 
 		//System.out.println(uid2);	//글작성

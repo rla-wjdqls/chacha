@@ -40,7 +40,7 @@ public class MypageDTO {
     //입양동물
     private String anino;
     private String aname;
-    private int age;
+    private String age;
     private String gender;
     private String weight;
     private String genop;
@@ -322,12 +322,12 @@ public class MypageDTO {
 	}
 
 
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
 
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 

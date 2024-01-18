@@ -23,12 +23,11 @@
             <tr>
             	<th>	</th>
                 <th>사진</th>
-                <th>이름</th>
+                <th>제목</th>
                 <th>성별</th>
                 <th>나이</th>
                 <th>무게</th>
                 <th>중성화여부</th>
-                <th>접종여부</th>
             </tr>
         </thead>     
 		<tbody>
@@ -47,7 +46,7 @@
 					</c:when>	
 					</c:choose>	
 		           </td>
-                   <td><a href="/center/detail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a></td>
+                   <td><a href="/center/jdetail?anino=${jjim.anino}"><img src="/storage/${jjim.anipic}" class="anipic"></a></td>
                    <td>${jjim.aname}</td>
                    <td>
 		            <c:choose>
@@ -61,12 +60,7 @@
                    <c:choose>
 		                <c:when test="${jjim.genop eq 'Y'}">완료</c:when>
 		                <c:when test="${jjim.genop eq 'N'}">미완료</c:when>
-		           </c:choose>
-		           </td>
-		           <td>
-		           <c:choose>
-		                <c:when test="${jjim.vac eq 'Y'}">완료</c:when>
-		                <c:when test="${jjim.vac eq 'N'}">미완료</c:when>
+		                <c:when test="${jjim.genop eq 'U'}">미상</c:when>
 		           </c:choose>
 		           </td>
                 </tr>

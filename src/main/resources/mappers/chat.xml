@@ -3,6 +3,13 @@
  
  <mapper namespace="chat">
  	
+ 	<select id="selectAmem" resultType="String">
+ 		SELECT uid 
+ 		FROM member 
+ 		WHERE mlevel = 'A';
+ 	</select>
+ 	
+ 	
  	<select id="selectChatRoom" resultType="int">
  		SELECT roomno
  		FROM chat
