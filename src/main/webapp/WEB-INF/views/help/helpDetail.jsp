@@ -95,9 +95,15 @@ td {
 			</tr>
 
 			<tr>
-				<th>첨부파일</th>
-				<td colspan="3"><img src="../storage/${helpd.helppic}"
-					width="400"></td>
+			    <th>첨부파일</th>
+			    <td colspan="3">
+			        <c:if test="${helpd.helppic != '-'}">
+			            <img src="../storage/${helpd.helppic}" width="400">
+			        </c:if>
+			        <c:if test="${helpd.helppic == '-'}">
+			            <span>첨부파일이 없습니다.</span>
+			        </c:if>
+			    </td>
 			</tr>
 
 			<tr>
