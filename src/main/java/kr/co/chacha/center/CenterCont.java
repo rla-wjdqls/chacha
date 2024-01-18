@@ -371,13 +371,25 @@ public class CenterCont {
 				//순차 번호 증가
 				String apno = "s" + date + String.format("%02d", count +1);
 				
-				System.out.println(subpic);
-				System.out.println(subCont);
-				System.out.println(apno);
+				//System.out.println(subpic);
+				//System.out.println(subCont);
+				//System.out.println(apno);
 				centerDto.setApno(apno);
 				cnt = centerDao.adoptInsert(centerDto);
 				if(cnt > 0) {
 					System.out.println("신청 완료");
+					//오늘날짜 및 현재시각을 문자열 "년월일시분초"로 구성해서 반환하기
+					//->예)20231123143615
+					SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMddHHmmss");
+					String paydate = dateformat.format(new Date());
+					String payno = "p" + paydate;
+					
+					centerDto.setUid(uid);
+					centerDto.setApno(apno);
+					centerDto.setPayno(payno);
+					
+					centerDao.paymentInsert(centerDto);
+					System.out.println("결제 테이블 insert 완료");
 				}
 			}else {
 				cnt=0;

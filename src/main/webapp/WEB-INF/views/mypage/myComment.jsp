@@ -35,10 +35,10 @@
             <c:forEach items="${myCommentList}" var="mycomment" >
                 <tr>
                     <td><input type="checkbox"></td> <!--삭제기능 넣을 것-->
-                    <td>${mycomment.comno}</td>
-                    <td>${mycomment.adcm}</td>
+                    <td>${mycomment.commentNo}</td>
+                    <td>${mycomment.content}</td>
                     <td>${mycomment.artitle}</td>
-                    <td><fmt:formatDate value="${mycomment.acdate}" pattern="yyyy-MM-dd" /></td>
+                    <td><fmt:formatDate value="${mycomment.commentDate}" pattern="yyyy-MM-dd" /></td>
                 </tr>
             </c:forEach>
         </tbody>

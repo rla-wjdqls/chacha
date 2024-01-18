@@ -207,7 +207,7 @@
 		                    <div class="nav-item dropdown">
 		                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">관리자페이지</a>
 		                        <div class="dropdown-menu bg-light m-0">
-		                            <a href="/mypage/myList_a" class="dropdown-item">내 활동</a>
+		                            <a href="/mypage/myComment" class="dropdown-item">내 활동</a>
 		                            <a href="/mypage/myClass" class="dropdown-item">신청내역</a>
 		                            <a href="/mypage/memList" class="dropdown-item">회원정보</a>
 		                        </div>

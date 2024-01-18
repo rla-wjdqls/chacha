@@ -79,6 +79,13 @@
  		INSERT INTO adopt (uid, anino, apno, sub_cont, sub_state, sub_date, subpic)
  		VALUES (#{uid}, #{anino}, #{apno}, #{sub_cont}, DEFAULT, now(), #{subpic})
  	</insert>
+ 	
+ 	<insert id="paymentInsert" parameterType="kr.co.chacha.center.CenterDTO">
+ 		INSERT INTO payment (uid, payno, apno)
+ 		VALUES (#{uid}, #{payno}, #{apno})
+ 	</insert>
+ 	
+ 	
  	<!-- <select id="check" parameterType="java.util.Map" resultType="int">
  		SELECT count(SUM(score))
 		FROM select uid

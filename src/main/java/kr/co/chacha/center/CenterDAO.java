@@ -75,6 +75,10 @@ public class CenterDAO {
 	public int adoptInsert(CenterDTO centerdto) {
 		return sqlSession.insert("center.adoptInsert", centerdto);
 	}
+	
+	public int paymentInsert(CenterDTO centerdto) {
+		return sqlSession.insert("center.paymentInsert", centerdto);
+	}
 //	public int check(String uid, String str) {
 //		Map<String, Object> params = new HashMap<>();
 //	    params.put("uid", uid);

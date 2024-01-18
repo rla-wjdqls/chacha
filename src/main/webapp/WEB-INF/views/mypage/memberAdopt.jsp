@@ -156,7 +156,6 @@
     let sub_state = subStateSelect.val();
     //alert(uid); 	  //kim9595
     //alert(sub_state); //F
-    
 	   $.ajax({
         url: '/mypage/memAdoptModify',
         type: 'get',

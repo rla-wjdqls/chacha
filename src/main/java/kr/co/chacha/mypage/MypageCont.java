@@ -201,20 +201,20 @@ public class MypageCont {
     
     
     //봉사취소 
-  	@GetMapping("/mypage/srvDelete")
+  	@PostMapping("/mypage/srvDelete")
   	@ResponseBody
-  	public String srvDelete(String uid, String sano) {
+  	public String srvDelete(String uid, int sano) {
   		
-  		int sano_i = Integer.valueOf(sano); 
+  		//int sano_i = Integer.valueOf(sano); 
   		
-  		System.out.println(uid);       //kim9595
-  		System.out.println(sano_i); //F
+  		//System.out.println(uid);       //kim9595
+  		//System.out.println(sano);      //1
   		
   		MypageDTO mypageDTO = new MypageDTO();
   		mypageDTO.setUid(uid);
-  		mypageDTO.setSano(sano_i);
+  		mypageDTO.setSano(sano);
   		
-  		//mypageDao.srvDelete(mypageDTO);
+  		mypageDao.srvDelete(mypageDTO);
   		
   		return "success";
   	}//srvDelete() end
@@ -483,12 +483,10 @@ public class MypageCont {
 	@ResponseBody
 	public Map<String, String> payUpdate(HttpSession session){
 		
-		//System.out.println("111");
 		//String imp_uid = requestBody.get("imp_uid");
 	    //System.out.println(imp_uid);
 	    
 	    String s_id = (String) session.getAttribute("s_id");
-	    
 	    //MypageDTO mypageDTO = new MypageDTO();
 	    
 	    //payment, adopt 테이블 update

@@ -96,7 +96,7 @@
  
   <select id="commentCnt" resultType="Int">
   	SELECT COUNT(*)
-  	FROM adopcm
+  	FROM comment
   	WHERE uid = #{uid};
  </select>
  
@@ -115,10 +115,10 @@
 	
  
  <select id="myComment" resultType="kr.co.chacha.mypage.MypageDTO">
-	SELECT ac.comno, ac.adcm, ar.artitle, ac.acdate
-	FROM adopcm ac join adoprv ar
-	ON ac.arno = ar.arno
-	WHERE ac.uid = #{uid}
+	SELECT cm.commentNo, cm.content, ar.artitle, cm.commentDate
+	FROM comment cm join adoprv ar
+	ON cm.uid = ar.uid
+	WHERE cm.uid = #{uid}
  </select>
  
  

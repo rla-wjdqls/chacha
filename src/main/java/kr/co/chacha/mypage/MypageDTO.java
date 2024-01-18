@@ -64,9 +64,10 @@ public class MypageDTO {
     
     
     //후기댓글 
-    private int comno;
-    private String adcm;
-    private Date acdate;
+    private int commentNo;
+    private String content;
+    private Date commentDate;
+   
     
     
     //목격제보
@@ -134,6 +135,36 @@ public class MypageDTO {
 	
 	public int getMyno() {
 		return myno;
+	}
+
+
+	public int getCommentNo() {
+		return commentNo;
+	}
+
+
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
+
+
+	public String getContent() {
+		return content;
+	}
+
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+
+	public Date getCommentDate() {
+		return commentDate;
+	}
+
+
+	public void setCommentDate(Date commentDate) {
+		this.commentDate = commentDate;
 	}
 
 
@@ -479,36 +510,6 @@ public class MypageDTO {
 
 	public void setLove(int love) {
 		this.love = love;
-	}
-
-
-	public int getComno() {
-		return comno;
-	}
-
-
-	public void setComno(int comno) {
-		this.comno = comno;
-	}
-
-
-	public String getAdcm() {
-		return adcm;
-	}
-
-
-	public void setAdcm(String adcm) {
-		this.adcm = adcm;
-	}
-
-
-	public Date getAcdate() {
-		return acdate;
-	}
-
-
-	public void setAcdate(Date acdate) {
-		this.acdate = acdate;
 	}
 
 

@@ -43,7 +43,7 @@
 		                <c:when test="${myservice.astate eq 'X'}">신청취소</c:when>
 		            </c:choose>
 		        	</td>
-		        	 <td><input type="button" value="신청취소" class="btn" name="btn_sc" id="btn_sc" data-uid="${myservice.uid}" data-uid="${myservice.sano}"></td>
+		        	 <td><input type="button" value="신청취소" class="btn" name="btn_sc" id="btn_sc" data-uid="${myservice.uid}" data-sano="${myservice.sano}"></td>
                 </tr>
             </c:forEach>
         </tbody>
@@ -57,17 +57,21 @@
 
 <script>
 
-/*
+
 $("#btn_sc").click(function(){
 	 //alert();
+	 
+	if(!confirm("정말 봉사 취소 하시겠습니까?")){
+		return false;
+	}//if end
 	 
    let uid = $(this).data("uid");
    let sano = $(this).data("sano");
    //alert(uid); 	  //kim9595
-   	  
+   //alert(sano); 	  //kim9595
 	   $.ajax({
        url: '/mypage/srvDelete',
-       type: 'get',
+       type: 'post',
        //dataType: 'json',
        data: { 'uid': uid, 'sano': sano},
        error: function (error) {
@@ -83,13 +87,12 @@ $("#btn_sc").click(function(){
            }
        }//success end
        
-       
-       
    });//ajax end  
+	     
    
 })//click end
 
-*/
+
 
 </script>
 
