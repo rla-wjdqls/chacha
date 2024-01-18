@@ -2,6 +2,9 @@ package kr.co.chacha.help;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -181,13 +184,67 @@ public class HelpCont {
 			
 		}
 		
-		@PostMapping("/helpUpdate")
-		public ModelAndView helpUpdate(HelpDTO helpdto) {
-			ModelAndView mav = new ModelAndView();
-			helpDAO.update(helpdto);
-			mav.setViewName("redirect:/help/helpList");		
-			return mav;
-		}
+		// 기존 이미지를 삭제하는 메서드
+	    private void deleteImage(String fileName, HttpServletRequest req) {
+	        ServletContext application = req.getSession().getServletContext();
+	        String path = application.getRealPath("/storage"); // 이미지가 저장된 디렉토리
+	        Path filePath = Paths.get(path + File.separator + fileName);
+
+	        try {
+	            Files.deleteIfExists(filePath);
+	        } catch (IOException e) {
+	            // 삭제 실패 시 예외 처리
+	            e.printStackTrace();
+	        }
+	    }
+		
+	    @PostMapping("/helpUpdate")
+	    public ModelAndView helpUpdate(@RequestParam(name = "updateImage", required = false) MultipartFile updateImage,
+	                                    HttpServletRequest req,
+	                                    HttpSession session,
+	                                    @RequestParam("textno") Integer textno,
+	                                    @RequestParam("texttitle") String texttitle,
+	                                    @RequestParam("text") String text) {
+	        ModelAndView mav = new ModelAndView();
+
+	        // 기존 파일 정보 조회
+	        HelpDTO existingHelp = helpDAO.detail(textno);
+
+	        String helppic;
+
+	        // 새 이미지가 전송되었을 경우
+	        if (updateImage != null && !updateImage.isEmpty()) {
+	            helppic = updateImage.getOriginalFilename();
+
+	            try {
+	                ServletContext application = req.getSession().getServletContext();
+	                String path = application.getRealPath("/storage"); // 실제 파일은 이곳에 저장
+	                updateImage.transferTo(new File(path + File.separator + helppic)); // 새 이미지 저장
+
+	                // 기존 이미지 삭제
+	                String existingImageFileName = existingHelp.getHelppic();
+	                if (existingImageFileName != null && !existingImageFileName.equals("-")) {
+	                    deleteImage(existingImageFileName, req);
+	                }
+	            } catch (Exception e) {
+	                System.out.println(e);
+	            }
+	        } else {
+	            // 이미지를 수정하지 않는 경우 기존 이미지 파일명을 그대로 사용
+	            helppic = existingHelp.getHelppic();
+	        }
+
+	        // 기존 파일 정보를 데이터베이스에 업데이트
+	        existingHelp.setTexttitle(texttitle);
+	        existingHelp.setText(text);
+	        existingHelp.setHelppic(helppic);
+	        helpDAO.update(existingHelp);
+
+	        mav.setViewName("redirect:/help/helpDetail");
+	        return mav;
+	    }
+		
+		
 		
 		@PostMapping("/helpDelete")
 		public ModelAndView helpDelete(int textno) {

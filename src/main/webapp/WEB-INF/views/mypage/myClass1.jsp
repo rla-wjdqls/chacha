@@ -19,19 +19,28 @@
 			<table class="table table-condensed">
 	        <thead>
 	            <tr>
-	                <th>강의구분</th>
+	                <th>강의번호</th>
 	                <th>교육신청번호</th>
+	                <th>내용</th>
 	                <th>수료상태</th>
+	                <th>신청날짜</th>
 	                <th>수료날짜</th>
 	            </tr>
 	        </thead>
 	        <tbody>
 	            <c:forEach items="${myClassList}" var="myedu" >
 	                <tr>
-	                    <td>${myedu.eduop}</td>
+	                    <td>${myedu.myno}</td>
 	                    <td>${myedu.eduno}</td>
-			            <td th:text="${myedu.score >= 60 ? '수료완료' : '미수료'}"></td>		       	   		
-	                    <td><fmt:formatDate value="${myedu.edu_date}" pattern="yyyy-MM-dd" /></td>
+	                    <td>${myedu.mycon}</td>
+	                    <td>
+			            <c:choose>
+			                <c:when test="${myedu.mystate eq 'y'}">수료완료</c:when>
+			                <c:when test="${myedu.mystate eq 'n'}">수료미완료</c:when>
+			            </c:choose>
+		       	   		</td>
+	                    <td><fmt:formatDate value="${myedu.mydate}" pattern="yyyy-MM-dd" /></td>
+	                    <td><fmt:formatDate value="${myedu.mycomple}" pattern="yyyy-MM-dd" /></td>
 	                </tr>
 	            </c:forEach>
 	        </tbody>
