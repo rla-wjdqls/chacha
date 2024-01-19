@@ -40,6 +40,18 @@ public class ServiceCont {
 
 	@Autowired
 	ServiceDAO serviceDAO;
+	
+	
+	//로그아웃 클릭시 세션 만료
+	@RequestMapping("/logout")
+	public String logout2(HttpSession session) {
+		
+		session.removeAttribute("s_id");
+		session.removeAttribute("s_passwd");
+		session.removeAttribute("s_mlevel");
+		
+		return "redirect:/";
+	}//logout()
 
 	/*
 	 * @GetMapping("/serviceList") public ModelAndView serviceList() { ModelAndView
