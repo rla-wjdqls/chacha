@@ -1,5 +1,5 @@
 <div align=center>
-  <img width="492" alt="스크린샷 2022-09-30 오후 5 31 24" src="https://github.com/rla-wjdqls/chacha/issues/1#issue-2307730927">
+  <img width="200" alt="스크린샷 2024-05-21 오후 5.38.16" src="https://github.com/rla-wjdqls/chacha/issues/1#issue-2307730927">
   <h2> 사라지는 Slack 메세지, 우리가 주워줄게! </h2>
   https://jupjup.site/
   <br>
