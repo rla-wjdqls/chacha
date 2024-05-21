@@ -26,10 +26,14 @@ Jpa
 ![백엔드기술스택](https://user-images.githubusercontent.com/80666066/198928111-a3e64d8b-abfb-47ca-a97f-14d690fc40dc.png)
 
 
-# 팀구성
-Springboot
-Java 11
-Jpa
+## ⚙️ 화면구성
+
+
+## ⚙️ 주요기능 
+
+## ⚙️ ERD
+
+
 
 
 
@@ -38,7 +42,7 @@ Jpa
 
 
 
-## ⚙️ 
+
 
 
   
