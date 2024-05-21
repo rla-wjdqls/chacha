@@ -1,5 +1,5 @@
 <div align=center>
-  <img width="200" alt="스크린샷 2024-05-21 오후 5.38.16" src="https://github.com/rla-wjdqls/chacha/issues/1#issue-2307730927" />
+  <img width="492" alt="스크린샷 2024-05-21 오후 5.38.16" src="https://github.com/rla-wjdqls/chacha/issues/1#issue-2307730927">
   <h2> 사라지는 Slack 메세지, 우리가 주워줄게! </h2>
   https://jupjup.site/
   <br>
@@ -9,6 +9,7 @@
   무료 워크스페이스라도 잠길 걱정 없이 언제든 볼 수 있게 해주는 서비스입니다
   <br>
   <br>
+
 
 # 소개
 Springboot
