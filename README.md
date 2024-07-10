@@ -29,8 +29,8 @@
 
 ### [게시글]
 <div align=center>
-  <img width="350" height="450" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
-  <img width="350" height="450" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
+  <img width="360" height="450" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
+  <img width="360" height="450" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
 </div>
 
 - 회원가입,로그인 할 <br>
