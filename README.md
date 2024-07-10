@@ -33,9 +33,11 @@ Jpa
 <img width="753" alt="설문조사 등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/03e32a4c-095a-46de-90f1-c61b65ea6f8f"><br>
 <img width="573" alt="설문조사 목록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/543cc8ec-4720-4b1c-b464-0e6d84b7db2f"><br>
 <img width="703" alt="설문조사 폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/dce4dc57-cbf4-4b97-bc32-d4ce12d299dd"><br>
-="결제화면" src="https://github.com/rla-wjdqls/chacha/assets/152236710/00dd5f67-8329-4e7e-8e5d-c9dc11aac03a"><br>
 <img width="993" alt="관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/1f80e4e2-c322-4e1e-b876-d46f619a561f"><br>
-
+<img width="710" alt="결제화면" src="https://github.com/rla-wjdqls/chacha/assets/152236710/d83ed278-c14c-4822-b117-6bd3bc93251f"><br>
+<img width="993" alt="관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/581e2bf7-357f-442e-9dca-ef1f1492ca59"><br>
+<img width="1096" alt="파트너페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/ed2fe3a3-9322-48cb-9492-19123130d443"><br>
+<img width="314" alt="아이디 찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/09ea1090-707a-4fd9-9219-e51e4bfa8421"><br>
 ## ⚙️ 주요기능 
 
 ## ⚙️ ERD
