@@ -18,7 +18,10 @@ Jpa
 
 
 ## ✨ 프론트엔드 기술 스택 
-
+<img width="454" alt="스크린샷 2024-07-10 오전 11 33 49" src="https://github.com/rla-wjdqls/chacha/assets/152236710/0d8cb23b-26ae-4e80-9469-56fd30a49de5">
+<img width="584" alt="chacha 백엔드" src="https://github.com/rla-wjdqls/chacha/assets/152236710/8f451198-8547-435d-846c-c1b29978eb1f">
+<img width="313" alt="스크린샷 2024-07-10 오전 11 38 40" src="https://github.com/rla-wjdqls/chacha/assets/152236710/86121b25-70f5-45fb-b9fd-36c652a53d1b">
+<img width="164" alt="스크린샷 2024-07-10 오전 11 40 42" src="https://github.com/rla-wjdqls/chacha/assets/152236710/b23ae404-d7fb-43ab-9ff5-edac0b2ebf62">
 ![프론트엔드기술스택](https://user-images.githubusercontent.com/80666066/198928140-3b6a081e-f3e6-401e-b58f-568792f67847.png)
 
 ## ⚡️ 백엔드 기술 스택 
