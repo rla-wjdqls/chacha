@@ -36,8 +36,8 @@
 - 회원가입,로그인 할 <br>
 
 <div align=center>
-  <img width="380" height="450" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
-  <img width="380" height="450" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
+  <img width="380" height="400" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
+  <img width="380" height="400" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
 </div>
 
 - 아이디, 비밀번호 찾기<br>
