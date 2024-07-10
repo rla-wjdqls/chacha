@@ -56,7 +56,7 @@
 
 ### [설문조사]
 <div align=center>
-  <img width="600" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
+  <img width="400" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
 </div>
 
 - 파트너 등급의 경우 설문조사를 등록 할 수 있습니다
@@ -64,8 +64,9 @@
 
 
 <div align=center>
-  <img width="600" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
-  <img width="600" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
+  <img width="400" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
+  <img width="400" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
+  <img width="400" height="400 alt="설문완" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3f3bbd0f-b6c0-4a31-b394-8cfbc0704270">
 </div>
 
 - 한 아이디당 한번의 설문 참여가 가능합니다
