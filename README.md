@@ -27,7 +27,14 @@ Jpa
 
 
 ## ⚙️ 화면구성
-
+<img width="1027" alt="로그인화면" src="https://github.com/rla-wjdqls/chacha/assets/152236710/12ac872a-5fa1-4acf-8776-0d517cb77ff7"><br>
+<img width="1063" alt="마이페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e2f5c02-6d73-4503-8670-00dff44f8324"><br>
+<img width="378" alt="설문조사 결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/ea2c8e83-1229-4368-90e6-f727d6f98afe"><br>
+<img width="753" alt="설문조사 등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/03e32a4c-095a-46de-90f1-c61b65ea6f8f"><br>
+<img width="573" alt="설문조사 목록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/543cc8ec-4720-4b1c-b464-0e6d84b7db2f"><br>
+<img width="703" alt="설문조사 폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/dce4dc57-cbf4-4b97-bc32-d4ce12d299dd"><br>
+="결제화면" src="https://github.com/rla-wjdqls/chacha/assets/152236710/00dd5f67-8329-4e7e-8e5d-c9dc11aac03a"><br>
+<img width="993" alt="관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/1f80e4e2-c322-4e1e-b876-d46f619a561f"><br>
 
 ## ⚙️ 주요기능 
 
