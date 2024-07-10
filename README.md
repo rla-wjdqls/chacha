@@ -1,7 +1,7 @@
 <div align=center>
 <img width="400" alt="스크린샷 2024-05-21 오후 5 38 16" src="https://github.com/rla-wjdqls/chacha/assets/152236710/c9053c6f-ecd9-4e79-8e14-23b2466a5797">
   <h2></h2>
-  https://jupjup.site/
+  http://43.200.38.202:8080
   <br>
   <br>
   <strong>그냥 데려가개</strong> 유기동물 보호소 홈페이지 입니다
