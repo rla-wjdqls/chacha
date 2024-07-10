@@ -29,15 +29,15 @@
 
 ### [게시글]
 <div align=center>
-  <img width="400" height="450" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
-  <img width="400" height="450" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
+  <img width="350" height="450" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
+  <img width="350" height="450" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
 </div>
 
 - 회원가입,로그인 할 <br>
 
 <div align=center>
-  <img width="400" height="450" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
-  <img width="400" height="450" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
+  <img width="350" height="450" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
+  <img width="350" height="450" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
 </div>
 
 - 아이디, 비밀번호 찾기<br>
@@ -54,8 +54,8 @@
 ### [설문조사]
 <div align=center>
   <img width="650" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
-  <img width="400" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
-  <img width="400" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
+  <img width="350" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
+  <img width="350" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
 </div>
 
 - 설문조사<br>
