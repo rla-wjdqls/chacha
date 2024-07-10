@@ -50,14 +50,13 @@
   <img width="650" height="450" alt="c 관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/a3275307-33ea-496f-b907-3fb56813ff76">
 <br>
 </div>
+
 - 역할 및 책임에의해 회원등급이 나누어지며 각 회원등급에 따라 마이 페이지가 다르게 보여집니다
-- 사용자: 일반회원 (테스트 아이디:kim9595 , 비밀번호:kim9585!)
-- 파트너: 교육 및 봉사관리 (테스트 아이디:part123 , 비밀번호:part321!)
-- 관리자: 회원 및 입양관리 (테스트 아이디:cap123 , 비밀번호:cap321!)
+- 사용자: 일반회원, 파트너: 교육 및 봉사관리, 관리자: 회원 및 입양관리
 
 ### [설문조사]
 <div align=center>
-  <img width="650" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
+  <img width="600" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
 </div>
 
 - 파트너 등급의 경우 설문조사를 등록 할 수 있습니다
@@ -65,9 +64,8 @@
 
 
 <div align=center>
-  <img width="650" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
-  <img width="650" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
-  <img width="650" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
+  <img width="600" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
+  <img width="600" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
 </div>
 
 - 한 아이디당 한번의 설문 참여가 가능합니다
