@@ -36,26 +36,26 @@
 - 회원가입,로그인 할 <br>
 
 <div align=center>
-  <img width="500" height="450" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
-  <img width="500" height="450" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca"><br>
+  <img width="450" height="450" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
+  <img width="450" height="450" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca"><br>
 </div>
 
 - 아이디, 비밀번호 찾기<br>
 
 ### [게시글]
 <div align=center>
-  <img width="600" height="450" alt="c 마이페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/74bc9054-39d6-413b-8766-adbf3c6c0936"><br>
-  <img width="600" height="450" alt="c 파트너페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/51040d04-8b43-4e16-ba00-86aa684b6a1a">
-  <img width="600" height="450" alt="c 관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/a3275307-33ea-496f-b907-3fb56813ff76">
+  <img width="700" height="450" alt="c 마이페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/74bc9054-39d6-413b-8766-adbf3c6c0936"><br>
+  <img width="700" height="450" alt="c 파트너페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/51040d04-8b43-4e16-ba00-86aa684b6a1a">
+  <img width="700" height="450" alt="c 관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/a3275307-33ea-496f-b907-3fb56813ff76">
 <br>
 </div>
 - 회원등급에 따라 다른 페이지가 보여집니다<br>
 
 ### [설문조사]
 <div align=center>
-  <img width="600" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
-  <img width="500" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
-  <img width="500" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0"><br>
+  <img width="700" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
+  <img width="450" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
+  <img width="450" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0"><br>
 </div>
 
 - 설문조사<br>
