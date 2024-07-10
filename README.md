@@ -4,9 +4,9 @@
   <br><br><br>
   
 ## 소개 
-  <br><strong>그냥 데려가개</strong> 유기동물 보호소 홈페이지 입니다
+  <br><strong>그냥 데려가개</strong>은 유기동물 보호소 홈페이지 입니다
   <br>
-  무료 워크스페이스라도 잠길 걱정 없이 언제든 볼 수 있게 해주는 서비스입니다
+  반려동물 입양, 관련 교육, 봉사활동 모집과 같은 서비스들을 제공합니다
   <br><br> http://43.200.38.202:8080
   <br><br>
 </div>
@@ -27,41 +27,51 @@
 
 ## ⚙️ 주요기능
 
-### [게시글]
+### [로그인/회원가입]
 <div align=center>
-  <img width="360" height="400" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
-  <img width="360" height="400" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
+  <img width="370" height="400" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
+  <img width="370" height="400" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
 </div>
 
-- 회원가입,로그인 할 <br>
+- 신규 회원가입을 통해 그냥 데려가개 서비스를 이용 할 수 있습니다
+- 네이버, 카카오톡 소셜 로그인 기능을 제공합니다
 
 <div align=center>
-  <img width="360" height="400" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
-  <img width="360" height="400" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
+  <img width="370" height="400" alt="c 아이디찾기" src="https://github.com/rla-wjdqls/chacha/assets/152236710/2cfe6477-3d85-49f5-92df-a4c8ee626584">
+  <img width="370" height="400" alt="c 아이디결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/7da9ff0e-36b4-4599-a415-56eb88c3dbca">
 </div>
 
-- 아이디, 비밀번호 찾기<br>
+- 아이디, 비밀번호 찾기 기능을 제공합니다
 
-### [게시글]
+### [마이페이지]
 <div align=center>
   <img width="650" height="450" alt="c 마이페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/74bc9054-39d6-413b-8766-adbf3c6c0936"><br>
   <img width="650" height="450" alt="c 파트너페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/51040d04-8b43-4e16-ba00-86aa684b6a1a">
   <img width="650" height="450" alt="c 관리자페이지" src="https://github.com/rla-wjdqls/chacha/assets/152236710/a3275307-33ea-496f-b907-3fb56813ff76">
 <br>
 </div>
-- 회원등급에 따라 다른 페이지가 보여집니다<br>
+- 역할 및 책임에의해 회원등급이 나누어지며 각 회원등급에 따라 마이 페이지가 다르게 보여집니다
+- 사용자: 일반회원 (테스트 아이디:kim9595 , 비밀번호:kim9585!)
+- 파트너: 교육 및 봉사관리 (테스트 아이디:part123 , 비밀번호:part321!)
+- 관리자: 회원 및 입양관리 (테스트 아이디:cap123 , 비밀번호:cap321!)
 
 ### [설문조사]
 <div align=center>
   <img width="650" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
-  <img width="360" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
-  <img width="360" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
 </div>
 
-- 설문조사<br>
+- 파트너 등급의 경우 설문조사를 등록 할 수 있습니다
+- 질문유형은 객관식 중복불가, 중복허용이 있으며 선택지는 2개~4개 중 선택 가능합니다
 
 
+<div align=center>
+  <img width="650" height="400" alt="c 설문등록" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3e475047-96cd-4858-bb98-be5bb2554085">
+  <img width="650" height="400" alt="c 설문폼" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f67f563e-47c1-4acf-9f4a-ebdcd91ccfaf">
+  <img width="650" height="400" alt="c 설문결과" src="https://github.com/rla-wjdqls/chacha/assets/152236710/057e61d9-aa5a-4c25-a25a-e0ca6b2ab5f0">
+</div>
 
+- 한 아이디당 한번의 설문 참여가 가능합니다
+- 설문 결과는 설문조사 게시판에서 확인 가능하며 홈 화면에서도 확인 할 수 있습니다
 
 
 <br>
