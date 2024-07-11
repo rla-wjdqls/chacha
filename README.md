@@ -4,7 +4,7 @@
   <br><br><br>
   
 ## 소개 
-  <br><strong>그냥 데려가개</strong>은 유기동물 보호소 홈페이지 입니다
+  <br><strong>그냥 데려가개</strong>는 유기동물 보호소 홈페이지 입니다
   <br>
   반려동물 입양, 관련 교육, 봉사활동 모집과 같은 서비스들을 제공합니다
   <br><br> http://43.200.38.202:8080
@@ -15,7 +15,7 @@
 ## ✨ 프론트엔드 기술 스택 
 <img width="454" alt="스크린샷 2024-07-10 오전 11 33 49" src="https://github.com/rla-wjdqls/chacha/assets/152236710/0d8cb23b-26ae-4e80-9469-56fd30a49de5">
 
-## ⚡️ 백엔드 기술 스택 
+## ✨ 백엔드 기술 스택 
 <img width="584" alt="chacha 백엔드" src="https://github.com/rla-wjdqls/chacha/assets/152236710/8f451198-8547-435d-846c-c1b29978eb1f">
 
 ## ⚡️ 서버
@@ -27,7 +27,7 @@
 
 ## ⚙️ 주요기능
 
-### [로그인/회원가입]
+### [회원가입/로그인]
 <div align=center>
   <img width="370" height="400" alt="c 회원가입" src="https://github.com/rla-wjdqls/chacha/assets/152236710/3bd1902e-d17f-4ce6-864e-0935bf9bc3a8">
   <img width="370" height="400" alt="c 로그인" src="https://github.com/rla-wjdqls/chacha/assets/152236710/5e2e8d89-976d-4fa4-8d3b-8681382a35ac">
