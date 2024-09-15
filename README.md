@@ -1,3 +1,5 @@
+<!--
+
 <div align=center>
   <img width="350" alt="스크린샷 2024-05-21 오후 5 38 16" src="https://github.com/rla-wjdqls/chacha/assets/152236710/c9053c6f-ecd9-4e79-8e14-23b2466a5797"> <br><br>
     <img width="450" alt="스크린샷 2024-07-10 오후 3 01 28" src="https://github.com/rla-wjdqls/chacha/assets/152236710/f3b1f901-26aa-4fbf-b05f-eb65b28ceaa1">
@@ -71,6 +73,7 @@
 - 한 아이디당 한번의 설문 참여가 가능합니다
 - 설문 결과는 설문조사 게시판과 홈 화면에서 확인 할 수 있습니다
 
+-->
 
 <br>
 
